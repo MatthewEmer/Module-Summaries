@@ -1,0 +1,275 @@
+\documentclass{article}
+
+%% Downloading Packages for the Document.
+
+\usepackage{datetime} % Dates.
+\usepackage{fancyhdr} % Headers.
+\usepackage{lastpage} % Page References.
+
+\usepackage{graphicx} % Inserting Images.
+\usepackage{float} % Postitioning Images.
+
+\usepackage{dirtytalk} % Speech & Quote Marks.
+\usepackage{hyperref} % Hyperlinks and References.
+\usepackage{xcolor} % Coloured Text.
+\usepackage{enumitem} % Letter Bullets. 
+% \begin{enumerate}[label=\alph*.] 
+
+\usepackage{amssymb} % Maths Symbols.
+\usepackage{amsmath} % Maths Tools.
+
+\usepackage{algpseudocode} % Pseudocode.
+\usepackage{algorithm} % Algorithms.
+\usepackage{minted} % Code Snippets.
+
+\usepackage[margin=1in]{geometry} % Margins.
+
+%%
+
+
+%% Creating Formats.
+
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black}
+
+\newdateformat{monthyeardate}
+{%
+    \monthname[\THEMONTH] \THEYEAR
+}
+
+\newdateformat{yeardate}
+{%
+    \THEYEAR
+}
+
+% Colouring and Spacing.
+\newcommand{\colour}[2] {\color{#1}#2\color{black}}
+\newcommand{\separate}[1] {\vspace{#1 pt}\noindent}
+
+% Maths Number Sets.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% Document Colour Scheme.
+\newcommand{\definition}[2]{(#1) \textbf{Definition}: #2}
+\newcommand{\theorem}[2]{(#1) \textbf{Theorem}: #2}
+\newcommand{\lemma}[2]{(#1) \textbf{Lemma}: #2}
+\newcommand{\example}[2]{(#1) \textbf{Example}: #2}
+\newcommand{\conjecture}[2]{(#1) \textbf{Conjecture}: #2}
+\newcommand{\proof}[1]{\textbf{Proof}: #1 \begin{flushright}\(\square\)\end{flushright}}
+
+%%
+
+
+%% Setting up the Document.
+
+\title{Algorithms and Data Structures \\ \small Durham University - COMP1081}
+\author{Matthew Emerson}
+\date{2025-26} % Edit this to get a static date.
+
+\begin{document}
+
+%%
+
+
+%% Setting the Default Header and Footer. 
+
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[L]{Written by Matthew Emerson \\ \textit{\LaTeX \,Template: Copyright \date{\yeardate\today}, Matthew Emerson}}
+\fancyfoot[R]{Page \thepage \, of\, \pageref{LastPage}}
+
+%%
+
+
+%% Creating the Title Page.
+
+\maketitle
+\thispagestyle{empty}
+
+%% 
+
+
+%% Creating the Table of Contents Page.
+
+\newpage
+\thispagestyle{empty}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+%% 
+
+
+%% The Main Document.
+
+\setcounter{page}{0}
+\newpage
+
+\part{Fundamental Data Structures}\label{part:1.fds}
+
+\section{Introduction}
+
+\subsection{Basic Definitions}
+
+\definition{1.1.1}{An \underline{algorithm} is a method or process that is followed to solve a problem. It must be correct, must be composed of a finite number of unambiguous steps, and must terminate.}
+
+\separate{5}\definition{1.1.2}{A \underline{data structure} is a particular way of storing and organising data in a computer so that it can be used efficiently.}
+
+\separate{5}\definition{1.1.3}{The \underline{RAM Model of Computation} is a highly simplified model of computation that we use to compute the efficiency of an algorithm. Its memory consists of an infinite array which it uses to carry out instructions sequentially. All instructions take unit time, meaning the running time is the number of instructions executed.}
+
+\separate{5}\definition{1.1.4}{\underline{Pseudocode} is a generic way of describing how an algorithm will function without choosing any specific programming language. It does not have any very strict rules, but follows the following generic format:}
+\begin{algorithm}
+    \caption{Example Pseducode}
+    \begin{algorithmic}
+        \Require Input Condition
+        \Ensure The Algorithm's Output
+        
+        \State \(x \gets 1\)
+        \State \(y \gets 2\)
+
+        \If {\(y > x\)}
+            \State \Return y
+        \Else
+            \State \Return x
+        \EndIf
+    \end{algorithmic}
+\end{algorithm}
+
+\noindent\definition{1.1.5}{A \underline{variable} is used to store some value, for example, in the above code, \(x\) and \(y\) are variables. Some basic types include integer, float, char, and string.}
+
+\subsection{Recursion and Backtracking}
+
+\definition{1.2.1}{A \underline{recursive algorithm} is an algorithm which calls itself to do a part of its work. It should have a base case (where the final result is returned), must change its state to move towards the base case, and must call itself recursively.}
+
+\separate{5}\definition{1.2.2}{A \underline{backtracking algorithm} tries to construct a solution to a computational problem incrementally, one small piece at a time. Whenever the algorithm needs to decide between multiple alternatives to the next component of the solution, it recursively evaluates every alternative and then chooses the best one.} Definition from \hyperref[cit:1.algorithms]{(Erickson, 2019, p.71)}.
+
+\separate{5}\definition{1.2.3}{\underline{Memoisation} is the process of storing the result of a computation so that it can be subsequently retrieved without repeating the computation.}
+
+\newpage\section{Basic Data Structures}
+
+\subsection{Arrays}
+
+\definition{2.1.1}{An \underline{array} is a sequence of elements that is usually denoted as \(A[1], \; A[2], \; ..., \; A[n]\) or as \(A[1,...,n]\).} The elements are stored in consecutive memory cells and are all of the same data type. 
+
+\subsection{Lists}
+
+Lists can be separated into three different categories, depending on how they store data. 
+
+\separate{5}\definition{2.2.1}{A \underline{singly-linked list} consists of nodes, each storing an element and a pointer to the subsequent node in the list. This means that the nodes do not have to be stored consecutively.}
+\begin{itemize}
+    \item \definition{2.2.2}{The first node in a singly-linked list is called the \underline{head}.}
+    \item \definition{2.2.3}{The final node in a singly-linked list is called the \underline{tail} and its pointer points to null.}
+\end{itemize}
+\definition{2.2.4}{A \underline{doubly-linked list} consists of nodes with a value and two pointers, pointing to both the previous and subsequent nodes in the list. The list also must keep a size counter to track the number of nodes in the list.}
+\begin{itemize}
+    \item \definition{2.2.5}{At either end of the doubly-linked list is a \underline{sentinel node}. These nodes either have a null next or previous pointer and do not store a value. An empty list has two sentinel nodes pointing at each other.}
+\end{itemize}
+\definition{2.2.6}{A \underline{circularly-linked} list uses the same nodes as a singly-linked list but does not have a head or tail node. Instead, the final node points to the start of the list, creating a circle.}
+\begin{itemize}
+    \item \definition{2.2.7}{One node in the circularly-linked list is designated as the \underline{cursor} and is used as a starting point when traversing the list.}
+\end{itemize}
+
+\subsection{Stacks}
+
+\definition{2.3.1}{A \underline{stack} is a collection of objects that are inserted and removed according to the last-in-first-out (LIFO) principle.} They support the following methods:
+\begin{itemize}
+    \item \textbf{Compulsory Methods:}
+    \begin{itemize}
+        \item \textbf{Push}: \(push(element)\) inserts \(element\) at the top of the stack.
+        \item \textbf{Pop}: \(pop()\) removes and returns the top element from the stack. An error occurs if the stack is empty.
+    \end{itemize}
+    \item \textbf{Optional Methods:}
+    \begin{itemize}
+        \item \textbf{Size}: \(size()\) returns the number of elements in the stack.
+        \item \textbf{Is Empty}: \(isEmpty()\) returns true if the stack is empty, and false if not.
+        \item \textbf{Top}: \(top()\) returns the top item from the stack without removing it. Throws an error if the stack is empty.
+    \end{itemize}
+\end{itemize}
+Stacks are generally implemented using an array to store the items of the stack; however this can lead to memory wastage when the stack is not full, and conversely it will throw errors if the stack is full.
+
+\newpage\subsection{Queues}
+
+\definition{2.4.1}{A \underline{queue} is a collection of objects that are inserted and removed according to the first-in-first-out (FIFO) principle.} They support the following methods:
+\begin{itemize}
+    \item \textbf{Compulsory Methods:}
+    \begin{itemize}
+        \item \textbf{Enqueue}: \(enqueue(element)\) inserts \(element\) at the end of the queue.
+        \item \textbf{Dequeue}: \(dequeue()\) removes the element from the front of the queue. An error occurs if the queue is empty.
+    \end{itemize}
+    \item \textbf{Optional Methods:}
+    \begin{itemize}
+        \item \textbf{Size}: \(size()\) returns the number of elements in the queue.
+        \item \textbf{Is Empty}: \(isEmpty()\) returns true if the queue is empty, and false if not.
+        \item \textbf{Front}: \(front()\) returns the element from the front of the queue without removing it. Throws an error if the queue is empty.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Hash Tables}
+
+\definition{2.5.1}{A \underline{hash table} consists of a bucket array and a hash function.}
+
+\separate{5}\definition{2.5.2}{A \underline{bucket array} for a hash table is an array \(A\) of size \(N\), where each cell of \(A\) is thought of as a bucket storing a collection of key-value pairs.} 
+
+\separate{5}\definition{2.5.3}{The size \(N\) of the array is called the \underline{capacity} of the hash table.}
+
+\separate{5}\definition{2.5.4}{A \underline{hash function} \(h\) is a function mapping each key \(k\) to an integer in the range \([0,N-1]\), where \(N\) is the capacity of the hash table. This provides an index \(h(k)\) of a location in \(A\) where the key-value pair \((k,v)\) is stored. Hash functions are usually composed of the hash code (mapping keys to integers) and a compression function (integers to indices).}
+
+\separate{5}\definition{2.5.5}{A \underline{collision} occurs when two keys map to the same hash value, and consequently want to be stored in the same bucket. These can be dealt with using different methods:}
+\begin{itemize}
+    \item \definition{2.5.6}{\underline{Separate chaining} converts each bucket to a list of key-value pairs. This will result in lists of average length \(\frac{N}{M}\) where \(N\) is the amount of data, and \(M\) is the capacity of the hash table.}
+    \item \definition{2.5.7}{If a collision occurs at \(h(k)=i\), \underline{linear probing} tries to insert again at \(A[(i+1)\%N]\), then if that is also full, tries at \(A[(i+2)\%N]\) etc. until the key-value pair is inserted.}
+    \item \definition{2.5.8}{\underline{Quadratic probing} iteratively tries the buckets \(A[(i+f(j)) \; \% \; N]\) for \(j=0,1,2,...\) where \(f(j)=j^2\) until finding an empty bucket. This avoids clustering patterns that occur with linear probing. However, it creates secondary clustering. This strategy may not find an empty bucket in $A$ even if one exists.}
+    \item \definition{2.5.9}{Using \underline{double hashing}, we choose a secondary hash function $h'$, and if $h$ maps some key $k$ to a bucket $A[i]$, with $i=h(k)$, that is already occupied, then we iteratively try the buckets $A[(i+f(j)) \; \% \; N]$ for $j=0,1,2,...$, where $f(j)=j \cdot h'(k)$. A common choice of secondary hash function is $h'(k)=q-(k \; \% \; q)$, for some prime number $q<N$. The secondary hash function should not evaluate to 0. }
+\end{itemize}
+\definition{2.5.10}{Deletions from the hash table must not hinder future searches. To ensure future searches are not hindered, we use \underline{tombstones}. These are markers that are left in a bucket after a deletion. If a tombstone is encountered when searching along a probe sequence to find a key, we know to continue. The use of tombstones lengthens the average probe sequence distance. Two possible remedies are:}
+\begin{itemize}
+    \item \definition{2.5.11}{Using \underline{local reorganisation}, after deleting a key, we continue to follow the probe sequence of that key and move records into the vacated bucket.} 
+    \item Or, we can periodically rehash the table by reinserting all records into a new hash table. If you have a record of which keys are accessed most, these can be placed where they can be found most easily. 
+\end{itemize}
+
+\newpage\part{Asymptotic Notation and Sorting}\label{part:2.ans}
+
+\newpage\part{Selection and Data Structures}\label{part:3.sds}
+
+\newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
+
+\newpage\part{References}
+
+\section{Module Professors}
+
+\begin{itemize}
+    \item \hyperref[part:1.fds]{\textit{Fundamental Data Structures}} and \hyperref[part:4.gta]{\textit{Graph Theory and Algorithms}} are taught by David Kutner.
+    \begin{itemize}
+        \item \textbf{Office Location}: Room 2011, MCS Building
+        \item \textbf{Website}: https://www.durham.ac.uk/staff/david-c-kutner/
+        \item \textbf{Preferred Contact Methods}: david.c.kutner@durham.ac.uk
+        \item \textbf{Pronouns}: he, him
+    \end{itemize}
+    
+    \item \hyperref[part:2.ans]{\textit{Asymptotic Notation and Sorting}} is taught by Thomas Erlebach.
+    \begin{itemize}
+        \item \textbf{Office Location}: Room 2004, MCS Building
+        \item \textbf{Website}: https://www.durham.ac.uk/staff/thomas-erlebach/
+        \item \textbf{Preferred Contact Methods}: thomas.erlebach@durham.ac.uk
+        \item \textbf{Pronouns}: he, him
+    \end{itemize}
+    
+    \item \hyperref[part:3.sds]{\textit{Selection and Data Structures}} is taught by Anish Jindal.
+    \begin{itemize}
+        \item \textbf{Office Location}: Room 2065, MCS Building
+        \item \textbf{Website}: https://www.durham.ac.uk/staff/anish-jindal/
+        \item \textbf{Preferred Contact Methods}: anish.jindal@durham.ac.uk
+        \item \textbf{Pronouns}: he, him
+    \end{itemize}
+\end{itemize}
+
+\section{Cited Works}
+
+Erickson, J. (2019). Algorithms. 1st ed. [online] Self-Published, p.71. \\ Available at: http://jeffe.cs.illinois.edu/teaching/algorithms/ [Accessed 25 Mar. 2026].\label{cit:1.algorithms}
+
+\end{document}
+
+%%
