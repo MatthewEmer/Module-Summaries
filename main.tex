@@ -232,6 +232,63 @@ Stacks are generally implemented using an array to store the items of the stack;
 
 \newpage\part{Asymptotic Notation and Sorting}\label{part:2.ans}
 
+\section{Asymptotic Notation}
+
+\subsection{Types of Complexity}
+
+\definition{3.1.1}{The \underline{time complexity} of an algorithm can be expressed as the number of basic operations executed by an algorithm when computing for a set input size.}
+
+\separate{5}\definition{3.1.2}{The \underline{space complexity} of an algorithm is the amount of memory required to carry out the algorithm on an input of a set size.}
+
+\separate{5}\definition{3.1.3}{The \underline{worst-case time complexity} of an algorithm is the largest number of basic operations possible for an input of a set size.}
+
+\subsection{General Notation}
+
+\definition{3.2.1}{Generally, \underline{Big-O Notation} denotes that, if \(f = O(g)\), then \(f\) will grow no faster than \(g\) (the upper-bound for the growth rate, or \(f' \leq g'\)).} Formally, let \(f\) be a real or complex function, and let \(g\) be a real function such that
+\begin{equation}
+    f(x) = O(g(x)) \quad\text{as } x \rightarrow \infty
+\end{equation}
+meaning \(f(x)\) is Big-O \(g(x)\) if the absolute value of \(f(x)\) is at most a positive constant multiple of the absolute value of \(g(x)\) for a suitably large value of \(x\):
+\begin{equation}
+    |f(x)| \leq C \cdot |g(x)| \quad x \geq x_0, \; x_0 \in \R, \; C \in \N
+\end{equation}
+
+\separate{5}\definition{3.2.2}{Similarly, \underline{Big-Omega Notation} denotes that, if \(f=\Omega(g)\), then \(f\) will grow at least as fast as \(g\) (the lower-bound for the growth rate, or \(f' \geq g'\)).} Formally, let \(f\) and \(g\) be functions \(\R \rightarrow \R\). We say that 
+\begin{equation}
+    f(x) = \Omega(g(x))
+\end{equation}
+if, for a suitably large value of \(x\), there exists a constant \(C\) such that
+\begin{equation}
+    |f(x)| \geq C \cdot |g(x)| \quad x \geq x_0, \; x_0 \in \R, \; C \in \N
+\end{equation}
+Therefore, \(f(x)\) is \(\Omega(g(x))\) if \(g(x)\) is \(O(f(x))\).
+
+\separate{5}\definition{3.2.3}{\underline{Big-Theta Notation} denotes the exact growth rate of a function. This means that, for some real-valued functions \(f\) and \(g\),}
+\begin{equation}
+    f(x) = O(g(x)) \quad\text{and}\quad f(x)=\Omega(g(x))
+\end{equation}
+
+\separate{5}\definition{3.2.4}{\underline{Little-o Notation} can be used for disregarding \say{small-order} terms. Generally, \(f(x) = o(g(x)\) if \(f'(x) < g'(x)\). It is formally defined for the real-valued functions \(f\) and \(g\) such that \(f(x) = o(g(x))\) when}
+\begin{equation}
+    \lim_{x\rightarrow\infty} \frac{f(x)}{g(x)} = 0
+\end{equation}
+When the limit is removed, this becomes
+\begin{equation}
+    o(g) = \{f: \N \rightarrow \N \;|\; \forall C > 0 \;\exists k > 0 : C \cdot f(n) < g(n) \;\forall n \geq k \} 
+\end{equation}
+Therefore, \(f(x) = o(g(x) \implies f(x) = O(g(x))\).
+
+\newpage\noindent\definition{3.2.5}{Similar to Little-o Notation, \underline{Little-omega Notation} is defined such that \(f=\omega(g)\) if \(f' > g'\),}
+and is defined formally as
+\begin{equation}
+    \omega(g) = \{f: \N \rightarrow \N \;|\; \forall C > 0 \;\exists k > 0 : f(n) > C \cdot g(n) \;\forall n \geq k \} 
+\end{equation}
+
+\separate{5}\definition{3.2.6}{A function is designated as a \underline{sublinear function} if it grows slower than any linear function. Using Little-o Notation, \(f(x)\) is sublinear if \(f(x) = o(x)\), meaning}
+\begin{equation}
+    \lim_{x \rightarrow \infty} \frac{f(x)}{x} = 0
+\end{equation}
+
 \newpage\part{Selection and Data Structures}\label{part:3.sds}
 
 \newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
