@@ -347,7 +347,10 @@ The theorem has three cases:
 \subsection{Sorting}
 
 \definition{5.1.1}{A \underline{bucket sort} algorithm creates buckets with labels in the interval \([1,k]\) where \(k\) is the largest value in the list. Each element is then placed in its corresponding bucket before the buckets are outputted in ascending order, creating a sorted list.}
-This gives a worst-case time complexity of \(O(n+k)\).
+This gives a worst-case time complexity of \(O(n+k)\). If \(k\) is small relative to \(n\), this gives a best-case time complexity of \(o(n \, log \, n)\). 
+
+\separate{5}\definition{5.1.2}{A \underline{bucket sort} recursively sorts a list of items by a given digit of each element until the list is sorted (from right-most digit to left-most). This algorithm requires as many buckets as the base of the number system being used (e.g. binary requires two buckets).}
+It has a time complexity of \(O(n \, log_d \, k)\) for a list of values in \([1,k-1]\) in base \(d\).
 
 \subsection{Searching}
 
