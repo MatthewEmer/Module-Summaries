@@ -318,6 +318,29 @@ It has a time complexity of \(O(n \, log \, n)\).
 \separate{5}\definition{4.1.5}{A \underline{quick sort} takes the first, middle, and final element of a list and selects one as a pivot point. The remaining elements are then placed in sublists depending on whether they are smaller/larger than the pivot.}
 This gives a best-case time complexity of \(o(n \, log \, n)\) and a worst-case of \(O(n^2)\).
 
+\subsection{Recursion for Sorting and Solving Recurrences}
+
+To analyse recursive algorithms, first of all note that most of them are actually hybrids between iterative and strictly recursive. For example, merge sort splits the input of size \(n\) into two halves of equal size \(\frac{n}{2}\), independently recurses in each half, then merges the resulting sorted sequence.
+
+\begin{equation}
+    T(n) \leq 
+    \begin{cases}
+        d   \qquad \text{if } n \leq c \text{ for constants } c,\,d > 0 \\
+        2 \cdot T(\frac{n}{2}) + a \cdot n  \qquad \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\newpage\noindent\definition{4.2.1}{The \underline{Master Theorem} can be used to quickly solve recurrences of form}
+\begin{equation}
+    T(n) \leq a T\left(\frac{n}{2}\right) + f(n) \quad\quad a \geq 1, \, b > 1
+\end{equation}
+The theorem has three cases:
+\begin{itemize}
+    \item \(f(n) = O(n^{log_b a - \epsilon}), \; \epsilon > 0 \implies T(n) = \Theta(n^{log_b a})\)
+    \item \(f(n) = \Theta(n^{log_b a} \cdot (log \, n)^k) \implies T(n) = \Theta(n^{log_b a} \cdot (log \, n)^{k+1})\)
+    \item \(f(n) = O(n^{log_b a + \epsilon}), \; \epsilon > 0\) and \(a f(\frac{n}{b}) \leq c f(n), \; c < 1 \implies T(n) = \Theta(f(n))\)
+\end{itemize}
+
 \newpage\part{Selection and Data Structures}\label{part:3.sds}
 
 \newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
