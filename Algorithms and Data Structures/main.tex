@@ -270,7 +270,7 @@ Therefore, \(f(x)\) is \(\Omega(g(x))\) if \(g(x)\) is \(O(f(x))\).
 
 \separate{5}\definition{3.2.4}{\underline{Little-o Notation} can be used for disregarding \say{small-order} terms. Generally, \(f(x) = o(g(x)\) if \(f'(x) < g'(x)\). It is formally defined for the real-valued functions \(f\) and \(g\) such that \(f(x) = o(g(x))\) when}
 \begin{equation}
-    \lim_{x\rightarrow\infty} \frac{f(x)}{g(x)} = 0
+    \lim_{x\rightarrow\infty} \left(\frac{f(x)}{g(x)}\right) = 0
 \end{equation}
 When the limit is removed, this becomes
 \begin{equation}
@@ -286,14 +286,60 @@ and is defined formally as
 
 \separate{5}\definition{3.2.6}{A function is designated as a \underline{sublinear function} if it grows slower than any linear function. Using Little-o Notation, \(f(x)\) is sublinear if \(f(x) = o(x)\), meaning}
 \begin{equation}
-    \lim_{x \rightarrow \infty} \frac{f(x)}{x} = 0
+    \lim_{x \rightarrow \infty} \left(\frac{f(x)}{x}\right) = 0
 \end{equation}
 
 \section{Sorting}
 
 \subsection{Common Algorithms}
 
-\definition{}{}
+\definition{4.1.1}{An \underline{insertion sort} works by taking the \(i^{th}\) element from a list and inserting it into an already sorted sequence of elements \([1,\;j-1]\).}
+This has a best-case runtime of \((n-1)\) and a worst-case of \(\frac{n(n-1)}{2}\), giving a Big-O of \(O(n^2)\).
+
+\separate{5}\definition{4.1.2}{A \underline{selection sort} takes the \(i^{th}\) smallest elements and places them in order at the start of the list until all elements have been sorted.}
+Its time complexity can be calculated by doing the following:
+\begin{equation*}
+    \sum^{n-1}_{i=1} \sum^n_{j=i+1} 1 
+    = \sum^{n-1}_{i=1} (n-i) 
+    = \left( \sum^{n-1}_{i=1} n \right) - \left( \sum^{n-1}_{i=1} i \right) 
+    = n(n-1) - \frac{n(n-1)}{2}
+    = O(n^2)
+\end{equation*}
+
+\separate{5}\definition{4.1.3}{A \underline{bubble sort} takes the \(i^{th}\) largest elements and places them in order at the end of the list until all elements have been sorted.}
+Its time complexity can be calculated by doing the following:
+\begin{equation*}
+    \sum^{n-1}_{i=1} (n-i) = O(n^2)
+\end{equation*}
+
+\separate{5}\definition{4.1.4}{A \underline{merge sort} takes a list of elements and recursively splits it into two even parts until each sublist contains one element. Once this occurs, the sublists are merged back together in the correct order to form the sorted list. It does this with a variant of an insertion sort.}
+It has a time complexity of \(O(n \, log \, n)\).
+
+\separate{5}\definition{4.1.5}{A \underline{quick sort} takes the first, middle, and final element of a list and selects one as a pivot point. The remaining elements are then placed in sublists depending on whether they are smaller/larger than the pivot.}
+This gives a best-case time complexity of \(o(n \, log \, n)\) and a worst-case of \(O(n^2)\).
+
+\subsection{Recursion for Sorting and Solving Recurrences}
+
+To analyse recursive algorithms, first of all note that most of them are actually hybrids between iterative and strictly recursive. For example, merge sort splits the input of size \(n\) into two halves of equal size \(\frac{n}{2}\), independently recurses in each half, then merges the resulting sorted sequence.
+
+\begin{equation}
+    T(n) \leq 
+    \begin{cases}
+        d   \qquad \text{if } n \leq c \text{ for constants } c,\,d > 0 \\
+        2 \cdot T(\frac{n}{2}) + a \cdot n  \qquad \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\newpage\noindent\definition{4.2.1}{The \underline{Master Theorem} can be used to quickly solve recurrences of form}
+\begin{equation}
+    T(n) \leq a T\left(\frac{n}{2}\right) + f(n) \quad\quad a \geq 1, \, b > 1
+\end{equation}
+The theorem has three cases:
+\begin{itemize}
+    \item \(f(n) = O(n^{log_b a - \epsilon}), \; \epsilon > 0 \implies T(n) = \Theta(n^{log_b a})\)
+    \item \(f(n) = \Theta(n^{log_b a} \cdot (log \, n)^k) \implies T(n) = \Theta(n^{log_b a} \cdot (log \, n)^{k+1})\)
+    \item \(f(n) = O(n^{log_b a + \epsilon}), \; \epsilon > 0\) and \(a f(\frac{n}{b}) \leq c f(n), \; c < 1 \implies T(n) = \Theta(f(n))\)
+\end{itemize}
 
 \newpage\part{Selection and Data Structures}\label{part:3.sds}
 
