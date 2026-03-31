@@ -14,8 +14,9 @@
 \contentsline {subsection}{\numberline {3.2}General Notation}{4}{subsection.3.2}%
 \contentsline {section}{\numberline {4}Sorting}{5}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Common Algorithms}{5}{subsection.4.1}%
-\contentsline {part}{III\hspace {1em}Selection and Data Structures}{6}{part.3}%
-\contentsline {part}{IV\hspace {1em}Graph Theory and Algorithms}{7}{part.4}%
-\contentsline {part}{V\hspace {1em}References}{8}{part.5}%
-\contentsline {section}{\numberline {5}Module Professors}{8}{section.5}%
-\contentsline {section}{\numberline {6}Cited Works}{8}{section.6}%
+\contentsline {subsection}{\numberline {4.2}Recursion for Sorting and Solving Recurrences}{6}{subsection.4.2}%
+\contentsline {part}{III\hspace {1em}Selection and Data Structures}{7}{part.3}%
+\contentsline {part}{IV\hspace {1em}Graph Theory and Algorithms}{8}{part.4}%
+\contentsline {part}{V\hspace {1em}References}{9}{part.5}%
+\contentsline {section}{\numberline {5}Module Professors}{9}{section.5}%
+\contentsline {section}{\numberline {6}Cited Works}{9}{section.6}%
