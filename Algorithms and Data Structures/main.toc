@@ -1,0 +1,21 @@
+\contentsline {part}{I\hspace {1em}Fundamental Data Structures}{1}{part.1}%
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Basic Definitions}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Recursion and Backtracking}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Basic Data Structures}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Arrays}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Lists}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Stacks}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Queues}{3}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Hash Tables}{3}{subsection.2.5}%
+\contentsline {part}{II\hspace {1em}Asymptotic Notation and Sorting}{4}{part.2}%
+\contentsline {section}{\numberline {3}Asymptotic Notation}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Types of Complexity}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}General Notation}{4}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Sorting}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Common Algorithms}{5}{subsection.4.1}%
+\contentsline {part}{III\hspace {1em}Selection and Data Structures}{6}{part.3}%
+\contentsline {part}{IV\hspace {1em}Graph Theory and Algorithms}{7}{part.4}%
+\contentsline {part}{V\hspace {1em}References}{8}{part.5}%
+\contentsline {section}{\numberline {5}Module Professors}{8}{section.5}%
+\contentsline {section}{\numberline {6}Cited Works}{8}{section.6}%
