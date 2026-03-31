@@ -354,7 +354,22 @@ It has a time complexity of \(O(n \, log_d \, k)\) for a list of values in \([1,
 
 \subsection{Searching}
 
+\definition{5.2.1}{A \underline{binary search} assumes that the list being searched is sorted. It recursively halves the search space on each pass until the desired element is found. This produces the recurrence}
+\begin{equation}
+    T(n) = T\left(\frac{n}{2}\right) + O(1) = O(log \, n)
+\end{equation}
+
 \subsection{Selection}
+
+Selection algorithms are used to, for example, find the \(i^{th}\) smallest element in an unsorted list.
+
+\separate{5}\definition{5.3.1}{The \underline{quick select} algorithm works similarly to the quick sort, using pivots to split the search space and reduce execution times.}
+In the worst-case, the algorithm is \(O(n^2)\), but on average executes in \(O(n)\) time.
+
+\separate{5}\definition{5.3.2}{The \underline{median-of-medians} algorithm is doubly recursive and works by calculating the median of the list and using it as a pivot.} This gives the recurrence
+\begin{equation}
+    T(n) = T\left(\frac{n}{5}\right) + T\left(\frac{7n}{10} + 3\right) + n = O(n)
+\end{equation}
 
 \section{Trees}
 
