@@ -1,6 +1,6 @@
 \documentclass{article}
 
-%% Downloading Packages for the Document.
+%%% Package List
 
 \usepackage{datetime} % Dates.
 \usepackage{fancyhdr} % Headers.
@@ -13,7 +13,6 @@
 \usepackage{hyperref} % Hyperlinks and References.
 \usepackage{xcolor} % Coloured Text.
 \usepackage{enumitem} % Letter Bullets. 
-% \begin{enumerate}[label=\alph*.] 
 
 \usepackage{amssymb} % Maths Symbols.
 \usepackage{amsmath} % Maths Tools.
@@ -22,15 +21,18 @@
 \usepackage{algorithm} % Algorithms.
 \usepackage{minted} % Code Snippets.
 
-\usepackage[margin=1in]{geometry} % Margins.
+\usepackage[margin=1in]{geometry} % Reduces the Page Margins.
 
-%%
+%%%
 
 
-%% Creating Formats.
 
-\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black}
+%%% Custom Formats and Commands
 
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+
+
+% Date Formats.
 \newdateformat{monthyeardate}
 {%
     \monthname[\THEMONTH] \THEYEAR
@@ -41,9 +43,11 @@
     \THEYEAR
 }
 
+
 % Colouring and Spacing.
 \newcommand{\colour}[2] {\color{#1}#2\color{black}}
 \newcommand{\separate}[1] {\vspace{#1 pt}\noindent}
+
 
 % Maths Number Sets.
 \newcommand{\R}{\mathbb{R}}
@@ -51,65 +55,70 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
-
-% Document Commands.
-\newcommand{\definition}[2]{(#1) \textbf{Definition}: #2}
-\newcommand{\example}[2]{(#1) \textbf{Example}: #2}
-\newcommand{\conjecture}[2]{(#1) \textbf{Conjecture}: #2}
-\newcommand{\numberedEntry}[3]{(#2) \textbf{#1}: #3}
-
-\newcommand{\proof}[1]{\textit{Proof}: #1 \begin{flushright}\(\square\)\end{flushright}}
-
-\newcommand{\theorem}[3]{(#1) \textbf{Theorem}: #2 \par\noindent \proof{#3}}
-\newcommand{\lemma}[3]{(#1) \textbf{Lemma}: #2 \par\noindent \proof{#3}}
-
-%%
+\newcommand{\I}{\mathbb{I}}
 
 
-%% Setting up the Document.
+% Custom Commands.
+\newcommand{\definition}[2]{(#1) \textbf{Definition}: #2\label{def:#1}}
 
-\title{Algorithms and Data Structures \\ \small Durham University - COMP1081}
-\author{Matthew Emerson}
-\date{2025-26} % Edit this to get a static date.
+\newcommand{\example}[2]{(#1) \textbf{Example}: #2\label{ex:#1}}
+
+\newcommand{\conjecture}[2]{(#1) \textbf{Conjecture}: #2\label{cnj:#1}}
+
+\newcommand{\numberedEntry}[3]{(#1) \textbf{#2}: #3\label{entry:#1}}
+
+\newcommand{\proof}[2]{\textit{Proof}: #2 \begin{flushright}\(\square\)\end{flushright}\label{prf:#1}}
+
+\newcommand{\theorem}[3]{(#1) \textbf{Theorem}: #2 \par\noindent \proof{thm:#1}{#3}\label{thm:#1}}
+
+\newcommand{\lemma}[3]{(#1) \textbf{Lemma}: #2 \par\noindent \proof{lem:#1}{#3}\label{lem:#1}}
+
+\newcommand{\image}[4]
+{\begin{figure}[H]
+    \centering
+    \includegraphics[width=#4\linewidth]{#2}
+    \caption{#3}
+    \label{fig:#1}
+\end{figure}}
+
+%%%
+
+
+
+%%% Document Setup
+
+% Title Page.
+\title{Algorithms and Data Structures \\\small{Durham University - COMP1081}}
+\author{MATTHEW EMERSON}
+\date{\monthyeardate\today} % Edit this to get a static date.
+
+% Page Style.
+\pagestyle{fancy}
+
+% Custom Page Footer.
+\fancyfoot{}
+\fancyfoot[L]{Written by Matthew Emerson \\ 
+\textit{\LaTeX \,Template: Copyright \date{\yeardate\today}, Matthew Emerson}} % Do not edit.
+\fancyfoot[R]{Page \thepage \, of\, \pageref{LastPage}}
+
+%%%
+
+
+
+%%% Document Content
 
 \begin{document}
 
-%%
-
-
-%% Setting the Default Header and Footer. 
-
-\pagestyle{fancy}
-\fancyfoot{}
-\fancyfoot[L]{Written by Matthew Emerson \\ \textit{\LaTeX \,Template: Copyright \date{\yeardate\today}, Matthew Emerson}}
-\fancyfoot[R]{Page \thepage \, of\, \pageref{LastPage}}
-
-%%
-
-
-%% Creating the Title Page.
-
+% Title Page.
 \maketitle
 \thispagestyle{empty}
 
-%% 
-
-
-%% Creating the Table of Contents Page.
-
-\newpage
-\thispagestyle{empty}
-
-\setcounter{tocdepth}{2}
+% Contents Page.
+\newpage\thispagestyle{empty}
 \tableofcontents
 
-%% 
-
-
-%% The Main Document.
-
-\setcounter{page}{0}
-\newpage
+% The Main Document.
+\setcounter{page}{0}\newpage % Excludes the title and contents page from page count.
 
 \part{Fundamental Data Structures}\label{part:1.fds}
 
@@ -409,7 +418,11 @@ Then each of them has height \(\leq (h-1)\), and (by induction hypothesis) \(\le
     \item \definition{6.1.7}{\underline{Postorder traversal} where the root is visited after both the left and right subtrees.}
 \end{itemize}
 
-\subsection{Balanced BSTs}
+\subsection{Balanced Binary Search Trees}
+
+\definition{6.2.1}{\underline{Balanced binary search trees} are binary search trees which balance themselves using rotation operations to minimise height differences between subtrees.}
+
+\image{6.2:leftAndRightRotationsExample}{Images/Balanced BSTs - Left and right rotation examples.png}{The basic rotation operations.}{0.75}
 
 \subsection{AVL Trees}
 
