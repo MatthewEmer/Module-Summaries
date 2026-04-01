@@ -386,6 +386,8 @@ In the worst-case, the algorithm is \(O(n^2)\), but on average executes in \(O(n
     \item \definition{6.1.3}{A node's \underline{depth} is its distance from the root node.}
 \end{itemize}
 
+\separate{5}\definition{6.1.4}{A binary tree becomes a \underline{binary search tree} if, for all nodes, all left-descendant nodes are smaller than it, and all right-descendant nodes are greater than it.}
+
 \newpage\noindent\theorem{6.1.1}{Let \(T\) be a rooted binary tree of height \(h\). Then,
 \begin{itemize}
     \item \(T\) has at most \(2^{h+1}-1\) nodes.
@@ -399,6 +401,13 @@ In the worst-case, the algorithm is \(O(n^2)\), but on average executes in \(O(n
 \end{equation}
 The second statement follows by induction on \(h\). Case \(h=0\) is obvious. We then consider the left and right subtrees of the root of \(T\).
 Then each of them has height \(\leq (h-1)\), and (by induction hypothesis) \(\leq 2^{h-1}\) leaves. Then \(T\) has at most \(2 \times 2^{h-1} = 2^h\) leaves.}
+
+\separate{5}Trees can be traversed in one of three ways, these are:
+\begin{itemize}
+    \item \definition{6.1.5}{\underline{Preorder traversal} where the root is visited first, followed by the left, and then right subtrees.}
+    \item \definition{6.1.6}{\underline{Inorder traversal} where the root is visited in between the left and right subtrees.}
+    \item \definition{6.1.7}{\underline{Postorder traversal} where the root is visited after both the left and right subtrees.}
+\end{itemize}
 
 \subsection{Balanced BSTs}
 
