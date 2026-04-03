@@ -1,0 +1,472 @@
+\documentclass{article}
+
+%%% Package List
+
+\usepackage{datetime} % Dates.
+\usepackage{fancyhdr} % Headers.
+\usepackage{lastpage} % Page References.
+
+\usepackage{graphicx} % Inserting Images.
+\usepackage{float} % Postitioning Images.
+
+\usepackage{dirtytalk} % Speech & Quote Marks.
+\usepackage{hyperref} % Hyperlinks and References.
+\usepackage{xcolor} % Coloured Text.
+\usepackage{enumitem} % Letter Bullets. 
+
+\usepackage{amssymb} % Maths Symbols.
+\usepackage{amsmath} % Maths Tools.
+
+\usepackage{algpseudocode} % Pseudocode.
+\usepackage{algorithm} % Algorithms.
+\usepackage{minted} % Code Snippets.
+
+\usepackage[margin=1in]{geometry} % Reduces the Page Margins.
+
+%%%
+
+
+
+%%% Custom Formats and Commands
+
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+
+
+% Date Formats.
+\newdateformat{monthyeardate}
+{%
+    \monthname[\THEMONTH] \THEYEAR
+}
+
+\newdateformat{yeardate}
+{%
+    \THEYEAR
+}
+
+
+% Colouring and Spacing.
+\newcommand{\colour}[2] {\color{#1}#2\color{black}}
+\newcommand{\separate}[1] {\vspace{#1 pt}\noindent}
+
+
+% Maths Number Sets.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+
+
+% Custom Commands.
+\newcommand{\definition}[2]{\textbf{Definition #1}: #2\label{def:#1}}
+
+\newcommand{\example}[2]{\textbf{Example #1}: #2\label{ex:#1}}
+
+\newcommand{\conjecture}[2]{\textbf{Conjecture #1}: #2\label{cnj:#1}}
+
+\newcommand{\numberedEntry}[3]{\textbf{#2 #1}: #3\label{entry:#1}}
+
+\newcommand{\proof}[2]{\textit{Proof}: #2 \begin{flushright}\(\square\)\end{flushright}\label{prf:#1}}
+
+\newcommand{\theorem}[3]{\textbf{Theorem #1}: #2 \par\noindent \proof{thm:#1}{#3}\label{thm:#1}}
+
+\newcommand{\lemma}[3]{\textbf{Lemma #1}: #2 \par\noindent \proof{lem:#1}{#3}\label{lem:#1}}
+
+\newcommand{\image}[4]
+{\begin{figure}[H]
+    \centering
+    \includegraphics[width=#4\linewidth]{#2}
+    \caption{#3}
+    \label{fig:#1}
+\end{figure}}
+
+%%%
+
+
+
+%%% Document Setup
+
+% Title Page.
+\title{Algorithms and Data Structures \\\small{Durham University - COMP1081}}
+\author{MATTHEW EMERSON}
+\date{\monthyeardate\today} % Edit this to get a static date.
+
+% Page Style.
+\pagestyle{fancy}
+
+% Custom Page Footer.
+\fancyfoot{}
+\fancyfoot[L]{Written by Matthew Emerson \\ 
+\textit{\LaTeX \,Template: Copyright \date{\yeardate\today}, Matthew Emerson}} % Do not edit.
+\fancyfoot[R]{Page \thepage \, of\, \pageref{LastPage}}
+
+%%%
+
+
+
+%%% Document Content
+
+\begin{document}
+
+% Title Page.
+\maketitle
+\thispagestyle{empty}
+
+% Contents Page.
+\newpage\thispagestyle{empty}
+\tableofcontents
+
+% The Main Document.
+\setcounter{page}{0}\newpage % Excludes the title and contents page from page count.
+
+\part{Fundamental Data Structures}\label{part:1.fds}
+
+\section{Introduction}
+
+\subsection{Basic Definitions}
+
+\definition{1.1.1}{An \underline{algorithm} is a method or process that is followed to solve a problem. It must be correct, must be composed of a finite number of unambiguous steps, and must terminate.}
+
+\separate{5}\definition{1.1.2}{A \underline{data structure} is a particular way of storing and organising data in a computer so that it can be used efficiently.}
+
+\separate{5}\definition{1.1.3}{The \underline{RAM Model of Computation} is a highly simplified model of computation that we use to compute the efficiency of an algorithm. Its memory consists of an infinite array which it uses to carry out instructions sequentially. All instructions take unit time, meaning the running time is the number of instructions executed.}
+
+\separate{5}\definition{1.1.4}{\underline{Pseudocode} is a generic way of describing how an algorithm will function without choosing any specific programming language. It does not have any very strict rules, but follows the following generic format:}
+\begin{algorithm}
+    \caption{Example Pseducode}
+    \begin{algorithmic}
+        \Require Input Condition
+        \Ensure The Algorithm's Output
+        
+        \State \(x \gets 1\)
+        \State \(y \gets 2\)
+
+        \If {\(y > x\)}
+            \State \Return y
+        \Else
+            \State \Return x
+        \EndIf
+    \end{algorithmic}
+\end{algorithm}
+
+\noindent\definition{1.1.5}{A \underline{variable} is used to store some value, for example, in the above code, \(x\) and \(y\) are variables. Some basic types include integer, float, char, and string.}
+
+\subsection{Recursion and Backtracking}
+
+\definition{1.2.1}{A \underline{recursive algorithm} is an algorithm which calls itself to do a part of its work. It should have a base case (where the final result is returned), must change its state to move towards the base case, and must call itself recursively.}
+
+\separate{5}\definition{1.2.2}{A \underline{backtracking algorithm} tries to construct a solution to a computational problem incrementally, one small piece at a time. Whenever the algorithm needs to decide between multiple alternatives to the next component of the solution, it recursively evaluates every alternative and then chooses the best one.} Definition from \hyperref[cit:1.algorithms]{(Erickson, 2019, p.71)}.
+
+\separate{5}\definition{1.2.3}{\underline{Memoisation} is the process of storing the result of a computation so that it can be subsequently retrieved without repeating the computation.}
+
+\newpage\section{Basic Data Structures}
+
+\subsection{Arrays}
+
+\definition{2.1.1}{An \underline{array} is a sequence of elements that is usually denoted as \(A[1], \; A[2], \; ..., \; A[n]\) or as \(A[1,...,n]\).} The elements are stored in consecutive memory cells and are all of the same data type. 
+
+\subsection{Lists}
+
+Lists can be separated into three different categories, depending on how they store data. 
+
+\separate{5}\definition{2.2.1}{A \underline{singly-linked list} consists of nodes, each storing an element and a pointer to the subsequent node in the list. This means that the nodes do not have to be stored consecutively.}
+\begin{itemize}
+    \item \definition{2.2.2}{The first node in a singly-linked list is called the \underline{head}.}
+    \item \definition{2.2.3}{The final node in a singly-linked list is called the \underline{tail} and its pointer points to null.}
+\end{itemize}
+\definition{2.2.4}{A \underline{doubly-linked list} consists of nodes with a value and two pointers, pointing to both the previous and subsequent nodes in the list. The list also must keep a size counter to track the number of nodes in the list.}
+\begin{itemize}
+    \item \definition{2.2.5}{At either end of the doubly-linked list is a \underline{sentinel node}. These nodes either have a null next or previous pointer and do not store a value. An empty list has two sentinel nodes pointing at each other.}
+\end{itemize}
+\definition{2.2.6}{A \underline{circularly-linked} list uses the same nodes as a singly-linked list but does not have a head or tail node. Instead, the final node points to the start of the list, creating a circle.}
+\begin{itemize}
+    \item \definition{2.2.7}{One node in the circularly-linked list is designated as the \underline{cursor} and is used as a starting point when traversing the list.}
+\end{itemize}
+
+\subsection{Stacks}
+
+\definition{2.3.1}{A \underline{stack} is a collection of objects that are inserted and removed according to the last-in-first-out (LIFO) principle.} They support the following methods:
+\begin{itemize}
+    \item \textbf{Compulsory Methods:}
+    \begin{itemize}
+        \item \textbf{Push}: \(push(element)\) inserts \(element\) at the top of the stack.
+        \item \textbf{Pop}: \(pop()\) removes and returns the top element from the stack. An error occurs if the stack is empty.
+    \end{itemize}
+    \item \textbf{Optional Methods:}
+    \begin{itemize}
+        \item \textbf{Size}: \(size()\) returns the number of elements in the stack.
+        \item \textbf{Is Empty}: \(isEmpty()\) returns true if the stack is empty, and false if not.
+        \item \textbf{Top}: \(top()\) returns the top item from the stack without removing it. Throws an error if the stack is empty.
+    \end{itemize}
+\end{itemize}
+Stacks are generally implemented using an array to store the items of the stack; however this can lead to memory wastage when the stack is not full, and conversely it will throw errors if the stack is full.
+
+\newpage\subsection{Queues}
+
+\definition{2.4.1}{A \underline{queue} is a collection of objects that are inserted and removed according to the first-in-first-out (FIFO) principle.} They support the following methods:
+\begin{itemize}
+    \item \textbf{Compulsory Methods:}
+    \begin{itemize}
+        \item \textbf{Enqueue}: \(enqueue(element)\) inserts \(element\) at the end of the queue.
+        \item \textbf{Dequeue}: \(dequeue()\) removes the element from the front of the queue. An error occurs if the queue is empty.
+    \end{itemize}
+    \item \textbf{Optional Methods:}
+    \begin{itemize}
+        \item \textbf{Size}: \(size()\) returns the number of elements in the queue.
+        \item \textbf{Is Empty}: \(isEmpty()\) returns true if the queue is empty, and false if not.
+        \item \textbf{Front}: \(front()\) returns the element from the front of the queue without removing it. Throws an error if the queue is empty.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Hash Tables}
+
+\definition{2.5.1}{A \underline{hash table} consists of a bucket array and a hash function.}
+
+\separate{5}\definition{2.5.2}{A \underline{bucket array} for a hash table is an array \(A\) of size \(N\), where each cell of \(A\) is thought of as a bucket storing a collection of key-value pairs.} 
+
+\separate{5}\definition{2.5.3}{The size \(N\) of the array is called the \underline{capacity} of the hash table.}
+
+\separate{5}\definition{2.5.4}{A \underline{hash function} \(h\) is a function mapping each key \(k\) to an integer in the range \([0,N-1]\), where \(N\) is the capacity of the hash table. This provides an index \(h(k)\) of a location in \(A\) where the key-value pair \((k,v)\) is stored. Hash functions are usually composed of the hash code (mapping keys to integers) and a compression function (integers to indices).}
+
+\separate{5}\definition{2.5.5}{A \underline{collision} occurs when two keys map to the same hash value, and consequently want to be stored in the same bucket. These can be dealt with using different methods:}
+\begin{itemize}
+    \item \definition{2.5.6}{\underline{Separate chaining} converts each bucket to a list of key-value pairs. This will result in lists of average length \(\frac{N}{M}\) where \(N\) is the amount of data, and \(M\) is the capacity of the hash table.}
+    \item \definition{2.5.7}{If a collision occurs at \(h(k)=i\), \underline{linear probing} tries to insert again at \(A[(i+1)\%N]\), then if that is also full, tries at \(A[(i+2)\%N]\) etc. until the key-value pair is inserted.}
+    \item \definition{2.5.8}{\underline{Quadratic probing} iteratively tries the buckets \(A[(i+f(j)) \; \% \; N]\) for \(j=0,1,2,...\) where \(f(j)=j^2\) until finding an empty bucket. This avoids clustering patterns that occur with linear probing. However, it creates secondary clustering. This strategy may not find an empty bucket in $A$ even if one exists.}
+    \item \definition{2.5.9}{Using \underline{double hashing}, we choose a secondary hash function $h'$, and if $h$ maps some key $k$ to a bucket $A[i]$, with $i=h(k)$, that is already occupied, then we iteratively try the buckets $A[(i+f(j)) \; \% \; N]$ for $j=0,1,2,...$, where $f(j)=j \cdot h'(k)$. A common choice of secondary hash function is $h'(k)=q-(k \; \% \; q)$, for some prime number $q<N$. The secondary hash function should not evaluate to 0. }
+\end{itemize}
+\definition{2.5.10}{Deletions from the hash table must not hinder future searches. To ensure future searches are not hindered, we use \underline{tombstones}. These are markers that are left in a bucket after a deletion. If a tombstone is encountered when searching along a probe sequence to find a key, we know to continue. The use of tombstones lengthens the average probe sequence distance. Two possible remedies are:}
+\begin{itemize}
+    \item \definition{2.5.11}{Using \underline{local reorganisation}, after deleting a key, we continue to follow the probe sequence of that key and move records into the vacated bucket.} 
+    \item Or, we can periodically rehash the table by reinserting all records into a new hash table. If you have a record of which keys are accessed most, these can be placed where they can be found most easily. 
+\end{itemize}
+
+\newpage\part{Asymptotic Notation and Sorting}\label{part:2.ans}
+
+\section{Asymptotic Notation}
+
+\subsection{Types of Complexity}
+
+\definition{3.1.1}{The \underline{time complexity} of an algorithm can be expressed as the number of basic operations executed by an algorithm when computing for a set input size.}
+
+\separate{5}\definition{3.1.2}{The \underline{space complexity} of an algorithm is the amount of memory required to carry out the algorithm on an input of a set size.}
+
+\separate{5}\definition{3.1.3}{The \underline{worst-case time complexity} of an algorithm is the largest number of basic operations possible for an input of a set size.}
+
+\subsection{General Notation}
+
+\definition{3.2.1}{Generally, \underline{Big-O Notation} denotes that, if \(f = O(g)\), then \(f\) will grow no faster than \(g\) (the upper-bound for the growth rate, or \(f' \leq g'\)).} Formally, let \(f\) be a real or complex function, and let \(g\) be a real function such that
+\begin{equation}
+    f(x) = O(g(x)) \quad\text{as } x \rightarrow \infty
+\end{equation}
+meaning \(f(x)\) is Big-O \(g(x)\) if the absolute value of \(f(x)\) is at most a positive constant multiple of the absolute value of \(g(x)\) for a suitably large value of \(x\):
+\begin{equation}
+    |f(x)| \leq C \cdot |g(x)| \quad x \geq x_0, \; x_0 \in \R, \; C \in \N
+\end{equation}
+
+\separate{5}\definition{3.2.2}{Similarly, \underline{Big-Omega Notation} denotes that, if \(f=\Omega(g)\), then \(f\) will grow at least as fast as \(g\) (the lower-bound for the growth rate, or \(f' \geq g'\)).} Formally, let \(f\) and \(g\) be functions \(\R \rightarrow \R\). We say that 
+\begin{equation}
+    f(x) = \Omega(g(x))
+\end{equation}
+if, for a suitably large value of \(x\), there exists a constant \(C\) such that
+\begin{equation}
+    |f(x)| \geq C \cdot |g(x)| \quad x \geq x_0, \; x_0 \in \R, \; C \in \N
+\end{equation}
+Therefore, \(f(x)\) is \(\Omega(g(x))\) if \(g(x)\) is \(O(f(x))\).
+
+\separate{5}\definition{3.2.3}{\underline{Big-Theta Notation} denotes the exact growth rate of a function. This means that, for some real-valued functions \(f\) and \(g\),}
+\begin{equation}
+    f(x) = O(g(x)) \quad\text{and}\quad f(x)=\Omega(g(x))
+\end{equation}
+
+\separate{5}\definition{3.2.4}{\underline{Little-o Notation} can be used for disregarding \say{small-order} terms. Generally, \(f(x) = o(g(x)\) if \(f'(x) < g'(x)\). It is formally defined for the real-valued functions \(f\) and \(g\) such that \(f(x) = o(g(x))\) when}
+\begin{equation}
+    \lim_{x\rightarrow\infty} \frac{f(x)}{g(x)} = 0
+\end{equation}
+When the limit is removed, this becomes
+\begin{equation}
+    o(g) = \{f: \N \rightarrow \N \;|\; \forall C > 0 \;\exists k > 0 : C \cdot f(n) < g(n) \;\forall n \geq k \} 
+\end{equation}
+Therefore, \(f(x) = o(g(x) \implies f(x) = O(g(x))\).
+
+\newpage\noindent\definition{3.2.5}{Similar to Little-o Notation, \underline{Little-omega Notation} is defined such that \(f=\omega(g)\) if \(f' > g'\),}
+and is defined formally as
+\begin{equation}
+    \omega(g) = \{f: \N \rightarrow \N \;|\; \forall C > 0 \;\exists k > 0 : f(n) > C \cdot g(n) \;\forall n \geq k \} 
+\end{equation}
+
+\separate{5}\definition{3.2.6}{A function is designated as a \underline{sublinear function} if it grows slower than any linear function. Using Little-o Notation, \(f(x)\) is sublinear if \(f(x) = o(x)\), meaning}
+\begin{equation}
+    \lim_{x \rightarrow \infty} \frac{f(x)}{x} = 0
+\end{equation}
+
+\section{Sorting}
+
+\subsection{Common Algorithms}
+
+\definition{4.1.1}{An \underline{insertion sort} works by taking the \(i^{th}\) element from a list and inserting it into an already sorted sequence of elements \([1,\;j-1]\).}
+This has a best-case runtime of \((n-1)\) and a worst-case of \(\frac{n(n-1)}{2}\), giving a Big-O of \(O(n^2)\).
+
+\separate{5}\definition{4.1.2}{A \underline{selection sort} takes the \(i^{th}\) smallest elements and places them in order at the start of the list until all elements have been sorted.}
+Its time complexity can be calculated by doing the following:
+\begin{equation*}
+    \sum^{n-1}_{i=1} \sum^n_{j=i+1} 1 
+    = \sum^{n-1}_{i=1} (n-i) 
+    = \left( \sum^{n-1}_{i=1} n \right) - \left( \sum^{n-1}_{i=1} i \right) 
+    = n(n-1) - \frac{n(n-1)}{2}
+    = O(n^2)
+\end{equation*}
+
+\separate{5}\definition{4.1.3}{A \underline{bubble sort} takes the \(i^{th}\) largest elements and places them in order at the end of the list until all elements have been sorted.}
+Its time complexity can be calculated by doing the following:
+\begin{equation*}
+    \sum^{n-1}_{i=1} (n-i) = O(n^2)
+\end{equation*}
+
+\separate{5}\definition{4.1.4}{A \underline{merge sort} takes a list of elements and recursively splits it into two even parts until each sublist contains one element. Once this occurs, the sublists are merged back together in the correct order to form the sorted list. It does this with a variant of an insertion sort.}
+It has a time complexity of \(O(n \, log \, n)\).
+
+\separate{5}\definition{4.1.5}{A \underline{quick sort} takes the first, middle, and final element of a list and selects one as a pivot point. The remaining elements are then placed in sublists depending on whether they are smaller/larger than the pivot.}
+This gives a best-case time complexity of \(o(n \, log \, n)\) and a worst-case of \(O(n^2)\).
+
+\newpage\subsection{Recursion for Sorting and Solving Recurrences}
+
+To analyse recursive algorithms, first of all note that most of them are actually hybrids between iterative and strictly recursive. For example, merge sort splits the input of size \(n\) into two halves of equal size \(\frac{n}{2}\), independently recurses in each half, then merges the resulting sorted sequence.
+
+\begin{equation}
+    T(n) \leq 
+    \begin{cases}
+        d   \qquad \text{if } n \leq c \text{ for constants } c,\,d > 0 \\
+        2 \cdot T(\frac{n}{2}) + a \cdot n  \qquad \text{otherwise}
+    \end{cases}
+\end{equation}
+\definition{4.2.1}{The \underline{Master Theorem} can be used to quickly solve recurrences of form}
+\begin{equation}
+    T(n) \leq a T\left(\frac{n}{2}\right) + f(n) \quad\quad a \geq 1, \, b > 1
+\end{equation}
+The theorem has three cases:
+\begin{itemize}
+    \item \(f(n) = O(n^{log_b a - \epsilon}), \; \epsilon > 0 \implies T(n) = \Theta(n^{log_b a})\)
+    \item \(f(n) = \Theta(n^{log_b a} \cdot (log \, n)^k) \implies T(n) = \Theta(n^{log_b a} \cdot (log \, n)^{k+1})\)
+    \item \(f(n) = O(n^{log_b a + \epsilon}), \; \epsilon > 0\) and \(a f(\frac{n}{b}) \leq c f(n), \; c < 1 \implies T(n) = \Theta(f(n))\)
+\end{itemize}
+
+\newpage\part{Selection and Data Structures}\label{part:3.sds}
+
+\section{Algorithms for Sorting, Searching, and Selection}
+
+\subsection{Sorting}
+
+\definition{5.1.1}{A \underline{bucket sort} algorithm creates buckets with labels in the interval \([1,k]\) where \(k\) is the largest value in the list. Each element is then placed in its corresponding bucket before the buckets are outputted in ascending order, creating a sorted list.}
+This gives a worst-case time complexity of \(O(n+k)\). If \(k\) is small relative to \(n\), this gives a best-case time complexity of \(o(n \, log \, n)\). 
+
+\separate{5}\definition{5.1.2}{A \underline{bucket sort} recursively sorts a list of items by a given digit of each element until the list is sorted (from right-most digit to left-most). This algorithm requires as many buckets as the base of the number system being used (e.g. binary requires two buckets).}
+It has a time complexity of \(O(n \, log_d \, k)\) for a list of values in \([1,k-1]\) in base \(d\).
+
+\subsection{Searching}
+
+\definition{5.2.1}{A \underline{binary search} assumes that the list being searched is sorted. It recursively halves the search space on each pass until the desired element is found. This produces the recurrence}
+\begin{equation}
+    T(n) = T\left(\frac{n}{2}\right) + O(1) = O(log \, n)
+\end{equation}
+
+\subsection{Selection}
+
+Selection algorithms are used to, for example, find the \(i^{th}\) smallest element in an unsorted list.
+
+\separate{5}\definition{5.3.1}{The \underline{quick select} algorithm works similarly to the quick sort, using pivots to split the search space and reduce execution times.}
+In the worst-case, the algorithm is \(O(n^2)\), but on average executes in \(O(n)\) time.
+
+\separate{5}\definition{5.3.2}{The \underline{median-of-medians} algorithm is doubly recursive and works by calculating the median of the list and using it as a pivot.} This gives the recurrence
+\begin{equation}
+    T(n) = T\left(\frac{n}{5}\right) + T\left(\frac{7n}{10} + 3\right) + n = O(n)
+\end{equation}
+
+\section{Trees}
+
+\subsection{Binary Search Trees}
+
+\definition{6.1.1}{A \underline{rooted binary tree} is a tree where each node has a single parent node and at most two children nodes. The binary tree is rooted if there is one node with all other nodes as descendants.}
+
+\separate{5}\textbf{Tree Properties}:
+\begin{itemize}
+    \item \definition{6.1.2}{A tree's \underline{size} is the total number of nodes in the tree.}
+    \item \definition{6.1.3}{A node's \underline{depth} is its distance from the root node.}
+\end{itemize}
+
+\separate{5}\definition{6.1.4}{A binary tree becomes a \underline{binary search tree} if, for all nodes, all left-descendant nodes are smaller than it, and all right-descendant nodes are greater than it.}
+
+\newpage\noindent\theorem{6.1.1}{Let \(T\) be a rooted binary tree of height \(h\). Then,
+\begin{itemize}
+    \item \(T\) has at most \(2^{h+1}-1\) nodes.
+    \item \(T\) has at most \(2^h\) leaves.
+\end{itemize}}
+{The maximum number of nodes is in a complete tree of height \(h\), meaning all levels are full,
+\begin{equation}
+    1 + 2 + 2^2 + 2^3 + ... + 2^h 
+    = \sum^h_{n=0} 2^n 
+    = 2^{h+1} - 1
+\end{equation}
+The second statement follows by induction on \(h\). Case \(h=0\) is obvious. We then consider the left and right subtrees of the root of \(T\).
+Then each of them has height \(\leq (h-1)\), and (by induction hypothesis) \(\leq 2^{h-1}\) leaves. Then \(T\) has at most \(2 \times 2^{h-1} = 2^h\) leaves.}
+
+\separate{5}Trees can be traversed in one of three ways, these are:
+\begin{itemize}
+    \item \definition{6.1.5}{\underline{Preorder traversal} where the root is visited, followed by the left and right subtrees.}
+    \item \definition{6.1.6}{\underline{Inorder traversal} where the root is visited in between the left and right subtrees.}
+    \item \definition{6.1.7}{\underline{Postorder traversal} where the root is visited after both the left and right subtrees.}
+\end{itemize}
+
+\subsection{Balanced Binary Search Trees}
+
+\definition{6.2.1}{\underline{Balanced binary search trees} are binary search trees which balance themselves using rotation operations to minimise height differences between subtrees.}
+
+\image{6.2:leftAndRightRotationsExample}{Images/Balanced BSTs - Left and right rotation examples.png}{The basic rotation operations.}{0.75}
+
+\subsection{AVL Trees}
+
+\section{Heaps}
+
+\section{Lower Bounds for Sorting and Selection}
+
+\newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
+
+\newpage\part{References}
+
+\section{Module Professors}
+
+The below is accurate as of the 2025/26 academic year and will not be updated in subsequent years.
+\begin{itemize}
+    \item \hyperref[part:1.fds]{\textit{Fundamental Data Structures}} and \hyperref[part:4.gta]{\textit{Graph Theory and Algorithms}} are taught by David Kutner.
+    \begin{itemize}
+        \item \textbf{Office Location}: Room 2011, MCS Building
+        \item \textbf{Website}: https://www.durham.ac.uk/staff/david-c-kutner/
+        \item \textbf{Preferred Contact Methods}: david.c.kutner@durham.ac.uk
+        \item \textbf{Pronouns}: he, him
+    \end{itemize}
+    
+    \item \hyperref[part:2.ans]{\textit{Asymptotic Notation and Sorting}} is taught by Thomas Erlebach.
+    \begin{itemize}
+        \item \textbf{Office Location}: Room 2004, MCS Building
+        \item \textbf{Website}: https://www.durham.ac.uk/staff/thomas-erlebach/
+        \item \textbf{Preferred Contact Methods}: thomas.erlebach@durham.ac.uk
+        \item \textbf{Pronouns}: he, him
+    \end{itemize}
+    
+    \item \hyperref[part:3.sds]{\textit{Selection and Data Structures}} is taught by Anish Jindal.
+    \begin{itemize}
+        \item \textbf{Office Location}: Room 2065, MCS Building
+        \item \textbf{Website}: https://www.durham.ac.uk/staff/anish-jindal/
+        \item \textbf{Preferred Contact Methods}: anish.jindal@durham.ac.uk
+        \item \textbf{Pronouns}: he, him
+    \end{itemize}
+\end{itemize}
+
+\section{Cited Works}
+
+Erickson, J. (2019). Algorithms. 1st ed. [online] Self-Published, p.71. \\ Available at: http://jeffe.cs.illinois.edu/teaching/algorithms/ [Accessed 25 Mar. 2026].\label{cit:1.algorithms}
+
+\end{document}
+
+%%
