@@ -453,6 +453,18 @@ Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the hei
 
 \section{Heaps}
 
+\subsection{Heap Properties}
+
+\definition{7.1.1}{A \underline{priority queue} is a collection of prioritised elements that allows arbitrary element insertion and removal having the first priority (highest or lowest).}
+
+\separate{5}\definition{7.1.2}{All \underline{heaps} are complete binary trees. The first item in a heap is the root, the second is the left child, and the third is the right child. The next nodes always fill the next levels left-to-right.}
+
+\separate{5}\definition{7.1.3}{A \underline{max heap} stores values where, for every node except the root, the value is at most that of its parent. In any subtree, no values are larger than the value stored in the subtree root.}
+
+\separate{5}\definition{7.1.4}{A \underline{min heap} stores values where, for every node except the root, the value is at least that of its parent. In any subtree, no values are smaller than the value stored in the subtree root.}
+
+\separate{5}\definition{7.1.5}{Assuming that we start counting at one for the root, the \underline{heap indices} can be calculated such that, for a node at index \(i\), the left child is at \(2i\), the right child is at \(2i+1\), and the parent is at \(\left\lfloor\frac{i}{2}\right\rfloor\)}.
+
 \section{Lower Bounds for Sorting and Selection}
 
 \newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
