@@ -69,9 +69,9 @@
 
 \newcommand{\proof}[2]{\textit{Proof}: #2 \begin{flushright}\(\square\)\end{flushright}\label{prf:#1}}
 
-\newcommand{\theorem}[3]{\textbf{Theorem #1}: #2 \par\noindent \proof{thm:#1}{#3}\label{thm:#1}}
+\newcommand{\theorem}[3]{\textbf{Theorem #1}: #2 \par\separate{3}\proof{thm:#1}{#3}\label{thm:#1}}
 
-\newcommand{\lemma}[3]{\textbf{Lemma #1}: #2 \par\noindent \proof{lem:#1}{#3}\label{lem:#1}}
+\newcommand{\lemma}[3]{\textbf{Lemma #1}: #2 \par\separate{3}\proof{lem:#1}{#3}\label{lem:#1}}
 
 \newcommand{\image}[4]
 {\begin{figure}[H]
@@ -523,7 +523,8 @@ Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the hei
 \newpage\section{Lower Bounds for Sorting and Selection}
 
 \theorem{8.0.1}{Any comparison-based sorting algorithm requires \(\Omega(n\,log\,n)\) comparisons in the worst case.}
-{}
+{It is sufficient to determine the minimum height of a decision tree in which each permutation appears as a leaf. 
+We can consider a decision tree of height \(h\) with \(l\) leaves corresponding to a comparison sort on \(n\) elements.}
 
 \newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
 
