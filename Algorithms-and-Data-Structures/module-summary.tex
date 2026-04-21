@@ -424,7 +424,32 @@ Then each of them has height \(\leq (h-1)\), and (by induction hypothesis) \(\le
 
 \image{6.2:leftAndRightRotationsExample}{Images/Balanced BSTs - Left and right rotation examples.png}{The basic rotation operations.}{0.75}
 
-\subsection{AVL Trees}
+\newpage\subsection{AVL Trees}
+
+\definition{6.3.1}{An \underline{AVL tree} is a self-balancing binary search tree with the height-balance property (for each node, the height of its children differ by at most one).}
+
+\separate{5}\theorem{6.3.1}{The height of an AVL tree storing \(n\) nodes is \(O(log\,n)\)}
+{Let us bound \(n(h)\) as the minimum number of internal nodes of an AVL tree of height \(h\). We can clearly see that \(n(1)=1\) and \(n(2)=2\). For \(n > 2\), an AVL tree of height \(h\) contains the root node, one AVL subtree of height \(n(h-1)\), and another of height \(n(h-2)\). That is,
+\begin{equation}
+    n(h) = n(h-1) + n(h-2)
+\end{equation}
+Knowing that \(n(h-1) > n(h-2)\), we get \(n(h) > 2n(h-2)\) so, by induction,
+\begin{equation}
+    n(h) > 2^in(h-2i)
+\end{equation}
+Taking \(i\) to be \(\frac{h}{2}-1\), so that \(h-2i = 1\) or 2, on solving we get,
+\begin{equation}
+    n(h) > 2^{\frac{h}{2}-1}
+\end{equation}
+Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the height of an AVL tree is \(O(log\,n)\).}
+
+\separate{5}\definition{6.3.2}{The algorithm for \underline{AVL insertion} automatically rebalances the tree after inserting a new element to uphold the height-balance property. For example, for a new node \(n\),
+\begin{itemize}
+    \item If it was inserted into the left subtree of a left child, the algorithm performs a single right rotation.
+    \item If it was inserted into the right subtree of a right child, the algorithm performs a single left rotation.
+    \item If it was inserted into the right subtree of a left child, the algorithm performs a left rotation followed by a right rotation.
+    \item If it was inserted into the left subtree of a right child, the algorithm performs a right rotation followed by a left rotation.
+\end{itemize}}
 
 \section{Heaps}
 
