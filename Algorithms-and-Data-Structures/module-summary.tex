@@ -473,14 +473,57 @@ Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the hei
 
 \newpage\subsection{Heap Operations}
 
-\definition{7.2.1}{\underline{Heapify} takes an incorrectly ordered heap and reorders it into an acceptable order.}
+\definition{7.2.1}{\underline{Heapify} takes an incorrectly ordered heap and reorders it into an acceptable order. It has a runtime of \(O(log\,n)\).}
 
 \algorithmBlock{The Heapify algorithm}
-{\(A\), the array to turn into a heap, \(v\), the largest value, \(i\), the highest index.}
+{\(A\), the array to turn into a heap, \(v\), the index of the largest value, \(i\), the highest index.}
 {A correctly ordered heap.}
-{\State largest \(\gets v\)}
+{
+    \State largest \(\gets v\)
+    \State leftChild \(\gets 2v\)
+    \State rightChild \(\gets 2v+1\)
 
-\section{Lower Bounds for Sorting and Selection}
+    \separate{5}\If {leftChild \(\leq i\) and \(A[\text{leftChild}] > A[\text{largest}]\)}
+        \State largest \(\gets\) leftChild
+    \EndIf
+
+    \If {rightChild \(\leq i\) and \(A[\text{rightChild}] > A[\text{largest}]\)}
+        \State largest \(\gets\) rightChild
+    \EndIf
+
+    \separate{5}\If {largest \(\neq v\)}
+        \State Swap(A[v], A[largest])
+        \State Heapify(A, largest, i)
+    \EndIf
+}
+
+\noindent\definition{7.2.2}{\underline{Insertion} adds the new element to the bottom-left of the heap before running Heapify.}
+
+\separate{5}\definition{7.2.3}{\underline{Build heap} takes an array of numbers and converts it into a heap by running Heapify iteratively, starting \(v\) as the size of the array and looping down to one.}
+
+\separate{5}\theorem{7.2.4}{The build heap algorithm runs in \(O(n)\) time.}
+{Let \(T(n)\) be the execution time for a heap of size \(n\).
+    \begin{equation}
+        T(n) = \sum^{log\,n}_{h=1} (\# \text{ of nodes at height h}) \cdot O(h)
+    \end{equation}
+    Given the properties of binary trees, 
+    \begin{equation}
+        T(n) \leq \sum^{log\,n}_{h=1} \frac{n}{2^h} \cdot O(h) = O\left( n \cdot \sum^{log\,n}_{h=1} \frac{h}{2^h} \right)
+    \end{equation}
+    This is well known for \(x \in \{0,1\}\),
+    \begin{equation}
+        \sum^\infty_{i=0} i \cdot x^i = \frac{x}{(1-x)^2} \quad\quad\quad \sum^{log \, n}_{h=1} \frac{h}{2^h} \leq \sum^\infty_{h=0}h \cdot \left(\frac{1}{2}\right)^h = 2
+    \end{equation}
+    and hence,
+    \begin{equation}
+        T(n) = O \left(n \cdot \sum^{log \, n}_{h=1} \frac{h}{2^h}\right) = O(n)
+    \end{equation}
+}
+
+\newpage\section{Lower Bounds for Sorting and Selection}
+
+\theorem{8.0.1}{Any comparison-based sorting algorithm requires \(\Omega(n\,log\,n)\) comparisons in the worst case.}
+{}
 
 \newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
 
