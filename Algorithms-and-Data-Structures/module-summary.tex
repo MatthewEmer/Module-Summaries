@@ -642,6 +642,21 @@ it follows that \(\sum_{v \in V_{odd}} deg(v)\) is even too. Now, if we have an 
 
 Let \(G=(V,E)\) with \(|E|=m+1\). Consider an arbitrary \(e\in E\), and define \(E'=E \backslash \{e\}\). By the inductive hypothesis, \(G'=(V,E')\) has at least \(|V|-|E'|=|V|-m\) connected components. This produces two cases: either, with \(e\), the number of connected components does not change; or, with \(e\), the number of connected components decreases by one. In both cases, \(G\) has at least \(|V|-m-1=|V|-|E|\) connected components, proving the initial hypothesis.}
 
+\separate{5}\definition{10.2.3}{A directed graph is \underline{weakly connected} if the graph obtained from \(G\) by forgetting directions is connected.}
+
+\separate{5}\definition{10.2.4}{A directed graph is \underline{strongly connected} if any two distinct vertices are connected by paths in both directions.}
+
+\separate{5}\definition{10.2.5}{A \underline{strongly connected component} of a directional graph is a maximal strongly connected subgraph.}
+
+\subsection{Special Circuits and Cycles in Graphs}
+
+\definition{10.3.1}{A \underline{Eulerian circuit} is a graph where we can start and end at the same node while traversing each edge exactly once.}
+
+\separate{5}\definition{10.3.2}{A \underline{Hamiltonian cycle} is a graph where we can start and end on the same node while visiting each node exactly once.}
+
+\separate{5}\theorem{10.3.1}{A connected graph with at least two vertices has an Eulerian circuit iff each of its vertices has even degree.}
+{This is proved in (Rosen, 2003, pp.634-636).}
+
 \section{Trees and Isomorphism}
 \section{Breadth and Depth Searches}
 \section{Minimum Spanning Trees}
@@ -681,6 +696,8 @@ The below is accurate as of the 2025/26 academic year and will not be updated in
 
 Erickson, J. (2019). Algorithms. 1st ed. [online] Self-Published, p.71. \\ Available at: http://jeffe.cs.illinois.edu/teaching/algorithms/ [Accessed 25 Mar. 2026].\label{cit:1.algorithms}
 
+\separate{5}Rosen, K.H. (2003). Instructor's Resource Guide for Discrete Mathematics and Its Applications. \\ Boston: Mcgraw-Hill, pp.634-636.
+
 \end{document}
 
-%%
+%%%
