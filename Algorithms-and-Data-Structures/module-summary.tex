@@ -547,65 +547,77 @@ Given this information, each comparison will either update one status from \(N\)
 
 \section{The Basics of Graph Theory}
 
-\definition{9.0.1}{A \underline{graph} \(G\) is a pair \((V(G), E(G))\) of sets where \(V(G)\) is a non-empty set of vertices making up the graph and \(E(G)\) is a set of unordered pairs, \(\{u,v\}, \;u,v\in G\).}
-\begin{itemize}
-    \item \definition{9.0.2}{A \underline{directed graph} is a graph where the edge set \(E(G)\) instead contains ordered pairs, indicating the direction of travel along each edge.}
-    \item \definition{9.0.3}{A \underline{multi-graph} allows for multiple edges to exist between vertices, meaning the edge set may contain duplicates.}
-    \item \definition{9.0.4}{A \underline{pseduo-graph} allows loops, meaning pairs in the edge set can contain two instances of the same vertex.}
-    \item \definition{9.0.5}{A \underline{vertex/edge-weighted graph} assigns a weight for each vertex or edge.}
-\end{itemize}
-Let \(G\) be a graph and \(uv\) be an edge in it. Then,
-\begin{itemize}
-    \item \definition{9.0.6}{\(u\) and \(v\) are called \underline{endpoints} of the edge \(uv\).}
-    \item \definition{9.0.7}{\(u\) and \(v\) are called \underline{neighbours} or \underline{adjacent vertices}.}
-    \item \definition{9.0.8}{\(uv\) is said to be incident to \(u\) and \(v\).}
-    \item \definition{9.0.9}{If \(uw\) is also an edge where \(v\neq w\), then \(uv\) and \(uw\) are \underline{adjacent edges}.}
-\end{itemize}
+\subsection{Types of Graphs}
 
-\separate{5}\definition{9.0.10}{The \underline{neighbourhood} of a vertex \(v \in V\), denoted by \(N(v)\), is the set of neighbours of \(v\).}
+\definition{9.1.1}{A \underline{graph} \(G\) is a pair \((V(G), E(G))\) of sets where \(V(G)\) is a non-empty set of vertices making up the graph and \(E(G)\) is a set of unordered pairs, \(\{u,v\}, \;u,v\in G\).}
 
-\separate{5}\definition{9.0.11}{The \underline{degree} of a vertex \(v \in V\), \(deg(v)\), is the size of its neighbourhood, \(|N(v)|\).}
+\separate{5}\definition{9.1.2}{A \underline{directed graph} is a graph where the edge set \(E(G)\) instead contains ordered pairs, indicating the direction of travel along each edge.}
 
-\separate{5}\definition{9.0.12}{\underline{\(\delta(G) \text{ and } \Delta(G)\)} give the vertices with the smallest and largest degrees, respectively.}
+\separate{5}\definition{9.1.3}{A \underline{multi-graph} allows for multiple edges to exist between vertices, meaning the edge set may contain duplicates.}
 
-\separate{5}\definition{9.0.13}{A vertex with degree zero is an \underline{isolated vertex}.}
+\separate{5}\definition{9.1.4}{A \underline{pseduo-graph} allows loops, meaning pairs in the edge set can contain two instances of the same vertex.}
 
-\separate{5}\definition{9.0.14}{A vertex with degree one is an \underline{end vertex} or a \underline{pendant vertex}.}
+\separate{5}\definition{9.1.5}{A \underline{vertex/edge-weighted graph} assigns a weight for each vertex or edge.}
 
-\separate{5}\definition{9.0.15}{A \underline{subgraph} \(G'=(V',E')\) of \(G=(V,E)\) is a graph with \(V' \subseteq V\) and \(E' \subseteq E\).}
-\begin{itemize}
-    \item \definition{9.0.16}{A subgraph is \underline{proper} if \(G'\neq G\).}
-    \item \definition{9.0.17}{A subgraph is \underline{spanning} if \(V' = V\).}
-    \item \definition{9.0.18}{An \underline{induced subgraph} is a subgraph where \(E'\) contains all edges of \(E\) between vertices of \(V'\). It is obtained by removing from \(G\) all vertices of \(G \backslash G'\).}
-\end{itemize}
+\separate{5}\definition{9.1.6}{A \underline{complete bipartite graph} is a graph such that any subgraph is a \underline{bipartite graph}, meaning we can separate its vertex set into two separate sets where each edge has an endpoint in both sets.}
 
-\separate{5}\theorem{9.0.1}{Known as the \underline{Handshaking Lemma}, if \(G=(V,E)\) is a graph, then \(\sum_{v\in V} deg(v) = 2|E|\).}
-{Every edge has two endpoints and contributes one to each of their degrees, so contributes two to the sum of the degrees of all vertices of \(V\).}
+\separate{5}\definition{9.1.7}{A \underline{complete graph} contains all possible edges between vertices.}
 
-\newpage\noindent\theorem{9.0.2}{In every undirected graph, the number of vertices of odd degree is even.}
-{Let \(G=(V,E)\) and \(V_{odd} = \{v:deg(v) \text{ is odd}\}\) and \(V_{even} = \{v:deg(v) \text{ is even}\}\). Clearly \(\sum_{v\in V_{even}} deg(v)\) is even. By the \hyperref[thm:9.0.1]{Handshaking Lemma},
-\begin{equation}
-    \sum_{v \in V_{odd}} deg(v) = 2 \cdot |E| - \sum_{v \in V_{even}}
-\end{equation}
-it follows that \(\sum_{v \in V_{odd}} deg(v)\) is even too. Now, if we have an odd number of vertices of odd degree, then there is a contradiction, meaning there must be an even number of vertices with an odd degree.} 
-
-\separate{5}\definition{9.0.19}{A \underline{path} in a graph is a subgraph which is isomorphic to the graph \(P_k\) for some integer \(k \geq 1\).}
-
-\separate{5}\definition{9.0.20}{A \underline{cycle} is a subgraph isomorphic to the graph \(C_k\) where \(k \geq 3\).}
-
-\separate{5}\definition{9.0.21}{A \underline{complete bipartite graph} is a graph such that any subgraph is a \underline{bipartite graph}, meaning we can separate its vertex set into two separate sets such that each edge has an endpoint in both sets.}
-
-\separate{5}\definition{9.0.22}{A \underline{complete graph} contains all possible edges between vertices.}
-
-\separate{5}\definition{9.0.23}{The \underline{hypercube, n-dimensional cube, or n-cube} is the graph with
+\separate{5}\definition{9.1.8}{The \underline{hypercube, n-dimensional cube, or n-cube} is the graph with
 \begin{equation}
     V = \{(e_1,...,e_n) | e_i \in \{0,1\} (i=1,...,n)\}
 \end{equation}
 in which two vertices are neighbours iff the corresponding rows differ in exactly one entry.}
 
-\separate{5}\theorem{9.0.3}{All n-dimensional cubes are bipartite.}{Let \(K_n\) be an n-dimensional hypercube. Create two vertex sets, \(V_1\) and \(V_2\), containing all the vertices of \(K_n\) with even and odd numbers of ones, respectively. Due to the definition of a hypercube, it is guaranteed for each edge to have an endpoint in both of the resulting vertex sets. Therefore, the n-cube must be bipartite.}
+\subsection{Other Terminology}
+
+Let \(G\) be a graph and \(uv\) be an edge in it. Then,
+\begin{itemize}
+    \item \definition{9.2.1}{\(u\) and \(v\) are called \underline{endpoints} of the edge \(uv\).}
+    \item \definition{9.2.2}{\(u\) and \(v\) are called \underline{neighbours} or \underline{adjacent vertices}.}
+    \item \definition{9.2.3}{\(uv\) is said to be incident to \(u\) and \(v\).}
+    \item \definition{9.2.4}{If \(uw\) is also an edge where \(v\neq w\), then \(uv\) and \(uw\) are \underline{adjacent edges}.}
+\end{itemize}
+
+\separate{5}\definition{9.2.5}{The \underline{neighbourhood} of a vertex \(v \in V\), denoted by \(N(v)\), is the set of neighbours of \(v\).}
+
+\separate{5}\definition{9.2.6}{The \underline{degree} of a vertex \(v \in V\), \(deg(v)\), is the size of its neighbourhood, \(|N(v)|\).}
+
+\separate{5}\definition{9.2.7}{\underline{\(\delta(G) \text{ and } \Delta(G)\)} give the vertices with the smallest and largest degrees, respectively.}
+
+\separate{5}\definition{9.2.8}{A vertex with degree zero is an \underline{isolated vertex}.}
+
+\separate{5}\definition{9.2.9}{A vertex with degree one is an \underline{end vertex} or a \underline{pendant vertex}.}
+
+\separate{5}\definition{9.2.10}{A \underline{subgraph} \(G'=(V',E')\) of \(G=(V,E)\) is a graph with \(V' \subseteq V\) and \(E' \subseteq E\).}
+\begin{itemize}
+    \item \definition{9.2.11}{A subgraph is \underline{proper} if \(G'\neq G\).}
+    \item \definition{9.2.12}{A subgraph is \underline{spanning} if \(V' = V\).}
+    \item \definition{9.2.13}{An \underline{induced subgraph} is a subgraph where \(E'\) contains all edges of \(E\) between vertices of \(V'\). It is obtained by removing from \(G\) all vertices of \(G \backslash G'\).}
+\end{itemize}
+
+\subsection{Basic Theorems}
+
+\separate{5}\theorem{9.3.1}{Known as the \underline{Handshaking Lemma}, if \(G=(V,E)\) is a graph, then \(\sum_{v\in V} deg(v) = 2|E|\).}
+{Every edge has two endpoints and contributes one to each of their degrees, so contributes two to the sum of the degrees of all vertices of \(V\).}
+
+\separate{5}\theorem{9.3.2}{In every undirected graph, the number of vertices of odd degree is even.}
+{Let \(G=(V,E)\) and \(V_{odd} = \{v:deg(v) \text{ is odd}\}\) and \(V_{even} = \{v:deg(v) \text{ is even}\}\). Clearly \(\sum_{v\in V_{even}} deg(v)\) is even. By the \hyperref[thm:9.3.1]{Handshaking Lemma},
+\begin{equation}
+    \sum_{v \in V_{odd}} deg(v) = 2 \cdot |E| - \sum_{v \in V_{even}}
+\end{equation}
+it follows that \(\sum_{v \in V_{odd}} deg(v)\) is even too. Now, if we have an odd number of vertices of odd degree, then there is a contradiction, meaning there must be an even number of vertices with an odd degree.} 
+
+\separate{5}\theorem{9.3.3}{All n-dimensional cubes are bipartite.}{Let \(K_n\) be an n-dimensional hypercube. Create two vertex sets, \(V_1\) and \(V_2\), containing all the vertices of \(K_n\) with even and odd numbers of ones, respectively. Due to the definition of a hypercube, it is guaranteed for each edge to have an endpoint in both of the resulting vertex sets. Therefore, the n-cube must be bipartite.}
 
 \section{Paths, Cycles, and Connectivity}
+
+\subsection{Walks, Paths, and Cycles}
+
+\separate{5}\definition{9.1.1}{A \underline{path} in a graph is a subgraph which is isomorphic to the graph \(P_k\) for some integer \(k \geq 1\).}
+
+\separate{5}\definition{9.1.2}{A \underline{cycle} is a subgraph isomorphic to the graph \(C_k\) where \(k \geq 3\).}
+
 \section{Trees and Isomorphism}
 \section{Breadth and Depth Searches}
 \section{Minimum Spanning Trees}
