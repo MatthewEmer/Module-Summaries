@@ -655,9 +655,40 @@ Let \(G=(V,E)\) with \(|E|=m+1\). Consider an arbitrary \(e\in E\), and define \
 \separate{5}\definition{10.3.2}{A \underline{Hamiltonian cycle} is a graph where we can start and end on the same node while visiting each node exactly once.}
 
 \separate{5}\theorem{10.3.1}{A connected graph with at least two vertices has an Eulerian circuit iff each of its vertices has even degree.}
-{This is proved in (Rosen, 2003, pp.634-636).}
+{This is proved in \hyperref[cit:2.eulerianCircuits]{(Rosen, 2003, pp.634-636)}.}
 
 \section{Trees and Isomorphism}
+
+\subsection{Trees}
+
+\definition{11.1.1}{A \underline{forest} is an acyclic graph.}
+
+\separate{5}\definition{11.1.2}{A \underline{tree} is a connected forest.}
+
+\separate{5}\theorem{11.1.1}{Every connected graph contains a spanning tree.}{Let \(G\) be a connected graph. If \(G\) doesn't contain cycles then it is a tree and therefore is its own spanning tree. Conversely, if the graph does contain a cycle, then we can remove one edge from the graph, breaking the cycle and forming a spanning tree. The resulting graph will still be connected as cycles will contain at least one vertex of degree two, meaning removing an edge won't produce an isolated vertex.}
+
+\newpage\noindent\definition{11.1.3}{A \underline{leaf} is a vertex of degree one.}
+
+\separate{5}\theorem{11.1.2}{Every tree on at least two vertices contains a leaf.}{By contradiction, we assume that every vertex has degree zero or two. If a vertex has degree zero, then the graph is not connected, and therefore cannot be a tree. Similarly, if every vertex has degree two then we can traverse through the tree by travelling to each vertex's neighbours until we reach a node that has already been visited, proving a cycle exists, making the graph not a tree. Therefore, trees with at least two vertices must contain at least one leaf.}
+\textit{Alternative }\proof{alt:thm:11.1.2}{(When every vertex has a degree of at least two). Consider a longest path \(P\) and an end vertex \(v\) of \(P\). All neighbours of \(v\) are on \(P\) as the tree must be connected, therefore if \(deg(v) \geq 2\), then there is a cycle, meaning a tree cannot exist. This holds for both endpoints of the path, proving there must be at least one vertex of degree one for the graph to be a tree.}
+
+\separate{5}\theorem{11.1.3}{A connected graph on \(n\) vertices is a tree iff it has \((n-1)\) edges.}
+{For small values of \(n\), the theorem holds, e.g., a tree with one vertex has no edges, and a tree with two vertices has one edge. Suppose each tree on \((n-1)\) vertices has \((n-2)\) edges. Take a tree on \(n \geq 3\) vertices, \(T\) contains a leaf \(v\). Consider the graph \(T-v\), it has one vertex less and one edge less than \(T\). \(T-v\) is still acyclic and such is a tree with \(n-1\) vertices, by the inductive hypothesis it has \((n-2)\) edges. \(T\) has one edge more, so \((n-1)\) edges.}
+
+\separate{5}\theorem{11.1.4}{Let \(T\) be a tree and \(u,v \in V(T)\) with \(u \neq v\). Then there is a unique path in \(T\) between \(u\) and \(v\).}
+{By contradiction, suppose there are two paths \(P\) and \(Q\) in \(T\) between \(u\) and \(v\). Let \(x\) and \(y\) in \(V(T)\) be distinct and chosen in such a way that \(x\) and \(y\) are on \(P\) and \(Q\), but between \(x\) and \(y\) the vertices of \(P\) and \(Q\) are disjoint. Then the segments of \(P\) and \(Q\) form a cycle, contradicting that \(T\) is a tree.}
+
+\separate{5}\definition{11.1.4}{A \underline{rooted tree} is a tree in which one vertex is fixed as the root (and every other vertex is directed away from the root).}
+
+Let \(v\) be a vertex in a rooted tree \(T\).
+\begin{itemize}
+    \item \definition{11.1.5}{The neighbours of \(v\) in the next level are called the \underline{children} of \(v\).}
+    \item \definition{11.1.6}{The (unique) neighbour of \(v\) in the previous level is called the \underline{parent} of \(v\).}
+    \item \definition{11.1.7}{If \(v\) has children, then it is an \underline{internal} vertex.}
+\end{itemize} 
+
+UP TO SLIDE 19 BUT BRAIN GONE
+
 \section{Breadth and Depth Searches}
 \section{Minimum Spanning Trees}
 
@@ -696,7 +727,7 @@ The below is accurate as of the 2025/26 academic year and will not be updated in
 
 Erickson, J. (2019). Algorithms. 1st ed. [online] Self-Published, p.71. \\ Available at: http://jeffe.cs.illinois.edu/teaching/algorithms/ [Accessed 25 Mar. 2026].\label{cit:1.algorithms}
 
-\separate{5}Rosen, K.H. (2003). Instructor's Resource Guide for Discrete Mathematics and Its Applications. \\ Boston: Mcgraw-Hill, pp.634-636.
+\separate{5}Rosen, K.H. (2003). Instructor's Resource Guide for Discrete Mathematics and Its Applications. \\ Boston: Mcgraw-Hill, pp.634-636.\label{cit:2.eulerianCircuits}
 
 \end{document}
 
