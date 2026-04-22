@@ -524,7 +524,24 @@ Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the hei
 
 \theorem{8.0.1}{Any comparison-based sorting algorithm requires \(\Omega(n\,log\,n)\) comparisons in the worst case.}
 {It is sufficient to determine the minimum height of a decision tree in which each permutation appears as a leaf. 
-We can consider a decision tree of height \(h\) with \(l\) leaves corresponding to a comparison sort on \(n\) elements.}
+We can consider a decision tree of height \(h\) with \(l\) leaves corresponding to a comparison sort on \(n\) elements. Each of the \(n!\) permutations of the input appears as some leaf, \(l \geq n!\). Given that a binary tree of height \(h\) has at most \(2^h\) leaves, we get that
+\begin{equation}
+    n! \leq l \leq 2^h
+\end{equation}
+Therefore, \(n! \leq 2^h\), and after taking logs of both sides,
+\begin{equation}
+    h \geq log(n!) \equiv \Omega(n\,log\,n)
+\end{equation}}
+
+\separate{5}\definition{8.0.1}{An \underline{adversary} algorithm is designed to intercept and limit access to the input by the original algorithm such that the time taken to make a decision is maximised. However, the adversary does not have knowledge of how the algorithm works, so must be general enough to work for any algorithm provided.}
+
+\separate{5}\theorem{8.0.2}{Any comparison-based algorithm attempting to find the maximum element in an unsorted array requires at least \((n-1)\) comparisons in the worst case.}
+{After at most \((n-2)\) comparisons no more than two elements can have not lost a comparison. An adversary can make either of them max and be consistent, but there is not enough information for the original algorithm to be consistent. Hence, the algorithm needs to make one more comparison, making the minimum number of comparisons \((n-1)\).}
+\textit{Alternative }\proof{alt:thm:8.0.2}{Taking this into account, we can design a strategy for the adversary. The only relevant information for the algorithm is how many elements have lost at least one comparison. As soon as \((n-1)\) elements have lost, the algorithm can decide that the only undefeated element must be the maximum. 
+
+Assuming each index \(i\) has a status (\(N\) for never lost, and \(L\) for lost), initially all indices have \(N\). After each comparison there can be a status change \(N\rightarrow L\). Therefore, the adversary must delay changes \(N\rightarrow L\) as much as possible. 
+
+Given this information, each comparison will either update one status from \(N\) to \(L\), or will update neither, providing the algorithm with at most one bit of new information. In total, the algorithm needs \((n-1)\) bits of information to make a decision, and hence at least \((n-1)\) comparisons are necessary.}
 
 \newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
 
