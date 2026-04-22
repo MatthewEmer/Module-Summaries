@@ -144,7 +144,7 @@
 
 \separate{5}\definition{1.1.4}{\underline{Pseudocode} is a generic way of describing how an algorithm will function without choosing any specific programming language. It does not have any very strict rules, but follows the following generic format:}
 
-\algorithmBlock{Example pseducode}{Input conditions}{The algorithm's output}
+\algorithmBlock{Example pseudocode}{Input conditions}{The algorithm's output}
 {
     \State \(x \gets 1\)
     \State \(y \gets 2\)
@@ -316,19 +316,19 @@ This has a best-case runtime of \((n-1)\) and a worst-case of \(\frac{n(n-1)}{2}
 
 \separate{5}\definition{4.1.2}{A \underline{selection sort} takes the \(i^{th}\) smallest elements and places them in order at the start of the list until all elements have been sorted.}
 Its time complexity can be calculated by doing the following:
-\begin{equation*}
+\begin{equation}
     \sum^{n-1}_{i=1} \sum^n_{j=i+1} 1 
     = \sum^{n-1}_{i=1} (n-i) 
     = \left( \sum^{n-1}_{i=1} n \right) - \left( \sum^{n-1}_{i=1} i \right) 
     = n(n-1) - \frac{n(n-1)}{2}
     = O(n^2)
-\end{equation*}
+\end{equation}
 
 \separate{5}\definition{4.1.3}{A \underline{bubble sort} takes the \(i^{th}\) largest elements and places them in order at the end of the list until all elements have been sorted.}
 Its time complexity can be calculated by doing the following:
-\begin{equation*}
+\begin{equation}
     \sum^{n-1}_{i=1} (n-i) = O(n^2)
-\end{equation*}
+\end{equation}
 
 \separate{5}\definition{4.1.4}{A \underline{merge sort} takes a list of elements and recursively splits it into two even parts until each sublist contains one element. Once this occurs, the sublists are merged back together in the correct order to form the sorted list. It does this with a variant of an insertion sort.}
 It has a time complexity of \(O(n \, log \, n)\).
@@ -544,6 +544,71 @@ Assuming each index \(i\) has a status (\(N\) for never lost, and \(L\) for lost
 Given this information, each comparison will either update one status from \(N\) to \(L\), or will update neither, providing the algorithm with at most one bit of new information. In total, the algorithm needs \((n-1)\) bits of information to make a decision, and hence at least \((n-1)\) comparisons are necessary.}
 
 \newpage\part{Graph Theory and Algorithms}\label{part:4.gta}
+
+\section{The Basics of Graph Theory}
+
+\definition{9.1.1}{A \underline{graph} \(G\) is a pair \((V(G), E(G))\) of sets where \(V(G)\) is a non-empty set of vertices making up the graph and \(E(G)\) is a set of unordered pairs, \(\{u,v\}, \;u,v\in G\).}
+\begin{itemize}
+    \item \definition{9.1.2}{A \underline{directed graph} is a graph where the edge set \(E(G)\) instead contains ordered pairs, indicating the direction of travel along each edge.}
+    \item \definition{9.1.3}{A \underline{multi-graph} allows for multiple edges to exist between vertices, meaning the edge set may contain duplicates.}
+    \item \definition{9.1.4}{A \underline{pseduo-graph} allows loops, meaning pairs in the edge set can contain two instances of the same vertex.}
+    \item \definition{9.1.5}{A \underline{vertex/edge-weighted graph} assigns a weight for each vertex or edge.}
+\end{itemize}
+Let \(G\) be a graph and \(uv\) be an edge in it. Then,
+\begin{itemize}
+    \item \definition{9.1.6}{\(u\) and \(v\) are called \underline{endpoints} of the edge \(uv\).}
+    \item \definition{9.1.7}{\(u\) and \(v\) are called \underline{neighbours} or \underline{adjacent vertices}.}
+    \item \definition{9.1.8}{\(uv\) is said to be incident to \(u\) and \(v\).}
+    \item \definition{9.1.9}{If \(uw\) is also an edge where \(v\neq w\), then \(uv\) and \(uw\) are \underline{adjacent edges}.}
+\end{itemize}
+
+\separate{5}\definition{9.1.10}{The \underline{neighbourhood} of a vertex \(v \in V\), denoted by \(N(v)\), is the set of neighbours of \(v\).}
+
+\separate{5}\definition{9.1.11}{The \underline{degree} of a vertex \(v \in V\), \(deg(v)\), is the size of its neighbourhood, \(|N(v)|\).}
+
+\separate{5}\definition{9.1.12}{\underline{\(\delta(G) \text{ and } \Delta(G)\)} give the vertices with the smallest and largest degrees, respectively.}
+
+\separate{5}\definition{9.1.13}{A vertex with degree zero is an \underline{isolated vertex}.}
+
+\separate{5}\definition{9.1.14}{A vertex with degree one is an \underline{end vertex} or a \underline{pendant vertex}.}
+
+\separate{5}\definition{9.1.15}{A \underline{subgraph} \(G'=(V',E')\) of \(G=(V,E)\) is a graph with \(V' \subseteq V\) and \(E' \subseteq E\).}
+\begin{itemize}
+    \item \definition{9.1.16}{A subgraph is \underline{proper} if \(G'\neq G\).}
+    \item \definition{9.1.17}{A subgraph is \underline{spanning} if \(V' = V\).}
+    \item \definition{9.1.18}{An \underline{induced subgraph} is a subgraph where \(E'\) contains all edges of \(E\) between vertices of \(V'\). It is obtained by removing from \(G\) all vertices of \(G \backslash G'\).}
+\end{itemize}
+
+\separate{5}\theorem{9.1.1}{Known as the \underline{Handshaking Lemma}, if \(G=(V,E)\) is a graph, then \(\sum_{v\in V} deg(v) = 2|E|\).}
+{Every edge has two endpoints and contributes one to each of their degrees, so contributes two to the sum of the degrees of all vertices of \(V\).}
+
+\newpage\noindent\theorem{9.1.2}{In every undirected graph, the number of vertices of odd degree is even.}
+{Let \(G=(V,E)\) and \(V_{odd} = \{v:deg(v) \text{ is odd}\}\) and \(V_{even} = \{v:deg(v) \text{ is even}\}\). Clearly \(\sum_{v\in V_{even}} deg(v)\) is even. By the \hyperref[thm:9.1.1]{Handshaking Lemma},
+\begin{equation}
+    \sum_{v \in V_{odd}} deg(v) = 2 \cdot |E| - \sum_{v \in V_{even}}
+\end{equation}
+it follows that \(\sum_{v \in V_{odd}} deg(v)\) is even too. Now, if we have an odd number of vertices of odd degree, then there is a contradiction, meaning there must be an even number of vertices with an odd degree.} 
+
+\separate{5}\definition{9.1.19}{A \underline{path} in a graph is a subgraph which is isomorphic to the graph \(P_k\) for some integer \(k \geq 1\).}
+
+\separate{5}\definition{9.1.20}{A \underline{cycle} is a subgraph isomorphic to the graph \(C_k\) where \(k \geq 3\).}
+
+\separate{5}\definition{9.1.21}{A \underline{complete bipartite graph} is a graph such that any subgraph is a \underline{bipartite graph}, meaning we can separate its vertex set into two separate sets such that each edge has an endpoint in both sets.}
+
+\separate{5}\definition{9.1.22}{A \underline{complete graph} contains all possible edges between vertices.}
+
+\separate{5}\definition{9.1.23}{The \underline{hypercube, n-dimensional cube, or n-cube} is the graph with
+\begin{equation}
+    V = \{(e_1,...,e_n) | e_i \in \{0,1\} (i=1,...,n)\}
+\end{equation}
+in which two vertices are neighbours iff the corresponding rows differ in exactly one entry.}
+
+\separate{5}\theorem{9.1.3}{All n-dimensional cubes are bipartite.}{Let \(K_n\) be an n-dimensional hypercube. Create two vertex sets, \(V_1\) and \(V_2\), containing all the vertices of \(K_n\) with even and odd numbers of ones, respectively. Due to the definition of a hypercube, it is guaranteed for each edge to have an endpoint in both of the resulting vertex sets. Therefore, the n-cube must be bipartite.}
+
+\section{Paths, Cycles, and Connectivity}
+\section{Trees and Isomorphism}
+\section{Breadth and Depth Searches}
+\section{Minimum Spanning Trees}
 
 \newpage\part{References}
 
