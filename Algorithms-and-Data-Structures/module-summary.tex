@@ -94,6 +94,7 @@
         \State \textbf{Output}: #3
         \separate{5}#4
     \end{algorithmic}
+    \label{alg:#1}
 \end{algorithm}}
 
 %%%
@@ -355,11 +356,11 @@ To analyse recursive algorithms, first of all note that most of them are actuall
     T(n) \leq a T\left(\frac{n}{2}\right) + f(n) \quad\quad a \geq 1, \, b > 1
 \end{equation}
 The theorem has three cases:
-\begin{itemize}
+\begin{enumerate}
     \item \(f(n) = O(n^{log_b a - \epsilon}), \; \epsilon > 0 \implies T(n) = \Theta(n^{log_b a})\)
     \item \(f(n) = \Theta(n^{log_b a} \cdot (log \, n)^k) \implies T(n) = \Theta(n^{log_b a} \cdot (log \, n)^{k+1})\)
     \item \(f(n) = O(n^{log_b a + \epsilon}), \; \epsilon > 0\) and \(a f(\frac{n}{b}) \leq c f(n), \; c < 1 \implies T(n) = \Theta(f(n))\)
-\end{itemize}
+\end{enumerate}
 
 \newpage\part{Selection and Data Structures}\label{part:3.sds}
 
@@ -408,7 +409,7 @@ In the worst-case, the algorithm is \(O(n^2)\), but on average executes in \(O(n
 
 \newpage\noindent\theorem{6.1.1}{Let \(T\) be a rooted binary tree of height \(h\). Then,
 \begin{itemize}
-    \item \(T\) has at most \(2^{h+1}-1\) nodes.
+    \item \(T\) has at most \(\left(2^{h+1}-1\right)\) nodes.
     \item \(T\) has at most \(2^h\) leaves.
 \end{itemize}}
 {The maximum number of nodes is in a complete tree of height \(h\), meaning all levels are full,
@@ -476,9 +477,9 @@ Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the hei
 
 \newpage\subsection{Heap Operations}
 
-\definition{7.2.1}{\underline{Heapify} takes an incorrectly ordered heap and reorders it into an acceptable order. It has a runtime of \(O(log\,n)\).}
+\definition{7.2.1}{\underline{\hyperref[alg:Heapify]{Heapify}} takes an incorrectly ordered heap and reorders it into an acceptable order. It has a runtime of \(O(log\,n)\).}
 
-\algorithmBlock{The Heapify algorithm}
+\algorithmBlock{Heapify}
 {\(A\), the array to turn into a heap, \(v\), the index of the largest value, \(i\), the highest index.}
 {A correctly ordered heap.}
 {
@@ -500,9 +501,9 @@ Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the hei
     \EndIf
 }
 
-\noindent\definition{7.2.2}{\underline{Insertion} adds the new element to the bottom-left of the heap before running Heapify.}
+\noindent\definition{7.2.2}{\underline{Insertion} adds the new element to the bottom-left of the heap before running \hyperref[alg:Heapify]{Heapify}.}
 
-\separate{5}\definition{7.2.3}{\underline{Build heap} takes an array of numbers and converts it into a heap by running Heapify iteratively, starting \(v\) as the size of the array and looping down to one.}
+\separate{5}\definition{7.2.3}{\underline{Build heap} takes an array of numbers and converts it into a heap by running \hyperref[alg:Heapify]{Heapify} iteratively, starting \(v\) as the size of the array and looping down to one.}
 
 \separate{5}\theorem{7.2.4}{The build heap algorithm runs in \(O(n)\) time.}
 {Let \(T(n)\) be the execution time for a heap of size \(n\).
@@ -680,14 +681,77 @@ Let \(G=(V,E)\) with \(|E|=m+1\). Consider an arbitrary \(e\in E\), and define \
 
 \separate{5}\definition{11.1.4}{A \underline{rooted tree} is a tree in which one vertex is fixed as the root (and every other vertex is directed away from the root).}
 
-Let \(v\) be a vertex in a rooted tree \(T\).
+\separate{5}Let \(v\) be a vertex in a rooted tree \(T\).
 \begin{itemize}
     \item \definition{11.1.5}{The neighbours of \(v\) in the next level are called the \underline{children} of \(v\).}
     \item \definition{11.1.6}{The (unique) neighbour of \(v\) in the previous level is called the \underline{parent} of \(v\).}
     \item \definition{11.1.7}{If \(v\) has children, then it is an \underline{internal} vertex.}
 \end{itemize} 
 
-UP TO SLIDE 19 BUT BRAIN GONE
+\separate{5}\theorem{11.1.5}{A tree with at least two vertices, \(n_3\) of which have degree at least three, has at least \((n_3+2)\) leaves.}
+{Let \(T\) be a tree on \(n \geq 2\) vertices. We use induction on \(n\). Let \(l(t)\) denote the number of leaves in \(T\), and \(n_3(T)\) denote the number of vertices of degree at least three in \(T\). If \(n=2, \; n_3=0\) and \(T\) has two leaves.
+Now suppose that every tree on fewer than \(n\) vertices has at least \((n_3+2)\) leaves, and consider a tree \(T\) on \(n \geq 3\) vertices. Since \(T\) is a tree on at least three vertices, it has a leaf \(u\). Then \(T'=T-u\) is a tree on \((n-1)\) vertices. By the induction hypothesis, we have 
+\begin{equation}l(T') \geq n_3(T') + 2\end{equation}
+\newpage\noindent Let \(v\) be the unique neighbour of \(u\) in \(T\). \(T\) is connected and has at least three vertices, so \(v\) has at least two neighbours in \(T\). This results in one of three cases:
+\begin{enumerate}
+    \item Suppose that \(v\) has exactly two neighbours in \(T\). Then \(n_3(T)=n_3(T')\) and \(l(T)=l(T')\). Hence,
+    \begin{equation}
+        l(T) = l(T') \geq n_3(T') + 2 = n_3(T) + 2
+    \end{equation}
+    \item Suppose that \(v\) has exactly three neighbours in \(T\). Then \(n_3(T) = (n_3(T') + 1)\) and \(l(T) = (l(T') + 1)\). Hence,
+    \begin{equation}
+        l(T) = l(T') + 1 \geq n_3(T') + 2 + 1 = n_3(T) - 1 + 2 + 1 = n_3(T) + 2
+    \end{equation}
+    \item Suppose that \(v\) has at least four neighbours in \(T\). Then \(n_3(T) = n_3(T')\) and \(l(T) = (l(T') + 1)\). Hence,
+    \begin{equation}
+        l(T) = l(T') + 1 \geq n_3(T') + 2 + 1 = n_3(T) + 2 + 1 \geq n_3(T) + 2
+    \end{equation}
+\end{enumerate}
+In each case, \(l(T)\) is at least \(n_3+2\).}
+
+\separate{5}\theorem{11.1.6}{Every tree is a bipartite graph.}{Let \(T\) be a tree and \(u\) be any one of its vertices. Place \(v\) in the set \(V_1\). For every vertex \(u \neq v\), there is a unique path from \(v\) to \(u\) in \(T\), consider the length of this path. If the length is odd, put \(u\) in \(V_2\), otherwise, place it in \(V_1\). \(V_1\) and \(V_2\) are disjoint and together make up \(V(T)\) and every edge of \(T\) will have an endpoint in both \(V_1\) and \(V_2\).}
+
+\subsection{Isomorphism}
+
+\definition{11.2.1}{Two graphs \(G(V,E)\) and \(G'(V',E')\) are \underline{isomorphic} if there exists a bijective function \(f:V \rightarrow V'\) such that for every \(u,v \in V\), we have \(uv \in E\) iff \(f(u)f(v) \in E'\). Then we write \(G \cong G'\).}
+
+\separate{5}\definition{11.2.2}{Two rooted trees \(T_1(V_1,E_1,r_1)\) and \(T_2(V_2,E_2,r_2)\) are called \underline{isomorphic rooted trees} if there exists an isomorphism bijection \(f:V_1\rightarrow V_2\) such that \(f(r_1)=r_2\).}
+
+\separate{5}\definition{11.2.3}{In a rooted tree with root \(r\), the \underline{level}, \(L(i)\) is the set of vertices at distance \(i\) from the root \(r\).}
+
+\algorithmBlock{Label Vertex}{\(T\), a tree, and \(v\), a vertex from the tree.}{A label for vertex \(v\).}
+{
+    \If {\(v\text{ is a leaf of }T\)}
+        \State \(label(v) \gets 10\)
+    \Else
+        \For {\(\text{every child } w \text{ of } v\)}
+            \State \(l(w) \gets LabelVertex(T,w)\)
+        \EndFor
+        \State Sort the labels of the children decreasingly.
+        \State \(label(v) \gets 1\)
+    \EndIf
+    
+    \separate{3}\Return \(label(v)\)
+}
+
+\newpage\algorithmBlock{Labelled Tree Isomorphism}{Two pairs of trees and roots, \((T_i, r_i) \; i \in \{1,2\}\).}{YES or NO.}
+{
+    \State \(label(r_1) \gets LabelVertex(T_1, r_1)\)
+    \State \(label(r_2) \gets LabelVertex(T_2, r_2)\)
+
+    \separate{3}\If {\(label(r_1) = label(r_2)\)}
+        
+    \Return YES
+    \Else 
+    
+    \Return NO
+    \EndIf 
+}
+
+\separate{5}\theorem{11.2.1}{If \((T_1,r_1)\) is isomorphic to \((T_2,r_2)\) then \hyperref[alg:Labelled Tree Isomorphism]{Algorithm 4} returns YES.}
+{We use induction on the number \(k\) of levels. When \(k=1\), the two trees have only their root (thus must be isomorphic), which gets label 10. Thus the algorithm returns YES. If two rooted trees are isomorphic and both have \(k\) levels then the algorithm returns YES on input. Let \((T_1,r_1)\) and \((T_2,r_2)\) be two isomorphic rooted trees, each with \((k+1)\) levels. 
+
+Let \(f\) be the bijection between \(T_1\) and \(T_2\). Then \(r_2=f(r_1)\) and, for every child \(a_1\) of \(r_1\) there exists a child \(a_2\) of \(r_2\) such that the subtrees rooted at \(a_i\) are isomorphic, and \(a_2 = f(a_1)\). Since every such pair of subtrees are isomorphic, they both have \(k\) levels. Thus, by the induction hypothesis, \hyperref[alg:Label Vertex]{Algorithm 3} returns the same label for their roots. Since all these labels are the same, \hyperref[alg:Labelled Tree Isomorphism]{Algorithm 4} returns YES.}
 
 \section{Breadth and Depth Searches}
 \section{Minimum Spanning Trees}
