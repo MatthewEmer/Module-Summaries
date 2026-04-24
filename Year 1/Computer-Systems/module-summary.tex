@@ -80,23 +80,43 @@
 
 
 % Advanced Formats.
-\newcommand{\image}[3]
-{\begin{figure}[H]
-    \centering
-    \includegraphics[width=#3\linewidth]{#1}
-    \caption{#2}
-    \label{fig:#2}
-\end{figure}}
+\newcommand{\insertimage}[3]
+{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#3\linewidth]{#1}
+        \caption{#2}
+        \label{fig:#2}
+    \end{figure}
+}
 
-\newcommand{\algorithmBlock}[4]
-{\begin{algorithm}
-    \caption{#1}
-    \begin{algorithmic}
-        \State \textbf{Input}: #2
-        \State \textbf{Output}: #3
-        \separate{5}#4
-    \end{algorithmic}
-\end{algorithm}}
+\newcommand{\insertalgorithm}[4]
+{
+    \begin{algorithm}[H]
+        \caption{#1}
+        \begin{algorithmic}
+            \State \textbf{Input}: #2
+            \State \textbf{Output}: #3
+            \separate{5}#4
+        \end{algorithmic}
+        \label{alg:#1}
+    \end{algorithm}
+}
+
+\newcommand{\inserttable}[4]
+{
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|#1|}
+            \hline #3 \\ 
+            \hline 
+            #4 
+            \hline
+        \end{tabular}
+        \caption{#2}
+        \label{tab:#2}
+    \end{table}
+}
 
 %%%
 
@@ -145,7 +165,7 @@
 
 \separate{5}\definition{1.1.2}{A \underline{nMOS transistor} is a sandwich of layers of conducting and insulating material. The gate is a conducting layer, on top of an insulating layer, on top of the substrate which is a semi-conductor. When its gate \(g\) is at a high voltage, current is allowed to flow from source to drain, and this is prevented when the gate is at a low voltage.}
 
-\image{Images/Transistors - nMOSTransistor.png}{An nMOS transistor}{0.5}
+\insertimage{Images/Transistors - nMOSTransistor.png}{An nMOS transistor}{0.5}
 
 \noindent The junction between p-type and n-type silicon is a diode. This means the current can only flow from p-type to n-type as they act as anodes and cathodes respectively.
 
@@ -170,7 +190,13 @@
 \subsection{Functionally Complete Sets}
 
 \definition{2.0.1}{A \underline{functionally complete set} is a set of boolean operators which can be used to express all possible truth tables by combining members of the set into a boolean expression. For example,
-\(\{AND,\,OR,\,NOT\},\;\{NOR\},\text{ and}\;\{NAND\}\) are all functionally complete sets.}
+\(\{AND,\,OR,\,NOT\},\;\{NOR\},\text{ and}\;\{NAND\}\) are all functionally complete sets. This is demonstrated by }
+
+\inserttable{c|c|c}{Proving functional completeness}
+{\(A AND B\) & \(A OR B\) & \(NOT A\)}
+{
+    test & test & test \\
+}
 
 \newpage\part{Machine Architecture}\label{part:2.ma}
 

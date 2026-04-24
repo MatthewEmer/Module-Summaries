@@ -80,24 +80,40 @@
 
 
 % Advanced Formats.
-\newcommand{\image}[3]
-{\begin{figure}[H]
-    \centering
-    \includegraphics[width=#3\linewidth]{#1}
-    \caption{#2}
-    \label{fig:#2}
-\end{figure}}
+\newcommand{\insertimage}[3]
+{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#3\linewidth]{#1}
+        \caption{#2}
+        \label{fig:#2}
+    \end{figure}
+}
 
-\newcommand{\algorithmBlock}[4]
-{\begin{algorithm}[H]
-    \caption{#1}
-    \begin{algorithmic}
-        \State \textbf{Input}: #2
-        \State \textbf{Output}: #3
-        \separate{5}#4
-    \end{algorithmic}
-    \label{alg:#1}
-\end{algorithm}}
+\newcommand{\insertalgorithm}[4]
+{
+    \begin{algorithm}[H]
+        \caption{#1}
+        \begin{algorithmic}
+            \State \textbf{Input}: #2
+            \State \textbf{Output}: #3
+            \separate{5}#4
+        \end{algorithmic}
+        \label{alg:#1}
+    \end{algorithm}
+}
+
+\newcommand{\inserttable}[4]
+{
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|#1|}
+            \hline #3 \\ \hline #4 \hline
+        \end{tabular}
+        \caption{#2}
+        \label{tab:#2}
+    \end{table}
+}
 
 %%%
 
@@ -150,7 +166,7 @@
 
 \separate{5}\definition{1.1.4}{\underline{Pseudocode} is a generic way of describing how an algorithm will function without choosing any specific programming language. It does not have any very strict rules, but follows the following generic format:}
 
-\algorithmBlock{Example pseudocode}{Input conditions}{The algorithm's output}
+\insertalgorithm{Example pseudocode}{Input conditions}{The algorithm's output}
 {
     \State \(x \gets 1\)
     \State \(y \gets 2\)
@@ -434,7 +450,7 @@ Then each of them has height \(\leq (h-1)\), and (by induction hypothesis) \(\le
 
 \definition{6.2.1}{\underline{Balanced binary search trees} are binary search trees which balance themselves using rotation operations to minimise height differences between subtrees.}
 
-\image{Images/Balanced BSTs - Left and right rotation examples.png}{The basic rotation operations.}{0.75}
+\insertimage{Images/Balanced BSTs - Left and right rotation examples.png}{The basic rotation operations.}{0.75}
 
 \newpage\subsection{AVL Trees}
 
@@ -481,7 +497,7 @@ Taking logarithms, \(h < 2log(n(h)) + 2\). Since \(log(n) > log(n(h))\), the hei
 
 \definition{7.2.1}{\underline{\hyperref[alg:Heapify]{Heapify}} takes an incorrectly ordered heap and reorders it into an acceptable order. It has a runtime of \(O(log\,n)\).}
 
-\algorithmBlock{Heapify}
+\insertalgorithm{Heapify}
 {\(A\), the array to turn into a heap, \(v\), the index of the largest value, \(i\), the highest index.}
 {A correctly ordered heap.}
 {
@@ -721,7 +737,7 @@ In each case, \(l(T)\) is at least \(n_3+2\).}
 
 \separate{5}\definition{11.2.3}{In a rooted tree with root \(r\), the \underline{level}, \(L(i)\) is the set of vertices at distance \(i\) from the root \(r\).}
 
-\algorithmBlock{Label Vertex}{\(T\), a tree, and \(v\), a vertex from the tree.}{A label for vertex \(v\).}
+\insertalgorithm{Label Vertex}{\(T\), a tree, and \(v\), a vertex from the tree.}{A label for vertex \(v\).}
 {
     \If {\(v\text{ is a leaf of }T\)}
         \State \(label(v) \gets 10\)
@@ -736,7 +752,7 @@ In each case, \(l(T)\) is at least \(n_3+2\).}
     \separate{3}\Return \(label(v)\)
 }
 
-\newpage\algorithmBlock{Labelled Tree Isomorphism}{Two pairs of trees and roots, \((T_i, r_i) \; i \in \{1,2\}\).}{YES or NO.}
+\newpage\insertalgorithm{Labelled Tree Isomorphism}{Two pairs of trees and roots, \((T_i, r_i) \; i \in \{1,2\}\).}{YES or NO.}
 {
     \State \(label(r_1) \gets LabelVertex(T_1, r_1)\)
     \State \(label(r_2) \gets LabelVertex(T_2, r_2)\)
@@ -787,7 +803,7 @@ It has a running time of \(O(V\,log\,V + E)\).}
 
 \separate{5}\definition{12.1.8}{A cut \underline{respects} a set \(A\) of edges if no edge of \(A\) crosses the cut.}
 
-\algorithmBlock{Generic MST Algorithm}{A graph \(G\).}{An MST.}
+\insertalgorithm{Generic MST Algorithm}{A graph \(G\).}{An MST.}
 {
     \State \(A \gets \emptyset\)
     \While {\(A \text{ does not form a spanning tree}\)}
@@ -800,7 +816,7 @@ It has a running time of \(O(V\,log\,V + E)\).}
 
 \subsection{Implementing MST Algorithms}
 
-\algorithmBlock{Implementation of Kruskal's Algorithm}{The set of vertices \(V\) and the set of edges \(E\).}{An MST.}
+\insertalgorithm{Implementation of Kruskal's Algorithm}{The set of vertices \(V\) and the set of edges \(E\).}{An MST.}
 {
     \State \(A \gets \emptyset\)
     \For {\(\text{Each vertex } v \in V\)}
@@ -822,7 +838,7 @@ It has a running time of \(O(V\,log\,V + E)\).}
 
 \noindent The sorting initially takes \(O(E\,log\,V)\) time, the union-find operations also take \(O(E\,log\,V)\) time, so the total running time is \(O(E\,log\,V)\).
 
-\algorithmBlock{Implementation of Prim's Algorithm}{The set of vertices \(V\) and the set of edges \(E\).}{An MST.}
+\insertalgorithm{Implementation of Prim's Algorithm}{The set of vertices \(V\) and the set of edges \(E\).}{An MST.}
 {
     \State \(U = \{u\}\)
     \State \(A \gets \emptyset\)
