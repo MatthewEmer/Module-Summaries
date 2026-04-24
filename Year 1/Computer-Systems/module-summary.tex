@@ -109,8 +109,7 @@
         \centering
         \begin{tabular}{|#1|}
             \hline #3 \\ 
-            \hline 
-            #4 \\
+            \hline #4\\
             \hline 
         \end{tabular}
         \caption{#2}
@@ -224,19 +223,51 @@
 
 \subsection{Introduction to MIPS}
 
-\definition{3.1.1}{A \underline{MIPS (Microprocessor without Interlocked Pipeline Stages)} is 32-bit RISC processor used in embedded systems and consumer electronics. It has 32 general purpose registers as seen in}
-
-\inserttable{c|c|c}{MIPS' 32 general purpose registers}
-{\textbf{Number} & \textbf{Name} & \textbf{Purpose}}
-{
-    0 & \(\$0\) & Stores the constant value 0.
-}
+\definition{3.1.1}{A \underline{MIPS (Microprocessor without Interlocked Pipeline Stages)} is 32-bit RISC processor used in embedded systems and consumer electronics. It uses 32-bit words, has around 110 instructions, and 32 general purpose registers.}
 
 \separate{5}\definition{3.1.2}{\underline{Amdahl's Law} states that the performance improvement to be gained from using some faster mode of execution is limited by a fraction of the time the faster mode can be used.}
 
+\subsection{The MIPS Instruction Set}
 
+The instruction set uses five addressing modes, these are:
+\begin{itemize}
+    \item \definition{3.2.1}{When all addresses in the instruction are registers, this is \underline{register-only addressing}.}
+    \item \definition{3.2.2}{When a value is used directly in an instruction, this is \underline{immediate addressing}.}
+    \item \definition{3.2.3}{\underline{Base addressing} is when the address of a memory operand is given by a base address and a signed immediate.}
+    \item \definition{3.2.4}{\underline{PC-relative addressing} takes the current position in memory and jumps a given amount to a new address.}
+    \item \definition{3.2.5}{\underline{Pseudo-direct addressing} is used by MIPS in place of direct addressing as it does not support 32-bit addresses. As a result, it calculates it from 26 as the two least significant bits are always zeros as all words are multiples of four, and the four most significant bits can also be left as zero.}
+\end{itemize}
+
+\separate{5}The MIPS instruction set can be split into three instruction types, these are:
+\begin{itemize}
+    \item \definition{3.2.6}{\underline{R-type instructions} contain a six-bit opcode, three five-bit registers (two source and one destination), a five-bit shift value, and a six-bit code to identify the function.}
+    \item \definition{3.2.7}{\underline{I-type instructions} contain a six-bit opcode, two five-bit registers (one source, one destination), and a sixteen-bit immediate.}
+    \item \definition{3.2.8}{\underline{J-type instructions} contain a six-bit opcode and a twenty-six bit memory address. The compiler combines the two to form a new thirty-two bit address.}
+\end{itemize}
+
+\subsection{Memory Maps}
+
+MIPS uses 32-bit memory addresses across \(2^32\) bits (or 4 GB), ranging from 0x0 to 0xFFFFFFFC. This address space is split into the four segments:
+\begin{itemize}
+    \item \definition{3.3.1}{The \underline{text segment} stores the machine language program and can store 256 MB.}
+    \item \definition{3.3.2}{The \underline{global data segment} stores global variables for program functions to access. These can be accessed using the pointer \(\$gp\). This segment can store 64 KB of data.}
+    \item \definition{3.3.3}{The \underline{dynamic data segment} stores data which is dynamically allocated/deallocated through the execution of the program and can store up to 2 GB of data using a stack and a heap.}
+    \item \definition{3.3.4}{The \underline{reserved segment} is used by the operating system and cannot be directly accessed by the program.}
+\end{itemize} 
 
 \section{The ATmega328P Microcontroller}
+
+\subsection{Main Technical Characteristics}
+
+\definition{4.1.1}{A \underline{microcontroller} is an integrated device consisting of a microprocessor, memory, and an input/output. They are used in embedded systems and store their program in flash memory.}
+
+\separate{5}The microcontroller has 32 general purpose 8-bit registers that are copied onto SRAM memory. Registers 26-31 are used in addressing, and as such should be treated as three 16-bit registers, rather than six 8-bit registers.
+
+\separate{5}\definition{4.1.2}{The \underline{status register} is an 8-bit register separate from the other 32. Its eight bits are used as flags.}
+
+\separate{5}The microcontroller's pins are separated into 3 groups, B (digital), C (analogue), and D (digital). 
+
+\separate{5}\definition{4.1.3}{The direction of each pin of a port is controlled by a \underline{data direction registers}. We say a bit is set when it is 1 and the corresponding pin is output, and that a bit is cleared when it is 0 and the pin is input.}
 
 \section{Programming in AVR Assembly}
 
@@ -245,7 +276,7 @@
 \definition{5.1.1}{The assembly code contains statements called \underline{directives}. These do not correspond to assembly instructions, but the assembler will take them into account when compiling. In AVR assembly, a directive is preceded by a dot. Some examples include:}
 \begin{itemize}
     \item \(.equ\) assigns a value to a label which can be used in later expressions. This is a constant. (\(.equ\;pi, 3\)).
-    \item \(.global start\) and \(.global btnLED\) declare the functions \(start\) and \(btnLED\) as global.
+    \item \(.global\;start\) and \(.global\;btnLED\) declare the functions \(start\) and \(btnLED\) as global.
 \end{itemize}
 
 \newpage\part{Databases}\label{part:3.db}
