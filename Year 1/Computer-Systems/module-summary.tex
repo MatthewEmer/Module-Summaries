@@ -220,7 +220,19 @@
 
 \newpage\part{Machine Architecture}\label{part:2.ma}
 
+\section{MIPS}
 
+\section{The ATmega328P Microcontroller}
+
+\section{Programming in AVR Assembly}
+
+\subsection{Directives}
+
+\definition{5.1.1}{The assembly code contains statements called \underline{directives}. These do not correspond to assembly instructions, but the assembler will take them into account when compiling. In AVR assembly, a directive is preceded by a dot. Some examples include:}
+\begin{itemize}
+    \item \(.equ\) assigns a value to a label which can be used in later expressions. This is a constant. (\(.equ\;pi, 3\)).
+    \item \(.global start\) and \(.global btnLED\) declare the functions \(start\) and \(btnLED\) as global.
+\end{itemize}
 
 \newpage\part{Databases}\label{part:3.db}
 
