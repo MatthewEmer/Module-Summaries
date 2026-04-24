@@ -33,7 +33,7 @@
 \newcommand{\theauthor}{Matthew Emerson} % Insert the name(s) of the author(s) here.
 \newcommand{\thedate}{\monthyeardate\today} % Replace this if you want a static date.
 
-\newcommand{\templateversion}{1.4.0} % Do not edit this variable.
+\newcommand{\templateversion}{1.4.1} % Do not edit this variable.
 %%%
 
 
@@ -110,8 +110,8 @@
         \begin{tabular}{|#1|}
             \hline #3 \\ 
             \hline 
-            #4 
-            \hline
+            #4 \\
+            \hline 
         \end{tabular}
         \caption{#2}
         \label{tab:#2}
@@ -221,6 +221,20 @@
 \newpage\part{Machine Architecture}\label{part:2.ma}
 
 \section{MIPS}
+
+\subsection{Introduction to MIPS}
+
+\definition{3.1.1}{A \underline{MIPS (Microprocessor without Interlocked Pipeline Stages)} is 32-bit RISC processor used in embedded systems and consumer electronics. It has 32 general purpose registers as seen in}
+
+\inserttable{c|c|c}{MIPS' 32 general purpose registers}
+{\textbf{Number} & \textbf{Name} & \textbf{Purpose}}
+{
+    0 & \(\$0\) & Stores the constant value 0.
+}
+
+\separate{5}\definition{3.1.2}{\underline{Amdahl's Law} states that the performance improvement to be gained from using some faster mode of execution is limited by a fraction of the time the faster mode can be used.}
+
+
 
 \section{The ATmega328P Microcontroller}
 
