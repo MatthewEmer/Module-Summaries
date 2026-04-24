@@ -32,6 +32,8 @@
 \newcommand{\thesubtitle}{COMP1071: Durham University} % Insert the document subtitle here.
 \newcommand{\theauthor}{Matthew Emerson} % Insert the name(s) of the author(s) here.
 \newcommand{\thedate}{\monthyeardate\today} % Replace this if you want a static date.
+
+\newcommand{\templateversion}{1.4.0} % Do not edit this variable.
 %%%
 
 
@@ -115,7 +117,7 @@
 % Custom Page Footer.
 \fancyfoot{}
 \fancyfoot[L]{Written by \theauthor \\ 
-\textit{\LaTeX \,Template: Copyright \date{\yeardate\today}, Matthew Emerson}} % Do not edit.
+\textit{\LaTeX \,Template v.\templateversion: Copyright \date{\yeardate\today}, Matthew Emerson}} % Do not edit.
 \fancyfoot[R]{Page \thepage \, of\, \pageref{LastPage}}
 
 
@@ -135,17 +137,40 @@
 
 \part{Digital Electronics}\label{part:1.de}
 
-\section{Transistors and Logic Gates}
+\section{Circuits}
 
 \subsection{Transistors}
 
 \definition{1.1.1}{\underline{Transistors} are electronically controlled switches that turn on or off when voltage or current is applied to a control terminal.}
 
-\separate{5}\definition{1.1.2}{An \underline{nMOS transistor} is a sandwich of layers of conducting and insulating material. The gate is a conducting layer, on top of an insulating layer, on top of the substrate which is a semi-conductor.}
+\separate{5}\definition{1.1.2}{A \underline{nMOS transistor} is a sandwich of layers of conducting and insulating material. The gate is a conducting layer, on top of an insulating layer, on top of the substrate which is a semi-conductor. When its gate \(g\) is at a high voltage, current is allowed to flow from source to drain, and this is prevented when the gate is at a low voltage.}
 
-\image{}{}{}
+\image{Images/Transistors - nMOSTransistor.png}{An nMOS transistor}{0.5}
 
-\subsection{Logic Gates}
+\noindent The junction between p-type and n-type silicon is a diode. This means the current can only flow from p-type to n-type as they act as anodes and cathodes respectively.
+
+\separate{5}\definition{1.1.3}{A \underline{pMOS transistor} is the opposite of a nMOS transistor - it allows current to flow when the gate is at low voltages, and prevents current flow at high voltages.}
+
+\separate{5}\definition{1.1.4}{The \underline{static discipline} states that if inputs to transistors meet valid thresholds, then the system must guarantee outputs will meet valid output thresholds and will not fall into the forbidden zone (outside of the accepted range for high/low voltages).}
+
+\separate{5}\definition{1.1.5}{\underline{Moore's Law} is usually quoted as \say{transistor density doubles every two years}, or \say{computer processing power doubles every eighteen months}.}
+
+\subsection{Circuit Design}
+
+\separate{5}\definition{1.2.3}{\underline{Abtraction} is used when designing circuits to simplify problems by hiding unimportant details, highlighting the actual logic problem to be solved.}
+
+\separate{5}\definition{1.2.4}{Another design principle used is \underline{discipline}. Here, design choices are deliberately restricted to make circuits easier to model, design, and combine.}
+
+\separate{5}\definition{1.2.5}{When designing complex systems, engineers use \underline{the three-y's}: \underline{hierarchy}, dividing a system into clear modules and submodules; \underline{modularity}, using well-defined functions and interfaces for modules; and \underline{regularity}, encouraging uniformity so modules can be swapped or reused.}
+
+\subsection{Simple Circuits}
+
+\section{Introduction to Logic}
+
+\subsection{Functionally Complete Sets}
+
+\definition{2.0.1}{A \underline{functionally complete set} is a set of boolean operators which can be used to express all possible truth tables by combining members of the set into a boolean expression. For example,
+\(\{AND,\,OR,\,NOT\},\;\{NOR\},\text{ and}\;\{NAND\}\) are all functionally complete sets.}
 
 \newpage\part{Machine Architecture}\label{part:2.ma}
 
