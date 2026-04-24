@@ -328,6 +328,19 @@ The architecture, set out by ANSI (the American National Standards Institute) an
 
 \subsection{Relational Data Models}
 
+\definition{7.2.1}{A \underline{relational data model} is based on the concept of mathematical relations and is the most widely used data structure for designing databases. It models a database by storing the relations between data in tables.}
+
+\separate{5}When creating a relational data model, the design must meet the following integrity constraints:
+\begin{itemize}
+    \item \definition{7.2.2}{\underline{Domain constraints} for attributes limit the range of values permitted.}
+    \item \definition{7.2.3}{\underline{Entity integrity} ensures that the primary key is not null, guaranteeing that each entity has a unique identifier and that foreign keys form a valid reference.}
+    \item \definition{7.2.4}{\underline{Referential integrity} ensures that all foreign keys match some primary key or is null. This ensures that all references are valid.}
+\end{itemize}
+
+\subsection{Functional Dependencies}
+
+\subsection{Normalisation Forms}
+
 \newpage\part{Operating Systems}\label{part:4.os}
 
 \newpage\part{References}
