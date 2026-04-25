@@ -29,7 +29,7 @@
 
 %%% Custom Formats and Commands
 
-\newcommand{\templateversion}{1.5.0} % Do not edit this variable.
+\newcommand{\templateversion}{1.5.1} % Do not edit this variable.
 
 \hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
 
@@ -73,7 +73,7 @@
 % Join Symbols.
 \newcommand{\ojoin}{\setbox0=\hbox{$\bowtie$}%
     \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
-\newcommand{\insertjoin}{\mathbin{\bowtie\mkern-5.8mu}}
+\newcommand{\insertinnerjoin}{\mathbin{\bowtie\mkern-5.8mu}\;}
 \newcommand{\insertleftouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
 \newcommand{\insertrightouterjoin}{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
 \newcommand{\insertfullouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
@@ -412,6 +412,17 @@ These rules are complete and sound, and can be used to derive another three rule
 \subsection{Relational Algebra}
 
 \definition{8.3.1}{\underline{Relational algebra} uses operators to construct new sets from one or more existing ones.}
+
+\separate{5}Relational algebra uses a unique set of operations and symbols. These include:
+\begin{itemize}
+    \item \definition{8.3.2}{The \underline{selection} operation, \(\sigma_c(R)\), is a unary operation which selects the subset of tuples from a relation \(R\) that meet the specified condition \(c\).}
+    \item \definition{8.3.3}{The \underline{projection} operation, \(\Pi_{c_1,c_2}(R)\), is a unary operation which selects a specified subset of attributes \(c_1, c_2\) from a relation \(R\).}
+    \item \definition{8.3.4}{The \underline{cartesian product} operation, \(A \times B\), is a binary operaiton which generates all possible combinations of tuples from \(A\) and \(B\) by concatenating them.}
+    \item \definition{8.3.5}{The \underline{rename} operation, \(\rho_{Y(A,B,C)}(X)\), is a unary operation which takes the relation \(X\) and renames it to \(Y\), and naming its corresponding attributes \(A, B, C\).}
+    \item \definition{8.3.6}{The \underline{division} operation, \(A \div B\), is a binary operation that only keeps tuples from \(A\) that exist in all possible combinations with \(B\) where \(B\) contains a subset of \(A\).}
+    \item There are also join operations, corresponding to their SQL eqivalents: inner \(\insertjoin\), left outer \(\insertleftouterjoin\), right outer \(\insertrightouterjoin\), and full outer \(\insertfullouterjoin\).
+    \item Some other basic operations include \(A - B\), \(A \cup B\), and \(A \cap B\).
+\end{itemize}
 
 \newpage\part{Operating Systems}\label{part:4.os}
 
