@@ -426,6 +426,47 @@ These rules are complete and sound, and can be used to derive another three rule
 
 \newpage\part{Operating Systems}\label{part:4.os}
 
+\section{Introduction to Operating Systems}
+
+\subsection{Basic Definitions}
+
+\definition{9.1.1}{An \underline{operating system} is a program that acts as an intermediary between a user and the hardware. Its goal is to execute programs, make solving problems easier, make the computer system convenient to use, and to use the resources of the system fairly and efficiently. The operating system is:}
+\begin{itemize}
+    \item \definition{9.1.2}{A \underline{resource allocator}. It is responsible for the management of the computer system's resources.}
+    \item \definition{9.1.3}{A \underline{control program}. It controls the execution of user programs and operation of the input/output devices to prevent errors and improper use of the computer.}
+    \item \definition{9.1.4}{A \underline{kernel}. It is the one program that runs all of the time.}
+\end{itemize}
+
+\subsection{Operating System Design}
+
+\separate{5}\definition{9.2.1}{The operating system generally runs in \underline{dual-mode} operation. This allows the operating system to protect itself and other system components. It differentiates which mode it is currently in using the \underline{mode bit}.}
+\begin{itemize}
+    \item \definition{9.2.2}{When the computer is in \underline{user mode} it is limited as to which instructions it can execute, with some requiring switching modes to,}
+    \item \definition{9.2.3}{\underline{Kernel mode} (also known as system or privileged mode). In this mode, the system is given access to a set of \underline{privileged instructions} which can perform tasks such as managing interrupts, performing inputs/outputs, and halting a process.}
+\end{itemize}
+
+\separate{5}The operating system offers a set of services, some of which are:
+\begin{itemize}
+    \item Providing an environment for the execution of programs and services.
+    \item Providing a user interface, which can either be on the command line (CLI), graphical (GUI), or in Batch.
+    \item Controlling the operation of input/output devices.
+    \item Manipulating the file system.
+    \item Organising communications either between processes on the same computer, or between computers over a network.
+    \item Providing error detection, taking appropriate action to ensure correct and consistent computing.
+    \item Allocating resources, particularly when multiple jobs are running concurrently.
+    \item Providing protection and security by ensuring that all access to system resources are controlled and that all users are authenticated.
+\end{itemize}
+
+\subsection{Processes and Threads}
+
+\section{Process, Memory, and Storage Management}
+
+\subsection{Process Management}
+
+\subsection{Memory Management}
+
+\subsection{Storage Management}
+
 \newpage\part{References}
 
 \section{Module Professors}
