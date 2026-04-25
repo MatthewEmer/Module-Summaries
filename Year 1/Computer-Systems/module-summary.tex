@@ -29,7 +29,7 @@
 
 %%% Custom Formats and Commands
 
-\newcommand{\templateversion}{1.4.2} % Do not edit this variable.
+\newcommand{\templateversion}{1.5.0} % Do not edit this variable.
 
 \hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
 
@@ -70,6 +70,15 @@
 \newcommand{\lemma}[3]{\textbf{Lemma #1}: #2 \par\separate{3}\proof{lem:#1}{#3}\label{lem:#1}}
 
 
+% Join Symbols.
+\newcommand{\ojoin}{\setbox0=\hbox{$\bowtie$}%
+    \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\newcommand{\insertjoin}{\mathbin{\bowtie\mkern-5.8mu}}
+\newcommand{\insertleftouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\newcommand{\insertrightouterjoin}{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\newcommand{\insertfullouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+
+
 % Advanced Formats.
 \newcommand{\insertimage}[3]
 {
@@ -99,9 +108,7 @@
     \begin{table}[H]
         \centering
         \begin{tabular}{|#1|}
-            \hline #3 \\ 
-            \hline #4\\
-            \hline 
+            \hline #3 \\ \hline #4 \\ \hline
         \end{tabular}
         \caption{#2}
         \label{tab:#2}
@@ -372,6 +379,39 @@ These rules are complete and sound, and can be used to derive another three rule
 \separate{5}\definition{7.4.2}{A table is in \underline{second normal form} if it is in first normal form and has no partial dependencies (every non-key attribute is dependent on the whole primary key).}
 
 \separate{5}\definition{7.4.3}{A table is in \underline{third normal form} if it is in second normal form and has no transitive dependencies.}
+
+\section{Relational Calculus and Algebra}
+
+\subsection{Database Languages}
+
+\definition{8.1.1}{\underline{Structured query language} is the most common database language. It follows the ISO/ANSI standard using simple syntax with its two components, DDL and DML:}
+\begin{itemize}
+    \item \definition{8.1.2}{\underline{Data definition language} is used to define the schema for each relation, the domain for each respective attribute, and to specify the relation's integrity constraints.}
+    \item \definition{8.1.3}{\underline{Data manipulation language} is used to insert, update, delete, and retrieve data from the database.}
+\end{itemize}
+
+\separate{5}Database languages can be separated into one of two types:
+\begin{itemize}
+    \item \definition{8.1.4}{A \underline{declarative language} specifies which data needs to be retrieved in a query (relational calculus).}
+    \item \definition{8.1.5}{A \underline{procedural language} specifies how to recieve the requested data for the query (relational algebra).}
+\end{itemize}
+
+\newpage\subsection{Relational Calculus}
+
+\definition{8.2.1}{\underline{Relational calculus} uses set theoretic expressions to define new sets based on one or more existing ones.}
+
+\separate{5}\definition{8.2.2}{A \underline{predicate} is a function that returns either true or false when given a set of arguments.}
+
+\separate{5}\definition{8.2.3}{A \underline{proposition} is the expression obtained when replacing values for the arguments of a predicate.}
+
+\separate{5}For example, for the predicates \(P(x)\) and \(Q(x)\), the set such that both \(P(x)\) and \(Q(x)\) are true is 
+\begin{equation}
+    \{x|P(x) \land Q(x)\}
+\end{equation}
+
+\subsection{Relational Algebra}
+
+\definition{8.3.1}{\underline{Relational algebra} uses operators to construct new sets from one or more existing ones.}
 
 \newpage\part{Operating Systems}\label{part:4.os}
 
