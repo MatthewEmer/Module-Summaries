@@ -4,7 +4,6 @@ This is my notes for the content of all of my BSc Computer Science modules at Du
 
 ## Upcoming Deadlines
 
-- Programming (Black): Collaborative Coursework (50%) - 30/04/2026
 - Algorithms and Data Structures: Final Exam (66%) - 13/05/2026
 - Computer Systems: Final Exam (66%) - 15/05/2026
 - Mathematics for Computer Science: Final Exam (66%) - 21/05/2026
