@@ -169,6 +169,68 @@
 
 \part{Calculus}\label{part:1.calc}
 
+\section{Introduction to Calculus}
+
+\subsection{Sets}
+
+\definition{1.1.1}{A \underline{set} is an unordered collection of distinct elements denoted as \(A = \{x | \textit{condition} \}\).}
+
+\separate{5}Some common set operations include:
+\begin{itemize}
+    \item \definition{1.1.2}{The \underline{union} of two sets, \(A \cup B\), includes all the elements of both sets.}
+    \item \definition{1.1.3}{The \underline{intersection} of two sets, \(A \cap B\), includes any elements which are present in both sets.}
+    \item \definition{1.1.4}{If \(A\) and \(B\) are finite sets, then the \underline{principle of inclusion-exclusion} states that 
+    \begin{equation}
+        A \cup B = A + B - (A \cap B)
+    \end{equation}}
+    \item \definition{1.1.5}{The set \(A\) is a \underline{subset} of \(B\), \(A \subseteq B\), if every element of \(A\) is an element of \(B\). \(A\) is a \underline{proper subset} of \(B\), \(A \subset B\), if \(A\) is a subset of \(B\) and there is at least one element of \(B\) not in \(A\).}
+    \item \definition{1.1.6}{The \underline{powerset} of a set \(A\) is the set of all subsets of \(A\). 
+    \begin{equation}
+        \mathcal{P}(A) = \{A'|A' \subseteq A\}
+    \end{equation}}
+    \item \definition{1.1.7}{The \underline{cartesian product} of two sets, \(A \times B\), is the set of all possible ordered pairs with the first element from \(A\) and the second from \(B\).}
+\end{itemize}
+
+\separate{5}\definition{1.1.8}{For a finite set, the \underline{cardinality} is the number of distinct elements that it contains.}
+
+\subsection{Functions}
+
+\separate{5}For a function \(f: A \rightarrow B\),
+\begin{itemize}
+    \item \definition{1.2.1}{\(A\) is known as the \underline{domain} of \(f\).}
+    \item \definition{1.2.2}{\(B\) is known as the \underline{codomain} of \(f\).}
+    \item \definition{1.2.3}{If \(f(a)=b\), then \(b\) is the \underline{image} of \(a\).}
+    \item \definition{1.2.4}{The \underline{pre-image} of \(b\) is the set \(\{a|f(a)=b\}\).}
+    \item \definition{1.2.5}{\(f\) forms an \underline{injection} if every element of \(A\) maps to a unique element in \(B\), even if some elements of \(B\) don't have a mapping.}
+    \item \definition{1.2.6}{\(f\) forms a \underline{surjection} if every element of \(B\) maps to at least one element of \(A\).}
+    \item \definition{1.2.7}{\(f\) forms a \underline{bijection} if it is both injective and surjective.}
+\end{itemize}
+
+\separate{5}\definition{1.2.8}{If for an unbounded set \(A\), there is a bijective function \(f: A \rightarrow \N\), then we say \(A\) is \underline{countably infinite}, otherwise \(A\) is known as \underline{uncountably infinite}.}
+
+\subsection{Hyperbolic Functions}
+
+\definition{1.3.1}{Given the unit hyperbola \(x^2-y^2=1\), the \underline{hyperbolic functions} are defined by the coordinates of a point at which area \(\frac{1}{2}\alpha\) has been swept out.}
+\begin{equation*}
+    sinh(\alpha) = \frac{e^\alpha - e^{-\alpha}}{2} \qquad cosh(\alpha) = \frac{e^\alpha + e^{-\alpha}}{2} \qquad tanh(\alpha) = \frac{e^x - e^{-x}}{e^x + e^{-x}} \qquad \sigma(\alpha) = \frac{1}{1 + e^{-\alpha}}
+\end{equation*}
+\begin{equation*}
+    sech(\alpha) = \frac{2}{e^\alpha + e^{-\alpha}} \qquad cosech(\alpha) = \frac{2}{e^x - e^{-x}} \qquad coth(\alpha) = \frac{e^\alpha + e^{-\alpha}}{e^\alpha - e^{-\alpha}}
+\end{equation*}
+These functions can then be differentiated as follows:
+\begin{equation*}
+    \frac{d}{dx}\left[sinh(\alpha)\right] = cosh(\alpha) \qquad\qquad \frac{d}{dx}\left[cosh(\alpha)\right] = sinh(\alpha)
+\end{equation*}
+\begin{equation*}
+    \frac{d}{dx}\left[tanh(\alpha)\right] = sech^2(\alpha) \qquad\qquad \frac{d}{dx}\left[\sigma(\alpha)\right] = \sigma(\alpha)(1-\sigma(\alpha))
+\end{equation*}
+
+\section{Multivariate Functions}
+
+\subsection{Multivariate Derivatives}
+
+\subsection{Multivariate Extrema}
+
 \newpage\part{Calculus II}\label{part:2.calc}
 
 \newpage\part{Linear Algebra}\label{part:3.la}
