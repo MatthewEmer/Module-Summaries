@@ -459,6 +459,16 @@ These rules are complete and sound, and can be used to derive another three rule
 
 \subsection{Processes and Threads}
 
+\definition{9.3.1}{A program in execution is known as a \underline{process}. A process includes code, its current activity, a stack, a data section, and a heap.}
+
+\separate{5}\definition{9.3.2}{A process's information is stored in a \underline{process control block}. These PCBs are then arranged together into a \underline{process table}. Each PCB stores a process's unique identifier, state, memory useage, CPU scheduling information, and its corresponding CPU registers.}
+
+\separate{5}\definition{9.3.3}{As a process is executed, it changes state. Here, it can take one of five states: new, when the process is being created; running, when instructions are being executed; waiting, when the process is waiting for some event to occur; ready, when the process is ready to be dispatched to the CPU; and terminated, when the process has finished executing.}
+
+\separate{5}\definition{9.3.4}{A process can, as a \underline{parent process}, create a number of \underline{child processes}, which in turn can create other processes, forming a \underline{tree of processes}. A parent process may share some of its resources with its children, and they can either execute concurrently or sequentially.}
+
+\separate{10}\textbf{Lecture 2 - Slide 11}
+
 \section{Process, Memory, and Storage Management}
 
 \subsection{Process Management}
