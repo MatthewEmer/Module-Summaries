@@ -148,7 +148,7 @@
 %%% Page Variables
 
 \newcommand{\thetitle}{Mathematics for Computer Science} % Insert the document title here.
-\newcommand{\thesubtitle}{COMP1021: Durham University} % Insert the document subtitle here.
+\newcommand{\thesubtitle}{COMP1021 - Durham University} % Insert the document subtitle here.
 \newcommand{\theauthor}{Matthew Emerson} % Insert the name(s) of the author(s) here.
 \newcommand{\thedate}{\monthyeardate\today} % Replace this if you want a static date.
 
@@ -480,7 +480,95 @@ where
 
 \subsection{Mathematical Structures}
 
+\definition{5.1.1}{\underline{Abstraction} is the process of simplifying a complex problem via removing unnecessary details in order to apply more general problem solving techniques.}
+
+\separate{5}\definition{5.1.2}{\underline{Groups} consist of a set \(G\) and a binary operation \(*\). They abide by the following axioms:}
+\begin{itemize}
+    \item \definition{5.1.3}{\underline{Closure}, when applying an operation between two elements of the group, the result will also be an element of the group.}
+    \begin{equation}
+        \forall a,b \in G,\; a*b = c,\; c \in G
+    \end{equation}
+    \item \definition{5.1.4}{\underline{Associativity}, for any elements \(a,b,c\) in the group, the order in which the operation is performed does not matter, as long as the elements stay in their original order.}
+    \begin{equation}
+        \forall a,b,c \in G,\; a*(b*c) = (a*b)*c
+    \end{equation}
+    \item \definition{5.1.5}{\underline{Identity}, the group contains an element such that when an operation is performed between an element in the group and the identity, the original element is returned.}
+    \begin{equation}
+        \exists e \in G,\; \forall a \in G,\; a*e = e*a = a
+    \end{equation}
+    \item \definition{5.1.6}{\underline{Inverse}, for every element in the group, there exists an inverse element such that when an operation is performed between them, the identity is returned.}
+    \begin{equation}
+        \forall a \in G,\; \exists b \in G,\; a*b = e
+    \end{equation}
+\end{itemize}
+
+\separate{5}\definition{5.1.7}{\underline{Fields} contain a set \(F\) with two binary operations (addition and multiplication) and abide by the following axioms:}
+\begin{itemize}
+    \item \hyperref[def:5.1.4]{Associativity (defined above)}.
+    \item \definition{5.1.8}{\underline{Commutativity} - when applying an operation between two elements of the field, the order the elements appear in does not matter.}
+    \begin{equation}
+        \forall a,b \in F,\; a+b = b+a \text{ and } a \times b = b \times a
+    \end{equation}
+    \item \definition{5.1.9}{\underline{Identity}, there exists two distinct elements, 0 and 1, in \(F\) such that,}
+    \begin{equation}
+        \exists 0,1 \in F,\; \forall a \in F,\; a + 0 = a \text{ and } a \times 1 = a
+    \end{equation}
+    \item \definition{5.1.10}{\underline{Additive inverses}, for every element in the field, there exists some other element, called the additive inverse, such that,}
+    \begin{equation}
+        \forall a \in F,\; \exists b \in F,\; a + b = 0
+    \end{equation}
+    \item \definition{5.1.11}{\underline{Mutiplicative inverses}, for every element in the field, there exists some other element, called the multiplicative inverse, such that,}
+    \begin{equation}
+        \forall a \in F,\; \exists b \in F,\; a \times b = 1
+    \end{equation}
+    \item \definition{5.1.12}{\underline{Distributivity of multiplication over addition}. This axiom states that,}
+    \begin{equation}
+        \forall a,b,c \in F,\; a \times (b+c) = (a \times b) + (a \times c)
+    \end{equation}
+\end{itemize}
+
+\newpage\noindent\definition{5.1.13}{A \underline{vector space} is a mathematical structure with two sets, scalars \(F\) and vectors \(V\), where \(V\) forms a commutative group under addition and \(F\) forms a field. They abide by the following axioms:}
+\begin{itemize}
+    \item \hyperref[def:5.1.4]{Associativity (defined above)}.
+    \item \hyperref[def:5.1.9]{Identity (defined above)}.
+    \item \hyperref[def:5.1.12]{Distributivity of multiplication over addition (defined above)}.
+\end{itemize}
+
 \subsection{Linear Combinations and Maps}
+
+\definition{5.2.1}{Given vectors \(\mathbf{v}_1,\;\mathbf{v}_2,\;...,\;\mathbf{v}_n\) and scalars \(a_1,\;a_2,\;...,\;a_n\), we can form a \underline{linear combination}.}
+\begin{equation}
+    a_1\mathbf{v}_1 + a_2\mathbf{v}_2 + ... + a_n\mathbf{v}_n = \sum^n_{i=1}a_i\mathbf{v}_i
+\end{equation}
+
+\separate{5}\definition{5.2.2}{The set of all linear combinations of a set of vectors is called its \underline{span}, denoted \(span(V)\).}
+
+\separate{5}\definition{5.2.3}{A set of vectors \(S\) is a \underline{spanning set} for a vector space \(V\) if \(span(S)=V\). We can equivalently say that \underline{\(S\) spans \(V\)}.}
+
+\separate{5}\definition{5.2.4}{A set of vectors \(S\) is \underline{linearly dependent} if there exists a linear combination such that
+\begin{equation}
+    \sum_{i=1}^{n}a_i\mathbf{s}_i = 0 \text{ and } \exists i, \;a_i \neq 0
+\end{equation}
+Otherwise, the set is described as \underline{linearly independent}.}
+
+\separate{5}\definition{5.2.5}{A subset \(S\) of the vector space \(V\) is a \underline{basis} for \(V\) if \(S\) is a spanning set and is linearly independent.}
+
+\separate{5}\theorem{5.2.1}{For a vector space \(V\), if \(S\) is a basis for \(V\), then it must also be a minimal spanning set.}
+{Let \(S\) be a basis of \(V\). Assume that \(S\) is not a minimal spanning set, then there must be some element \(s \in S\) such that \(span(S \,\backslash\, \{s\}) = V\). Then, \(s\) can be written as a linear combination of elements from \(S \,\backslash\, \{s\}\). That is, we have that
+\begin{equation}
+    1 \cdot \mathbf{s} - (a_1\mathbf{s}_1 + a_2\mathbf{s}_2 + ... + a_n\mathbf{s}_n) = 0
+\end{equation}
+This means that \(S\) would be linearly dependent, contradicting the definition of \(S\) as a basis. Therefore, \(S\) must be a minimal spanning set.}
+
+\separate{5}\definition{5.2.6}{The \underline{dimension} of a vector space \(V\) is the cardinality of its basis \(S\).}
+
+\separate{5}\definition{5.2.7}{If we have a function \(f:V \rightarrow W\) where \(V\) and \(W\) are vector spaces over a field \(F\), then \(f\) is a \underline{linear map} if,}
+\begin{equation}
+    \exists \mathbf{u},\mathbf{v} \in V,\; \exists a \in F,\; f(\mathbf{u} + \mathbf{v}) = f(\mathbf{u}) + f(\mathbf{v}) \text{ and } f(a\cdot\mathbf{v}) = a\cdot f(\mathbf{v})
+\end{equation}
+These can also be called \underline{linear transformations} or \underline{vector space homomorphisms}.
+
+\separate{5}\definition{5.2.8}{If \(V = W\) for a linear map \(f\), then \(f\) is also a \underline{endomorphism}.}
 
 \section{Matrices}
 
