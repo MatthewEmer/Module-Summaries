@@ -570,11 +570,38 @@ These can also be called \underline{linear transformations} or \underline{vector
 
 \separate{5}\definition{5.2.8}{If \(V = W\) for a linear map \(f\), then \(f\) is also a \underline{endomorphism}.}
 
-\section{Matrices}
+\newpage\section{Matrices}
 
 \subsection{Matrix Operations}
 
+When the determinant of a matrix is zero, its columns are linearly dependent vectors. Therefore, if two columns are the same, then the determinant will be zero. Similarly, if a matrix \(A\) is identical to another matrix \(B\), except for two columns being swapped, then \(det(A) = -det(B)\).
+
+\separate{5}\definition{6.1.1}{To calculate a determinant, we use the Laplace expansion,
+\begin{equation}
+    det(C) = \sum_{j=1}^{n} (-1)^{i+j} c_{(i,j)} M_{(i,j)} \qquad 0 < i \leq n,\;i \in \N
+\end{equation}
+where \(c_{(i,j)}\) is the coefficient of the term at \((i,j)\) and \(M_{(i,j)}\) is the minor at coordinates \((i,j)\).}
+
+\separate{5}\definition{6.1.2}{Under a linear map \(f:X\rightarrow Y\), \(f(a\mathbf{x} + b\mathbf{y}) = af(\mathbf{x}) + bf(\mathbf{y})\), \(f(X)\) is known as the \underline{column space} and is the span of the columns. Its dimension is known as the \underline{column rank} (this is also the number of linearly independent columns). Row space and rank can be defined similarly.}
+
+\separate{5}\definition{6.1.3}{The \underline{rank} of a matrix is its row/column rank after the matrix is put into \hyperref[def:6.2.6]{RREF}.}
+
+\separate{5}\definition{6.1.4}{If \(f:X \rightarrow Y\) is a linear map, then the \underline{kernel} or \underline{null space} of \(f\) is the set of vectors that map to zero. The dimension of the kernel is known as the \underline{nullity}. The kernel forms a vector space where all linear combinations of kernel elements are in the kernel.}
+
+\separate{5}\definition{6.1.5}{Given a linear map on vector spaces \(T:V \rightarrow W\), if \(V\) has finite dimensions then \(Rank(T) + Nullity(T) = dim(V)\).}
+
 \subsection{Systems of Equations and Gaussian Elimination}
+
+\definition{6.2.1}{A finite set of linear equations is called a \underline{system of equations} or a \underline{linear system}.}
+\begin{itemize}
+    \item \definition{6.2.2}{A \underline{solution} is a sequence of numbers \(s_1,\;s_2,\;...,\;s_n\) such that the assignment \(x_1=s_1,\;x_2=s_2,\;...,\;x_n=s_n\) satisfies every equation.}
+    \item \definition{6.2.3}{A system is \underline{consistent} if it has at least one solution.}
+    \item \definition{6.2.4}{A system \(A\mathbf{x}=\mathbf{b}\) is \underline{homogenous} if \(b\) is a column of zeros. These systems have a trivial solution of \(\forall x \in \mathbf{x},\; x = 0\).}
+\end{itemize}
+
+\separate{5}\definition{6.2.5}{An augmented matrix is in \underline{row echelon form} if the first non-zero number in each row is a one, any rows containing only zeros are grouped at the bottom, and if two successive rows are not all zeroes, then the leading one of the higher row is to the left of the leading one in the lower row.}
+
+\separate{5}\definition{6.2.6}{An augmented matrix is in \underline{reduced row echelon form} if it is in row echelon form and each column containing a leading one has zeroes everywhere else.}
 
 \subsection{Geometry}
 
