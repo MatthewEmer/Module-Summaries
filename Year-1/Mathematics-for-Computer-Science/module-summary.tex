@@ -445,6 +445,23 @@ This form is called the \underline{Taylor series expansion of \(f\)}.}
 
 \newpage\subsection{Taylor's Theorem}
 
+\lemma{4.3.1}{If a real-valued function \(f\) is continuous on \([a,b]\), differentiable on \((a,b)\), and \(f(a) = f(b)\), then there exists \(\xi \in (a,b)\) such that \(f'(\xi) = 0\).}{Not proved here.}
+
+\separate{5}\theorem{4.3.1}{Suppose a function \(f\) is \(n\) times differentiable on \([a,x]\), then there exists some \(\xi \in (a,x)\) such that
+\begin{equation}
+    f(x) = f(a) + (x-a)f'(a) + ... + \frac{(x-a)^{(n-1)}}{(n-1)!}f^{(n-1)}(a) + R^n(x)
+\end{equation}
+Where the remainder term is equal to \(R_n(x) = \frac{(x-a)^n}{n!}f^{(n)}(\xi)\).
+}{Suppose a function \(f\) is \(n\) times differentiable on \([a,x]\). Let \(k\) be a constant defined so that 
+\begin{equation}
+    f(x) = f(a) + (x-a)f'(a) + \frac{(x-a)^2}{2!}f''(a) + ... + \frac{(x-a)^{(n-1)}}{(n-1)!}f^{(n-1)}(a) + \frac{(x-a)^n}{n!}k
+\end{equation}
+We can then define the function 
+\begin{equation}
+    F(y) = f(x) - f(y) - (x-y)f'(y) - ... - \frac{(x-y)^{(n-1)}}{(n-1)!}f^{(n-1)}(y) - \frac{(x-y)^n}{n!}k
+\end{equation}
+Then \(F(x) = 0\) and also \(F(a) = f(x) - f(x) = 0\) so we can apply Rolle's theorem to \(F\) on \([a,x]\), meaning there is some \(\xi \in (a,x)\) such that \(F'(\xi) = 0\).}
+
 \subsection{Fourier Series}
 
 \newpage\part{Linear Algebra}\label{part:2.la}
