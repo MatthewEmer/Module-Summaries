@@ -229,7 +229,83 @@ These functions can then be differentiated as follows:
 
 \subsection{Multivariate Derivatives}
 
-\subsection{Multivariate Extrema}
+\definition{2.1.1}{For a function \(f(x,y)\), if we take \(f=f_0\) to be fixed but unknown, then we can differentiate \(f\) as a function of \(x\) at \(x=x_0\), giving us the \underline{partial derivative of \(f\) with respect to \(x\)} which gives the gradient when moving in the \(x\)-direction from any point.}
+\begin{equation}
+    \frac{\delta f}{\delta x} \left[f(x,y)\right] = \lim_{x \rightarrow x_0} \left(\frac{f(x,y_0)-f(x_0,y_0)}{x-x_0}\right) = f_x
+\end{equation}
+
+\separate{5}\definition{2.1.2}{The \underline{vector of partial derivatives}, denoted as \(\nabla f\), contains all the partial derivatives of a function. This forms a vector pointing in the direction of the greatest rate of increase of \(f\), where its magnitude is the rate of increase in that direction. For example, for a function \(f(x,y)\), 
+\begin{equation} 
+    \nabla f = \begin{pmatrix}f_x\\f_y\end{pmatrix}
+\end{equation}}
+
+\separate{5}\definition{2.1.3}{The \underline{directional derivative} of the function \(f(x,y)\) gives the gradient at any point whilst looking in the direction given by the unit vector \(\mathbf{v} = \begin{pmatrix}v_x\\v_y\end{pmatrix}\).}
+\begin{equation}
+    \nabla_{\mathbf{v}} f = \lim_{h \rightarrow 0}\frac{f(x_0 + h\mathbf{v}) - f(x_0)}{h}
+\end{equation}
+If the slope is approximately flat at a small scale, then the slope can be determined by
+\begin{equation}
+    \nabla_{\mathbf{v}} f = \mathbf{v} \cdot \nabla f
+\end{equation}
+
+\separate{5}From this, we get that, for a function \(f(\mathbf{x_0})\) and a direction \(\mathbf{v}\),
+\begin{equation}
+    f(\mathbf{x_0} + h \mathbf{v}) \approx f(\mathbf{x_0}) + h \mathbf{v} \cdot \nabla f(\mathbf{x_0})
+\end{equation}
+
+\newpage\subsection{Multivariate Extrema}
+
+\definition{2.2.1}{A function that is continuous is in \underline{class \(C^0\)}, and a function that is continuous and has a continuous derivative is in \underline{class \(C^1\)}. A function \(f\) such that \(f',\;f'',\;...,\;f^{(k)}\) exist and are continuous is in \underline{class \(C^k\)}.}
+
+\separate{5}\definition{2.2.2}{A function \(f\) such that derivatives of all orders exist and are continuous is in class \(C^\infty\) is also \underline{smooth}.}
+
+\separate{5}\definition{2.2.3}{All the second-order partial derivatives of a function \(f(x,y)\) can be gathered into a \underline{Hessian matrix}.}
+\begin{equation}
+    \mathbf{H}_f = \begin{bmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{bmatrix}
+\end{equation}
+This can be used to determine the form of bivariate extrema. Suppose \(f(x,y) \in C^2\) and \(f_x(x_0,y_0) = 0 = f_y(x_0,y_0)\) then,
+\begin{itemize}
+    \item \((x_0,y_0)\) is a local maximum if \(det(\mathbf{H}_f) > 0\) and \(f_{xx} < 0\) at \((x_0,y_0)\).
+    \item \((x_0,y_0)\) is a local minimum if \(det(\mathbf{H}_f) > 0\) and \(f_{xx} > 0\) at \((x_0,y_0)\).
+    \item \((x_0,y_0)\) is a saddle point if \(det(\mathbf{H}_f) < 0\).
+    \item If \(det(\mathbf{H}_f) = 0\), then the test is inconclusive.
+\end{itemize}
+
+\separate{5}At a stationary point \(x_0\), the quadratic approximation of a function \(f(x)\) is
+\begin{equation}
+    f(x_0 + \mathbf{v}) \approx f(x_0) + \frac{1}{2}\mathbf{v}^T H_f(x_0)\mathbf{v}
+\end{equation}
+But as \(\mathbf{H}_f(x_0)\) is real and symmetric, it has orthogonal eigenvectors \(\mathbf{e_1},\;\mathbf{e_2},\;...,\;\mathbf{e_n}\) with eigenvalues \(\lambda_1,\;\lambda_2,\;...,\;\lambda_n\), so we can write
+\begin{equation}
+    \mathbf{v} = c_1\mathbf{e_1} + c_2\mathbf{e_2} + ... + c_n\mathbf{e_n}
+\end{equation}
+When substituted back into the original equation, this gives that
+\begin{equation}
+    f(x_0 + \mathbf{v}) \approx f(x_0) + \frac{1}{2}\left(\lambda_1(c_1)^2 + \lambda_2(c_2)^2 + ... + \lambda_n(c_n)^2\right)
+\end{equation}
+Given this, we can use the eigenvalues to determine the nature of the stationary point \(x_0\),
+\begin{itemize}
+    \item If all eigenvalues are positive, then the stationary point is a local minimum.
+    \item If all eigenvalues are negaitve, then the stationary point is a local maximum.
+    \item If there is a mixture of positive and negative eigenvalues, then the stationary point is a saddle point.
+\end{itemize}
+
+\subsection{Vector-Valued Functions}
+
+\definition{2.3.1}{A \underline{vector-valued} function takes an \(n\)-dimensional vector as input, and outputs an \(m\)-dimensional vector, e.g., \(f:\R^n\rightarrow\R^m\).}
+
+\separate{5}\definition{2.3.2}{The \underline{Jacobian matrix} of a vector-valued function \(f:\R^n\rightarrow\R^m\) can be formed by setting \(\mathbf{J}_{i,j} = \frac{\delta f_i}{\delta x_j}\) to form,}
+\begin{equation}
+    \mathbf{J}_f = \begin{pmatrix}
+        \frac{\delta f_1}{\delta x_1} & \dots & \frac{\delta f_1}{\delta x_n} \\
+        \vdots & \ddots & \vdots \\
+        \frac{\delta f_m}{\delta x_1} & \dots & \frac{\delta f_m}{\delta x_n} \\
+    \end{pmatrix}
+\end{equation}
+For a multivariate function \(f:\R^n\rightarrow\R^m\), the Jacobian matrix can be used to linearly approximate \(f\) at \(x\),
+\begin{equation}
+    f(x + h\mathbf{v}) \approx f(x) + \mathbf{J}_f(x)(h\mathbf{v})
+\end{equation} 
 
 \newpage\part{Linear Algebra}\label{part:2.la}
 
