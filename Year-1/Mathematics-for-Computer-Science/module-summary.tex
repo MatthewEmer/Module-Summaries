@@ -612,9 +612,37 @@ where \(c_{(i,j)}\) is the coefficient of the term at \((i,j)\) and \(M_{(i,j)}\
     \item \definition{6.3.4}{\underline{Positive Definite}: If \(d(x) = 0\) then \(x = 0\).}
 \end{itemize}
 
-\separate{5}
+\separate{5}\definition{6.3.5}{The \underline{Euclidean norm} is the length of a vector and is given for \(\mathbf{x} \in \R^n\) to be
+\begin{equation}
+    ||\mathbf{x}|| = \sqrt{\sum_{i=1}^{n}(x_i)^2}
+\end{equation}}
 
-\newpage\section{Decomposition}
+\newpage\noindent Any non-unit vector \(\mathbf{x}\) can be used to define a unit vector \(\mathbf{\hat{x}}\) in the direction of \(\mathbf{x}\) by using
+\begin{equation}
+    \mathbf{\hat{x}} = \frac{1}{||\mathbf{x}||}\mathbf{x}
+\end{equation}
+
+\separate{5}\definition{6.3.6}{The \underline{Manhattan distance} is given by}
+\begin{equation}
+    d_M(\mathbf{x}) = \sum_{i=1}^{n} |x_i|
+\end{equation}
+
+\separate{5}\definition{6.3.7}{Given \(p \in \R^+\), we can define the \underline{\(p\)-norm} \(||\mathbf{x}||_p\) on \(\R^n\) as
+\begin{equation}
+    ||\mathbf{x}||_p = \sqrt[p]{\sum_{i=1}^{n} |x_i|^p}
+\end{equation}
+Using limits on the \(p\)-norm, we get
+\begin{equation}
+    \lim_{p\rightarrow\infty}||\mathbf{x}||_p = max(\mathbf{x}) \qquad\qquad \lim_{p \rightarrow 0} ||\mathbf{x}||_p = \infty
+\end{equation}}
+
+\separate{5}\definition{6.3.8}{Two vectors are \underline{orthogonal} if their dot product is zero.}
+
+\separate{5}\definition{6.3.9}{Two vectors are \underline{normal} if their Manhattan norm is one.}
+
+\separate{5}\definition{6.3.10}{A set of vectors is \underline{orthonormal} if they are all both orthogonal and normal.}
+
+\section{Decomposition}
 
 \newpage\part{References}
 
