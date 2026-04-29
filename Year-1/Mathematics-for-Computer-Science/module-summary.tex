@@ -332,6 +332,83 @@ For a multivariate function \(f:\R^n\rightarrow\R^m\), the Jacobian matrix can b
 
 \subsection{Introduction to Series}
 
+\definition{4.1.1}{A \underline{sequence} is an ordered, countably infinite, set of numbers.}
+
+\separate{5}\definition{4.1.2}{A \underline{series} is the sum of the members of a sequence.}
+
+\separate{5}\theorem{4.1.1}{If the series \(\sum^\infty_{n=0}a_n\) and the series \(\sum^\infty_{n=0}b_n\) are convergent, and have respective sums \(\alpha\) and \(\beta\), then
+\begin{equation}
+    \sum^\infty_{n=0} (a_n + b_n) = \alpha + \beta
+\end{equation}
+and 
+\begin{equation}
+    \sum^\infty_{n=0} (a_n - b_n) = \alpha - \beta
+\end{equation}}
+{\(\sum^\infty_{n=0}a_n\) converges to \(\alpha\) and \(\sum^\infty_{n=0}b_n\) converges to \(\beta\). Given an arbitrary \(\epsilon > 0\), let \(\epsilon_a = \frac{1}{2}\epsilon = \epsilon_b\). Since \(\sum^\infty_{n=0}a_n\) converges, \(\exists N_a\) such that,
+\begin{equation}
+    \left|\sum_{r=0}^{n}a_r - \alpha\right| < \epsilon_a,\;\forall n > N_a
+\end{equation}
+Similarly, since \(\sum^\infty_{n=0}b_n\) converges, \(\exists N_b\) such that,
+\begin{equation}
+    \left|\sum_{r=0}^{n}b_r - \beta\right| < \epsilon_b,\;\forall n > N_b
+\end{equation}
+\newpage\noindent Taking \(N = max\{N_a,N_b\}\), then \(\forall n > N\), 
+\begin{equation}
+    \left|\sum_{r=0}^{n}(a_r + b_r) - (\alpha + \beta)\right| = \left|\left(\sum_{r=0}^{n}a_r - \alpha\right) + \left(\sum_{r=0}^{n}b_r - \alpha\right)\right|
+\end{equation}
+\begin{equation*}
+    \leq \left|\sum_{r=0}^{n}a_r - \alpha\right| + \left|\sum_{r=0}^{n}b_r - \beta\right| \leq \epsilon_a + \epsilon_b = \epsilon
+\end{equation*}
+i.e, \(\sum^\infty_{n=0}(a_n + b_n)\) converges to \((\alpha + \beta)\) using triangle inequality \(|a+b| \leq |a| + |b|\).
+}
+
+\separate{5}\theorem{4.1.2}{If \(\lim_{n \rightarrow \infty}a_n \neq 0\) then the series \(\sum_{n=0}^{\infty}a_n\) diverges.}
+{Suppose \(\sum_{n=0}^{\infty}a_n\) converges for some \(S\), Then, \(\lim_{n\rightarrow\infty}S_n = S\), which means that given arbitrary \(epsilon > 0\), there exists some \(N_\epsilon\) such that, for all \(n > N_\epsilon\),
+\begin{equation}
+    |S_n - S| < \epsilon \qquad\qquad |S_n - S| < 2\epsilon
+\end{equation}
+Combining these, 
+\begin{equation}
+    2\epsilon > |S_n - S| + |S_{n+1} - S| = |S - S_n| + |S_{n+1} - S| \geq |S_{n+1} - S_n| = |a_{n+1}|
+\end{equation}
+But \(\epsilon\) was arbitrary, so we have shown that, for any \(\epsilon' > 0\) there exists an \(N_\epsilon\) such that \(|a_n| < \epsilon'\) for all \(n > N_\epsilon\). }
+
+\separate{5}As the number of elements in a series approaches infinity...
+\begin{itemize}
+    \item \definition{4.1.3}{If \(\lim_{n\rightarrow\infty}a_n \neq 0\), then the series \underline{diverges}.}
+    \item \definition{4.1.4}{If \(\lim_{n\rightarrow\infty}a_n = 0\), then the series \underline{converges}.}
+    \item \definition{4.1.5}{If \(\lim_{n\rightarrow\infty}|a_n| = 0\), then the series \underline{absolutely converges}.}
+    \item \definition{4.1.6}{If \(\lim_{n\rightarrow\infty}a_n = S\), then the series is \underline{convergent to \(S\)}.}
+\end{itemize}
+
+\separate{5}\theorem{4.1.3}{The \underline{ratio test} states that, if \(\sum^\infty_{n=1 a_n}\) is a series where \(a_n \neq 0\) and \(L = \lim_{n\rightarrow\infty \left|\frac{a_{n+1}}{a_n}\right|}\) then
+\begin{enumerate}[label=\alph*)]
+    \item If \(L < 1\), the series absolutely converges.
+    \item If \(L > 1\), the series is divergent.
+    \item If \(L =1 \), then the test fails.
+\end{enumerate}
+}{(a) If \(\lim_{n\rightarrow\infty}\left|\frac{a_{n+1}}{a_n}\right| = L < 1\), then \(\exists r\) with \(L < r < 1\) and \(N\) such that \(\forall n > N\):
+\begin{equation}
+    \lim_{n\rightarrow\infty}\left|\frac{a_{n+1}}{a_n}\right| < r \quad\rightarrow\quad |a_{n+1}| < r|a_n|
+\end{equation}
+Then \(|a_{n+2}| < r|a_{n+1}| < r^2|a_n|\) and \(|a_{n+3}| < r|a_{n+2} < r^3|a_n|\) etc. So the remainder is
+\begin{equation}
+    R_{n+m} = \lim_{m\rightarrow\infty}\left(|a_n|r^{m+1}\frac{1}{1-r}\right) = 0
+\end{equation}
+Hence the series converges.}
+
+\separate{5}\definition{4.1.7}{The \underline{\(n^{th}\) root test} states that, for the series \(\sum^\infty_{n=1}a_n\), \(L=\lim_{n\rightarrow\infty}\sqrt[n]{|a_n|}\),
+\begin{itemize}
+    \item If \(L < 1\), then the series absolutely converges.
+    \item If \(L > 1\), then the series is divergent.
+    \item If \(L = 1\), then the test fails.
+\end{itemize}}
+
+\newpage\noindent\definition{4.1.8}{The \underline{alternating series test} states that the series \(\sum_{n=1}^{\infty}(-1)^{n+1}a_n\) converges if \(a_n > 0\), \(a_{n+1} \leq a_n\;\forall n\), and \(\lim_{n\rightarrow\infty}a_n = 0\)}
+
+\separate{5}\theorem{4.1.4}{Every subsequence of a convergent sequence converges to the same limit as the original sequence.}
+{Let \(\{a_{n_k}\}\) be a subsequence of \(\{a_n\}\). First note that \(n_k \geq k\) and so \(n_{k+1} \geq k + 1\). Let \(\lim_{n\rightarrow\infty}a_n = L\). Then, for any \(\epsilon > 0\), there exists \(N_\epsilon\) such that for all \(n > N_\epsilon\) it holds that \(|a_n-L|<\epsilon\). Let \(k > N_\epsilon\), then \(n_k > N_\epsilon\) and so it must be that \(|a_{n_k} - L| < \epsilon\).}
+
 \subsection{Power Series}
 
 \subsection{Taylor's Theorem}
