@@ -411,7 +411,39 @@ Hence the series converges.}
 
 \subsection{Power Series}
 
-\subsection{Taylor's Theorem}
+\definition{4.2.1}{A \underline{power series} is a series involving a variable \(x\) and a constant \(x_0\) of the form
+\begin{equation}
+    \sum^\infty_{n=0}a_n(x-x_0)^n = a_0 + a_1(x-x_0) + a_2(x-x_0)^2 + ...
+\end{equation}
+At any specific value of \(x\), the power series becomes a normal series.}
+
+\separate{5}\definition{4.2.2}{For an arbitrary power series \(\sum_{n=0}^{\infty}a_n(x-x_0)^n\), we can use the ratio test (including the \((x-x_0)\) term). From this, we call \(\lim_{n\rightarrow\infty}\left|\frac{a_n}{a_{n+1}}\right| = r\) the \underline{radius of convergence}. If \(|x-x_0| < r\), we have absolute convergence and if \(|x-x_0| > r\), we have divergence.}
+
+\separate{5}Let \(f(x) = \sum_{n=0}^{\infty} a_nx^n\) be a power series with radius of convergence \(r > 0\). Then, within the interval \((-r,r)\):
+\begin{itemize}
+    \item \(f(x)\) is continuous.
+    \item \(f'(x) = \sum_{n=1}^{\infty} na_nx^{n-1}\) (term-by-term differentiation).
+    \item \(\int_{0}^{x} f(t) dt = \sum_{n=0}^{\infty} \frac{a_n}{n+1}x^{n+1}\) (term-by-term integration).
+    \item Both series \(f'(x)\) and \(\int_{0}^{x}f(t) dt\) have the same radius of convergence as \(f(x)\).
+\end{itemize}
+
+\separate{5}\definition{4.2.3}{Suppose we start with some function \(f(x)\) and we wish to determine a power series \(\sum_{n=0}^{\infty}a_nx^n\) such that \(f(x)=\sum_{n=0}^{\infty}a_nx^n\). Putting these values in, we see that if such a power series exists, then:
+\begin{equation}
+    f(x) = f(0) + f'(0)x + f''(0)\frac{x^2}{2!} + f^{(3)}(0)\frac{x^3}{3!} + ... = \sum_{n=0}^{\infty} f^{(n)}(0)\frac{x^n}{n!}
+\end{equation}
+This is called the \underline{Maclaurin series for \(f\)}. To use the series, we must have that \(f \in C^\infty\) and the power series converges.}
+
+\separate{5}\definition{4.2.4}{We can recenter the power series on \(x_0\) by defining a new function \(g(x) = f(x + x_0)\) then \(g(0) = f(x_0)\) and \(g'(x) = f'(x+x_0)\). Repeatedly differentiating, \(g^{(n)}(x) = f^{(n)}(x+x_0)\) so we build the Maclaurin series for \(g\), which gives us
+\begin{equation}
+    f(x+x_0) = g(x) = \sum_{n=0}^{\infty}g^{(n)}(0)\frac{x^n}{n!} = \sum_{n=0}^{\infty}f^{(n)}(0)\frac{x^n}{n!}
+\end{equation}
+or, 
+\begin{equation}
+    f(x) = g(x-x_0) = f(x_0) + f'(x_0)(x-x_0) + f''(x_0)\frac{(x-x_0)^2}{2!} + ...
+\end{equation}
+This form is called the \underline{Taylor series expansion of \(f\)}.}
+
+\newpage\subsection{Taylor's Theorem}
 
 \subsection{Fourier Series}
 
