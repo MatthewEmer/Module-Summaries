@@ -642,7 +642,71 @@ Using limits on the \(p\)-norm, we get
 
 \separate{5}\definition{6.3.10}{A set of vectors is \underline{orthonormal} if they are all both orthogonal and normal.}
 
+\section{Eigenvectors and Eigenvalues}
+
+\subsection{Introduction to Eigenvectors and Eigenvalues}
+
+\definition{7.1.1}{Let \(A\) be an \(n \times n\) matrix. A non-zero vector \(\mathbf{x} \in \R^n,\;\mathbf{x} \neq 0\) is an \underline{eigenvector} of \(A\) if, for some scalar \(\lambda\),
+\begin{equation}
+    A\mathbf{x} = \lambda\mathbf{x}
+\end{equation}
+Where \(\lambda\) is the \underline{eigenvalue} of \(A\) corresponding to the \underline{eigenvector} \(\mathbf{x}\). }
+
+\separate{5}\definition{7.1.2}{The equation \(det(\lambda I - A) = 0\) is called the \underline{characteristic equation} of \(A\). In general, this is a polynomial where \(n\) is in the order of \(A\).}
+\begin{equation}
+    p(\lambda) = \lambda^n + c_1\lambda^{n-1} + c_2\lambda^{n-2} + ... + c_n
+\end{equation}
+
+\separate{5}\theorem{7.1.1}{If \(A\) is an \(n \times n\) matrix, then \(\lambda\) is an eigenvalue of \(A\) iff it satisfies \(det(\lambda I - A) = 0\).}
+{By definition, \(\lambda\) is an eigenvalue of \(A\) iff \(A\mathbf{x} = \lambda\mathbf{x}\) for some \(\mathbf{x} \in \R^n,\;\mathbf{x} \neq 0\). We have
+\begin{equation}
+    A\mathbf{x} = \lambda\mathbf{x} \quad\iff\quad A\mathbf{x} = \lambda I \mathbf{x} \quad\iff\quad (\lambda I - A)\mathbf{x} = 0 
+\end{equation}
+By theorem about invertible matrices, the last equation has solution \(\mathbf{x} \neq 0\) iff \(det(\lambda I - A) = 0\).}
+
+\separate{5}\definition{7.1.3}{For a matrix \(A\) with eigenvalue \(\lambda\), the null space of \(\lambda I - A\) is called its \underline{eigenspace} where the non-zero vectors in this space are the eigenvectors corresponding to \(\lambda\).}
+
+\separate{5}Let \(\lambda_0\) be an eigenvalue of a matrix \(A\):
+\begin{itemize}
+    \item \definition{7.1.4}{The \underline{algebraic multiplicity} of \(\lambda_0\) is the power \(k\) with which \((\lambda - \lambda_0)\) appears as a factor of \(det(\lambda I - A)\).}
+    \item \definition{7.1.5}{The \underline{geometric multiplicity} of \(\lambda_0\) is the dimension of the eigenspace corresponding to \(\lambda_0\).}
+\end{itemize}
+
+\subsection{Complex Matrices}
+
+\subsection{Inner Product Spaces}
+
+\subsection{The Gram-Schmidt Process}
+
 \section{Decomposition}
+
+\subsection{LU Decomposition}
+
+\definition{8.1.1}{Matrix \underline{decomposition} or factorisation is the process of representing a matrix as a product of two or more matrices with useful properties.}
+
+\separate{5}\definition{8.1.2}{An \underline{elementary matrix} is a matrix which differs from the identity matrix as a result of one elementary row operation (switching, addition, or multiplication).}
+
+\separate{5}\definition{8.1.3}{\underline{LU decomposition} is a method for solving linear systems by reducing the problem into two triangular systems. This method can be used on a square matrix \(A\) if \(U\) is its row echelon form, which was produced without any row exchanges being performed. The method is as follows:}
+\begin{enumerate}
+    \item Keep track of the row operations used to compute \(U\) by Gaussian elimination.
+    \item Let \(E_1,\;...,\;E_k\) be the corresponding elementary matrices for each row operation.
+    \item Then the inverse matrices \((E_1)^{-1},\;...,\;(E_k)^{-1}\) are easy to find.
+    \item Compute \(L = (E_1)^{-1} (E_2)^{-1} ... (E_k)^{-1} I\) by applying the corresponding row operations to the identity matrix.
+\end{enumerate}
+
+\separate{5}\definition{8.1.4}{A \underline{permutation matrix} is a square matrix \(P\) obtained from \(I\) by permuting its rows.}
+
+\separate{5}\definition{8.1.5}{A \underline{PLU decomposition} of a square matrix \(A\) is a representation \(A=PLU\) where \(P\) is a permutation matrix, \(L\) is lower triangular, and \(U\) is upper triangular.}
+
+\subsection{Eigendecomposition}
+
+\subsection{QR Decomposition}
+
+\subsection{Linear Regression}
+
+\subsection{Spectral Decomposition}
+
+\subsection{Applications of Linear Algebra}
 
 \newpage\part{References}
 
