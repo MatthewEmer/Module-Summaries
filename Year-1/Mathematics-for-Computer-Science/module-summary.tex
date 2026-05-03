@@ -744,6 +744,28 @@ Since \(\mathbf{x} \neq 0\), we have \(||\mathbf{x}|| \neq 0\), so \(\lambda||\m
 
 \subsection{Eigendecomposition}
 
+\definition{8.2.1}{\underline{Eigendecomposition} is the process of decomposing a matrix into \(PDP^{-1}\) form where \(P\) are eigenvectors and \(D\) is a diagonal matrix of eigenvalues.}
+
+\separate{5}\definition{8.2.2}{Square matrices \(A\) and \(B\) are called \underline{similar} if \(A=P^{-1}BP\) for some invertible \(P\). These matrices will have the same determinant, rank, trace, nullity, eigenvalues, etc.}
+
+\separate{5}\theorem{8.2.1}{Matrices \(A\) and \(B\) are similar iff they represent the same linear operator \(f:\R^n\rightarrow\R^n\), possibly in different bases.}{Proof omitted.}
+
+\separate{5}\definition{8.2.3}{A matrix \(A\) is called \underline{diagonalisable} if it is similar to a diagonal matrix, i.e., there exists an invertible matrix \(P\) such that \(P^{-1}AP\) is diagonal. Then \(P\) is said to \underline{diagonalise} \(A\).}
+
+\newpage\noindent\theorem{8.2.2}{An \(\underline{n \times n}\) matrix is diagonalisable iff it has \(n\) linearly independent eigenvectors.}
+{\((\implies).\) Assume that there is an invertible matrix \(P\) and a diagonal matrix \(D = diag(\lambda_1,...,\lambda_n)\) such that \(D=P^{-1}AP\), or \(AP=PD\). Denote the \(i\) column vectors of \(P\) as \(\mathbf{p}_i\), then
+\begin{equation}
+    AP = A[\mathbf{p}_1|...|\mathbf{p}_n] = [A\mathbf{p}_1|...|A\mathbf{p}_n]
+\end{equation}
+On the other hand, 
+\begin{equation}
+    PD = [\lambda_1\mathbf{p}_1|...|\lambda_n\mathbf{p}_n]
+\end{equation}
+Since \(AP=PD\), we conclude that \(A\mathbf{p}_i = \lambda\mathbf{p}_i\) for all \(1 \leq i \neq n\). Since \(P\) is invertible, its rank is \(n\) and so the vectors \(\mathbf{p}_1,\;...,\;\mathbf{p}_n\) are linearly independent, making each of them an eigenvector.\begin{flushright}\(\square\)\end{flushright}
+
+\separate{5}\((\impliedby).\)
+}
+
 \subsection{QR Decomposition}
 
 \subsection{Linear Regression}
