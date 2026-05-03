@@ -683,6 +683,41 @@ By theorem about invertible matrices, the last equation has solution \(\mathbf{x
 
 \subsection{Complex Matrices}
 
+For any vectors \(\mathbf{u},\;\mathbf{v} \in \C^n\) and a scalar \(k \in \C\), the following holds:
+\begin{itemize}
+    \item \(\overline{\overline{\mathbf{u}}} = \mathbf{u}\).
+    \item \(\overline{k\mathbf{u}} = \overline{k}\overline{\mathbf{u}}\).
+    \item \(\overline{\mathbf{u} + \mathbf{v}} = \overline{\mathbf{u}} + \overline{\mathbf{v}}\).
+    \item \(\overline{\mathbf{u} - \mathbf{v}} = \overline{\mathbf{u}} - \overline{\mathbf{v}}\).
+\end{itemize}
+If \(A\) is an \(m \times k\) complex matrix and \(B\) is a \(k \times n\) matrix, then:
+\begin{itemize}
+    \item \(\overline{\overline{A}} = A\).
+    \item \(\overline{A^T} = (\overline{A})^T\).
+    \item \(\overline{AB} = \overline{A}\overline{B}\).
+\end{itemize}
+For any vectors \(\mathbf{u},\;\mathbf{v},\;\mathbf{w} \in \C^n\) and a scalar \(k \in \C\), the following holds:
+\begin{itemize}
+    \item \(\mathbf{u} \cdot \mathbf{v} = \overline{\mathbf{v} \cdot \mathbf{u}}\).
+    \item \(\mathbf{u} \cdot (\mathbf{v} + \mathbf{w}) = \mathbf{u} \cdot \mathbf{v} + \mathbf{u} \cdot \mathbf{w}\).
+    \item \((k \mathbf{u}) \cdot \mathbf{v} = k(\mathbf{u} \cdot \mathbf{v})\) and \(\mathbf{u} \cdot (k \mathbf{v}) = \overline{k}(\mathbf{u} \cdot \mathbf{v})\).
+    \item \(\mathbf{v} \cdot \mathbf{v} \geq 0\) and \(\mathbf{v} \cdot \mathbf{v} = 0\) iff \(\mathbf{v} = 0\).
+\end{itemize}
+
+\separate{5}\theorem{7.2.1}{If \(\lambda\) is an eigenvalue of a real \(n \times n\) matrix \(A\) and \(\mathbf{x}\) is a corresponding eigenvector, then \(\overline{\lambda}\) is also an eigenvalue of \(A\) and \(\overline{\mathbf{x}}\) is a corresponding eigenvector.}
+{Since \(A\) is real, we have \(A\overline{\mathbf{x}} = \overline{A}\overline{\mathbf{x}} = \overline{A\mathbf{x}} = \overline{\lambda\mathbf{x}} = \overline{\lambda}\overline{\mathbf{x}}\).}
+
+\separate{5}\theorem{7.2.2}{If \(A\) is a real symmetric matrix, then all (complex) eigenvalues of \(A\) are real.}
+{Let \(\lambda \in \C\) be an eigenvalue of \(A\) and \(\mathbf{x} \in \C^n\) a corresponding eigenvector. Take the complex conjugate of both sides of the equation \(A\mathbf{x} = \lambda\mathbf{x}\). We get \(\overline{A}\overline{\mathbf{x}} = \overline{\lambda}\overline{\mathbf{x}}\), and, since \(A = \overline{A}\), it follows that \(A\overline{\mathbf{x}} = \overline{\lambda}\overline{\mathbf{x}}\). Then, using \(A=A^T\), we compute the number \(\overline{\mathbf{x}}^TA\mathbf{x}\) in two different ways:
+\begin{equation}
+    \overline{\mathbf{x}}^TA\mathbf{x} = \overline{\mathbf{x}}^T(A\mathbf{x}) = \overline{\mathbf{x}}^T(\lambda\mathbf{x}) = \lambda(\overline{\mathbf{x}}^T\mathbf{x}) = \lambda(\mathbf{x} \cdot \mathbf{x}) = \lambda||\mathbf{x}||^2
+\end{equation}
+\begin{equation}
+     \overline{\mathbf{x}}^TA\mathbf{x} = (A\overline{\mathbf{x}})^T\mathbf{x} = (\overline{\lambda}\overline{\mathbf{x}})^T\mathbf{x} = \overline{\lambda}(\overline{\mathbf{x}}^T\mathbf{x}) = \overline{\lambda}(\mathbf{x} \cdot \mathbf{x}) = \overline{\lambda}||\mathbf{x}||^2
+\end{equation}
+Since \(\mathbf{x} \neq 0\), we have \(||\mathbf{x}|| \neq 0\), so \(\lambda||\mathbf{x}||^2 = \overline{\lambda}||\mathbf{x}||^2\) implies \(\lambda = \overline{\lambda}\), meaning \(\lambda \in \R\).
+}
+
 \subsection{Inner Product Spaces}
 
 \subsection{The Gram-Schmidt Process}
