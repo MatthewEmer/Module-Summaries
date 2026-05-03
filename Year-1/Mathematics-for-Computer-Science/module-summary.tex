@@ -672,6 +672,15 @@ By theorem about invertible matrices, the last equation has solution \(\mathbf{x
     \item \definition{7.1.5}{The \underline{geometric multiplicity} of \(\lambda_0\) is the dimension of the eigenspace corresponding to \(\lambda_0\).}
 \end{itemize}
 
+\newpage\noindent\definition{7.1.6}{\underline{Principle component analysis} is the process of identifying the principle components (most important eigenvectors) of a data set. It takes a data set in \(n\) dimensions and outputs an \(n \times n\) matrix, demonstrating how each dimension varies with each other dimension (i.e., it captures the variance of one dimension of the data with another):}
+\begin{enumerate}
+    \item Pretend we have some covariance matrix \(COV_{n\times n}\).
+    \item Find the \(n\) eigenvalues and corresponding eigenvectors of \(COV_{n \times n}\).
+    \item Order the eigenvalues in decreasing order to get the importance of each.
+    \item Work out what percentage of the total value each eigenvalue contributes and take the top \(k\) values, contributing to \(80\%\) of the total. 
+    \item Let \(P_{n \times k}\) be a matrix with the \(k\) chosen eigenvectors as column vectors.
+\end{enumerate}
+
 \subsection{Complex Matrices}
 
 \subsection{Inner Product Spaces}
