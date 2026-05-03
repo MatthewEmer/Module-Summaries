@@ -97,7 +97,7 @@
         \begin{algorithmic}
             \State \textbf{Input}: #2
             \State \textbf{Output}: #3
-            \separate{5}#4
+            \separate{7}#4
         \end{algorithmic}
         \label{alg:#1}
     \end{algorithm}
@@ -175,53 +175,53 @@
 
 \definition{1.1.1}{\underline{Transistors} are electronically controlled switches that turn on or off when voltage or current is applied to a control terminal.}
 
-\separate{5}\definition{1.1.2}{A \underline{nMOS transistor} is a sandwich of layers of conducting and insulating material. The gate is a conducting layer, on top of an insulating layer, on top of the substrate which is a semi-conductor. When its gate \(g\) is at a high voltage, current is allowed to flow from source to drain, and this is prevented when the gate is at a low voltage.}
+\separate{7}\definition{1.1.2}{A \underline{nMOS transistor} is a sandwich of layers of conducting and insulating material. The gate is a conducting layer, on top of an insulating layer, on top of the substrate which is a semi-conductor. When its gate \(g\) is at a high voltage, current is allowed to flow from source to drain, and this is prevented when the gate is at a low voltage.}
 
 \insertimage{Images/Transistors - nMOSTransistor.png}{An nMOS transistor}{0.5}
 
 \noindent The junction between p-type and n-type silicon is a diode. This means the current can only flow from p-type to n-type as they act as anodes and cathodes respectively.
 
-\separate{5}\definition{1.1.3}{A \underline{pMOS transistor} is the opposite of a nMOS transistor - it allows current to flow when the gate is at low voltages, and prevents current flow at high voltages.}
+\separate{7}\definition{1.1.3}{A \underline{pMOS transistor} is the opposite of a nMOS transistor - it allows current to flow when the gate is at low voltages, and prevents current flow at high voltages.}
 
-\separate{5}\definition{1.1.4}{The \underline{static discipline} states that if inputs to transistors meet valid thresholds, then the system must guarantee outputs will meet valid output thresholds and will not fall into the forbidden zone (outside of the accepted range for high/low voltages).}
+\separate{7}\definition{1.1.4}{The \underline{static discipline} states that if inputs to transistors meet valid thresholds, then the system must guarantee outputs will meet valid output thresholds and will not fall into the forbidden zone (outside of the accepted range for high/low voltages).}
 
-\separate{5}\definition{1.1.5}{\underline{Moore's Law} is usually quoted as \say{transistor density doubles every two years}, or \say{computer processing power doubles every eighteen months}.}
+\separate{7}\definition{1.1.5}{\underline{Moore's Law} is usually quoted as \say{transistor density doubles every two years}, or \say{computer processing power doubles every eighteen months}.}
 
 \subsection{Circuit Design}
 
-\separate{5}\definition{1.2.3}{\underline{Abtraction} is used when designing circuits to simplify problems by hiding unimportant details, highlighting the actual logic problem to be solved.}
+\separate{7}\definition{1.2.3}{\underline{Abtraction} is used when designing circuits to simplify problems by hiding unimportant details, highlighting the actual logic problem to be solved.}
 
-\separate{5}\definition{1.2.4}{Another design principle used is \underline{discipline}. Here, design choices are deliberately restricted to make circuits easier to model, design, and combine.}
+\separate{7}\definition{1.2.4}{Another design principle used is \underline{discipline}. Here, design choices are deliberately restricted to make circuits easier to model, design, and combine.}
 
-\separate{5}\definition{1.2.5}{When designing complex systems, engineers use \underline{the three-y's}: \underline{hierarchy}, dividing a system into clear modules and submodules; \underline{modularity}, using well-defined functions and interfaces for modules; and \underline{regularity}, encouraging uniformity so modules can be swapped or reused.}
+\separate{7}\definition{1.2.5}{When designing complex systems, engineers use \underline{the three-y's}: \underline{hierarchy}, dividing a system into clear modules and submodules; \underline{modularity}, using well-defined functions and interfaces for modules; and \underline{regularity}, encouraging uniformity so modules can be swapped or reused.}
 
 \newpage\subsection{Combinatorial Circuits}
 
 \definition{1.3.1}{A \underline{combinatorial circuit} is a circuit where the output depends purely on the current input.}
 
-\separate{5}\definition{1.3.2}{An \underline{adder circuit} takes the contents of two registers and adds them together.}
+\separate{7}\definition{1.3.2}{An \underline{adder circuit} takes the contents of two registers and adds them together.}
 \begin{itemize}
     \item \definition{1.3.3}{A \underline{half-adder} circuit takes two one-bit binary inputs and adds them, returning a sum bit, and a carry bit.}
     \item \definition{1.3.4}{A \underline{full-adder} circuit takes three one-bit binary inputs (one of which is a carry bit) and adds them, returning a sum bit, and a carry bit.}
 \end{itemize}
 
-\separate{5}\definition{1.3.5}{A \underline{decoder} circuit takes an n-bit binary number and decodes it into \(2^n\) data lines.}
+\separate{7}\definition{1.3.5}{A \underline{decoder} circuit takes an n-bit binary number and decodes it into \(2^n\) data lines.}
 
-\separate{5}\definition{1.3.6}{A \underline{multiplexor} (mux) circuit uses a binary number to select one of a set of inputs to funnel to its output.}
+\separate{7}\definition{1.3.6}{A \underline{multiplexor} (mux) circuit uses a binary number to select one of a set of inputs to funnel to its output.}
 
-\separate{5}\definition{1.3.7}{A \underline{tristate} takes in two bits, an input bit and an enable bit. If the enable bit is a one, the input bit is outputted, if not then the output is left floating.}
+\separate{7}\definition{1.3.7}{A \underline{tristate} takes in two bits, an input bit and an enable bit. If the enable bit is a one, the input bit is outputted, if not then the output is left floating.}
 
 \subsection{Sequential Circuits}
 
 \definition{1.4.1}{A \underline{sequential circuit} is a circuit which changes its output depending on its input history, alongside the current input.}
 
-\separate{5}\definition{1.4.2}{A circuit which has two stable output states for a given input is known as a \underline{bistable} circuit.}
+\separate{7}\definition{1.4.2}{A circuit which has two stable output states for a given input is known as a \underline{bistable} circuit.}
 
-\separate{5}\definition{1.4.3}{An \underline{sr-latch} takes in two inputs, set \(S\) and reset \(R\). If set has a pulse of one, then the output remains at one, even after the pulse ends. If reset has a pulse of one, then the output is reset back to zero. This is a bistable circuit.}
+\separate{7}\definition{1.4.3}{An \underline{sr-latch} takes in two inputs, set \(S\) and reset \(R\). If set has a pulse of one, then the output remains at one, even after the pulse ends. If reset has a pulse of one, then the output is reset back to zero. This is a bistable circuit.}
 
-\separate{5}\definition{1.4.4}{A \underline{d-latch} has two inputs, a data input \(D\) and a clock input \(CLK\). The latch only changes to match the input at \(D\) when the \(CLK\) signal is high.}
+\separate{7}\definition{1.4.4}{A \underline{d-latch} has two inputs, a data input \(D\) and a clock input \(CLK\). The latch only changes to match the input at \(D\) when the \(CLK\) signal is high.}
 
-\separate{5}\definition{1.4.5}{A \underline{d-type flip-flop} works similarly to the d-latch, but only allows the stored output to change on the rising edge of the clock signal.}
+\separate{7}\definition{1.4.5}{A \underline{d-type flip-flop} works similarly to the d-latch, but only allows the stored output to change on the rising edge of the clock signal.}
 
 \section{Introduction to Logic}
 
@@ -238,7 +238,7 @@
 
 \definition{3.1.1}{A \underline{MIPS (Microprocessor without Interlocked Pipeline Stages)} is 32-bit RISC processor used in embedded systems and consumer electronics. It uses 32-bit words, has around 110 instructions, and 32 general purpose registers.}
 
-\separate{5}\definition{3.1.2}{\underline{Amdahl's Law} states that the performance improvement to be gained from using some faster mode of execution is limited by a fraction of the time the faster mode can be used.}
+\separate{7}\definition{3.1.2}{\underline{Amdahl's Law} states that the performance improvement to be gained from using some faster mode of execution is limited by a fraction of the time the faster mode can be used.}
 
 \subsection{The MIPS Instruction Set}
 
@@ -251,7 +251,7 @@ The instruction set uses five addressing modes, these are:
     \item \definition{3.2.5}{\underline{Pseudo-direct addressing} is used by MIPS in place of direct addressing as it does not support 32-bit addresses. As a result, it calculates it from 26 as the two least significant bits are always zeros as all words are multiples of four, and the four most significant bits can also be left as zero.}
 \end{itemize}
 
-\separate{5}The MIPS instruction set can be split into three instruction types, these are:
+\separate{7}The MIPS instruction set can be split into three instruction types, these are:
 \begin{itemize}
     \item \definition{3.2.6}{\underline{R-type instructions} contain a six-bit opcode, three five-bit registers (two source and one destination), a five-bit shift value, and a six-bit code to identify the function.}
     \item \definition{3.2.7}{\underline{I-type instructions} contain a six-bit opcode, two five-bit registers (one source, one destination), and a sixteen-bit immediate.}
@@ -274,13 +274,13 @@ MIPS uses 32-bit memory addresses across \(2^32\) bits (or 4 GB), ranging from 0
 
 \definition{4.1.1}{A \underline{microcontroller} is an integrated device consisting of a microprocessor, memory, and an input/output. They are used in embedded systems and store their program in flash memory.}
 
-\separate{5}The microcontroller has 32 general purpose 8-bit registers that are copied onto SRAM memory. Registers 26-31 are used in addressing, and as such should be treated as three 16-bit registers, rather than six 8-bit registers.
+\separate{7}The microcontroller has 32 general purpose 8-bit registers that are copied onto SRAM memory. Registers 26-31 are used in addressing, and as such should be treated as three 16-bit registers, rather than six 8-bit registers.
 
-\separate{5}\definition{4.1.2}{The \underline{status register} is an 8-bit register separate from the other 32. Its eight bits are used as flags.}
+\separate{7}\definition{4.1.2}{The \underline{status register} is an 8-bit register separate from the other 32. Its eight bits are used as flags.}
 
-\separate{5}The microcontroller's pins are separated into 3 groups, B (digital), C (analogue), and D (digital). 
+\separate{7}The microcontroller's pins are separated into 3 groups, B (digital), C (analogue), and D (digital). 
 
-\separate{5}\definition{4.1.3}{The direction of each pin of a port is controlled by a \underline{data direction registers}. We say a bit is set when it is 1 and the corresponding pin is output, and that a bit is cleared when it is 0 and the pin is input.}
+\separate{7}\definition{4.1.3}{The direction of each pin of a port is controlled by a \underline{data direction registers}. We say a bit is set when it is 1 and the corresponding pin is output, and that a bit is cleared when it is 0 and the pin is input.}
 
 \section{Programming in AVR Assembly}
 
@@ -305,21 +305,21 @@ The architecture, set out by ANSI (the American National Standards Institute) an
     \item \definition{6.1.3}{The \underline{internal layer} is the physical representation of the database which describes how the data is stored to achieve optimal performance and storage utilisation.}
 \end{itemize}
 
-\separate{5}\definition{6.1.4}{A \underline{database schema} is a complete description of the database as a result of the database design process. Each database should contain multiple external schemata, a conceptual schema, and an internal schema.}
+\separate{7}\definition{6.1.4}{A \underline{database schema} is a complete description of the database as a result of the database design process. Each database should contain multiple external schemata, a conceptual schema, and an internal schema.}
 
-\separate{5}\definition{6.1.5}{A \underline{database instance} is the concrete data contained within the database at any particular time.}
+\separate{7}\definition{6.1.5}{A \underline{database instance} is the concrete data contained within the database at any particular time.}
 
-\separate{5}\definition{6.1.6}{A database is considered to have \underline{logical data independence} if the external schemata remain the same if the logical structure is changed on a conceptual level.}
+\separate{7}\definition{6.1.6}{A database is considered to have \underline{logical data independence} if the external schemata remain the same if the logical structure is changed on a conceptual level.}
 
-\separate{5}\definition{6.1.7}{A database is considered to have \underline{physical data independence} if the conceptual schema stays the same when the internal schema is changed.}
+\separate{7}\definition{6.1.7}{A database is considered to have \underline{physical data independence} if the conceptual schema stays the same when the internal schema is changed.}
 
 \subsection{Desigining a Database}
 
 \definition{6.2.1}{When creating a database, the first thing to do is to create a \underline{conceptual design}. This is a high-level model of the data using entity-relationship modelling, identifying the appropriate entities, attributes, relationships, and constraints. This should be independent of any physical constraints.}
 
-\separate{5}\definition{6.2.2}{The next step is to create a \underline{logical design} which will be used to construct the relational data model using the conceptual design as a guide to transform entities and relationships into tables, using normalisation techniques to eliminate redundancies.}
+\separate{7}\definition{6.2.2}{The next step is to create a \underline{logical design} which will be used to construct the relational data model using the conceptual design as a guide to transform entities and relationships into tables, using normalisation techniques to eliminate redundancies.}
 
-\separate{5}\definition{6.2.3}{The \underline{physical design} should be created last, and will describe how the logical design will be implemented, defining storage, access, and security details.}
+\separate{7}\definition{6.2.3}{The \underline{physical design} should be created last, and will describe how the logical design will be implemented, defining storage, access, and security details.}
 
 \newpage\section{Modelling Databases}
 
@@ -327,17 +327,17 @@ The architecture, set out by ANSI (the American National Standards Institute) an
 
 \definition{7.1.1}{An \underline{entity} should be explicitly represented, denoted by a labelled rectangle and split into types and instances.}
 
-\separate{5}\definition{7.1.2}{A \underline{relationship} is a named association between two (or more) entity types which is represented by a labelled line with a triangle indicating reading direction.}
+\separate{7}\definition{7.1.2}{A \underline{relationship} is a named association between two (or more) entity types which is represented by a labelled line with a triangle indicating reading direction.}
 
-\separate{5}\definition{7.1.3}{\underline{Constraints} are commonly represented on an entity-relationship model by a range \((min...max)\). This can also include the cardinality (one-to-one, many-to-one, etc.), and participation (optional or mandatory).}
+\separate{7}\definition{7.1.3}{\underline{Constraints} are commonly represented on an entity-relationship model by a range \((min...max)\). This can also include the cardinality (one-to-one, many-to-one, etc.), and participation (optional or mandatory).}
 
-\separate{5}\definition{7.1.4}{The properties of an entity type are known as its \underline{attributes}. In an entity-relationship model they are placed below an entities title with the primary key underlined.}
+\separate{7}\definition{7.1.4}{The properties of an entity type are known as its \underline{attributes}. In an entity-relationship model they are placed below an entities title with the primary key underlined.}
 
 \subsection{Relational Data Models}
 
 \definition{7.2.1}{A \underline{relational data model} is based on the concept of mathematical relations and is the most widely used data structure for designing databases. It models a database by storing the relations between data in tables.}
 
-\separate{5}When creating a relational data model, the design must meet the following integrity constraints:
+\separate{7}When creating a relational data model, the design must meet the following integrity constraints:
 \begin{itemize}
     \item \definition{7.2.2}{\underline{Domain constraints} for attributes limit the range of values permitted.}
     \item \definition{7.2.3}{\underline{Entity integrity} ensures that the primary key is not null, guaranteeing that each entity has a unique identifier and that foreign keys form a valid reference.}
@@ -348,14 +348,14 @@ The architecture, set out by ANSI (the American National Standards Institute) an
 
 \definition{7.3.1}{A relation's \underline{functional dependencies} describe the relationship among its attributes.}
 
-\separate{5}\definition{7.3.2}{If \(A\) and \(B\) are two sets of attributes in the same relation, where \(A\) is associated with exactly one value of \(B\), then \(A\) \underline{functionally determines} \(B\) and \(B\) is \underline{functionally dependent} on \(A\). \(A\) is called the \underline{determinant} of \(B\). Functional dependencies can take one of three forms:}
+\separate{7}\definition{7.3.2}{If \(A\) and \(B\) are two sets of attributes in the same relation, where \(A\) is associated with exactly one value of \(B\), then \(A\) \underline{functionally determines} \(B\) and \(B\) is \underline{functionally dependent} on \(A\). \(A\) is called the \underline{determinant} of \(B\). Functional dependencies can take one of three forms:}
 \begin{itemize}
     \item \definition{7.3.3}{A \underline{full functional dependency} exists when \(B\) is functionally dependent on \(A\), but not on any proper subset of \(A\).}
     \item \definition{7.3.4}{A \underline{partial functional dependency} exists when \(B\) is functionally dependent on at least one proper subset of \(A\).}
     \item \definition{7.3.5}{A \underline{transitive functional dependency} exists between \(A\) and \(C\) if \(A \rightarrow B\) and \(B \rightarrow C\).}
 \end{itemize}
 
-\separate{5}\definition{7.3.6}{Given a set of functional dependencies \(F\), its closure \(F^+\) are all the functional dependencies which are implied by the dependencies in \(F\). These can be calculated using \hyperref[def:7.3.7]{Armstrong's Axioms}.}
+\separate{7}\definition{7.3.6}{Given a set of functional dependencies \(F\), its closure \(F^+\) are all the functional dependencies which are implied by the dependencies in \(F\). These can be calculated using \hyperref[def:7.3.7]{Armstrong's Axioms}.}
 
 \newpage\noindent\definition{7.3.7}{\underline{Armstrong's Axioms} are: 
 \begin{itemize}
@@ -370,15 +370,15 @@ These rules are complete and sound, and can be used to derive another three rule
     \item \definition{7.3.13}{\underline{Composition}: If \(A \rightarrow B\) and \(C \rightarrow D\), then \((A,C) \rightarrow (B,D)\).}
 \end{itemize}
 
-\separate{5}The closure \(F^+\) of \(F\) can be computed by taking of \(F\)'s dependencies, repeatedly applying Armstrong's Axioms, and adding any new dependencies discovered in this way.
+\separate{7}The closure \(F^+\) of \(F\) can be computed by taking of \(F\)'s dependencies, repeatedly applying Armstrong's Axioms, and adding any new dependencies discovered in this way.
 
 \subsection{Normalisation}
 
 \definition{7.4.1}{A table is in \underline{first normal form} if it has no repeating groups (every cell has one value).}
 
-\separate{5}\definition{7.4.2}{A table is in \underline{second normal form} if it is in first normal form and has no partial dependencies (every non-key attribute is dependent on the whole primary key).}
+\separate{7}\definition{7.4.2}{A table is in \underline{second normal form} if it is in first normal form and has no partial dependencies (every non-key attribute is dependent on the whole primary key).}
 
-\separate{5}\definition{7.4.3}{A table is in \underline{third normal form} if it is in second normal form and has no transitive dependencies.}
+\separate{7}\definition{7.4.3}{A table is in \underline{third normal form} if it is in second normal form and has no transitive dependencies.}
 
 \section{Relational Calculus and Algebra}
 
@@ -390,7 +390,7 @@ These rules are complete and sound, and can be used to derive another three rule
     \item \definition{8.1.3}{\underline{Data manipulation language} is used to insert, update, delete, and retrieve data from the database.}
 \end{itemize}
 
-\separate{5}Database languages can be separated into one of two types:
+\separate{7}Database languages can be separated into one of two types:
 \begin{itemize}
     \item \definition{8.1.4}{A \underline{declarative language} specifies which data needs to be retrieved in a query (relational calculus).}
     \item \definition{8.1.5}{A \underline{procedural language} specifies how to recieve the requested data for the query (relational algebra).}
@@ -400,11 +400,11 @@ These rules are complete and sound, and can be used to derive another three rule
 
 \definition{8.2.1}{\underline{Relational calculus} uses set theoretic expressions to define new sets based on one or more existing ones.}
 
-\separate{5}\definition{8.2.2}{A \underline{predicate} is a function that returns either true or false when given a set of arguments.}
+\separate{7}\definition{8.2.2}{A \underline{predicate} is a function that returns either true or false when given a set of arguments.}
 
-\separate{5}\definition{8.2.3}{A \underline{proposition} is the expression obtained when replacing values for the arguments of a predicate.}
+\separate{7}\definition{8.2.3}{A \underline{proposition} is the expression obtained when replacing values for the arguments of a predicate.}
 
-\separate{5}For example, for the predicates \(P(x)\) and \(Q(x)\), the set such that both \(P(x)\) and \(Q(x)\) are true is 
+\separate{7}For example, for the predicates \(P(x)\) and \(Q(x)\), the set such that both \(P(x)\) and \(Q(x)\) are true is 
 \begin{equation}
     \{x|P(x) \land Q(x)\}
 \end{equation}
@@ -413,7 +413,7 @@ These rules are complete and sound, and can be used to derive another three rule
 
 \definition{8.3.1}{\underline{Relational algebra} uses operators to construct new sets from one or more existing ones.}
 
-\separate{5}Relational algebra uses a unique set of operations and symbols. These include:
+\separate{7}Relational algebra uses a unique set of operations and symbols. These include:
 \begin{itemize}
     \item \definition{8.3.2}{The \underline{selection} operation, \(\sigma_c(R)\), is a unary operation which selects the subset of tuples from a relation \(R\) that meet the specified condition \(c\).}
     \item \definition{8.3.3}{The \underline{projection} operation, \(\Pi_{c_1,c_2}(R)\), is a unary operation which selects a specified subset of attributes \(c_1, c_2\) from a relation \(R\).}
@@ -439,13 +439,13 @@ These rules are complete and sound, and can be used to derive another three rule
 
 \subsection{Operating System Design}
 
-\separate{5}\definition{9.2.1}{The operating system generally runs in \underline{dual-mode} operation. This allows the operating system to protect itself and other system components. It differentiates which mode it is currently in using the \underline{mode bit}.}
+\separate{7}\definition{9.2.1}{The operating system generally runs in \underline{dual-mode} operation. This allows the operating system to protect itself and other system components. It differentiates which mode it is currently in using the \underline{mode bit}.}
 \begin{itemize}
     \item \definition{9.2.2}{When the computer is in \underline{user mode} it is limited as to which instructions it can execute, with some requiring switching modes to,}
     \item \definition{9.2.3}{\underline{Kernel mode} (also known as system or privileged mode). In this mode, the system is given access to a set of \underline{privileged instructions} which can perform tasks such as managing interrupts, performing inputs/outputs, and halting a process.}
 \end{itemize}
 
-\separate{5}The operating system offers a set of services, some of which are:
+\separate{7}The operating system offers a set of services, some of which are:
 \begin{itemize}
     \item Providing an environment for the execution of programs and services.
     \item Providing a user interface, which can either be on the command line (CLI), graphical (GUI), or in Batch.
@@ -461,11 +461,11 @@ These rules are complete and sound, and can be used to derive another three rule
 
 \definition{9.3.1}{A program in execution is known as a \underline{process}. A process includes code, its current activity, a stack, a data section, and a heap.}
 
-\separate{5}\definition{9.3.2}{A process's information is stored in a \underline{process control block}. These PCBs are then arranged together into a \underline{process table}. Each PCB stores a process's unique identifier, state, memory useage, CPU scheduling information, and its corresponding CPU registers.}
+\separate{7}\definition{9.3.2}{A process's information is stored in a \underline{process control block}. These PCBs are then arranged together into a \underline{process table}. Each PCB stores a process's unique identifier, state, memory useage, CPU scheduling information, and its corresponding CPU registers.}
 
-\separate{5}\definition{9.3.3}{As a process is executed, it changes state. Here, it can take one of five states: new, when the process is being created; running, when instructions are being executed; waiting, when the process is waiting for some event to occur; ready, when the process is ready to be dispatched to the CPU; and terminated, when the process has finished executing.}
+\separate{7}\definition{9.3.3}{As a process is executed, it changes state. Here, it can take one of five states: new, when the process is being created; running, when instructions are being executed; waiting, when the process is waiting for some event to occur; ready, when the process is ready to be dispatched to the CPU; and terminated, when the process has finished executing.}
 
-\separate{5}\definition{9.3.4}{A process can, as a \underline{parent process}, create a number of \underline{child processes}, which in turn can create other processes, forming a \underline{tree of processes}. A parent process may share some of its resources with its children, and they can either execute concurrently or sequentially.}
+\separate{7}\definition{9.3.4}{A process can, as a \underline{parent process}, create a number of \underline{child processes}, which in turn can create other processes, forming a \underline{tree of processes}. A parent process may share some of its resources with its children, and they can either execute concurrently or sequentially.}
 
 \separate{10}\textbf{Lecture 2 - Slide 11}
 

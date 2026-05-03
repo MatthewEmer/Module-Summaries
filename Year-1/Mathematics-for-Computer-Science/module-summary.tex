@@ -101,7 +101,7 @@
         \begin{algorithmic}
             \State \textbf{Input}: #2
             \State \textbf{Output}: #3
-            \separate{5}#4
+            \separate{7}#4
         \end{algorithmic}
         \label{alg:#1}
     \end{algorithm}
@@ -179,7 +179,7 @@
 
 \definition{1.1.1}{A \underline{set} is an unordered collection of distinct elements denoted as \(A = \{x | \textit{condition} \}\).}
 
-\separate{5}Some common set operations include:
+\separate{7}Some common set operations include:
 \begin{itemize}
     \item \definition{1.1.2}{The \underline{union} of two sets, \(A \cup B\), includes all the elements of both sets.}
     \item \definition{1.1.3}{The \underline{intersection} of two sets, \(A \cap B\), includes any elements which are present in both sets.}
@@ -195,11 +195,11 @@
     \item \definition{1.1.7}{The \underline{cartesian product} of two sets, \(A \times B\), is the set of all possible ordered pairs with the first element from \(A\) and the second from \(B\).}
 \end{itemize}
 
-\separate{5}\definition{1.1.8}{For a finite set, the \underline{cardinality} is the number of distinct elements that it contains.}
+\separate{7}\definition{1.1.8}{For a finite set, the \underline{cardinality} is the number of distinct elements that it contains.}
 
 \subsection{Functions}
 
-\separate{5}For a function \(f: A \rightarrow B\),
+\separate{7}For a function \(f: A \rightarrow B\),
 \begin{itemize}
     \item \definition{1.2.1}{\(A\) is known as the \underline{domain} of \(f\).}
     \item \definition{1.2.2}{\(B\) is known as the \underline{codomain} of \(f\).}
@@ -210,7 +210,7 @@
     \item \definition{1.2.7}{\(f\) forms a \underline{bijection} if it is both injective and surjective.}
 \end{itemize}
 
-\separate{5}\definition{1.2.8}{If for an unbounded set \(A\), there is a bijective function \(f: A \rightarrow \N\), then we say \(A\) is \underline{countably infinite}, otherwise \(A\) is known as \underline{uncountably infinite}.}
+\separate{7}\definition{1.2.8}{If for an unbounded set \(A\), there is a bijective function \(f: A \rightarrow \N\), then we say \(A\) is \underline{countably infinite}, otherwise \(A\) is known as \underline{uncountably infinite}.}
 
 \subsection{Hyperbolic Functions}
 
@@ -238,12 +238,12 @@ These functions can then be differentiated as follows:
     \frac{\delta f}{\delta x} \left[f(x,y)\right] = \lim_{x \rightarrow x_0} \left(\frac{f(x,y_0)-f(x_0,y_0)}{x-x_0}\right) = f_x
 \end{equation}
 
-\separate{5}\definition{2.1.2}{The \underline{vector of partial derivatives}, denoted as \(\nabla f\), contains all the partial derivatives of a function. This forms a vector pointing in the direction of the greatest rate of increase of \(f\), where its magnitude is the rate of increase in that direction. For example, for a function \(f(x,y)\), 
+\separate{7}\definition{2.1.2}{The \underline{vector of partial derivatives}, denoted as \(\nabla f\), contains all the partial derivatives of a function. This forms a vector pointing in the direction of the greatest rate of increase of \(f\), where its magnitude is the rate of increase in that direction. For example, for a function \(f(x,y)\), 
 \begin{equation} 
     \nabla f = \begin{pmatrix}f_x\\f_y\end{pmatrix}
 \end{equation}}
 
-\separate{5}\definition{2.1.3}{The \underline{directional derivative} of the function \(f(x,y)\) gives the gradient at any point whilst looking in the direction given by the unit vector \(\mathbf{v} = \begin{pmatrix}v_x\\v_y\end{pmatrix}\).}
+\separate{7}\definition{2.1.3}{The \underline{directional derivative} of the function \(f(x,y)\) gives the gradient at any point whilst looking in the direction given by the unit vector \(\mathbf{v} = \begin{pmatrix}v_x\\v_y\end{pmatrix}\).}
 \begin{equation}
     \nabla_{\mathbf{v}} f = \lim_{h \rightarrow 0}\frac{f(x_0 + h\mathbf{v}) - f(x_0)}{h}
 \end{equation}
@@ -252,7 +252,7 @@ If the slope is approximately flat at a small scale, then the slope can be deter
     \nabla_{\mathbf{v}} f = \mathbf{v} \cdot \nabla f
 \end{equation}
 
-\separate{5}From this, we get that, for a function \(f(\mathbf{x_0})\) and a direction \(\mathbf{v}\),
+\separate{7}From this, we get that, for a function \(f(\mathbf{x_0})\) and a direction \(\mathbf{v}\),
 \begin{equation}
     f(\mathbf{x_0} + h \mathbf{v}) \approx f(\mathbf{x_0}) + h \mathbf{v} \cdot \nabla f(\mathbf{x_0})
 \end{equation}
@@ -261,9 +261,9 @@ If the slope is approximately flat at a small scale, then the slope can be deter
 
 \definition{2.2.1}{A function that is continuous is in \underline{class \(C^0\)}, and a function that is continuous and has a continuous derivative is in \underline{class \(C^1\)}. A function \(f\) such that \(f',\;f'',\;...,\;f^{(k)}\) exist and are continuous is in \underline{class \(C^k\)}.}
 
-\separate{5}\definition{2.2.2}{A function \(f\) such that derivatives of all orders exist and are continuous is in class \(C^\infty\) is also \underline{smooth}.}
+\separate{7}\definition{2.2.2}{A function \(f\) such that derivatives of all orders exist and are continuous is in class \(C^\infty\) is also \underline{smooth}.}
 
-\separate{5}\definition{2.2.3}{All the second-order partial derivatives of a function \(f(x,y)\) can be gathered into a \underline{Hessian matrix}.}
+\separate{7}\definition{2.2.3}{All the second-order partial derivatives of a function \(f(x,y)\) can be gathered into a \underline{Hessian matrix}.}
 \begin{equation}
     \hessian{f} = \begin{bmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{bmatrix}
 \end{equation}
@@ -275,7 +275,7 @@ This can be used to determine the form of bivariate extrema. Suppose \(f(x,y) \i
     \item If \(det(\hessian{f}) = 0\), then the test is inconclusive.
 \end{itemize}
 
-\separate{5}At a stationary point \(x_0\), the quadratic approximation of a function \(f(x)\) is
+\separate{7}At a stationary point \(x_0\), the quadratic approximation of a function \(f(x)\) is
 \begin{equation}
     f(x_0 + \mathbf{v}) \approx f(x_0) + \frac{1}{2}\mathbf{v}^T H_f(x_0)\mathbf{v}
 \end{equation}
@@ -298,7 +298,7 @@ Given this, we can use the eigenvalues to determine the nature of the stationary
 
 \definition{2.3.1}{A \underline{vector-valued} function takes an \(n\)-dimensional vector as input, and outputs an \(m\)-dimensional vector, e.g., \(f:\R^n\rightarrow\R^m\).}
 
-\separate{5}\definition{2.3.2}{The \underline{Jacobian matrix} of a vector-valued function \(f:\R^n\rightarrow\R^m\) can be formed by setting \(\jacobian{i,j} = \frac{\delta f_i}{\delta x_j}\) to form,}
+\separate{7}\definition{2.3.2}{The \underline{Jacobian matrix} of a vector-valued function \(f:\R^n\rightarrow\R^m\) can be formed by setting \(\jacobian{i,j} = \frac{\delta f_i}{\delta x_j}\) to form,}
 \begin{equation}
     \jacobian{f} = \begin{pmatrix}
         \frac{\delta f_1}{\delta x_1} & \dots & \frac{\delta f_1}{\delta x_n} \\
@@ -317,7 +317,7 @@ For a multivariate function \(f:\R^n\rightarrow\R^m\), the Jacobian matrix can b
 
 \definition{3.1.1}{The goal of a \underline{constrained optimisation} problem is to either minimise or maximise a multivariate function \(f(\mathbf{x})\) where \(x_1,\;x_2,\;...,\;x_n\) are not independent subject to some constraint \(g(\mathbf{x})\).}
 
-\separate{5}\definition{3.1.2}{The \underline{Lagrange multipliers method} is used to find stationary points of an objective function \(f(\mathbf{x}) \in C^1\) subject to the constraint \(g(\mathbf{x}) = 0\).
+\separate{7}\definition{3.1.2}{The \underline{Lagrange multipliers method} is used to find stationary points of an objective function \(f(\mathbf{x}) \in C^1\) subject to the constraint \(g(\mathbf{x}) = 0\).
 \begin{enumerate}
     \item Define a new objective function called the \underline{Lagrangian},
     \begin{equation}
@@ -334,9 +334,9 @@ For a multivariate function \(f:\R^n\rightarrow\R^m\), the Jacobian matrix can b
 
 \definition{4.1.1}{A \underline{sequence} is an ordered, countably infinite, set of numbers.}
 
-\separate{5}\definition{4.1.2}{A \underline{series} is the sum of the members of a sequence.}
+\separate{7}\definition{4.1.2}{A \underline{series} is the sum of the members of a sequence.}
 
-\separate{5}\theorem{4.1.1}{If the series \(\sum^\infty_{n=0}a_n\) and the series \(\sum^\infty_{n=0}b_n\) are convergent, and have respective sums \(\alpha\) and \(\beta\), then
+\separate{7}\theorem{4.1.1}{If the series \(\sum^\infty_{n=0}a_n\) and the series \(\sum^\infty_{n=0}b_n\) are convergent, and have respective sums \(\alpha\) and \(\beta\), then
 \begin{equation}
     \sum^\infty_{n=0} (a_n + b_n) = \alpha + \beta
 \end{equation}
@@ -362,7 +362,7 @@ Similarly, since \(\sum^\infty_{n=0}b_n\) converges, \(\exists N_b\) such that,
 i.e, \(\sum^\infty_{n=0}(a_n + b_n)\) converges to \((\alpha + \beta)\) using triangle inequality \(|a+b| \leq |a| + |b|\).
 }
 
-\separate{5}\theorem{4.1.2}{If \(\lim_{n \rightarrow \infty}a_n \neq 0\) then the series \(\sum_{n=0}^{\infty}a_n\) diverges.}
+\separate{7}\theorem{4.1.2}{If \(\lim_{n \rightarrow \infty}a_n \neq 0\) then the series \(\sum_{n=0}^{\infty}a_n\) diverges.}
 {Suppose \(\sum_{n=0}^{\infty}a_n\) converges for some \(S\), Then, \(\lim_{n\rightarrow\infty}S_n = S\), which means that given arbitrary \(epsilon > 0\), there exists some \(N_\epsilon\) such that, for all \(n > N_\epsilon\),
 \begin{equation}
     |S_n - S| < \epsilon \qquad\qquad |S_n - S| < 2\epsilon
@@ -373,7 +373,7 @@ Combining these,
 \end{equation}
 But \(\epsilon\) was arbitrary, so we have shown that, for any \(\epsilon' > 0\) there exists an \(N_\epsilon\) such that \(|a_n| < \epsilon'\) for all \(n > N_\epsilon\). }
 
-\separate{5}As the number of elements in a series approaches infinity...
+\separate{7}As the number of elements in a series approaches infinity...
 \begin{itemize}
     \item \definition{4.1.3}{If \(\lim_{n\rightarrow\infty}a_n \neq 0\), then the series \underline{diverges}.}
     \item \definition{4.1.4}{If \(\lim_{n\rightarrow\infty}a_n = 0\), then the series \underline{converges}.}
@@ -381,7 +381,7 @@ But \(\epsilon\) was arbitrary, so we have shown that, for any \(\epsilon' > 0\)
     \item \definition{4.1.6}{If \(\lim_{n\rightarrow\infty}a_n = S\), then the series is \underline{convergent to \(S\)}.}
 \end{itemize}
 
-\separate{5}\theorem{4.1.3}{The \underline{ratio test} states that, if \(\sum^\infty_{n=1 a_n}\) is a series where \(a_n \neq 0\) and \(L = \lim_{n\rightarrow\infty \left|\frac{a_{n+1}}{a_n}\right|}\) then
+\separate{7}\theorem{4.1.3}{The \underline{ratio test} states that, if \(\sum^\infty_{n=1 a_n}\) is a series where \(a_n \neq 0\) and \(L = \lim_{n\rightarrow\infty \left|\frac{a_{n+1}}{a_n}\right|}\) then
 \begin{enumerate}[label=\alph*)]
     \item If \(L < 1\), the series absolutely converges.
     \item If \(L > 1\), the series is divergent.
@@ -397,7 +397,7 @@ Then \(|a_{n+2}| < r|a_{n+1}| < r^2|a_n|\) and \(|a_{n+3}| < r|a_{n+2} < r^3|a_n
 \end{equation}
 Hence the series converges.}
 
-\separate{5}\definition{4.1.7}{The \underline{\(n^{th}\) root test} states that, for the series \(\sum^\infty_{n=1}a_n\), \(L=\lim_{n\rightarrow\infty}\sqrt[n]{|a_n|}\),
+\separate{7}\definition{4.1.7}{The \underline{\(n^{th}\) root test} states that, for the series \(\sum^\infty_{n=1}a_n\), \(L=\lim_{n\rightarrow\infty}\sqrt[n]{|a_n|}\),
 \begin{itemize}
     \item If \(L < 1\), then the series absolutely converges.
     \item If \(L > 1\), then the series is divergent.
@@ -406,7 +406,7 @@ Hence the series converges.}
 
 \newpage\noindent\definition{4.1.8}{The \underline{alternating series test} states that the series \(\sum_{n=1}^{\infty}(-1)^{n+1}a_n\) converges if \(a_n > 0\), \(a_{n+1} \leq a_n\;\forall n\), and \(\lim_{n\rightarrow\infty}a_n = 0\)}
 
-\separate{5}\theorem{4.1.4}{Every subsequence of a convergent sequence converges to the same limit as the original sequence.}
+\separate{7}\theorem{4.1.4}{Every subsequence of a convergent sequence converges to the same limit as the original sequence.}
 {Let \(\{a_{n_k}\}\) be a subsequence of \(\{a_n\}\). First note that \(n_k \geq k\) and so \(n_{k+1} \geq k + 1\). Let \(\lim_{n\rightarrow\infty}a_n = L\). Then, for any \(\epsilon > 0\), there exists \(N_\epsilon\) such that for all \(n > N_\epsilon\) it holds that \(|a_n-L|<\epsilon\). Let \(k > N_\epsilon\), then \(n_k > N_\epsilon\) and so it must be that \(|a_{n_k} - L| < \epsilon\).}
 
 \subsection{Power Series}
@@ -417,9 +417,9 @@ Hence the series converges.}
 \end{equation}
 At any specific value of \(x\), the power series becomes a normal series.}
 
-\separate{5}\definition{4.2.2}{For an arbitrary power series \(\sum_{n=0}^{\infty}a_n(x-x_0)^n\), we can use the ratio test (including the \((x-x_0)\) term). From this, we call \(\lim_{n\rightarrow\infty}\left|\frac{a_n}{a_{n+1}}\right| = r\) the \underline{radius of convergence}. If \(|x-x_0| < r\), we have absolute convergence and if \(|x-x_0| > r\), we have divergence.}
+\separate{7}\definition{4.2.2}{For an arbitrary power series \(\sum_{n=0}^{\infty}a_n(x-x_0)^n\), we can use the ratio test (including the \((x-x_0)\) term). From this, we call \(\lim_{n\rightarrow\infty}\left|\frac{a_n}{a_{n+1}}\right| = r\) the \underline{radius of convergence}. If \(|x-x_0| < r\), we have absolute convergence and if \(|x-x_0| > r\), we have divergence.}
 
-\separate{5}Let \(f(x) = \sum_{n=0}^{\infty} a_nx^n\) be a power series with radius of convergence \(r > 0\). Then, within the interval \((-r,r)\):
+\separate{7}Let \(f(x) = \sum_{n=0}^{\infty} a_nx^n\) be a power series with radius of convergence \(r > 0\). Then, within the interval \((-r,r)\):
 \begin{itemize}
     \item \(f(x)\) is continuous.
     \item \(f'(x) = \sum_{n=1}^{\infty} na_nx^{n-1}\) (term-by-term differentiation).
@@ -427,13 +427,13 @@ At any specific value of \(x\), the power series becomes a normal series.}
     \item Both series \(f'(x)\) and \(\int_{0}^{x}f(t) dt\) have the same radius of convergence as \(f(x)\).
 \end{itemize}
 
-\separate{5}\definition{4.2.3}{Suppose we start with some function \(f(x)\) and we wish to determine a power series \(\sum_{n=0}^{\infty}a_nx^n\) such that \(f(x)=\sum_{n=0}^{\infty}a_nx^n\). Putting these values in, we see that if such a power series exists, then:
+\separate{7}\definition{4.2.3}{Suppose we start with some function \(f(x)\) and we wish to determine a power series \(\sum_{n=0}^{\infty}a_nx^n\) such that \(f(x)=\sum_{n=0}^{\infty}a_nx^n\). Putting these values in, we see that if such a power series exists, then:
 \begin{equation}
     f(x) = f(0) + f'(0)x + f''(0)\frac{x^2}{2!} + f^{(3)}(0)\frac{x^3}{3!} + ... = \sum_{n=0}^{\infty} f^{(n)}(0)\frac{x^n}{n!}
 \end{equation}
 This is called the \underline{Maclaurin series for \(f\)}. To use the series, we must have that \(f \in C^\infty\) and the power series converges.}
 
-\separate{5}\definition{4.2.4}{We can recenter the power series on \(x_0\) by defining a new function \(g(x) = f(x + x_0)\) then \(g(0) = f(x_0)\) and \(g'(x) = f'(x+x_0)\). Repeatedly differentiating, \(g^{(n)}(x) = f^{(n)}(x+x_0)\) so we build the Maclaurin series for \(g\), which gives us
+\separate{7}\definition{4.2.4}{We can recenter the power series on \(x_0\) by defining a new function \(g(x) = f(x + x_0)\) then \(g(0) = f(x_0)\) and \(g'(x) = f'(x+x_0)\). Repeatedly differentiating, \(g^{(n)}(x) = f^{(n)}(x+x_0)\) so we build the Maclaurin series for \(g\), which gives us
 \begin{equation}
     f(x+x_0) = g(x) = \sum_{n=0}^{\infty}g^{(n)}(0)\frac{x^n}{n!} = \sum_{n=0}^{\infty}f^{(n)}(0)\frac{x^n}{n!}
 \end{equation}
@@ -447,7 +447,7 @@ This form is called the \underline{Taylor series expansion of \(f\)}.}
 
 \lemma{4.3.1}{If a real-valued function \(f\) is continuous on \([a,b]\), differentiable on \((a,b)\), and \(f(a) = f(b)\), then there exists \(\xi \in (a,b)\) such that \(f'(\xi) = 0\).}{Not proved here.}
 
-\separate{5}\theorem{4.3.1}{Suppose a function \(f\) is \(n\) times differentiable on \([a,x]\), then there exists some \(\xi \in (a,x)\) such that
+\separate{7}\theorem{4.3.1}{Suppose a function \(f\) is \(n\) times differentiable on \([a,x]\), then there exists some \(\xi \in (a,x)\) such that
 \begin{equation}
     f(x) = f(a) + (x-a)f'(a) + ... + \frac{(x-a)^{(n-1)}}{(n-1)!}f^{(n-1)}(a) + R^n(x)
 \end{equation}
@@ -482,7 +482,7 @@ where
 
 \definition{5.1.1}{\underline{Abstraction} is the process of simplifying a complex problem via removing unnecessary details in order to apply more general problem solving techniques.}
 
-\separate{5}\definition{5.1.2}{\underline{Groups} consist of a set \(G\) and a binary operation \(*\). They abide by the following axioms:}
+\separate{7}\definition{5.1.2}{\underline{Groups} consist of a set \(G\) and a binary operation \(*\). They abide by the following axioms:}
 \begin{itemize}
     \item \definition{5.1.3}{\underline{Closure}, when applying an operation between two elements of the group, the result will also be an element of the group.}
     \begin{equation}
@@ -502,7 +502,7 @@ where
     \end{equation}
 \end{itemize}
 
-\separate{5}\definition{5.1.7}{\underline{Fields} contain a set \(F\) with two binary operations (addition and multiplication) and abide by the following axioms:}
+\separate{7}\definition{5.1.7}{\underline{Fields} contain a set \(F\) with two binary operations (addition and multiplication) and abide by the following axioms:}
 \begin{itemize}
     \item \hyperref[def:5.1.4]{Associativity (defined above)}.
     \item \definition{5.1.8}{\underline{Commutativity} - when applying an operation between two elements of the field, the order the elements appear in does not matter.}
@@ -541,34 +541,34 @@ where
     a_1\mathbf{v}_1 + a_2\mathbf{v}_2 + ... + a_n\mathbf{v}_n = \sum^n_{i=1}a_i\mathbf{v}_i
 \end{equation}
 
-\separate{5}\definition{5.2.2}{The set of all linear combinations of a set of vectors is called its \underline{span}, denoted \(span(V)\).}
+\separate{7}\definition{5.2.2}{The set of all linear combinations of a set of vectors is called its \underline{span}, denoted \(span(V)\).}
 
-\separate{5}\definition{5.2.3}{A set of vectors \(S\) is a \underline{spanning set} for a vector space \(V\) if \(span(S)=V\). We can equivalently say that \underline{\(S\) spans \(V\)}.}
+\separate{7}\definition{5.2.3}{A set of vectors \(S\) is a \underline{spanning set} for a vector space \(V\) if \(span(S)=V\). We can equivalently say that \underline{\(S\) spans \(V\)}.}
 
-\separate{5}\definition{5.2.4}{A set of vectors \(S\) is \underline{linearly dependent} if there exists a linear combination such that
+\separate{7}\definition{5.2.4}{A set of vectors \(S\) is \underline{linearly dependent} if there exists a linear combination such that
 \begin{equation}
     \sum_{i=1}^{n}a_i\mathbf{s}_i = 0 \text{ and } \exists i, \;a_i \neq 0
 \end{equation}
 Otherwise, the set is described as \underline{linearly independent}.}
 
-\separate{5}\definition{5.2.5}{A subset \(S\) of the vector space \(V\) is a \underline{basis} for \(V\) if \(S\) is a spanning set and is linearly independent.}
+\separate{7}\definition{5.2.5}{A subset \(S\) of the vector space \(V\) is a \underline{basis} for \(V\) if \(S\) is a spanning set and is linearly independent.}
 
-\separate{5}\theorem{5.2.1}{For a vector space \(V\), if \(S\) is a basis for \(V\), then it must also be a minimal spanning set.}
+\separate{7}\theorem{5.2.1}{For a vector space \(V\), if \(S\) is a basis for \(V\), then it must also be a minimal spanning set.}
 {Let \(S\) be a basis of \(V\). Assume that \(S\) is not a minimal spanning set, then there must be some element \(s \in S\) such that \(span(S \,\backslash\, \{s\}) = V\). Then, \(s\) can be written as a linear combination of elements from \(S \,\backslash\, \{s\}\). That is, we have that
 \begin{equation}
     1 \cdot \mathbf{s} - (a_1\mathbf{s}_1 + a_2\mathbf{s}_2 + ... + a_n\mathbf{s}_n) = 0
 \end{equation}
 This means that \(S\) would be linearly dependent, contradicting the definition of \(S\) as a basis. Therefore, \(S\) must be a minimal spanning set.}
 
-\separate{5}\definition{5.2.6}{The \underline{dimension} of a vector space \(V\) is the cardinality of its basis \(S\).}
+\separate{7}\definition{5.2.6}{The \underline{dimension} of a vector space \(V\) is the cardinality of its basis \(S\).}
 
-\separate{5}\definition{5.2.7}{If we have a function \(f:V \rightarrow W\) where \(V\) and \(W\) are vector spaces over a field \(F\), then \(f\) is a \underline{linear map} if,}
+\separate{7}\definition{5.2.7}{If we have a function \(f:V \rightarrow W\) where \(V\) and \(W\) are vector spaces over a field \(F\), then \(f\) is a \underline{linear map} if,}
 \begin{equation}
     \exists \mathbf{u},\mathbf{v} \in V,\; \exists a \in F,\; f(\mathbf{u} + \mathbf{v}) = f(\mathbf{u}) + f(\mathbf{v}) \text{ and } f(a\cdot\mathbf{v}) = a\cdot f(\mathbf{v})
 \end{equation}
 These can also be called \underline{linear transformations} or \underline{vector space homomorphisms}.
 
-\separate{5}\definition{5.2.8}{If \(V = W\) for a linear map \(f\), then \(f\) is also a \underline{endomorphism}.}
+\separate{7}\definition{5.2.8}{If \(V = W\) for a linear map \(f\), then \(f\) is also a \underline{endomorphism}.}
 
 \newpage\section{Matrices}
 
@@ -576,19 +576,19 @@ These can also be called \underline{linear transformations} or \underline{vector
 
 When the determinant of a matrix is zero, its columns are linearly dependent vectors. Therefore, if two columns are the same, then the determinant will be zero. Similarly, if a matrix \(A\) is identical to another matrix \(B\), except for two columns being swapped, then \(det(A) = -det(B)\).
 
-\separate{5}\definition{6.1.1}{To calculate a determinant, we use the Laplace expansion,
+\separate{7}\definition{6.1.1}{To calculate a determinant, we use the Laplace expansion,
 \begin{equation}
     det(C) = \sum_{j=1}^{n} (-1)^{i+j} c_{(i,j)} M_{(i,j)} \qquad 0 < i \leq n,\;i \in \N
 \end{equation}
 where \(c_{(i,j)}\) is the coefficient of the term at \((i,j)\) and \(M_{(i,j)}\) is the minor at coordinates \((i,j)\).}
 
-\separate{5}\definition{6.1.2}{Under a linear map \(f:X\rightarrow Y\), \(f(a\mathbf{x} + b\mathbf{y}) = af(\mathbf{x}) + bf(\mathbf{y})\), \(f(X)\) is known as the \underline{column space} and is the span of the columns. Its dimension is known as the \underline{column rank} (this is also the number of linearly independent columns). Row space and rank can be defined similarly.}
+\separate{7}\definition{6.1.2}{Under a linear map \(f:X\rightarrow Y\), \(f(a\mathbf{x} + b\mathbf{y}) = af(\mathbf{x}) + bf(\mathbf{y})\), \(f(X)\) is known as the \underline{column space} and is the span of the columns. Its dimension is known as the \underline{column rank} (this is also the number of linearly independent columns). Row space and rank can be defined similarly.}
 
-\separate{5}\definition{6.1.3}{The \underline{rank} of a matrix is its row/column rank after the matrix is put into \hyperref[def:6.2.6]{RREF}.}
+\separate{7}\definition{6.1.3}{The \underline{rank} of a matrix is its row/column rank after the matrix is put into \hyperref[def:6.2.6]{RREF}.}
 
-\separate{5}\definition{6.1.4}{If \(f:X \rightarrow Y\) is a linear map, then the \underline{kernel} or \underline{null space} of \(f\) is the set of vectors that map to zero. The dimension of the kernel is known as the \underline{nullity}. The kernel forms a vector space where all linear combinations of kernel elements are in the kernel.}
+\separate{7}\definition{6.1.4}{If \(f:X \rightarrow Y\) is a linear map, then the \underline{kernel} or \underline{null space} of \(f\) is the set of vectors that map to zero. The dimension of the kernel is known as the \underline{nullity}. The kernel forms a vector space where all linear combinations of kernel elements are in the kernel.}
 
-\separate{5}\definition{6.1.5}{Given a linear map on vector spaces \(T:V \rightarrow W\), if \(V\) has finite dimensions then \(Rank(T) + Nullity(T) = dim(V)\).}
+\separate{7}\definition{6.1.5}{Given a linear map on vector spaces \(T:V \rightarrow W\), if \(V\) has finite dimensions then \(Rank(T) + Nullity(T) = dim(V)\).}
 
 \subsection{Systems of Equations and Gaussian Elimination}
 
@@ -599,9 +599,9 @@ where \(c_{(i,j)}\) is the coefficient of the term at \((i,j)\) and \(M_{(i,j)}\
     \item \definition{6.2.4}{A system \(A\mathbf{x}=\mathbf{b}\) is \underline{homogenous} if \(b\) is a column of zeros. These systems have a trivial solution of \(\forall x \in \mathbf{x},\; x = 0\).}
 \end{itemize}
 
-\separate{5}\definition{6.2.5}{An augmented matrix is in \underline{row echelon form} if the first non-zero number in each row is a one, any rows containing only zeros are grouped at the bottom, and if two successive rows are not all zeroes, then the leading one of the higher row is to the left of the leading one in the lower row.}
+\separate{7}\definition{6.2.5}{An augmented matrix is in \underline{row echelon form} if the first non-zero number in each row is a one, any rows containing only zeros are grouped at the bottom, and if two successive rows are not all zeroes, then the leading one of the higher row is to the left of the leading one in the lower row.}
 
-\separate{5}\definition{6.2.6}{An augmented matrix is in \underline{reduced row echelon form} if it is in row echelon form and each column containing a leading one has zeroes everywhere else.}
+\separate{7}\definition{6.2.6}{An augmented matrix is in \underline{reduced row echelon form} if it is in row echelon form and each column containing a leading one has zeroes everywhere else.}
 
 \subsection{Geometry}
 
@@ -612,7 +612,7 @@ where \(c_{(i,j)}\) is the coefficient of the term at \((i,j)\) and \(M_{(i,j)}\
     \item \definition{6.3.4}{\underline{Positive Definite}: If \(d(x) = 0\) then \(x = 0\).}
 \end{itemize}
 
-\separate{5}\definition{6.3.5}{The \underline{Euclidean norm} is the length of a vector and is given for \(\mathbf{x} \in \R^n\) to be
+\separate{7}\definition{6.3.5}{The \underline{Euclidean norm} is the length of a vector and is given for \(\mathbf{x} \in \R^n\) to be
 \begin{equation}
     ||\mathbf{x}|| = \sqrt{\sum_{i=1}^{n}(x_i)^2}
 \end{equation}}
@@ -622,12 +622,12 @@ where \(c_{(i,j)}\) is the coefficient of the term at \((i,j)\) and \(M_{(i,j)}\
     \mathbf{\hat{x}} = \frac{1}{||\mathbf{x}||}\mathbf{x}
 \end{equation}
 
-\separate{5}\definition{6.3.6}{The \underline{Manhattan distance} is given by}
+\separate{7}\definition{6.3.6}{The \underline{Manhattan distance} is given by}
 \begin{equation}
     d_M(\mathbf{x}) = \sum_{i=1}^{n} |x_i|
 \end{equation}
 
-\separate{5}\definition{6.3.7}{Given \(p \in \R^+\), we can define the \underline{\(p\)-norm} \(||\mathbf{x}||_p\) on \(\R^n\) as
+\separate{7}\definition{6.3.7}{Given \(p \in \R^+\), we can define the \underline{\(p\)-norm} \(||\mathbf{x}||_p\) on \(\R^n\) as
 \begin{equation}
     ||\mathbf{x}||_p = \sqrt[p]{\sum_{i=1}^{n} |x_i|^p}
 \end{equation}
@@ -636,11 +636,11 @@ Using limits on the \(p\)-norm, we get
     \lim_{p\rightarrow\infty}||\mathbf{x}||_p = max(\mathbf{x}) \qquad\qquad \lim_{p \rightarrow 0} ||\mathbf{x}||_p = \infty
 \end{equation}}
 
-\separate{5}\definition{6.3.8}{Two vectors are \underline{orthogonal} if their dot product is zero.}
+\separate{7}\definition{6.3.8}{Two vectors are \underline{orthogonal} if their dot product is zero.}
 
-\separate{5}\definition{6.3.9}{Two vectors are \underline{normal} if their Manhattan norm is one.}
+\separate{7}\definition{6.3.9}{Two vectors are \underline{normal} if their Manhattan norm is one.}
 
-\separate{5}\definition{6.3.10}{A set of vectors is \underline{orthonormal} if they are all both orthogonal and normal.}
+\separate{7}\definition{6.3.10}{A set of vectors is \underline{orthonormal} if they are all both orthogonal and normal.}
 
 \section{Eigenvectors and Eigenvalues}
 
@@ -652,21 +652,21 @@ Using limits on the \(p\)-norm, we get
 \end{equation}
 Where \(\lambda\) is the \underline{eigenvalue} of \(A\) corresponding to the \underline{eigenvector} \(\mathbf{x}\). }
 
-\separate{5}\definition{7.1.2}{The equation \(det(\lambda I - A) = 0\) is called the \underline{characteristic equation} of \(A\). In general, this is a polynomial where \(n\) is in the order of \(A\).}
+\separate{7}\definition{7.1.2}{The equation \(det(\lambda I - A) = 0\) is called the \underline{characteristic equation} of \(A\). In general, this is a polynomial where \(n\) is in the order of \(A\).}
 \begin{equation}
     p(\lambda) = \lambda^n + c_1\lambda^{n-1} + c_2\lambda^{n-2} + ... + c_n
 \end{equation}
 
-\separate{5}\theorem{7.1.1}{If \(A\) is an \(n \times n\) matrix, then \(\lambda\) is an eigenvalue of \(A\) iff it satisfies \(det(\lambda I - A) = 0\).}
+\separate{7}\theorem{7.1.1}{If \(A\) is an \(n \times n\) matrix, then \(\lambda\) is an eigenvalue of \(A\) iff it satisfies \(det(\lambda I - A) = 0\).}
 {By definition, \(\lambda\) is an eigenvalue of \(A\) iff \(A\mathbf{x} = \lambda\mathbf{x}\) for some \(\mathbf{x} \in \R^n,\;\mathbf{x} \neq 0\). We have
 \begin{equation}
     A\mathbf{x} = \lambda\mathbf{x} \quad\iff\quad A\mathbf{x} = \lambda I \mathbf{x} \quad\iff\quad (\lambda I - A)\mathbf{x} = 0 
 \end{equation}
 By theorem about invertible matrices, the last equation has solution \(\mathbf{x} \neq 0\) iff \(det(\lambda I - A) = 0\).}
 
-\separate{5}\definition{7.1.3}{For a matrix \(A\) with eigenvalue \(\lambda\), the null space of \(\lambda I - A\) is called its \underline{eigenspace} where the non-zero vectors in this space are the eigenvectors corresponding to \(\lambda\).}
+\separate{7}\definition{7.1.3}{For a matrix \(A\) with eigenvalue \(\lambda\), the null space of \(\lambda I - A\) is called its \underline{eigenspace} where the non-zero vectors in this space are the eigenvectors corresponding to \(\lambda\).}
 
-\separate{5}Let \(\lambda_0\) be an eigenvalue of a matrix \(A\):
+\separate{7}Let \(\lambda_0\) be an eigenvalue of a matrix \(A\):
 \begin{itemize}
     \item \definition{7.1.4}{The \underline{algebraic multiplicity} of \(\lambda_0\) is the power \(k\) with which \((\lambda - \lambda_0)\) appears as a factor of \(det(\lambda I - A)\).}
     \item \definition{7.1.5}{The \underline{geometric multiplicity} of \(\lambda_0\) is the dimension of the eigenspace corresponding to \(\lambda_0\).}
@@ -704,10 +704,10 @@ For any vectors \(\mathbf{u},\;\mathbf{v},\;\mathbf{w} \in \C^n\) and a scalar \
     \item \(\mathbf{v} \cdot \mathbf{v} \geq 0\) and \(\mathbf{v} \cdot \mathbf{v} = 0\) iff \(\mathbf{v} = 0\).
 \end{itemize}
 
-\separate{5}\theorem{7.2.1}{If \(\lambda\) is an eigenvalue of a real \(n \times n\) matrix \(A\) and \(\mathbf{x}\) is a corresponding eigenvector, then \(\overline{\lambda}\) is also an eigenvalue of \(A\) and \(\overline{\mathbf{x}}\) is a corresponding eigenvector.}
+\separate{7}\theorem{7.2.1}{If \(\lambda\) is an eigenvalue of a real \(n \times n\) matrix \(A\) and \(\mathbf{x}\) is a corresponding eigenvector, then \(\overline{\lambda}\) is also an eigenvalue of \(A\) and \(\overline{\mathbf{x}}\) is a corresponding eigenvector.}
 {Since \(A\) is real, we have \(A\overline{\mathbf{x}} = \overline{A}\overline{\mathbf{x}} = \overline{A\mathbf{x}} = \overline{\lambda\mathbf{x}} = \overline{\lambda}\overline{\mathbf{x}}\).}
 
-\separate{5}\theorem{7.2.2}{If \(A\) is a real symmetric matrix, then all (complex) eigenvalues of \(A\) are real.}
+\separate{7}\theorem{7.2.2}{If \(A\) is a real symmetric matrix, then all (complex) eigenvalues of \(A\) are real.}
 {Let \(\lambda \in \C\) be an eigenvalue of \(A\) and \(\mathbf{x} \in \C^n\) a corresponding eigenvector. Take the complex conjugate of both sides of the equation \(A\mathbf{x} = \lambda\mathbf{x}\). We get \(\overline{A}\overline{\mathbf{x}} = \overline{\lambda}\overline{\mathbf{x}}\), and, since \(A = \overline{A}\), it follows that \(A\overline{\mathbf{x}} = \overline{\lambda}\overline{\mathbf{x}}\). Then, using \(A=A^T\), we compute the number \(\overline{\mathbf{x}}^TA\mathbf{x}\) in two different ways:
 \begin{equation}
     \overline{\mathbf{x}}^TA\mathbf{x} = \overline{\mathbf{x}}^T(A\mathbf{x}) = \overline{\mathbf{x}}^T(\lambda\mathbf{x}) = \lambda(\overline{\mathbf{x}}^T\mathbf{x}) = \lambda(\mathbf{x} \cdot \mathbf{x}) = \lambda||\mathbf{x}||^2
@@ -728,9 +728,9 @@ Since \(\mathbf{x} \neq 0\), we have \(||\mathbf{x}|| \neq 0\), so \(\lambda||\m
 
 \definition{8.1.1}{Matrix \underline{decomposition} or factorisation is the process of representing a matrix as a product of two or more matrices with useful properties.}
 
-\separate{5}\definition{8.1.2}{An \underline{elementary matrix} is a matrix which differs from the identity matrix as a result of one elementary row operation (switching, addition, or multiplication).}
+\separate{7}\definition{8.1.2}{An \underline{elementary matrix} is a matrix which differs from the identity matrix as a result of one elementary row operation (switching, addition, or multiplication).}
 
-\separate{5}\definition{8.1.3}{\underline{LU decomposition} is a method for solving linear systems by reducing the problem into two triangular systems. This method can be used on a square matrix \(A\) if \(U\) is its row echelon form, which was produced without any row exchanges being performed. The method is as follows:}
+\separate{7}\definition{8.1.3}{\underline{LU decomposition} is a method for solving linear systems by reducing the problem into two triangular systems. This method can be used on a square matrix \(A\) if \(U\) is its row echelon form, which was produced without any row exchanges being performed. The method is as follows:}
 \begin{enumerate}
     \item Keep track of the row operations used to compute \(U\) by Gaussian elimination.
     \item Let \(E_1,\;...,\;E_k\) be the corresponding elementary matrices for each row operation.
@@ -738,19 +738,19 @@ Since \(\mathbf{x} \neq 0\), we have \(||\mathbf{x}|| \neq 0\), so \(\lambda||\m
     \item Compute \(L = (E_1)^{-1} (E_2)^{-1} ... (E_k)^{-1} I\) by applying the corresponding row operations to the identity matrix.
 \end{enumerate}
 
-\separate{5}\definition{8.1.4}{A \underline{permutation matrix} is a square matrix \(P\) obtained from \(I\) by permuting its rows.}
+\separate{7}\definition{8.1.4}{A \underline{permutation matrix} is a square matrix \(P\) obtained from \(I\) by permuting its rows.}
 
-\separate{5}\definition{8.1.5}{A \underline{PLU decomposition} of a square matrix \(A\) is a representation \(A=PLU\) where \(P\) is a permutation matrix, \(L\) is lower triangular, and \(U\) is upper triangular.}
+\separate{7}\definition{8.1.5}{A \underline{PLU decomposition} of a square matrix \(A\) is a representation \(A=PLU\) where \(P\) is a permutation matrix, \(L\) is lower triangular, and \(U\) is upper triangular.}
 
 \subsection{Eigendecomposition}
 
 \definition{8.2.1}{\underline{Eigendecomposition} is the process of decomposing a matrix into \(PDP^{-1}\) form where \(P\) are eigenvectors and \(D\) is a diagonal matrix of eigenvalues.}
 
-\separate{5}\definition{8.2.2}{Square matrices \(A\) and \(B\) are called \underline{similar} if \(A=P^{-1}BP\) for some invertible \(P\). These matrices will have the same determinant, rank, trace, nullity, eigenvalues, etc.}
+\separate{7}\definition{8.2.2}{Square matrices \(A\) and \(B\) are called \underline{similar} if \(A=P^{-1}BP\) for some invertible \(P\). These matrices will have the same determinant, rank, trace, nullity, eigenvalues, etc.}
 
-\separate{5}\theorem{8.2.1}{Matrices \(A\) and \(B\) are similar iff they represent the same linear operator \(f:\R^n\rightarrow\R^n\), possibly in different bases.}{Proof omitted.}
+\separate{7}\theorem{8.2.1}{Matrices \(A\) and \(B\) are similar iff they represent the same linear operator \(f:\R^n\rightarrow\R^n\), possibly in different bases.}{Proof omitted.}
 
-\separate{5}\definition{8.2.3}{A matrix \(A\) is called \underline{diagonalisable} if it is similar to a diagonal matrix, i.e., there exists an invertible matrix \(P\) such that \(P^{-1}AP\) is diagonal. Then \(P\) is said to \underline{diagonalise} \(A\).}
+\separate{7}\definition{8.2.3}{A matrix \(A\) is called \underline{diagonalisable} if it is similar to a diagonal matrix, i.e., there exists an invertible matrix \(P\) such that \(P^{-1}AP\) is diagonal. Then \(P\) is said to \underline{diagonalise} \(A\).}
 
 \newpage\noindent\theorem{8.2.2}{An \(\underline{n \times n}\) matrix is diagonalisable iff it has \(n\) linearly independent eigenvectors.}
 {\((\implies).\) Assume that there is an invertible matrix \(P\) and a diagonal matrix \(D = diag(\lambda_1,...,\lambda_n)\) such that \(D=P^{-1}AP\), or \(AP=PD\). Denote the \(i\) column vectors of \(P\) as \(\mathbf{p}_i\), then
@@ -763,7 +763,7 @@ On the other hand,
 \end{equation}
 Since \(AP=PD\), we conclude that \(A\mathbf{p}_i = \lambda\mathbf{p}_i\) for all \(1 \leq i \neq n\). Since \(P\) is invertible, its rank is \(n\) and so the vectors \(\mathbf{p}_1,\;...,\;\mathbf{p}_n\) are linearly independent, making each of them an eigenvector.\begin{flushright}\(\square\)\end{flushright}
 
-\separate{5}\((\impliedby).\)
+\separate{7}\((\impliedby).\)
 }
 
 \subsection{QR Decomposition}
