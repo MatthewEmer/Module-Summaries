@@ -590,7 +590,42 @@ On the other hand,
 \end{equation}
 Since \(AP=PD\), we conclude that \(A\mathbf{p}_i = \lambda\mathbf{p}_i\) for all \(1 \leq i \neq n\). Since \(P\) is invertible, its rank is \(n\) and so the vectors \(\mathbf{p}_1,\;...,\;\mathbf{p}_n\) are linearly independent, making each of them an eigenvector.\begin{flushright}\(\square\)\end{flushright}
 
-\separate{7}\((\impliedby).\)}
+\separate{7}\((\impliedby).\) Assume that \(A\) has \(n\) linearly independent eigenvectors \(\mathbf{p}_1,\;...,\;\mathbf{p}_n\) and let \(\lambda_1,\;...,\;\lambda_n\) be the corresponding eigenvalues. Define
+\begin{equation}
+    P = [\mathbf{p}_1|...|\mathbf{p}_n] \quad\text{ and }quad D = diag(lambda_1,\;...,\;\lambda_n)
+\end{equation}
+Then
+\begin{equation}
+    AP = A[\mathbf{p}_1|...|\mathbf{p}_n] = [A\mathbf{p}_1|...|A\mathbf{p}_n] = [\lambda_1\mathbf{p}_1|...|\lambda_n\mathbf{p}_n] = PD
+\end{equation}
+The columns of \(P\) are linearly independent, so its rank is \(n\) and it is invertible. Finally, \(AP=PD\) is equivalent to \(D=P^{-1}AP\).}
+
+\separate{7}To diagonalise a matrix \(A\), we apply the following algorithm:
+\begin{enumerate}
+    \item Find the eigenvalues of \(A\).
+    \item Find a basis in each eigenspace of \(A\) and merge these bases into one set \(S\).
+    \item If \(S\) has fewer than \(n\) vectors then \(A\) is not diagonalisable.
+    \item Else, form the matrix \(P = [\mathbf{p}_1|...|\mathbf{p}_n]\) where \(S = \{\mathbf{p}_1,\;...,\;\mathbf{p}_n\}\). The set \(S\) contains \(n\) vectors and is linearly independent so is a basis for \(\R^n\), hence \(P\) is invertible.
+    \item The matrix \(D=P^{-1}AP\) is diagonal, \(D=diag(\lambda_1,\;...,\;\lambda_n)\) where, for each \(i\), \(\lambda_i\) is the eigenvalue corresponding to \(\mathbf{p}_i\).
+\end{enumerate}
+
+\separate{7}\definition{12.4.2.4}{Let \(A\) be a diagonalisable matrix. We have \(A=PDP^{-1}\). Since the factors in this decomposition are made of eigenvectors and eigenvalues, it is called an \underline{eigendecomposition} of \(A\).}
+
+\separate{7}\theorem{12.4.2.3}{If vectors \(\mathbf{v}_1,\;...,\;\mathbf{v}_k\) are eigenvectors of a matrix \(A\) corresponding to pairwise distinct eigenvectors \(\lambda_1,\;...,\;\lambda_k\), then the set \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_k\}\) is linearly independent.}
+{Let \(r \leq k\) be the largest number such that \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_r\}\) is linearly independent. Assume for contradiction that \(r < k\), so \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_r,\;\mathbf{v}_{r+1}\}\) is linearly dependent:
+\begin{equation}
+    c_1\mathbf{v}_1 + ... + c_r\mathbf{v}_r + c_{r+1}\mathbf{v}_{r+1} = 0
+\end{equation} 
+where not all \(c_1,\;...c_r,\;c_{r+1}\) are 0. Since \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_{r}\}\) is linearly independent, we conclude that \(c_{r+1} \neq 0\). Since \(\mathbf{v}_{r+1}\) is an eigenvector, we concluse that \(c_i \neq 0\) for some \(i \leq r\). We assumed that \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_r\}\) is linearly independent, but \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_r,\;\mathbf{v}_{r+1}\}\) is not. We derived that \(c_{r+1} \neq 0\) and \(c_i \neq 0\) for some \(i \leq r\). Left multiply both sides of the linear combination by \(A\) and use \(A\mathbf{v}_i = \lambda_i\mathbf{v}_i\):
+\begin{equation}
+    c_1\lambda_1\mathbf{v}_1 + ... + c_r\lambda_r\mathbf{v}_r + c_{r+1}\lambda_{r+1}\mathbf{v}_{r+1} = 0
+\end{equation}
+Instead multiplying the original equation by \(\lambda_{r+1}\) and subtracting the result, we get
+\begin{equation}
+    c_1(\lambda_1 - \lambda_{r+1})\mathbf{v}_1 + ... + c_r(\lambda_r - \lambda_{r+1})\mathbf{v}_r = 0
+\end{equation}
+So \(c_i(\lambda_i - \lambda_{r+1}) = 0\), and hence \(c_i = 0\), for all \(i \leq r\), a contradition.
+}
 
 \subsubsection{QR Decomposition}
 
