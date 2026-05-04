@@ -563,7 +563,17 @@ This can be achieved using one of the following algorithms: first come, first se
 
 \separate{7}\definition{10.2.16}{Memory protection is implemented by associating a protection bit with each friend. This is done by attaching a \underline{valid-invalid bit} to each entry where valid indicates that the associated page is in the process's logical address space, and thus is a legal page.}
 
-\separate{10}\textbf{UP TO LECTURE 6}
+\separate{7}\definition{10.2.17}{The \underline{page fault rate} is the percentage of page references which are invalid (represented as a decimal).}
+
+\separate{7}\definition{10.2.18}{\underline{Demand paging} limits the pages in memory to those which are currently required by the process during execution. This reduces the number of pages to be processed and the number of frames allocated to a process whilst increasing overall response time for a collection of processes and the number of processes executing.}
+
+\separate{7}\definition{10.2.19}{\underline{Page replacement} finds some page in memory that isn't really in use and swaps it out for some other required page.}
+
+\separate{7}\definition{10.2.20}{\underline{Belady's anomaly} states that, for some page fault algorithms, the page fault rate may increase as the number of allocated frames increases.}
+
+\separate{7}\definition{10.2.21}{\underline{Thrashing} occurs when a process is spending more time paging than doing actual work. If a process does not have enough pages, then the page-fault rate is very high.}
+
+\separate{7}\definition{10.2.22}{\underline{Prepaging} is the process of moving all the required pages into memory at once.}
 
 \subsection{Storage Management}
 
