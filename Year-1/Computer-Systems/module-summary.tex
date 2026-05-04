@@ -584,18 +584,38 @@ The performance of a disk storage device is dependent on four factors: seek time
 \separate{7}\definition{10.3.2}{\underline{Network-attached storage} is storage made available over a network rather than over a local connection.}
 
 \separate{7}\definition{10.3.3}{\underline{Redundant array of inexpensive disk} uses multiple disk drives to increases reliability via redundancy. It is arranged in seven levels:}
-\begin{itemize}
+\begin{enumerate}
     \setcounter{enumi}{-1}
-    \item RAID 0: Non-redundant striping.
-    \item RAID 1: Mirrored disks.
-    \item RAID 2: Memory-style error-correcting codes.
-    \item RAID 3: Bit-interleaved parity.
-    \item RAID 4: Block-interleaved parity.
-    \item RAID 5: Block-interleaved distributed parity.
-    \item RAID 6: P+Q redundancy.
-\end{itemize}
+    \item Non-redundant striping.
+    \item Mirrored disks.
+    \item Memory-style error-correcting codes.
+    \item Bit-interleaved parity.
+    \item Block-interleaved parity.
+    \item Block-interleaved distributed parity.
+    \item P+Q redundancy.
+\end{enumerate}
 
 \subsection{Deadlocks}
+
+\definition{10.4.1}{A set of processes is \underline{deadlocked} if each process in the set is waiting for an event that only another process in the set can cause. A deadlock must fulfill the following conditions:}
+\begin{itemize}
+    \item \definition{10.4.2}{\underline{Mutual exclusion}, only one process at a time can use a resource.}
+    \item \definition{10.4.3}{\underline{Hold and wait}, a process holding at least one resource is waiting to acquire additional resources held by other processes.}
+    \item \definition{10.4.4}{\underline{No preemption}, a resource can be only be released voluntarily by the process holding it, after that a process has completed its task.}
+    \item \definition{10.4.5}{\underline{Circular wait}, there exists a set of waiting processes such that the first process is waiting for a resource from the second process, which is waiting for a resource from the third process, and so on such that the final process is waiting on a resource from the first process.}
+\end{itemize}
+
+\separate{7}\definition{10.4.6}{A \underline{resource-allocation graph} has a set of vertices separated into two sets, processes and resources, and a set of edges, where each of which can either be a request or assignment edge.}
+
+\separate{7}We can deal with deadlocks in one of the following ways:
+\begin{itemize}
+    \item \definition{10.4.7}{The \underline{ostrich algorithm} where we simply pretend there is no problem.}
+    \item \definition{10.4.8}{\underline{Deadlock prevention} where processes are limited to holding one resource at a time.}
+    \item \definition{10.4.9}{\underline{Deadlock avoidance} where each process declares the maximum number of resources of each type that it might need.}
+    \item \definition{10.4.10}{\underline{Process termination} is used to recover from deadlocks by selecting a victim with the minimum cost, or rolling back to a safe state.}
+\end{itemize}
+
+\separate{7}\definition{10.4.11}{The system is in a \underline{safe state} if there exists a sequence of all the processes in the system such that, for each process, the resources it is able to request can be satisfied from currently available resources. }
 
 \newpage\part{References}
 
