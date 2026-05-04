@@ -577,6 +577,24 @@ This can be achieved using one of the following algorithms: first come, first se
 
 \subsection{Storage Management}
 
+The performance of a disk storage device is dependent on four factors: seek time, the time to move the head to the target track; rotational delay/latency, the time waiting for the target sector to rotate under the head; access time, seek time + latency; and transfer time.
+
+\separate{7}\definition{10.3.1}{\underline{Disk bandwidth} is the total number of bytes transferred, divided by the total time between the first request for service and the completion of the last transfer.}
+
+\separate{7}\definition{10.3.2}{\underline{Network-attached storage} is storage made available over a network rather than over a local connection.}
+
+\separate{7}\definition{10.3.3}{\underline{Redundant array of inexpensive disk} uses multiple disk drives to increases reliability via redundancy. It is arranged in seven levels:}
+\begin{itemize}
+    \setcounter{enumi}{-1}
+    \item RAID 0: Non-redundant striping.
+    \item RAID 1: Mirrored disks.
+    \item RAID 2: Memory-style error-correcting codes.
+    \item RAID 3: Bit-interleaved parity.
+    \item RAID 4: Block-interleaved parity.
+    \item RAID 5: Block-interleaved distributed parity.
+    \item RAID 6: P+Q redundancy.
+\end{itemize}
+
 \subsection{Deadlocks}
 
 \newpage\part{References}
