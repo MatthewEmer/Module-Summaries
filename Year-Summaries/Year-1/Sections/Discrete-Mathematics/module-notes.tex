@@ -1,0 +1,67 @@
+\section{Introduction to Discrete Mathematics}\label{dm:section:1.idm}
+
+\subsection{Arrangements and Permutations}
+
+\subsubsection{Arrangements}
+
+\definition{13.1.1.1}{An \underline{arrangement} is a sequence of items in which the order of the items in the sequence matters.}
+
+\separate{7}\definition{13.1.1.2}{The \underline{length} of an arrangement is the number of items in the sequence.}
+
+\separate{7}\standardproblem{1}{How many arrangements of length \(k\) can be made from elements of a set \(S\) of size \(|S|=n\)?}
+{\(n^k\) as arrangement has \(k\) places, each of which can be occupied by any one of \(n\) entries.}
+
+\separate{7}\example{13.1.1.1}{How many four-letter \say{words} can be made from the standard A-Z alphabet?
+
+\separate{3}\textit{Solution}: \(26^4 = 456,796\) words.}
+
+\separate{7}\standardproblem{2}{How many arrangements of length \(k\) with no repeats can be made from elements of a set \(S\) of size \(|S|=n\)?}
+{\begin{equation} 
+    n(n-1)(n-2)...(n-k+1) = \frac{n!}{(n-k)!},\qquad k \leq n    
+\end{equation}
+As we look at the available choices for each successive item in the list, the number of options is reduced by one each time.}
+
+\separate{7}\definition{13.1.1.3}{The \underline{multiplication principle} states that, for an arrangement of length \(k\), if for \(i \in \{1,\;2,\;...,\;k\}\) there are \(n_i\) choices for the \(n^{th}\) item, regardless of previous choices, then the number of possible arrangements is \(n_1n_2...n_k\).}
+
+\subsubsection{Permutations}
+
+\definition{13.1.2.1}{A \underline{permutation} on a finite set \(S\) is an arrangement of length \(|S|\) that uses each item from \(S\) exactly once.}
+
+\separate{7}\proposition{13.1.2.1}{If \(|S|=n\), then there are \(n!\) permutations on \(S\).}
+{This is \hyperref[prob:2]{Standard Problem 2} with \(n=k\).}
+
+\separate{7}\definition{13.1.2.2}{We generalise this concept as, for a non-negative integer \(r\), an \underline{\(r\)-permutation} on \(S\) is an arrangement of \(r\) distinct elements from \(S\). We write \(P(n,r)\) for the number of \(r\)-permutations on a set of size \(n\), which, by \hyperref[prob:2]{Standard Problem 2}, we have,
+\begin{equation}
+    P(n,r) = n(n-1)...(n-r+1) = \frac{n!}{(n-r)!},\qquad 0 \leq r \leq n
+\end{equation}}
+
+\subsubsection{Counting Examples}
+
+\definition{13.1.3.1}{The \underline{addition principle} states that, for two disjoint, finite sets \(A\) and \(B\). Then,
+\begin{equation}
+    A \cap B = \emptyset \qquad |A \cup B| = |A| + |B|
+\end{equation}
+More generally, if \(A_1,\;A_2,\;...,\;A_n\) are pairwise disjoint, then
+\begin{equation}
+    |A_1 \cup A_2 \cup ... \cup A_n| = |A_1| + |A_2| + ... + |A_n|
+\end{equation}}
+
+\subsection{Combinations}
+
+\subsection{Arrangements and Combinations with Repetitions}
+
+\section{Combinatorics}\label{dm:section:2.com}
+
+\subsection{The Three Principles}
+
+\subsection{Recurrence Relations}
+
+\subsection{Generating Functions}
+
+\section{Graph Theory}\label{dm:section:3.gt}
+
+\subsection{What is a Graph?}
+
+\subsection{Eulerian Graphs}
+
+\subsection{Planar Graphs}
