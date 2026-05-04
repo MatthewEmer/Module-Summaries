@@ -434,7 +434,12 @@ These rules are complete and sound, and can be used to derive another three rule
 \begin{itemize}
     \item \definition{9.1.2}{A \underline{resource allocator}. It is responsible for the management of the computer system's resources.}
     \item \definition{9.1.3}{A \underline{control program}. It controls the execution of user programs and operation of the input/output devices to prevent errors and improper use of the computer.}
-    \item \definition{9.1.4}{A \underline{kernel}. It is the one program that runs all of the time.}
+    \item \definition{9.1.4}{A \underline{kernel}. It is the one program that runs all of the time. It consists of: the privileged instruction set, an interrupt mechanism, memory protection, and a real-time clock. It also has:}
+    \begin{itemize}
+        \item \definition{9.1.5}{A \underline{first-level interrupt handler} which determines the source of an interrupt and initiates servicing the interrupt.}
+        \item \definition{9.1.6}{The \underline{dispatcher} which assigns processing resources for processes and is initiated when a current process cannot continue, or if the CPU may be used better elsewhere.}
+        \item Intra operating system communications.
+    \end{itemize}
 \end{itemize}
 
 \subsection{Operating System Design}
@@ -467,11 +472,35 @@ These rules are complete and sound, and can be used to derive another three rule
 
 \separate{7}\definition{9.3.4}{A process can, as a \underline{parent process}, create a number of \underline{child processes}, which in turn can create other processes, forming a \underline{tree of processes}. A parent process may share some of its resources with its children, and they can either execute concurrently or sequentially.}
 
-\separate{10}\textbf{Lecture 2 - Slide 11}
+\separate{7}\definition{9.3.5}{The \underline{process scheduler} selects which of the currently available processes will be executed next by the CPU. It maintains the following schedulling queues:}
+\begin{itemize}
+    \item \definition{9.3.6}{The \underline{job queue} is the set of all processes in the system.}
+    \item \definition{9.3.7}{The \underline{ready queue} is the set of all processes residing in main memory, ready and waiting to execute.}
+    \item \definition{9.3.8}{The \underline{device queues} are sets of processes waiting for I/O devices.}
+\end{itemize}
+
+\separate{7}\definition{9.3.9}{A \underline{thread} is a unit of execution which can be traced and that belongs to a process. It can either be a user or kernel thread.}
+
+\separate{7}The thread model of processing uses local variables within threads, with global variables being available to all threads. The model is frequently used as: it requires less time to create or terminate threads vs. processes; it may allow for execution to continue, even if part of a process is blocked; threads can share processing resources; creating threads is cheaper than creating processes or context switching; and processes can take advantage of multiprocessor architectures, increasing scalability.
+
+\separate{7}\definition{9.3.10}{\underline{Amdah's Law} states that performance gains from adding additional cores with serial and parallel components follows the following equation:
+\begin{equation}
+    speedup \leq \frac{1}{S+\frac{(1-S)}{N}}
+\end{equation}
+where \(S\) is the serial portion and \(N\) is the number of processing cores.}
+
+\separate{3}For example, if an application is \(75\%\) parallel, moving from one to two cores will result in a speedup of 1.6 times. As \(N\) approaches infinity, the speedup approaches \(\frac{1}{S}\).
+
+\separate{7}Multithreading can be accomplished by using one of three models:
+\begin{itemize}
+    \item \definition{9.3.11}{The \underline{many-to-one model} maps many user-level threads to a single kernel thread.}
+    \item \definition{9.3.12}{The \underline{one-to-one model} maps each user-level thread to a kernel thread, allowing for greater concurrency.}
+    \item \definition{9.3.13}{The \underline{many-to-many model} allows many user-level threads to be mapped to many kernel threads.}
+\end{itemize}
 
 \section{Process, Memory, and Storage Management}
 
-\subsection{Process Management}
+\subsection{CPU Scheduling}
 
 \subsection{Memory Management}
 
