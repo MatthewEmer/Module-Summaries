@@ -218,7 +218,7 @@ But \(\epsilon\) was arbitrary, so we have shown that, for any \(\epsilon' > 0\)
 \begin{equation}
     \lim_{n\rightarrow\infty}\left|\frac{a_{n+1}}{a_n}\right| < r \quad\rightarrow\quad |a_{n+1}| < r|a_n|
 \end{equation}
-Then \(|a_{n+2}| < r|a_{n+1}| < r^2|a_n|\) and \(|a_{n+3}| < r|a_{n+2} < r^3|a_n|\) etc. So the remainder is
+\newpage\noindent Then \(|a_{n+2}| < r|a_{n+1}| < r^2|a_n|\) and \(|a_{n+3}| < r|a_{n+2} < r^3|a_n|\) etc. So the remainder is
 \begin{equation}
     R_{n+m} = \lim_{m\rightarrow\infty}\left(|a_n|r^{m+1}\frac{1}{1-r}\right) = 0
 \end{equation}
@@ -231,7 +231,7 @@ Hence the series converges.}
     \item If \(L = 1\), then the test fails.
 \end{itemize}}
 
-\newpage\noindent\definition{11.4.1.8}{The \underline{alternating series test} states that the series \(\sum_{n=1}^{\infty}(-1)^{n+1}a_n\) converges if \(a_n > 0\), \(a_{n+1} \leq a_n\;\forall n\), and \(\lim_{n\rightarrow\infty}a_n = 0\)}
+\separate{7}\definition{11.4.1.8}{The \underline{alternating series test} states that the series \(\sum_{n=1}^{\infty}(-1)^{n+1}a_n\) converges if \(a_n > 0\), \(a_{n+1} \leq a_n\;\forall n\), and \(\lim_{n\rightarrow\infty}a_n = 0\)}
 
 \separate{7}\theorem{11.4.1.4}{Every subsequence of a convergent sequence converges to the same limit as the original sequence.}
 {Let \(\{a_{n_k}\}\) be a subsequence of \(\{a_n\}\). First note that \(n_k \geq k\) and so \(n_{k+1} \geq k + 1\). Let \(\lim_{n\rightarrow\infty}a_n = L\). Then, for any \(\epsilon > 0\), there exists \(N_\epsilon\) such that for all \(n > N_\epsilon\) it holds that \(|a_n-L|<\epsilon\). Let \(k > N_\epsilon\), then \(n_k > N_\epsilon\) and so it must be that \(|a_{n_k} - L| < \epsilon\).}
@@ -270,7 +270,7 @@ or,
 \end{equation}
 This form is called the \underline{Taylor series expansion of \(f\)}.}
 
-\newpage\subsubsection{Taylor's Theorem}
+\subsubsection{Taylor's Theorem}
 
 \lemma{11.4.3.1}{If a real-valued function \(f\) is continuous on \([a,b]\), differentiable on \((a,b)\), and \(f(a) = f(b)\), then there exists \(\xi \in (a,b)\) such that \(f'(\xi) = 0\).}{Not proved here.}
 
