@@ -608,6 +608,39 @@ This is the \underline{inner product on the space} \(C[a,b]\).}
 
 \subsubsection{The Gram-Schmidt Process}
 
+\definition{12.3.4.1}{A set of vectors in an inner product space is called \underline{orthogonal} if all pairs of distinct vectors in the set are orthogonal. An orthogonal set consisting of unit vectors is called \underline{orthonormal}.}
+
+\separate{7}\theorem{12.3.4.1}{If \(S = \{\mathbf{v}_1,\;...,\;\mathbf{v}_n\}\) is an orthogonal basis in inner product space \(V\), then for any \(\mathbf{u} \in V\),
+\begin{equation}
+    \mathbf{u} = \frac{\dotproduct{u}{v_1}}{||\mathbf{v}_1||^2}\mathbf{v}_1 + \frac{\dotproduct{u}{v_2}}{||\mathbf{v}_2||^2}\mathbf{v}_2 + ... + \frac{\dotproduct{u}{v_n}}{||\mathbf{v}_n||^2}\mathbf{v}_n
+\end{equation}
+Moreover, if \(S\) is an orthonormal basis in \(V\), then 
+\begin{equation}
+    \mathbf{u} = \dotproduct{u}{v_1}\mathbf{v}_1 + \dotproduct{u}{v_2}\mathbf{v}_2 + ... + \dotproduct{u}{v_n}\mathbf{v}_n
+\end{equation}}
+{If \(\mathbf{u} = c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + ... + c_n\mathbf{v}_n\) then, since \(\dotproduct{v_j}{v_i} = 0\) for all \(j \neq i\), we have that, for each \(i\), 
+\begin{equation}
+    \dotproduct{u}{v_i} = c_i\dotproduct{v_i}{v_i} = c_i||\mathbf{v}_i||^2
+\end{equation}
+So \(c_i = \frac{\dotproduct{u}{v_i}}{||v_i||^2}\) as required.}
+
+\separate{7}\definition{12.3.4.2}{The \underline{Projection Theorem} states that if \(W\) is a subspace in a finite-dimensional inner product space \(V\), then every vector \(\mathbf{u} \in V\) can be uniquely expressed as \(\mathbf{u} = \mathbf{w}_1 + \mathbf{w}_2\) where \(\mathbf{w}_1 \in W\) and \(\mathbf{w}_2 \in W^\perp\).}
+
+\separate{7}\definition{12.3.4.3}{Every non-zero finite-dimensional inner product space \(V\) has an orthonormal basis. This can be found using the \underline{Gram-Schmidt process}:}
+\begin{enumerate}
+    \item Let \(W\) be a subspace of \(V\) and let \(\{\mathbf{u}_1,\;...,\;\mathbf{u}_n\}\) be a basis of \(W\).
+    \item Let \(\mathbf{v}_1 = \mathbf{u}_1\). Clearly \(\{\mathbf{v}_1\}\) is an orthogonal basis for \(W_1 = span(\mathbf{u}_1)\).
+    \item If \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_{r-1}\}\) is an orthogonal basis for \(W_{r-1} = span(\mathbf{u}_1,\;...,\;\mathbf{u}_N)\), find a vector \(\mathbf{v}_r\) such that \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_{r}\}\) is an orthogonal basis for \(W_r\).
+    \begin{equation}
+        \mathbf{v}_r = proj_{W_{r-1}^\perp}\mathbf{u}_r = \mathbf{u}_r - \frac{\dotproduct{u_r}{v_1}}{||\mathbf{v}_1||^2}\mathbf{v}_1 - \frac{\dotproduct{u_r}{v_2}}{||\mathbf{v}_2||^2}\mathbf{v}_2 - ... - \frac{\dotproduct{u_r}{v_{r-1}}}{||\mathbf{v}_{r-1}||^2}\mathbf{v}_{r-1}
+    \end{equation}
+    \item Since \(\mathbf{v}_r \in W^\perp_{r-1}\), the set \(\{\mathbf{v}_1,\;...,\;\mathbf{v}_{r}\}\) is orthogonal.
+    \item Once all vectors have been found, they can be normalised to form an orthonormal basis for \(V\).
+\end{enumerate}
+
+\newpage\noindent\theorem{12.3.4.2}{If \(V\) is a finite-dimensional inner product space, then any orthogonal set of vectors in \(V\) can be extended into either an orthogonal or orthonormal basis.}
+{Let \(a=\{\mathbf{u}_1,\;...,\;\mathbf{u}_k\}\) be an orthogonal set in \(V\) and \(b=\{\mathbf{u}_{k+1},\;...,\;\mathbf{u}_{k+n}\}\) some basis in \(V\). Apply Gram-Schmidt to the \(b\), and since \(a\) is an orthogonal set, we will have \(\mathbf{v}_i = \mathbf{u}_i\) for \(1 \leq i \leq k\). If \(\mathbf{v}_r = \mathbf{0}\) at any step, do not add it to the output set. The final set will extend \(a\), it will be orthogonal, and its span will be \(span(a,b) = V\).}
+
 \subsection{Decomposition}
 
 \subsubsection{LU Decomposition}
