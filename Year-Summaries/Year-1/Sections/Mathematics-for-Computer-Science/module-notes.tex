@@ -547,15 +547,64 @@ Since \(\mathbf{x} \neq 0\), we have \(||\mathbf{x}|| \neq 0\), so \(\lambda||\m
 
 \subsubsection{Inner Product Spaces}
 
-\definition{12.3.3.1}{Let \(V\) be a real vector space. An \underline{inner product space} on \(V\) is a function that associates to each pair \(\mathbf{u},\;\mathbf{v} \in V\) a real number \(\langle \mathbf{u}, \mathbf{v} \rangle \in \R\), satisfying the following properties for all \(\mathbf{u},\;\mathbf{v},\;\mathbf{w} \in V\) and \(k \in \R\):}
+\definition{12.3.3.1}{Let \(V\) be a real vector space. An \underline{inner product space} on \(V\) is a function that associates to each pair \(\mathbf{u},\;\mathbf{v} \in V\) a real number \(\dotproduct{u}{v} \in \R\), satisfying the following properties for all \(\mathbf{u},\;\mathbf{v},\;\mathbf{w} \in V\) and \(k \in \R\):}
 \begin{itemize}
-    \item \definition{12.3.3.2}{The \underline{symmetry axiom}: \(\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle\).}
-    \item \definition{12.3.3.3}{The \underline{additivity axiom}: \(\langle \mathbf{u} + \mathbf{v}, \mathbf{w} \rangle = \langle \mathbf{u}, \mathbf{w} \rangle + \langle \mathbf{v}, \mathbf{w} \rangle\).}
-    \item \definition{12.3.3.4}{The \underline{homogeneity axoim}: \(\langle k\mathbf{u}, \mathbf{v} \rangle = k\langle \mathbf{u}, \mathbf{v} \rangle\).}
-    \item \definition{12.3.3.5}{The \underline{positivity axiom}: \(\langle \mathbf{v}, \mathbf{v} \rangle \geq 0\), and \(\langle \mathbf{v}, \mathbf{v} \rangle = 0\) iff \(\mathbf{v} = \mathbf{0}\).}
+    \item \definition{12.3.3.2}{The \underline{symmetry axiom}: \(\dotproduct{u}{v} = \dotproduct{v}{u}\).}
+    \item \definition{12.3.3.3}{The \underline{additivity axiom}: \(\dotproduct{u+v}{w} = \dotproduct{u}{w} + \dotproduct{v}{w}\).}
+    \item \definition{12.3.3.4}{The \underline{homogeneity axoim}: \(\langle k\mathbf{u},\mathbf{v}\rangle = k\dotproduct{u}{v}\).}
+    \item \definition{12.3.3.5}{The \underline{positivity axiom}: \(\dotproduct{v}{v} \geq 0\), and \(\dotproduct{v}{v} = 0\) iff \(\mathbf{v} = \mathbf{0}\).}
 \end{itemize}
 
-\separate{7}\definition{12.3.3.6}{Vectors \(\mathbf{u}\) and \(\mathbf{v}\) in an inner product space \(V\) are \underline{orthogonal} if \(\langle \mathbf{u}, \mathbf{v} \rangle = 0\).}
+\separate{7}\definition{12.3.3.6}{Vectors \(\mathbf{u}\) and \(\mathbf{v}\) in an inner product space \(V\) are \underline{orthogonal} if \(\dotproduct{u}{v} = 0\).}
+
+\separate{7}\definition{12.3.3.7}{Let \(W\) be a subspace in an inner product space \(V\). Then the set
+\begin{equation}
+    W^\perp = \{\mathbf{x} \in V | \dotproduct{u}{v} = 0 \,\forall \mathbf{u} \in W\}
+\end{equation}
+is called the \underline{orthogonal complement} of \(W\).}
+
+\separate{7}\definition{12.3.3.8}{Let \(w_1,\;...,\;w_n \in \R^+\) be arbitrary numbers, which we'll call weights. The \underline{weighted Eu-}\\\underline{clidean inner product} on \(\R^n\) is defined for vectors \(\mathbf{u},\;\mathbf{v}\) as:
+\begin{equation}
+    \dotproduct{u}{v} = w_1u_1v_1 + w_2u_2v_2 + ... + w_nu_nv_n
+\end{equation}}
+
+\separate{7}\definition{12.3.3.9}{Let \(A\) be an invertible \(n \times n\) matrix. Considering vectors in \(\R^n\) as column vectors, define,
+\begin{equation}
+    \dotproduct{u}{v} = A\mathbf{u} \cdot A\mathbf{v}
+\end{equation}
+where the right-hand side uses the standard dot product in \(\R^n\). This known as the \underline{inner product on \(\R^n\) gene-}\\\underline{rated by \(A\)}.}
+
+\separate{7}\definition{12.3.3.10}{For vectors \(\mathbf{p} = a_0 + a_1x + ... + a_nx^n\) and \(\mathbf{q} = b_0 + b_1x + ... + b_nx^n\) in \(\mathbb{P}_n\), define,
+\begin{equation}
+    \dotproduct{p}{q} = a_0b_0 + a_1b_1 + ... + a_nb_n
+\end{equation}
+This is called the \underline{standard inner product} on \(\mathbb{P}_n\).}
+
+\separate{7}\definition{12.3.3.11}{Fix distinct points \(x_0,\;x_1,\;...,\;x_n \in \R\) (called sample points). For vectors \(\mathbf{p} = p(x)\) and \(\mathbf{q} = q(x)\) in \(\mathbb{P}_n\), define
+\begin{equation}
+    \dotproduct{p}{q} = p(x_0)q(x_0) + p(x_1)q(x_1) + ... + p(x_n)q(x_n)
+\end{equation}
+This is called the \underline{evaluation inner product} at \(x_0,\;x_1,\;...,\;x_n\).}
+
+\separate{7}\definition{12.3.3.12}{Let \(C[a,b]\) consist of all functions that are continuous on interval \([a,b]\). The operations in \(C[a,b]\) are defined point-wise. For \(\mathbf{f} = f(x)\) and \(\mathbf{g} = g(x)\) in \(C[a,b]\), define,
+\begin{equation}
+    \dotproduct{f}{g} = \int_{a}^{b} f(x)g(x) dx
+\end{equation}
+This is the \underline{inner product on the space} \(C[a,b]\).}
+
+\separate{7}\definition{12.3.3.13}{For a complex vector \(\mathbf{v}\), the \underline{Hermitian conjugation} of \(\mathbf{v}\), denoted \(\mathbf{v}^\dag\) is the conjugate transpose of the vector, i.e., \(\mathbf{v}^\dag = \overline{(\mathbf{v}^T)}\). A complex square matrix is a \underline{Hermitian matrix} if it is equal to its own conjugate transpose.}
+
+\separate{7}\definition{12.3.3.14}{Considering vectors in \(\C^n\) as column vectors, the \underline{Hermitian inner product} is defined as
+\begin{equation}
+    \dotproduct{u}{v} = \mathbf{u}^\dag \mathbf{v}
+\end{equation}}
+
+\separate{7}Some standard (in)equalities for general inner products:
+\begin{itemize}
+    \item \definition{12.3.3.15}{\underline{Pythagoras' Theorem (inner-products)}, \(||\mathbf{u} + \mathbf{v}||^2 = ||\mathbf{u}||^2 + ||\mathbf{v}||^2\).}
+    \item \definition{12.3.3.16}{\underline{Cauchy-Schwarz Inequality (inner-products)}, \(|\dotproduct{u}{v}| \leq ||\mathbf{u}||\cdot||\mathbf{v}||\).}
+    \item \definition{12.3.3.17}{\underline{Triangle Inequality (inner-products)}, \(||\mathbf{u} + \mathbf{v}|| \leq ||\mathbf{u}|| + ||\mathbf{v}||\).}
+\end{itemize} 
 
 \subsubsection{The Gram-Schmidt Process}
 
