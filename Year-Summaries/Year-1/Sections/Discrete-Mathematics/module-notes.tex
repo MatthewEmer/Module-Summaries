@@ -48,6 +48,30 @@ More generally, if \(A_1,\;A_2,\;...,\;A_n\) are pairwise disjoint, then
 
 \subsection{Combinations}
 
+\definition{13.2.0.1}{A \underline{combination} from a set of objects is an unordered selection of objects of that set.}
+
+\separate{7}\standardproblem{3}{How many combinations without repetition do we have of a given size \(k\) from a set of size \(n\)?}
+{First consider that there are \(P(n,k) = \frac{n!}{(n-k)!}\) arrangements without repetition. These are ordered lists, sorting them into groups of lists using the same letters will give groups of size \(k!\). This means that the number of combinations is
+\begin{equation}
+    \frac{P(n,k)}{k!} = \frac{n!}{k!(n-k)!}
+\end{equation}
+Using the binomial coefficient notation, this means the number of combinations is \(\binom{n}{k}\).}
+
+\separate{7}\example{13.2.0.1}{How many ways are there of selecting ten different letters of the alphabet?
+
+\separate{3}\textit{Solution}: \(\binom{26}{10} = \frac{26!}{10!16!}\).}
+
+\separate{7}\proposition{13.2.0.1}{\(\binom{n}{k} = \binom{n}{n-k}\)}{This can be seen from the formula for the binomial.}
+
+\separate{7}\proposition{13.2.0.2}{Pascal's formula, for \(1 \leq k \leq (n-1),\;\binom{n}{k}=\binom{n-1}{k-1} + \binom{n-1}{k}\).}
+{Proof excluded.}
+
+\separate{7}\theorem{13.2.0.1}{The binomial theorem, if \(n\) is a positive integer and \(a,b \in \R\), then
+\begin{equation}
+    (a+b)^n = \sum^n_{k=0} \binom{n}{k} a^kb^{n-k}
+\end{equation}}
+{The expression \((a+b)(a+b)...(a+b)\) when multiplied out, gives various terms of the form \(a^kb^{n-k}\). For fixed \(k\), the number of terms \(a^kb^{n-k}\) is \(\binom{n}{k}\) since one chooses the \(k\) brackets in the product form from which to choose the factor \(a\) rather than \(b\).}
+
 \subsection{Arrangements and Combinations with Repetitions}
 
 \section{Combinatorics}\label{dm:section:2.com}
