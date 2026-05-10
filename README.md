@@ -13,6 +13,6 @@ This is my notes for the content of all of my BSc Computer Science modules at Du
 
 - Algorithms and Data Structures: 100%
 - Computer Systems: 100%
-- Mathematics for Computer Science: 90% - Decomposition
+- Mathematics for Computer Science: 100%
 - Discrete Mathematics: ~10%
 - Computational Thinking: 0%
