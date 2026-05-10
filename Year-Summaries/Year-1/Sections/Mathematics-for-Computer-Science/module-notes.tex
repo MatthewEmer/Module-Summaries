@@ -716,10 +716,63 @@ Instead multiplying the original equation by \(\lambda_{r+1}\) and subtracting t
 \begin{equation}
     c_1(\lambda_1 - \lambda_{r+1})\mathbf{v}_1 + ... + c_r(\lambda_r - \lambda_{r+1})\mathbf{v}_r = \mathbf{0}
 \end{equation}
-So \(c_i(\lambda_i - \lambda_{r+1}) = 0\), and hence \(c_i = 0\), for all \(i \leq r\), a contradition.
-}
+So \(c_i(\lambda_i - \lambda_{r+1}) = 0\), and hence \(c_i = 0\), for all \(i \leq r\), a contradiction.}
 
 \subsubsection{QR Decomposition}
+
+\theorem{12.4.3.1}{If \(A\) is an \(m \times n\) matrix with linearly independent column vectors, then it can be factored as \(A=QR\) where \(Q\) has orthonormal columns and \(R\) is an invertible, upper-triangular matrix.}
+{Let \(A\) be an \(m \times n\) matrix with linearly independent columns \(\mathbf{u}_1,\;...,\;\mathbf{u}_n\). Let \(Q\) be the matrix formed from the column vectors given by the orthonormal set \(\{\mathbf{q}_1,\;...,\;\mathbf{q}_n\}\) obtained by applying Gram-Schmidt to \(\{\mathbf{u}_1,\;...,\;\mathbf{u}_n\}\). Or, in matrix form:
+\begin{equation}
+    \left[\mathbf{u}_1 | ... | \mathbf{u}_n\right] = \left[\mathbf{q}_1 | ... | \mathbf{q}_n\right]
+    \begin{pmatrix}
+        \dotproduct{u_1}{q_1} & \dotproduct{u_2}{q_1} & ... & \dotproduct{u_n}{q_1} \\
+        \dotproduct{u_1}{q_2} & \dotproduct{u_2}{q_2} & ... & \dotproduct{u_n}{q_2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \dotproduct{u_1}{q_n} & \dotproduct{u_2}{q_n} & ... & \dotproduct{u_n}{q_n} 
+    \end{pmatrix}
+    = QR
+\end{equation}
+From Gram-Schmidt, for each \(j \geq 2\), \(\mathbf{q}_j\) is orthogonal to \(\mathbf{u}_1,\;...,\;\mathbf{u}_{j-1}\). Hence,
+\begin{equation}
+    R = \begin{pmatrix}
+        \dotproduct{u_1}{q_1} & \dotproduct{u_2}{q_1} & ... & \dotproduct{u_n}{q_1} \\
+        0 & \dotproduct{u_2}{q_2} & ... & \dotproduct{u_n}{q_2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & ... & \dotproduct{u_n}{q_n} 
+    \end{pmatrix}
+\end{equation}}
+
+\separate{7}\definition{12.4.3.1}{The \underline{least squares problem} states that, given a linear system \(A\mathbf{x} = \mathbf{b}\) with \(m\) equations and \(n\) variables, find a vector \(\mathbf{x}\) that minimises \(||\mathbf{b} - A\mathbf{x}||\) (w.r.t. to the Euclidean inner product on \(\R^n\)). We call such a vector \(\mathbf{x}\) a \underline{least squares solution} to the system, the vector \(\mathbf{b}-A\mathbf{x}\) is the \underline{least squares error vector}, and the number \(||\mathbf{b} - A\mathbf{x}||\) is the \underline{least squares error}.}
+
+\separate{7}\theorem{12.4.3.2}{If \(W\) is a finite-dimensional subspace in an inner product space \(V\) and \(\mathbf{b} \in V\), then \(proj_W\mathbf{b}\) is the best approximation to \(\mathbf{b}\) from \(W\) in the sense that
+\begin{equation}
+    ||\mathbf{b} - proj_W\mathbf{b}|| \leq ||\mathbf{b} - \mathbf{w}||
+\end{equation}
+For each vector \(\mathbf{w} \in W\), and the inequality is strict for all \(\mathbf{w} \neq proj_W\mathbf{b}\).}
+{For any vector \(\mathbf{w} \in W\), write
+\begin{equation}
+    \mathbf{b} - \mathbf{w} = (\mathbf{b} - proj_W\mathbf{b}) + (proj_W\mathbf{b} - \mathbf{w})
+\end{equation}
+By Pythagoras' theorem, we have,
+\begin{equation}
+    ||\mathbf{b} - \mathbf{w}||^2 = ||\mathbf{b} - proj_W\mathbf{b}||^2 + ||proj_W\mathbf{b} - \mathbf{w}||^2 \geq ||\mathbf{b} - proj_W\mathbf{b}||^2
+\end{equation}
+Moreover, the inequality is strict whenever \(\mathbf{w} \neq proj_W\mathbf{b}\).}
+
+\separate{7}We can find a least squares solution by:
+\begin{enumerate}
+    \item Let \(W = \{A\mathbf{x} | \mathbf{x} \in \R^n\}\) be the column space for \(A\).
+    \item Since \(proj_W\mathbf{b}\) is the best approximation to \(\mathbf{b}\) from \(W\), the least squares solutions to \(A\mathbf{x} = \mathbf{b}\) are exactly solutions to 
+    \begin{equation}\label{eq:1}
+        A\mathbf{x} = proj_W\mathbf{b}
+    \end{equation}
+    \item The representation \(\mathbf{b} = \mathbf{w}_1 + \mathbf{w}_2,\; \mathbf{w}_1 \in W,\; \mathbf{w}_2 \in W^\perp\) is unique, so \eqref{eq:1} is equivalent to the condition \(\mathbf{b} - A\mathbf{x} \in W^\perp\).
+    \item The columns of \(A\) are the rows of \(A^T\), so the condition can be rewritten as,
+    \begin{equation}
+        A^TA\mathbf{x} = A^T\mathbf{b}
+    \end{equation}
+    \definition{12.4.3.2}{The above equation is the \underline{normal equation} associated with \(A\mathbf{x} = \mathbf{b}\).}
+\end{enumerate}
 
 \subsubsection{Linear Regression}
 
