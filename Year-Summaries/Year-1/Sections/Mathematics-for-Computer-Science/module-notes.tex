@@ -793,3 +793,63 @@ Moreover, the inequality is strict whenever \(\mathbf{w} \neq proj_W\mathbf{b}\)
 \end{enumerate}
 
 \subsubsection{Spectral Decomposition}
+
+\definition{12.4.5.1}{A square matrix \(Q\) is known as an \underline{orthogonal matrix} if \(Q^T=Q^{-1}\).}
+
+\separate{7}\theorem{12.4.5.1}{For any \(n \times n\) matrix \(Q\), the following are equivalent:
+\begin{enumerate}
+    \item \(Q\) is orthogonal.
+    \item The rows of \(Q\) form an orthogonal basis in \(\R^n\).
+    \item The columns of \(Q\) form an orthogonal basis in \(\R^n\).
+\end{enumerate}}
+{For \((1) \iff (3)\): If \(Q = \left[\mathbf{u}_1 | ... | \mathbf{u}_n\right]\), then each entry \((i,j)\) in the product \(Q^TQ\) is \(\dotproduct{u_i}{u_j}\). Hence, \(Q^TQ = I\) iff we have \(\dotproduct{u_i}{u_j} = 0\) for all \(i \neq q\) and \(\dotproduct{u_i}{u_j} = 1\) for all \(i = j\), which holds iff the set \(\{\mathbf{u}_1,\;...,\;\mathbf{u}_n\}\) is orthonormal. Any orthonormal set with \(n\) vectors in \(\R^n\) is a basis.}
+
+\separate{7}Properties of an orthogonal matrix:
+\begin{itemize}
+    \item The transpose of an orthogonal matrix is also orthogonal.
+    \item The inverse of an orthogonal matrix is also orthogonal.
+    \item A product of orthogonal matrices is also orthogonal.
+    \item If \(Q\) is orthogonal then \(det(Q)=\pm 1\).
+\end{itemize}
+
+\separate{7}\definition{12.4.5.2}{Let \(A\) and \(B\) be two similar matrices such that \(P^{-1}AP = B\) where \(B\) is also a diagonal matrix. If \(P\) can be chosen to be orthogonal, then \(A\) and \(B\) are \underline{orthogonally similar}, and \(A\) is \underline{orthogonally diagonalisable}.}
+
+\newpage\noindent\theorem{12.4.5.2}{(The Spectral Theorem) For any \(n \times n\) matrix \(A\), the following are equivalent:
+\begin{enumerate}
+    \item \(A\) is orthogonally diagonalisable.
+    \item \(A\) has an orthonormal set of \(n\) eigenvectors.
+    \item \(A\) is symmetric.
+\end{enumerate}}
+{\((1) \iff (2)\) is the same as for general diagonalisation.
+
+\separate{3}\((1) \implies (3)\), If \(A = QDQ^T\), then \(A^T = (QDQ^T)^T = (Q^T)^TD^TQ^T = QDQ^T = A\).}
+
+\separate{7}\theorem{12.4.5.3}{If \(A\) is a symmetric matrix, then:
+\begin{enumerate}
+    \item All eigenvalues of \(A\) are real.
+    \item Eigenvectors from different eigenspaces are orthogonal.
+\end{enumerate}}
+{Proof for (1) is omitted.
+
+\separate{3}(2) Assume that \(\lambda_1\) and \(\lambda_2\) are two different eigenvalues of \(A\) with corresponding eigenvectors \(\mathbf{u}_1\) and \(\mathbf{u}_2\). We have:
+\begin{equation}
+    \lambda_1\dotproduct{u_1}{u_2} = \langle A\mathbf{u}_1,\mathbf{u}_2 \rangle
+\end{equation}
+Expanding the dot product, we get that
+\begin{equation}
+    (\mathbf{u}_1)^TA^T\mathbf{u}_2 = \langle \mathbf{u}_1,A\mathbf{u}_2 \rangle = \lambda_2\dotproduct{u_1}{u_2}
+\end{equation}
+Since \((\lambda_1 - \lambda_2)\dotproduct{u_1}{u_2} = 0\) and \(\lambda_1 \neq \lambda_2\), we get \(\dotproduct{u_1}{u_2} = 0\) as required.}
+
+\separate{7}Orthogonally diagonalising a symmetric matrix:
+\begin{enumerate}
+    \item Let \(A\) be a symmetric matrix.
+    \item Find the eigenvalues and a basis in each eigenspace of \(A\).
+    \item Apply Gram-Schmidt to each basis to obtain an orthonormal basis for each eigenspace.
+    \item Form the matrix \(Q\), whose columns are the vectors from Step 3. \(Q\) will orthogonally diagonalise \(A\), and the diagonal \(D = Q^TAQ\) contains the eigenvalues of \(A\) in the same order as the eigenvectors in \(Q\).
+\end{enumerate}
+
+\separate{7}\definition{12.4.5.3}{\underline{Spectral decomposition}: Let \(A\) be a symmetric matrix, \(\mathbf{u}_1,\;...,\;\mathbf{u}_n\) be an orthonormal basis of \(\R^n\) consisting of eigenvectors of \(A\), with \(\lambda_1,\;...,\;\lambda_n\) the corresponding eigenvalues.
+\begin{equation}
+    A = \lambda_1\mathbf{u}_1(\mathbf{u}_1)^T + \lambda_2\mathbf{u}_2(\mathbf{u}_2)^T + ... + \lambda_n\mathbf{u}_n(\mathbf{u}_n)^T
+\end{equation}}
