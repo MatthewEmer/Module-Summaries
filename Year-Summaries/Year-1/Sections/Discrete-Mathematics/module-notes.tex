@@ -144,7 +144,7 @@ Which simplifies to give the claimed result.
 
 \subsubsection{Mathematical Induction}
 
-Mathematical induction provides a method for establishing the truth of a sequence of statements, each of which is associated with a non-negative integer. In its simplest form, it gives efficient proofs of identities such as the binomial formula.
+\definition{14.1.1.1}{\underline{Mathematical induction} provides a method for establishing the truth of a sequence of statements, each of which is associated with a non-negative integer. In its simplest form, it gives efficient proofs of identities such as the binomial formula.}
 
 \separate{7}\theorem{14.1.1.1}{The principle of mathematical induction states that: suppose that \(P(n)\) is a sequence of propositions labelled by integers \(n \geq n_0\). Suppose that
 \begin{enumerate}[label=\alph*.]
@@ -156,7 +156,40 @@ Then, for every \(n \geq n_0\), \(P(n)\) is true.}
 
 \subsubsection{The Pidgeon-Hole Principle}
 
+\definition{14.1.2.1}{The \underline{pidgeon-hole principle} states that if \(n\) envelopes are distributed among \(m\) pidgeon-holes, and \(n \geq m\), then at least one pidgeon-hole contains more than one envelope.}
+
 \subsubsection{The Inclusion-Exclusion Principle}
+
+\proposition{14.1.3.1}{We have
+\begin{equation}
+    |A_1 \cup A_2 \cup A_3| = |A_1| + |A_2| + |A_3| - |A_1 \cap A_2| - |A_1 \cap A_3| - |A_2 \cap A_3| + |A_1 \cap A_2 \cap A_3|
+\end{equation}}
+{Apply \(|A_1 \cup A_2| = |A_1| + |A_2| - |A_1 \cap A_2|\) repeatedly.}
+
+\newpage\noindent\theorem{14.1.3.1}{The inclusion-exclusion formula states that, for a positive integer \(n\) and finite sets \(A_1,\;...,\;A_n\),
+\begin{equation}
+    |A_1 \cup A_2 \cup ... \cup A_n| = \sum^n_{k=1} \left((-1)^{k+1} \times \sum_{i_1<i_2<...<i_k} | A_{i_1} \cup A_{i_2} \cup ... \cup A_{i_k} | \right)
+\end{equation}}
+{A slightly tricky induction on \(n\), with the base case \(n=2\) given by \(|A_1 \cup A_2| = |A_1| + |A_2| - |A_1 \cap A_2|\).}
+
+\separate{7}\definition{14.1.3.1}{A \underline{derangement} of the numbers \(\{1,\;2,\;...,\;n\}\) is a permutation in which no number is in its correct position.}
+
+\separate{7}\proposition{14.1.3.2}{The number of derangements of \(1,\;2,\;...,\;n\) is given by
+\begin{equation}
+    d(n) = \sum_{k=0}^{n} (-1)^k \frac{n!}{k!}
+\end{equation}}
+{We subtract from \(n!\) the number of non-derangements to get
+\begin{equation}
+    d(n) = n!\sum_{k=0}^{n} (-1)^k \frac{1}{k!}
+\end{equation}}
+In particular, the proportion of permutations that are derangements is
+\begin{equation}
+    \frac{d(n)}{n!} = n!\sum_{k=0}^{n} (-1)^k \frac{1}{k!}
+\end{equation}
+This is the power series expansion of \(e^{-1}\), so
+\begin{equation}
+    \lim_{n \rightarrow \infty} \frac{d(n)}{n!} = \frac{1}{e}
+\end{equation}
 
 \subsection{Recurrence Relations}
 
