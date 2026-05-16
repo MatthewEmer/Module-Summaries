@@ -144,6 +144,16 @@ Which simplifies to give the claimed result.
 
 \subsubsection{Mathematical Induction}
 
+Mathematical induction provides a method for establishing the truth of a sequence of statements, each of which is associated with a non-negative integer. In its simplest form, it gives efficient proofs of identities such as the binomial formula.
+
+\separate{7}\theorem{14.1.1.1}{The principle of mathematical induction states that: suppose that \(P(n)\) is a sequence of propositions labelled by integers \(n \geq n_0\). Suppose that
+\begin{enumerate}[label=\alph*.]
+    \item \(P(n_0)\) is true, and
+    \item For any \(n \geq n_0\), the truth of \(P(n)\) implies the truth of \(P(n+1)\). 
+\end{enumerate}
+Then, for every \(n \geq n_0\), \(P(n)\) is true.}
+{\(P(n_0)\) is true by assumption (a). Then by (b), \(P(n_0 + 1)\) is also true. Again, by (b), \(P(n_0 + 2)\) is also true, and so on. This chain of deductions eventually reaches any given \(n \geq n_0\), so \(P(n)\) is true for all \(n \geq n_0\).}
+
 \subsubsection{The Pidgeon-Hole Principle}
 
 \subsubsection{The Inclusion-Exclusion Principle}
