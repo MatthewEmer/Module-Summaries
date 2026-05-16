@@ -193,6 +193,36 @@ This is the power series expansion of \(e^{-1}\), so
 
 \subsection{Recurrence Relations}
 
+\definition{14.2.0.1}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, a \underline{recurrence relation} for the sequence \(\{a_n\}\) is an equation that expresses \(a_n\) in terms of one or more of the previous terms of the sequence for all integers \(n\) with \(n \geq n_0\), where \(n_0\) is a non-negative integer.}
+
+\separate{7}\definition{14.2.0.2}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, a sequence is called a \underline{solution} of a recurrence relation if its terms satisfy the recurrence relation.}
+
+\separate{7}\definition{14.2.0.3}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, the \underline{initial conditions} for a sequence specify the terms that precede the first term where the recurrence relation takes effect.}
+
+\separate{7}Let \(\{a_n\}\) be a sequence indexed by integers \(n = 0,\;1,\;2,\;...\), we are given:
+\begin{itemize}
+    \item The initial conditions \(a_0,\;a_1,\;...,\;a_{r-1}\).
+    \item The recurrence relation 
+    \begin{equation}\label{equ:14.2.0.1}
+        a_n = \sum_{i=1}^{r} c_ia_{n-i} = c_1a_{n-1} + ... + c_ra_{n-r}, \quad (n \geq r)
+    \end{equation}
+    where \(c_1,\;...,\;c_r\) are specified constants.
+\end{itemize}
+
+\newpage\noindent\definition{14.2.0.4}{The recurrence relation is \underline{linear} because no term involves more than a single factor of the \(a_i\), and it is \underline{homogeneous} because every term involves an \(a_i\).}
+
+\separate{7}\definition{14.2.0.5}{We seek solutions to the recurrence relation \eqref{equ:14.2.0.1} of the form \(a_n = x^n, \; x \neq 0\). Substituting this into the relation, we get 
+\begin{equation}
+    x^n = \sum_{i=1}^{r} c_ix^{n-i}, \quad(n \geq r)
+\end{equation}
+Dividing through by \(x^{n-r}\), we get
+\begin{equation}
+    x^r - \sum_{i=1}^{r} c_ix^{r-i} = 0
+\end{equation}
+This is the \underline{characteristic equation}.}
+
+\separate{10}\textbf{CONTINUE ON P.39 WHERE THE STEPS BEGIN.}
+
 \subsection{Generating Functions}
 
 \section{Graph Theory}\label{dm:section:3.gt}
