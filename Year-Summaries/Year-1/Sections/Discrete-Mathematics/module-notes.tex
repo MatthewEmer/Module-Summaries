@@ -82,6 +82,17 @@ Using the binomial coefficient notation, this means the number of combinations i
     P(n;\,n_1,\,n_2,\,...,\,n_r) = \frac{n!}{n_1!n_2!...n_r!}
 \end{equation}}{Proof omitted.}}
 
+\newpage\noindent\example{13.3.1.1}{How many arrangements of REARRANGE are there, and of those, how many of the arrangements have at least two R's together?
+
+\separate{3}\textit{Solution}: The letters to arrange are RRR AA EE G and N. Applying \hyperref[prf:thm:13.3.1.1]{Theorem 13.3.1.1} with \(n = 9\) and \(n_1 = 3,\;n_2 = 2,\;n_3 = 2,\;n_4 = 1,\;n_5 = 1\), we get
+\begin{equation}
+    \frac{9!}{3!2!2!} = 15,120
+\end{equation}
+We can then take all the cases where all the R's are separate. To do this, we arrange all the other letters, giving \(\frac{6!}{2!2!}\) arrangements. We then insert the R's into the available gaps, giving 7 possible spots for 3 R's, meaning the number of arrangements are
+\begin{equation}
+    \frac{9!}{3!2!2!} - \binom{7}{3}\left(\frac{6!}{2!2!}\right) = 8,820
+\end{equation}}
+
 \subsubsection{Combinations with Repetitions}
 
 \standardproblem{5}{Given a set of \(n\) objects, how many combinations of size \(k\) can be chosen if objects may be selected more than once? (How many \(k\)-combinations with repetitions from \(n\) objects are there?)}
@@ -90,6 +101,17 @@ Using the binomial coefficient notation, this means the number of combinations i
 \separate{7}\standardproblem{6}{How many \(k\)-combinations with repetitions from \(n\) objects are there in which each object is chosen at least once in the combination?}
 {\theorem{13.3.2.1}{The number of \(k\)-combinations from \(n\) different objects with repetition and each object occuring at least once is \(\binom{k-1}{n-1}\) for \(k \geq n\).}
 {This question clearly has a non-zero answer only if \(k \geq n\). Since order does not matter in our combinations, we represent each combination with its items in non-decreasing order. Now insert markers into the strings at the points where the numbers change. Because we have specified that each number appears at least once, there must be \((n-1)\) markers occupying \((k-1)\) possible positions in each of these lists.}}
+
+\separate{7}\example{13.3.2.1}{Count the 5-combinations with repetitions from \(\{1,2,3\}\) in which each number appears at least once.
+
+\separate{3}\textit{Solution}: Using the method above, we get the following combinations:
+\begin{equation*} 1\,1\,1\,2\,3 \quad\leftrightarrow\quad 1\,1\,1\,|\,2\,|\,3 \end{equation*}
+\begin{equation*} 1\,1\,2\,2\,3 \quad\leftrightarrow\quad 1\,1\,|\,2\,2\,|\,3 \end{equation*}
+\begin{equation*} 1\,1\,2\,3\,3 \quad\leftrightarrow\quad 1\,1\,|\,2\,|\,3\,3 \end{equation*}
+\begin{equation*} 1\,2\,2\,2\,3 \quad\leftrightarrow\quad 1\,|\,2\,2\,2\,|\,3 \end{equation*}
+\begin{equation*} 1\,2\,2\,3\,3 \quad\leftrightarrow\quad 1\,|\,2\,2\,|\,3\,3 \end{equation*}
+\begin{equation*} 1\,2\,3\,3\,3 \quad\leftrightarrow\quad 1\,|\,2\,|\,3\,3\,3 \end{equation*}
+There are 4 possible gaps for 2 markers, so the number of ways of arranging the markers is \(\binom{4}{2} = 6\).}
 
 \separate{7}We can adapt this solution to solve \hyperref[prob:5]{Standard Problem 5} by allowing the markers to also be placed next to one another, or outside of the item strings. Taking this into account, we get:
 
