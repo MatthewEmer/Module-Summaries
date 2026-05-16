@@ -76,9 +76,45 @@ Using the binomial coefficient notation, this means the number of combinations i
 
 \subsubsection{Arrangements with Repetitions}
 
+\standardproblem{4}{How many arrangements are there of a list of objects in which some objects are repeated?}
+{\theorem{13.3.1.1}{Given a list of \(n\) objects of \(r\) different types, in which objects of type \(i\) appear \(n_i\) times, the number of arrangements is
+\begin{equation}
+    P(n;\,n_1,\,n_2,\,...,\,n_r) = \frac{n!}{n_1!n_2!...n_r!}
+\end{equation}}{Proof omitted.}}
+
 \subsubsection{Combinations with Repetitions}
 
+\standardproblem{5}{Given a set of \(n\) objects, how many combinations of size \(k\) can be chosen if objects may be selected more than once? (How many \(k\)-combinations with repetitions from \(n\) objects are there?)}
+{To solve this problem, first consider}
+
+\separate{7}\standardproblem{6}{How many \(k\)-combinations with repetitions from \(n\) objects are there in which each object is chosen at least once in the combination?}
+{\theorem{13.3.2.1}{The number of \(k\)-combinations from \(n\) different objects with repetition and each object occuring at least once is \(\binom{k-1}{n-1}\) for \(k \geq n\).}
+{This question clearly has a non-zero answer only if \(k \geq n\). Since order does not matter in our combinations, we represent each combination with its items in non-decreasing order. Now insert markers into the strings at the points where the numbers change. Because we have specified that each number appears at least once, there must be \((n-1)\) markers occupying \((k-1)\) possible positions in each of these lists.}}
+
+\separate{7}We can adapt this solution to solve \hyperref[prob:5]{Standard Problem 5} by allowing the markers to also be placed next to one another, or outside of the item strings. Taking this into account, we get:
+
+\separate{7}\theorem{13.3.2.2}{The number of \(k\)-combinations from \(n\) different objects with repetition is
+\begin{equation}
+    \binom{k+n-1}{n-1} = \binom{k+n-1}{k}
+\end{equation}
+}{As explained above.}
+
 \subsubsection{The Extended Binomial Coefficients}
+
+\proposition{13.3.3.1}{The principle of upper negation states that, if \(n\) and \(k\) are positive integers, then
+\begin{equation}
+    \binom{-n}{k} = (-1)^k\binom{k+n-1}{k} = (-1)^k\binom{k+n-1}{n-1}
+\end{equation}
+}{
+\begin{equation}
+    \binom{-n}{k} = \frac{(-n)(-n-1)(-n-2)...(-n-k+1)}{k!}
+\end{equation}
+Factoring out a factor of -1,
+\begin{equation}
+    \binom{-n}{k} = (-1)^k\frac{(n)(n+1)(n+2)...(n+k-1)}{k!}
+\end{equation}
+Which simplifies to give the claimed result.
+}
 
 \section{Combinatorics}\label{dm:section:2.com}
 
