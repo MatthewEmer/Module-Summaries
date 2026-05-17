@@ -193,35 +193,138 @@ This is the power series expansion of \(e^{-1}\), so
 
 \subsection{Recurrence Relations}
 
-\definition{14.2.0.1}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, a \underline{recurrence relation} for the sequence \(\{a_n\}\) is an equation that expresses \(a_n\) in terms of one or more of the previous terms of the sequence for all integers \(n\) with \(n \geq n_0\), where \(n_0\) is a non-negative integer.}
+\subsubsection{Basic Definitions}
 
-\separate{7}\definition{14.2.0.2}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, a sequence is called a \underline{solution} of a recurrence relation if its terms satisfy the recurrence relation.}
+\definition{14.2.1.1}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, a \underline{recurrence relation} for the sequence \(\{a_n\}\) is an equation that expresses \(a_n\) in terms of one or more of the previous terms of the sequence for all integers \(n\) with \(n \geq n_0\), where \(n_0\) is a non-negative integer.}
 
-\separate{7}\definition{14.2.0.3}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, the \underline{initial conditions} for a sequence specify the terms that precede the first term where the recurrence relation takes effect.}
+\separate{7}\definition{14.2.1.2}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, a sequence is called a \underline{solution} of a recurrence relation if its terms satisfy the recurrence relation.}
+
+\separate{7}\definition{14.2.1.3}{As defined by \hyperref[cit:recurrenceRelation]{(Perepelitsa, 2020, p.1)}, the \underline{initial conditions} for a sequence specify the terms that precede the first term where the recurrence relation takes effect.}
 
 \separate{7}Let \(\{a_n\}\) be a sequence indexed by integers \(n = 0,\;1,\;2,\;...\), we are given:
 \begin{itemize}
     \item The initial conditions \(a_0,\;a_1,\;...,\;a_{r-1}\).
     \item The recurrence relation 
-    \begin{equation}\label{equ:14.2.0.1}
+    \begin{equation}\label{eq:recRel}
         a_n = \sum_{i=1}^{r} c_ia_{n-i} = c_1a_{n-1} + ... + c_ra_{n-r}, \quad (n \geq r)
     \end{equation}
     where \(c_1,\;...,\;c_r\) are specified constants.
 \end{itemize}
 
-\newpage\noindent\definition{14.2.0.4}{The recurrence relation is \underline{linear} because no term involves more than a single factor of the \(a_i\), and it is \underline{homogeneous} because every term involves an \(a_i\).}
+\newpage\noindent\definition{14.2.1.4}{The recurrence relation is \underline{linear} because no term involves more than a single factor of the \(a_i\), and it is \underline{homogeneous} because every term involves an \(a_i\).}
 
-\separate{7}\definition{14.2.0.5}{We seek solutions to the recurrence relation \eqref{equ:14.2.0.1} of the form \(a_n = x^n, \; x \neq 0\). Substituting this into the relation, we get 
+\separate{7}\definition{14.2.1.5}{We seek solutions to the recurrence relation \eqref{eq:recRel} of the form \(a_n = x^n, \; x \neq 0\). Substituting this into the relation, we get 
 \begin{equation}
     x^n = \sum_{i=1}^{r} c_ix^{n-i}, \quad(n \geq r)
 \end{equation}
 Dividing through by \(x^{n-r}\), we get
-\begin{equation}
+\begin{equation}\label{eq:charEq}
     x^r - \sum_{i=1}^{r} c_ix^{r-i} = 0
 \end{equation}
 This is the \underline{characteristic equation}.}
 
-\separate{10}\textbf{CONTINUE ON P.39 WHERE THE STEPS BEGIN.}
+\subsubsection{General Method for Solving Homogeneous Linear Recurrence Relations}
+
+\begin{enumerate}
+    \item Write down the characteristic equation of the recurrence relation as in \eqref{eq:charEq}.
+    \item Find the equation's roots \(\alpha_1,\;\alpha_2,\;...,\;\alpha_r\).
+    \item Then, for each \(i\), \(a_n = d(\alpha_i)^n\) satisfies the recurrence relation \eqref{eq:recRel} for any constant \(d\).
+    \item By linearity, any combination of the \((\alpha_i)^n\) also solves the recurrence relation.
+    \item Find the general solution to the recurrence relation. 
+    \begin{itemize}
+        \item If the roots are distinct, then the general solution to the recurrence relation is:
+        \begin{equation}\label{eq:genSol}
+            a_n = g(n) = d_1(\alpha_1)^n + d_2(\alpha_2)^n + ... + d_r(\alpha_r)^n
+        \end{equation}
+        for arbitrary constants \(d_1,\;d_2,\;...,\;d_r\).
+        \item If \(\alpha\) is a root repeated \(k\) times, then in place of the expression \eqref{eq:genSol}, we use instead
+        \begin{equation}
+            a_n = g(n) = (e_1 + e_2n + ... + e_kn^{k-1})(\alpha_1)^n + d_{2}(\alpha_2)^n + ... + d_r(\alpha_r)^n
+        \end{equation}
+        for constants \(e_1,\;e_2,\;...,\;e_k\).
+    \end{itemize} 
+    \item Apply the initial conditions, giving \(r\) linear equations in the \(r\) unknown constants \(d_i\). Solve these to get a solution \(a_n\).
+\end{enumerate}
+
+\separate{7}\example{14.2.2.1}{Solve \(a_n = 3a_{n-1} + 4a_{n-2},\;(n \geq 2)\) where \(a_0 = 1\) and \(a_1 = 0\).
+
+\separate{3}\textit{Solution}: The characteristic equation is 
+\begin{equation}
+    x^2 - 3x - 4 = 0 \qquad\rightarrow\qquad (x-4)(x+1) = 0 
+\end{equation}
+This has distinct roots \(x=4\) and \(x=-1\), so the general solution is 
+\begin{equation}
+    a_n = d_1(-1)^n + d_2(4)^n
+\end{equation}
+Using the initial conditions gives
+\begin{equation*}
+    1 = a_0 = d_1 + d_2 \qquad\text{and}\qquad 0 = a_1 = 4d_2 - d_1
+\end{equation*}
+Hence \(d_1 = \frac{4}{5}\) and \(d_2 = \frac{1}{5}\), so the solution is
+\begin{equation}
+    a_n = \frac{1}{5}\left(4^n\right) + \frac{4}{5}\left(-1^n\right)
+\end{equation}}
+
+\newpage\subsubsection{General Method for Solving Inhomogeneous Linear Recurrence Relations}
+
+Redefine the recurrence relation \eqref{eq:recRel} to include an inhomogeneous part \(f(n)\),
+\begin{equation}
+    a_n = c_1a_{n-1} + ... + c_ra_{n-r} + f(n)
+\end{equation} 
+
+\begin{enumerate}
+    \item Find the general solution to the homogeneous problem \(g(n) = a_n\).
+    \item Find a specific particular solution \(p(n) = a_n\) to the full inhomogeneous problem using \hyperref[tab:Forms of the Particular Solution]{Table 1}.
+    \begin{itemize}
+        \item If \(f(n)\) contains \(q^n\) where \(q\) is a root of the characteristic equation, then \(q^n\) should be replaced by \(nq^{n-1}\).
+        \item If 1 is a root of the characteristic equation, then \(f(n) = An^k\) should be considered as \(f(n) = An^k \cdot 1^n\) and so should be treated as above.
+    \end{itemize}
+    \item The general solution to the inhomogeneous problem is then the sum of these
+    \begin{equation}
+        a_n = g(n) + p(n)
+    \end{equation}
+    \item Apply the initial conditions to determine the unknown constants.
+\end{enumerate}
+
+\inserttable{c|c}{Forms of the Particular Solution}
+{\textbf{f(n)} & \textbf{Form of Particular Solution \(p(n)\)}}
+{\(A\) & \(B_0\) (constant) \\
+\(An\) & \(B_0 + B_1n\) (linear) \\
+\(An^2\) & \(B_0 + B_1n + B_2n^2\) (quadratic) \\
+\(Aq^n\) & \(B_0q^n\) (exponential) \\
+\(Anq^n\) & \((B_0 + B_1n)q^n\) (etc...)}
+
+\noindent\example{14.2.3.1}{Solve \(a_n = a_{n-1} + 2a_{n-2} - 2n,\;(n \geq 2)\) where \(a_0 = a_1 = 0\).
+
+\separate{3}\textit{Solution}: Solving the homogeneous recurrence relation, we get the characteristic equation
+\begin{equation}
+    x^2 - x - 2 = 0 \qquad\rightarrow\qquad (x-2)(x+1) = 0
+\end{equation}
+Which has distinct roots \(x=-1\) and \(x=2\), giving the general solution
+\begin{equation}
+    g(n) = d_1(-1)^n + d_2(2)^n
+\end{equation}
+The inhomogeneous part is \(f(n) = -2n\), so we seek a particular solution of the form
+\begin{equation}
+    p(n) = B_0 + B_1n
+\end{equation}
+Setting \(a_n = p(n)\) in the inhomogeneous recurrence relation gives
+\begin{equation}
+    B_1n + B_0 = \left(B_1(n-1) + B_0\right) + 2\left(B_1(n-2) + B_0\right) - 2n
+\end{equation}
+Which we solve to get \(B_1 = 1\) and \(B_0 = \frac{5}{2}\), meaning the particular solution is 
+\begin{equation}
+    p(n) = n + \frac{5}{2}
+\end{equation}
+This gives us the general solution to the inhomogeneous problem to be
+\begin{equation}
+    a_n = g(n) + p(n) = d_1(-1)^n + d_2(2)^n + n + \frac{5}{2}
+\end{equation}
+Substituting in the initial conditions, we get that 
+\begin{equation}
+    a_n = -\frac{1}{2}(-1)^n - 2^n + n + \frac{5}{2} 
+\end{equation}
+}
 
 \subsection{Generating Functions}
 
