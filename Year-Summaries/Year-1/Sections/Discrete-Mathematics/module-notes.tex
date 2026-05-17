@@ -461,11 +461,44 @@ So our solution is \(a_n = 1\) if \(n\) is even, and \(a_n = -1\) if \(n\) is od
 
 \subsubsection{Basic Definitions}
 
+\definition{15.1.1.1}{A \underline{simple graph} \(G\) is a pair of sets \(G = (V,E)\) where each element of \(E\) is a 2-element subset of \(V\).}
+
+\separate{7}\definition{15.1.1.2}{Given a graph \(G=(V,E)\), if \(|V|\) and \(|E|\) are finite, then \(G\) is a \underline{finite graph}.}
+
+\separate{7}\definition{15.1.1.3}{Two vertices are \underline{adjacent} if there is an edge between them, that is, \(u,v \in V\) are adjacent if \(\{u,v\} \in E\).}
+
+\separate{7}\definition{15.1.1.4}{An edge is \underline{incident} to a vertex if that vertex is one of the endpoints of the edge.}
+
 \subsubsection{Simple Graphs}
+
+\definition{15.1.2.1}{The \underline{empty/null graph} on \(m\) vertices is called \(N_m\) where \(|V| = m\) but \(|E| = 0\).}
+
+\separate{7}\definition{15.1.2.2}{The \underline{complete graph} on \(n\) is called \(K_n\). Given \(|V|=n\), we include an edge between every pair of vertices, so \(|E| = \binom{n}{2}\).}
+
+\separate{7}\definition{15.1.2.3}{The \underline{cycle graph} on \(n\) vertices is called \(C_n\). Given \(|V|=n\), the cycle graph is constructed by listing the vertices in some order \(v_1,\;v_2,\;...,\;v_n\) and then adding the cycle of \(n\) edges \(v_1v_2,\;...,\;v_{n-1}v_n,\;v_n,v_1\).}
+
+\separate{7}\definition{15.1.2.4}{The \underline{star graph} on \(n\) vertices is called \(S_n\). Of the \(|V|=n\) vertices, \((n-1)\) are leaves with a single edge to a central hub vertex.}
+
+\separate{7}\definition{15.1.2.5}{The \underline{wheel graph} on \(n\) vertices is called \(W_n\). It can be constructed from the star graph \(S_n\) by adding a cycle around the leaves of \(S_n\).}
+
+\separate{7}\definition{15.1.2.6}{The \underline{\(n\)-cube} has \(2^n\) vertices and is denoted \(Q_n\).}
 
 \subsubsection{Handshaking}
 
-\subsubsection{Graph Isomorphism, Complements, and Subgraphs}
+\lemma{15.1.3.1}{For any graph \(G=(V,E)\), we have \(\sum_{v \in V} = 2|E|\).}{Each edge contributes 2 to the sum of degrees, one to each vertex it is incident to.}
+
+\separate{7}\theorem{15.1.3.1}{In any graph, the number of odd-degree vertices is even.}
+{Let \(|V| = n\) and \(|E| = m\), and let the number of vertices of odd degree be \(k\). By \hyperref[lem:15.1.3.1]{Lemma 15.1.3.1}, we have that the sum of degrees is even, and furthermore the sum of the degrees of the \((n-k)\) vertices of even degree is a sum of even numbers, and thus is even. 
+
+Therefore, the sum of the degrees of the remaining \(k\) vertices of odd degree must also be even. As a sum of odd numbers, there must be an even number of terms for the sum to be even, and hence there must be an even number of vertices of odd degree.}
+
+\newpage\subsubsection{Graph Isomorphism, Complements, and Subgraphs}
+
+\definition{15.1.4.1}{Two simple graphs \(G_1\) and \(G_2\) are \underline{isomorphic}, \(G_1 \cong G_2\), if there exists a bijective function mapping the vertices from \(G_1\) to the vertices of \(G_2\) which preserves adjacency.}
+
+\separate{7}\definition{15.1.4.2}{Let \(G=(V,E)\) be a simple graph. Then the \underline{complement} of \(G\) is \(\overline{G} = (V,F)\) where \(F = \{uv : u,v \in V \text{ and } uv \notin E\}\).}
+
+\separate{7}\definition{15.1.4.3}{Given a graph \(G=(V,E)\) and a graph \(G_1 = (V_1, E_1)\) such that \(V_1 \subseteq V\) and \(E_1 \subseteq E\), then \(G_1\) is a \underline{subgraph} of \(G\).}
 
 \subsection{Eulerian Graphs}
 
