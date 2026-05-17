@@ -504,11 +504,68 @@ Therefore, the sum of the degrees of the remaining \(k\) vertices of odd degree 
 
 \subsubsection{Travelling in Graphs}
 
-\subsubsection{Connectedness}
+\definition{15.2.1.1}{Given a graph \(G=(V,E)\), a \underline{walk} in \(G\) is a sequence of vertices \(v_1,\;v_2,\;...,v_k\) from \(V\) together with edges \(e_1,\;e_2,\;...,\;e_{k-1}\) in \(E\) such that \(e_i = \{v_i,\;v_{i+1}\}\) for all \(1 \leq i \leq (k-1)\) where the \underline{length} of the walk is the number of edges. If \(v_1=v_k\), the walk is \underline{closed}.}
 
-\subsubsection{The Bridges of K{\"o}nigsberg}
+\separate{7}\definition{15.2.1.2}{A \underline{trail} is a sequence of vertices \(v_1,\;v_2,\;...,v_k\) from \(V\) together with distinct edges \(e_1,\;e_2,\;...,\;e_{k-1}\) in \(E\) such that \(e_i = v_iv_{i+1}\). That is, a trail is a walk with no edge repeated. A \underline{circuit} is a closed trail.}
+
+\separate{7}\definition{15.2.1.3}{A \underline{path} is a series of distinct vertices, i.e., a walk which never revisits any previous vertex and a \underline{cycle} is a closed path.}
+
+\separate{7}\definition{15.2.1.4}{A \underline{Hamilton cycle} in a graph \(G\) is a cycle which visits every vertex of \(G\). A graph which contains a Hamilton cycle is called \underline{Hamiltonian}.} 
+
+\separate{7}\lemma{15.2.1.1}{Given vertices \(u \neq w\) in a graph \(G\), if there is a walk from \(u\) to \(w\) in \(G\), then there is a path from \(u\) to \(w\) in \(G\).}
+{Let \(W\) be a walk in \(G\) consisting of the vertices \(v_i,\;1 \leq i \leq k,\;v_1 = u,\;v_2 = w\) and edges \(e_i,\; 1 \leq i \leq (k-1)\). If \(v_1,\;...,\;v_k\) are all distinct, \(W\) is a path. 
+
+If not, let \(x=v_j\) be the first occurence in \(W\) of a vertex which appears more than once, and let \(v_{j'}\) be the latest occurence of that vertex in \(W\). Let \(W'\) be the walk formed from \(W\) by removing the vertices \(v_{j+1},\;...,\;v_{j'}\) and the edges \(e_j,\;...,\;e_{j-1}\). Then \(x\) appears only once in \(W'\) and so the number of repeated vertices in \(W'\) is strictly smaller than \(W\). 
+
+We can then repeat this process starting with the walk \(W'\). As each time we repeat, the number of vertices appearing more than once strictly decreases, and eventually we must have a walk containing no repeated vertices, that is, a path.}
+
+\separate{7}\lemma{15.2.1.2}{If every vertex in a finite graph \(G\) has degree \(> 1\), then \(G\) contains a cycle.}
+{Let \(|V| = n\). Starting from any vertex \(u\) in \(G\), then as \(d(u) > 1\), there is some edge \(e=uv\) incident to \(u\). Let \(u=v_1,\;v=v_2\). We construct a cycle in \(G\) as follows: at \(v_2\), as \(d(v_2) > 1\), there must be some edge \(e_2 \neq e\) incident to \(v_2\). There are two possibilities:
+\begin{enumerate}[label=(\alph*)]
+    \item There is an edge from \(v_i\) to some already visited \(v_k\) with \(1 \leq k \leq i\).
+    \item We do not have (a), and there is some edge \(e_i = \{v_i,v_{i+1}\}\) to some unvisited new vertex \(v_{i+1}\).
+\end{enumerate}
+But at some point \(i \leq n\), we must have situation (a) occuring - we cannot keep finding new vertices. Then the path \(v_k,\;v_{k+1},\;...,\;v_i,\;v_k\) is a cycle in \(G\) as required.}
+
+\newpage\subsubsection{Connectedness}
+
+\definition{15.2.2.1}{A graph \(G\) is \underline{connected} if, given any two vertices, there is a path between them.}
+
+\separate{7}\definition{15.2.2.2}{A \underline{connected component} of \(G=(V,E)\) is a subgraph \(G_1 = (V_1,E_1)\) of \(G\) such that:
+\begin{itemize}
+    \item \(G_1\) is connected.
+    \item For any \(u \in V_1\) and any \(v \in V\) such that there is a path from \(u\) to \(v\) in \(G\), then \(v \in V_1\).
+    \item For every edge \(e=uv \in E\) where \(u,v \in V_1\), then \(e \in E_1\).
+\end{itemize}}
 
 \subsubsection{Euler's Theorem}
+
+\definition{15.2.3.1}{An \underline{Euler circuit} in a graph \(G\) is a circuit which uses each edge of \(G\) exactly once. A graph with an Euler circuit is called \underline{Eulerian}.}
+
+\separate{7}\theorem{15.2.3.1}{Let \(G = (V,E)\) be a finite connected graph with \(|V| > 1\). Then \(G\) has an Euler circuit \(\iff\) all vertices of \(G\) have even degree.}
+{We have already seen why \(\implies\), to prove \(\impliedby\), we require the following Lemma:
+
+\separate{7}\lemma{15.2.3.1}{If a graph \(G=(V,E)\) is finite and connected, with \(|V| > 1\) and all vertices of even degree, then \(G\) is a finite union of edge-disjoint cycles, that is, there are cycles \(C_1,\;C_2,\;...,\;C_n\) such that the union of the vertices of these cycles is equal to \(V\) and the union of edges is equal to \(E\).}
+{Since \(G\) is connected, it has no isolated vertices, so all vertices have degree \(\geq 2\), by \hyperref[lem:15.2.1.2]{Lemma 15.2.1.2}, there is a cycle \(C_1\) in \(G\). We form a new graph from \(G\) by removing the all edges from \(C_1\). The vertices in \(C_1\) have their degrees decreased by 2 and then discard any which have become isolated. We can then repeat the process until the whole graph has been decomposed into cycles.}
+
+\noindent\textit{Proof of Theorem 15.2.3.1 \((\impliedby)\)}: Let \(G\) be finite, connected, and with all degrees even. Then, by \hyperref[lem:15.2.3.1]{Lemma 15.2.3.1}, \(G\) is a finite union of \(n\) edge-disjoint cycles. We shall show, by induction on \(n\), that these can be combined into a single Eulerian circuit.
+\begin{itemize}
+    \item Base Case: If \(n=1\), the one cycle is the Euler circuit.
+    \item Induction Hypothesis: If \(G\) is made up of \(\geq (n-1)\) edge-disjoint cycles, it has an Euler circuit.  
+    \item Inductive Step: Now consider a graph \(G\) made up of \(n\) edge-disjoint cycles,
+    \begin{equation}
+        G = C_1 \cup C_2 \cup ... \cup C_{n-1} \cup C_n
+    \end{equation}
+    And let 
+    \begin{equation}
+        H = C_1 \cup C_2 \cup ... \cup C_{n-1}
+    \end{equation}
+    As in the proof of \hyperref[lem:15.2.3.1]{Lemma 15.2.3.1}, \(H\) has all degrees even. It may not be connected, so consider its connected components, \(H_1,\;H_2,\;...,\;H_k\). Since each cycle \(C_i\) lies within only one connected component \(H_j\), we know that there are at most \((n-1)\) connected components. 
+    
+    Furthermore, since the union \(C_1 \cup C_2 \cup ... \cup C_{n-1}\) makes up the whole of \(H\), each \(H_j\) must be made up by \(\leq (n-1)\) edge-disjoint cycles. So, by the Induction Hypothesis, each connected component \(H_j\) has an Euler circuit \(E_j\).
+
+    But since \(G\) was connected, \(C_n\) must visit each \(H_j\), so we can make an Euler circuit for \(G\) by following \(C_n\), but when we first visit each \(H_j\), follow \(E_j\) all the way round before continuing.
+\end{itemize}}
 
 \subsection{Planar Graphs}
 
