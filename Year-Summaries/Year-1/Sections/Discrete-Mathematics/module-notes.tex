@@ -437,7 +437,23 @@ So our solution is \(a_n = 1\) if \(n\) is even, and \(a_n = -1\) if \(n\) is od
 
 \subsubsection{Partitions}
 
+\definition{14.3.3.1}{A \underline{partition} of a positive integer \(n\) is an expression of \(n\) as an unordered sum of positive integers, called the \underline{parts} of the partition. We denote the number of partitions of \(n\) as \(p(n)\).}
+
+\separate{7}\theorem{14.3.3.1}{The number of partitions \(p(n)\) of \(n\) is the coefficient of \(x^n\) in the power series expansion of the infinite product
+\begin{equation}
+    \prod_{k=1}^{\infty}\left(1-x^k\right)^{-1} = \sum_{n=0}^{\infty}x^np(n)
+\end{equation}}
+{Proof omitted.}
+
 \subsubsection{Calculus of Generating Functions}
+
+\theorem{14.3.4.1}{If \(a_n\) is a sequence with generating function \(f(x) = \sum_{n=0}^{\infty}a_nx^n\), then the generating function for the sequence \(b_n = na_n\) is \(xf'(x)\).}
+{\begin{equation*}
+    \sum_{n=0}^{\infty}na_nx^n = x\sum_{n=0}^{\infty}a_nnx^{n-1} = x\frac{d}{dx}\left(\sum_{n=0}^{\infty}a_nx^n\right) = xf'(x)
+\end{equation*}}
+
+\newpage\noindent\theorem{14.3.4.2}{If \(f(x)\) is the generating function of the sequence \(a_n\), then \(\frac{f(x)}{1-x}\) is the generating function of the sequence \(s_n = \sum_{k=0}^{n} a_k\).}
+{Proof omitted.}
 
 \section{Graph Theory}\label{dm:section:3.gt}
 
