@@ -328,6 +328,86 @@ Substituting in the initial conditions, we get that
 
 \subsection{Generating Functions}
 
+\definition{14.3.0.1}{\underline{Generating functions} encode combinatorial information into an analytical form so we can solve counting problems. For example, the ordinary generating function for the sequence \(a_0,\;a_1,\;...\) is
+\begin{equation}
+    f(x) = \sum_{k=0}^{\infty} a_kx^k
+\end{equation}}
+
+\subsubsection{Counting with Generating Functions}
+
+\example{14.3.1.1}{How many solutions are there to the equation
+\begin{equation}\label{eq:ex.14.3.1.1}
+    e_1 + e_2 + ... + e_n = k
+\end{equation}
+where each \(e_i \in \{0,1\}\) and \(n,k\) are given, positive integers?
+
+\separate{3}\textit{Solution}: When constructing our generating function, each \(e_i\) is associated with the expression \((x^0 + x^1) = (1 + x)\), the generating function is then the \(n\)-fold product,
+\begin{equation}
+    f(x) = (1+x) \cdot (1+x) ... (1+x) = (1+x)^n
+\end{equation}
+If we expand the generating function as a power series, we get
+\begin{equation}
+    (1+x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k
+\end{equation}
+Each term \(x^k\) corresponds to a choice of \(x^{e_1}\) from the first bracket, \(x^{e_2}\) from the second bracket, etc., in which the total power of \(x\) is \(e_1 + ... + e_n = k\), i.e., a solution to \eqref{eq:ex.14.3.1.1}.}
+
+\separate{7}\lemma{14.3.1.1}{For \(n \geq 0, \;n \in \Z\), the generating function for the sequence 1,1,...1,0,0,... (first \((n+1)\) terms are 1) is
+\begin{equation}\label{eq:genFunc 1, ..., 1, 0, ...}
+    \sum_{k=0}^{n}x^k = \frac{1 - x^{n+1}}{1-x}
+\end{equation}}
+{This is the sum of a geometric series which can be proven directly in the form 
+\begin{equation}
+    (1-x)\sum_{k=0}^{n} x^k = \sum_{k=0}^{n} \left(x^k - x^{k-1}\right) = 1 - x^{n+1}
+\end{equation}
+since the sum telescopes.}
+
+\separate{7}\lemma{14.3.1.2}{For \(n \geq 0, \;n \in \Z\), the generating function for the sequence 1,1,1,... is
+\begin{equation}\label{eq:genFunc 1, ..., 1, ...}
+    \sum_{k=0}^{n}x^k = \frac{1}{1-x}
+\end{equation}}
+{The sum to infinity makes analytical sense only for \(|x| < 1\), in which case we can take \(n \rightarrow \infty\) in \eqref{eq:genFunc 1, ..., 1, 0, ...} to get \eqref{eq:genFunc 1, ..., 1, ...}.}
+
+\newpage\noindent\lemma{14.3.1.3}{For \(n \geq 0, \;n \in \Z\), the generating function for the sequence \(\binom{n+k-1}{k},\;(k \geq 0)\) is
+\begin{equation}\label{eq:genFunc binomial}
+    \sum_{k=0}^{n}\binom{n+k-1}{k}x^k = \frac{1}{(1-x)^n}
+\end{equation}}
+{Recall from the extended form of the binomial theorem that
+\begin{equation}
+    (1-x)^{-n} = \sum_{k=0}^{\infty} \binom{n+k-1}{k} x^k
+\end{equation}
+As claimed.}
+
+\separate{7}\lemma{14.3.1.4}{For \(n \geq 0, \;n \in \Z\), if \(f(x) = \sum_{k=0}^{\infty} a_kx^k\) and \(g(x) = \sum_{k=0}^{\infty} b_kx^k\) are the generating functions of sequences \(a_k\) and \(b_k\) respectively, then
+\begin{equation}\label{eq:genFunc multiply}
+    f(x)g(x) = \sum_{k=0}^{\infty} c_kx^k
+\end{equation}
+is the generating function of the sequence \(c_k = \sum_{l = 0}^{k} a_lb_{k-l}\).}
+{This is just collecting terms.}
+
+\separate{7}\example{14.3.1.1}{Find the coefficient of \(x^17\) in the expression \(f(x) = \left(1+x+x^2+...+x^{10}\right)^5\).
+
+\separate{3}\textit{Solution}: We use \hyperref[lem:14.3.1.2]{Lemma 14.3.1.2} and \hyperref[lem:14.3.1.4]{Lemma 14.3.1.4} to write
+\begin{equation}
+    f(x) = \left(\frac{1-x^{11}}{1-x}\right)^5 = (1-x)^{-5}(1-x^{11})^5
+\end{equation}
+Considering separately the two terms in the product, we have
+\begin{equation}
+    (1-x^{11})^5 = \sum_{i=0}^{5} \binom{5}{i} (-1)^ix^{11i}
+\end{equation}
+And
+\begin{equation}
+    (1-x)^{-5} = \sum_{j=0}^{\infty} \binom{4+j}{4} x^j
+\end{equation}
+The terms in the product 
+\begin{equation}
+    \left(\sum_{i=0}^{5} \binom{5}{i} (-1)^ix^{11i}\right) \left(\sum_{j=0}^{\infty} \binom{4+j}{4} x^j\right)
+\end{equation}
+that contribute \(x^17\) are \((i,j) = (0,17),\;(1,6)\), so the required coefficient is 
+\begin{equation}
+    \binom{5}{0}\binom{21}{4} - \binom{5}{1}\binom{10}{4} = 5,985 - 1,050 = 4,935
+\end{equation}
+}
+
 \section{Graph Theory}\label{dm:section:3.gt}
 
 \subsection{What is a Graph?}
