@@ -571,9 +571,62 @@ But at some point \(i \leq n\), we must have situation (a) occuring - we cannot 
 
 \subsubsection{The Three Utilities Problem}
 
+\definition{15.3.1.1}{The \underline{three utilities problem} asks whether we can connect gas, water, and electricity to three houses without the pipes/wires crossing?}
+
+\separate{7}\definition{15.3.1.2}{Given a graph \(G=(V,E)\) where there exists \(V_1,V_2 \subseteq V\) such that \(V_1 \cup V_2 = V,\;V_1 \cap V_2 = \emptyset\), and every edge of \(G\) is of the form \(uv\) where \(u \in V_1\) and \(v \in V_2\), then \(G\) is \underline{bipartite}.}
+
+\separate{7}\definition{15.3.1.3}{A graph \(G\) is \underline{planar} if it can be drawn in the plane with no edges crossing. Such a drawing is a \underline{planar representation} of \(G\).}
+
 \subsubsection{Faces and Boundaries}
 
-\subsubsection{Euler's Formula}
+\definition{15.3.2.1}{A planar representation of a graph \(G\) divides the plane into a set of \(F\) \underline{faces}. The \underline{boundary} of a face is the set of edges around it, considered as a walk in \(G\). For a face \(f \in F\), we write \(b(f)\) for the length of the boundary of \(f\).}
+
+\separate{7}\lemma{15.3.2.1}{Planar Handshaking, for any planar representation of a graph \(G=(V,E)\), we have
+\begin{equation}
+    \sum_{f \in F}b(f) = 2|E|
+\end{equation}}
+{Each edge contributes 2 to the sum of boundary lengths, one for each side of the edge.}
+
+\definition{15.3.2.2}{A \underline{bridge} in a graph \(G\) is an edge \(e\) of \(G\) such that removing \(e\) from \(G\) increases the number of connected components.}
+
+\separate{7}\lemma{15.3.2.2}{Given any edge \(e\) of a graph \(G\), then \(e\) is a bridge \(\iff\) \(e\) is not part of a cycle in \(G\).}
+{Let \(e\) join the vertices \(u\) and \(v\) of \(G\). We prove the contrapositive - if \(e\) is part of a cycle \(C\), then there is a path \(P\) between \(u\) and \(v\) formed by removing \(e\) from \(C\). Then \(e\) is not a bridge, since given any path between vertices \(w_1\) and \(w_2\) which passes through \(e\), we can traverse \(P\) instead of the edge \(e\) to find a path between \(w_1\) and \(w_2\).
+
+As this is possible, removing \(e\) would not increase the number of connected components. Conversely, if \(e\) is not a bridge, then considering the graph \(G'=G-e\), we have \(u,v\) are in the same connected component in \(G'\), so there is a path from \(u\) to \(v\) in \(G'\), and adding \(e\) to this path forms a cycle in \(G\).}
+
+\separate{7}\theorem{15.3.2.1}{The Jordan Curve Theorem states that, a simple closed curve in the plane divides it into two regions, inside and outside.}
+{Proof omitted.}
+
+\separate{7}\theorem{15.3.2.2}{In a planar representation of a finite graph, \(e\) is a bridge \(\iff\) both sides of \(e\) are on the same face.}
+{By \hyperref[lem:15.3.2.2]{Lemma 15.3.2.2}, if \(e\) is not a bridge, it is contained in a cycle, which forms a simple closed curve in the plane, and so by the \hyperref[thm:15.3.2.1]{Jordan Curve Theorem} the two sides of \(e\) are different regions.}
+
+\newpage\subsubsection{Euler's Formula}
+
+\theorem{15.3.3.1}{Euler's Formula, Let \(G=(V,E)\) be a planar graph, with the set of faces \(F\), and \(k\) connected components. Then
+\begin{equation}
+    |V| - |E| + |F| = k+1
+\end{equation}}
+{By induction on \(|E|\).
+\begin{itemize}
+    \item Base Case: When \(|E| = 0\), \(G\) is a null graph, so \(|F| = 1\) and \(k = |V|\).
+    \item Inductive Hypothesis: Assume Euler's formula is true for any graph with \(|E| - 1\) edges. 
+    \item Inductive Step: Draw \(G=(V,E)\), which has \(|E|\) edges, in the plane. Remove one edge \(e\) to make \(G_0\). \(G_0\) has \(|V|\) vertices, \(|E| - 1\) edges, and, say, \(|F_0|\) faces and \(k_0\) components. The induction hypothesis applies for \(G_0\), so we know that
+    \begin{equation}\label{eq:thm:15.3.3.1a}
+        |V| - (|E| - 1) + |F_0| = k_0 + 1
+    \end{equation}
+    \(|F_0|\) and \(k_0\) relate to \(|F|\) and \(k\) in one of two cases, either:
+    \begin{enumerate}
+        \item \(e\) is a bridge in \(G\). Removing it makes one more component in \(G_0\), so \(k_0 = k+1\). By \hyperref[thm:15.3.2.2]{Theorem 15.3.2.2}, its two sides bound the same face, so \(|F_0| = |F|\), and \eqref{eq:thm:15.3.3.1a} becomes
+        \begin{equation}
+            |V| - (|E| - 1) + |F| = (k+1) + 1
+        \end{equation}
+        \item \(e\) is not a bridge in \(G\). Removing it does not disconnect \(G\), so \(k_0 = k\). But by \hyperref[thm:15.3.2.2]{Theorem 15.3.2.2}, in \(G\) its sides bounded two distinct faces, which now become one. So \eqref{eq:thm:15.3.3.1a} becomes
+        \begin{equation}
+            |V| - (|E| - 1) + (|F|-1) = (k+1) + 1
+        \end{equation}
+    \end{enumerate}
+\end{itemize}
+In both cases, we have \(|V| - |E| + |F| = k+1\), so Euler's formula holds for \(G\).}
 
 \subsubsection{Simple Planar Graphs}
 
