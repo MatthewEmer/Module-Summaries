@@ -272,9 +272,17 @@ Redefine the recurrence relation \eqref{eq:recRel} to include an inhomogeneous p
     a_n = c_1a_{n-1} + ... + c_ra_{n-r} + f(n)
 \end{equation} 
 
+\inserttable{c|c}{Forms of the Particular Solution}
+{\textbf{f(n)} & \textbf{Form of Particular Solution \(p(n)\)}}
+{\(A\) & \(B_0\) (constant) \\
+\(An\) & \(B_0 + B_1n\) (linear) \\
+\(An^2\) & \(B_0 + B_1n + B_2n^2\) (quadratic) \\
+\(Aq^n\) & \(B_0q^n\) (exponential) \\
+\(Anq^n\) & \((B_0 + B_1n)q^n\) (etc...)}
+
 \begin{enumerate}
     \item Find the general solution to the homogeneous problem \(g(n) = a_n\).
-    \item Find a specific particular solution \(p(n) = a_n\) to the full inhomogeneous problem using \hyperref[tab:Forms of the Particular Solution]{Table 1}.
+    \item Find a specific particular solution \(p(n) = a_n\) to the full inhomogeneous problem using \hyperref[tab:Forms of the Particular Solution]{Table \thetable}.
     \begin{itemize}
         \item If \(f(n)\) contains \(q^n\) where \(q\) is a root of the characteristic equation, then \(q^n\) should be replaced by \(nq^{n-1}\).
         \item If 1 is a root of the characteristic equation, then \(f(n) = An^k\) should be considered as \(f(n) = An^k \cdot 1^n\) and so should be treated as above.
@@ -285,14 +293,6 @@ Redefine the recurrence relation \eqref{eq:recRel} to include an inhomogeneous p
     \end{equation}
     \item Apply the initial conditions to determine the unknown constants.
 \end{enumerate}
-
-\inserttable{c|c}{Forms of the Particular Solution}
-{\textbf{f(n)} & \textbf{Form of Particular Solution \(p(n)\)}}
-{\(A\) & \(B_0\) (constant) \\
-\(An\) & \(B_0 + B_1n\) (linear) \\
-\(An^2\) & \(B_0 + B_1n + B_2n^2\) (quadratic) \\
-\(Aq^n\) & \(B_0q^n\) (exponential) \\
-\(Anq^n\) & \((B_0 + B_1n)q^n\) (etc...)}
 
 \noindent\example{14.2.3.1}{Solve \(a_n = a_{n-1} + 2a_{n-2} - 2n,\;(n \geq 2)\) where \(a_0 = a_1 = 0\).
 
@@ -630,4 +630,92 @@ In both cases, we have \(|V| - |E| + |F| = k+1\), so Euler's formula holds for \
 
 \subsubsection{Simple Planar Graphs}
 
-\subsubsection{Platonic Graphs}
+\theorem{15.3.4.1}{If \(G=(V,E)\) is a simple planar graph with \(|V| \geq 3\), then 
+\begin{equation}\label{eq:thm:15.3.4.1a}
+    |E| \leq 3|V| - 6
+\end{equation}}
+{Provided \(G\) has at least two edges, then every face has \(b(f) \geq 3\), so \hyperref[lem:15.3.2.1]{Lemma 15.3.2.1} gives
+\begin{equation}
+    2|E| = \sum_{f \in F} b(f) \geq 3|F|
+\end{equation}
+But also, 
+\begin{equation}
+    |V| - |E| + |F| = k+1
+\end{equation}
+So,
+\begin{equation*}
+    |V| - |E| + \frac{2}{3}|E| = k+1 \geq 2
+\end{equation*}
+\begin{equation*}
+    |V| - |E| + \frac{2}{3}|E| \geq 2
+\end{equation*}
+\begin{equation*}
+    |V| - 2 \geq \frac{|E|}{3}
+\end{equation*}
+Which can be rearranged to give \eqref{eq:thm:15.3.4.1a} as claimed.}
+
+\separate{7}\lemma{15.3.4.1}{\(K_5\) is not planar.}{For \(G=K_5\) we have that \(|V| = 5\) and \(|E| = 10\) so \(|E| \nleq 3|V| = 6\).}
+
+\newpage\noindent\definition{15.3.4.1}{The \underline{girth} \(g\) of \(G\) is the shortest length of a cycle in \(G\). If \(G\) has no cycles, then \(g=0\).}
+
+\separate{7}\theorem{15.3.4.2}{If \(G\) is simple, planar, and with girth \(g \neq 0\), then 
+\begin{equation}\label{eq:thm:15.3.4.2a}
+    |E| \leq \frac{g}{g-2}(|V| - 2)
+\end{equation}}
+{Here every face has \(b(f) \geq g\), so we get
+\begin{equation}
+    \frac{2|E|}{g} \geq |F|
+\end{equation}
+from \hyperref[lem:15.3.2.1]{Lemma 15.3.2.1}. Again, using \(|V| - |E| + |F| = k+1\), we get
+\begin{equation}
+    |V| - |E| + \frac{(g-2)}{g}|E| \geq 2
+\end{equation}
+Which can be rearranged to get \eqref{eq:thm:15.3.4.2a} as claimed.}
+
+\separate{7}\lemma{15.3.4.2}{\(K_{3,3}\) is not planar.}
+{Since \(K_{3,3}\) is bipartite, it has no cycles of odd length, and so we can see \(g=4\). We have \(|V| = 6\) and \(|E| = 9\), so
+\begin{equation}
+    \frac{g}{g-2}(|V|-2) = \frac{4}{2}(6-2) = 8
+\end{equation}
+and \(|E| = 9 \nleq 8\).}
+
+\separate{7}\definition{15.3.4.2}{A \underline{subdivision} of \(G\) is a graph obtained from \(G\) by subdividing edges of \(G\), where subdividing an edge \(e=uv\) if \(G\) means
+\begin{enumerate}[label=(\alph*)]
+    \item Adding a new vertex \(w\) to \(G\).
+    \item Adding edges \(uw,\;uv\).
+    \item Removing the original edge \(e\).
+\end{enumerate}}
+
+\separate{7}\theorem{15.3.4.3}{From \hyperref[cit:planar]{(Kuratowski, 1930)}, a graph \(G\) is planar \(\iff\) \(G\) contains no subdivision of \(K_5\) or \(K_{3,3}\) as a subgraph.}
+{\(\impliedby\) follows from \hyperref[lem:15.3.4.1]{Lemma 15.3.4.1} and \(\implies\) from \hyperref[lem:15.3.4.2]{Lemma 15.3.4.2}.}
+
+\separate{7}\theorem{15.3.4.4}{Every finite simple planar graph has a vertex of degree \(\leq 5\).}
+{Clearly true for \(V \geq 6\). For \(|V| > 6\), suppose all vertices are of degree \(\geq 6\), then by handshaking, \(|E| \geq 3|V|\). Then \(G\) does not satisfy \hyperref[thm:15.3.4.1]{Theorem 15.3.4.1} and so is not planar.}
+
+\newpage\subsubsection{Platonic Graphs}
+
+\definition{15.3.5.1}{A \underline{Platonic graph} is finite, simple, planar, and connected, with all vertices of the same degree \(d \geq 3\), and all faces of the same boundary length, \(b \geq 3\).}
+
+\inserttable{c|c|c|c|c|c}{Platonic Graphs}
+{\(\mathbf{d}\) & \(\mathbf{b}\) & \(\mathbf{|V|}\) & \(\mathbf{|E|}\) & \(\mathbf{F}\) & }
+{3 & 3 & 4 & 6 & 4 & tetrahedron \\
+3 & 4 & 8 & 12 & 6 & cube (hexahedron) \\
+4 & 3 & 6 & 12 & 8 & octahedron \\
+3 & 5 & 20 & 30 & 12 & dodecahedron \\
+5 & 3 & 12 & 30 & 20 & icosahedron \\ 
+from \eqref{eq:thm:15.3.5.1c} & from \eqref{eq:thm:15.3.5.1c} & from \eqref{eq:thm:15.3.5.1b} & from \eqref{eq:thm:15.3.5.1a} & from \eqref{eq:thm:15.3.5.1a} & }
+
+\noindent\theorem{15.3.5.1}{There are just five Platonic graphs.}
+{By handshaking,
+\begin{equation}\label{eq:thm:15.3.5.1a}
+    d|V| = 2|E| = b|F|
+\end{equation}
+So Euler's formula \(|V| - |E| + |F| = k+1\) becomes
+\begin{equation}\label{eq:thm:15.3.5.1b}
+    |V|(2b-bd+2d) = 4b
+\end{equation}
+But \(|V| > 0\) and \(b > 0\) so
+\begin{equation}\label{eq:thm:15.3.5.1c}
+    (b-2)(d-2) < 4
+\end{equation}
+So we have \hyperref[tab:Platonic Graphs]{Table \thetable}.}
