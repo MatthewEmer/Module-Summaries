@@ -12,3 +12,4 @@ This is my notes for the content of all of my BSc Computer Science modules at Du
   - Programming paradigms.
   - Software engineering.
   - Theory of computation.
+- Add coursework and exam dates to README.md.
