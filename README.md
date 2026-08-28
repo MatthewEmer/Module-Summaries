@@ -6,6 +6,9 @@ This is my notes for the content of all of my BSc Computer Science modules at Du
 
 **NEED TO UPDATE**
 
-## Lecture Notes To-Do
+## To-Do List
 
-n/a
+- Finish module introductions:
+  - Programming paradigms.
+  - Software engineering.
+  - Theory of computation.
