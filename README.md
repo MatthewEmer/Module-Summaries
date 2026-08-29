@@ -2,6 +2,8 @@
 
 This is my notes for the content of all of my BSc Computer Science modules at Durham University.
 
+## To-Do List
+
 ## Timetable
 *Check rooms/times once modules unlock.*
 
@@ -71,7 +73,3 @@ This is my notes for the content of all of my BSc Computer Science modules at Du
 | COMP2221 - PP | Functional Programming | ?? | 25% |
 | COMP2271 - DS | Probability | ?? | 25% |
 | COMP2271 - DS | Computer Graphics | ?? | 25% |
-
-## To-Do List
-
-- Add coursework and exam dates to README.md.
