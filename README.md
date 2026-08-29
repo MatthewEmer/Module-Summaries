@@ -4,12 +4,12 @@ This is my notes for the content of all of my BSc Computer Science modules at Du
 
 ## Upcoming Deadlines
 
-- Discrete Mathematics: Final Exam (70%) - 26/05/2026
+**NEED TO UPDATE**
 
-## Topics To-Do
+## To-Do List
 
-- Algorithms and Data Structures: 99% - Make notes on BFS/DFS
-- Computer Systems: 100%
-- Mathematics for Computer Science: 100%
-- Discrete Mathematics: 100%
-- Computational Thinking: 0%
+- Finish module introductions:
+  - Programming paradigms.
+  - Software engineering.
+  - Theory of computation.
+- Add coursework and exam dates to README.md.
