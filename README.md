@@ -24,18 +24,18 @@ This is my notes for the content of all of my BSc Computer Science modules at Du
 | COMP2281 - SE | Requirement Documentation & Peer Evaluation 1 | 17/10/2026 | 20/11/2026 | 15% + 1.67% | 
 | COMP2221 - PP | Systems Programming | 31/10/2026 | 11/12/2026 | 50% | 
 
-### Christmas Holiday Due Dates (18.4 Credits)
+### Christmas Holiday Due Dates (15 Credits)
 
 | Module | Title | Opening | Due | Weight |
 |--------|-------|---------|-----|--------|
 | COMP2261 - AI | Machine Learning | 10/10/2026 | 16/12/2026 | 50% | 
 | COMP2211 - NS | Networks | 31/10/2026 | 08/01/2027 | 25% | 
-| COMP2181 - ToC | Benchtest 1 | 12/01/2027 | 12/01/2027 | 17% |
 
-### Epiphany Term Due Dates (27.7 Credits)
+### Epiphany Term Due Dates (31.1 Credits)
 
 | Module | Title | Opening | Due | Weight |
 |--------|-------|---------|-----|--------|
+| COMP2181 - ToC | Benchtest 1 | 12/01/2027 | 12/01/2027 | 17% |
 | COMP2271 - DS | Data Cleaning & Analysis | 31/10/2026 | 16/01/2027 | 25% |
 | COMP2281 - SE | Peer Evaluation 2 | 17/10/2026 | 12/02/2027 | 1.67% | 
 | COMP2261 - AI | AI Search | 16/01/2027 | 19/02/2027 | 25% |
