@@ -1,75 +1,29 @@
 # Module Summaries
 
-This is my notes for the content of all of my BSc Computer Science modules at Durham University.
+![GitHub License](https://img.shields.io/github/license/MatthewEmer/Module-Summaries) ![GitHub top language](https://img.shields.io/github/languages/top/MatthewEmer/Module-Summaries) ![Repo Size](https://img.shields.io/github/repo-size/MatthewEmer/Module-Summaries) ![GitHub last commit](https://img.shields.io/github/last-commit/MatthewEmer/Module-Summaries)
 
-## To-Do List
+## Description
 
-## Timetable
-*Check rooms/times once modules unlock.*
+Thank you for choosing to view this repository. It contains my content/lecture notes from my time at Durham University studying Computer Science. This is my own interpretation of the content taught on the course, and is in no way affiliated with the university.
 
-| Day | 9am | 10am | 11am | 12pm | 1pm | 2pm | 3pm | 4pm | 5pm |
-|-----|-----|------|------|------|-----|-----|-----|-----|-----|
-| MON | | | **PP** *CLC202* | **DS** *W103* | | **AI** *TLC025* | --> | **PP** *CB-LG001* | --> |
-| TUE | **SE** *TLC033* | **ToC** *CLC202* | | | | | | **AI** *W103* | |
-| WED | **ToC** *TLC116* | --> | **SE** *TLC033* | | | | | | |
-| THU | **N+S** *CLC202* | --> | **SE** *CC-0007* | --> | | **ToC** *CLC202* | | **N+S** *CC-0007* | --> |
-| FRI | | **DS** *W103* | | | | **PP** *CLC202* | **AI** *W103* | **DS** *CC-0007* | --> |
+## Purpose
 
-## Summative Deadlines
-*Check dates once modules unlock.*
+After my first term, I realised that my lecture notes were a mess, all over the place, and in no way useful for revision. As a result, I began work on my [LaTeX File Template](https://github.com/MatthewEmer/LaTeX-File-Template), planning to use it for both lecture notes and formal reports/dissertations.
 
-### Michaelmas Term Due Dates (18.33 Credits)
+## Development & Maintenance
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2211 - NS | Cyber Security | 10/10/2026 | 06/11/2026 | 25% | 
-| COMP2281 - SE | Requirement Documentation & Peer Evaluation 1 | 17/10/2026 | 20/11/2026 | 15% + 1.67% | 
-| COMP2221 - PP | Systems Programming | 31/10/2026 | 11/12/2026 | 50% | 
+![GitHub language count](https://img.shields.io/github/languages/count/MatthewEmer/Module-Summaries) ![GitHub top language](https://img.shields.io/github/languages/top/MatthewEmer/Module-Summaries) 
 
-### Christmas Holiday Due Dates (15 Credits)
+Development of this project is still ongoing as I move into the second year of my course.  
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2261 - AI | Machine Learning | 10/10/2026 | 16/12/2026 | 50% | 
-| COMP2211 - NS | Networks | 31/10/2026 | 08/01/2027 | 25% | 
+## Installation
 
-### Epiphany Term Due Dates (31.1 Credits)
+![Repo Size](https://img.shields.io/github/repo-size/MatthewEmer/Module-Summaries)
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2181 - ToC | Benchtest 1 | 12/01/2027 | 12/01/2027 | 17% |
-| COMP2271 - DS | Data Cleaning & Analysis | 31/10/2026 | 16/01/2027 | 25% |
-| COMP2281 - SE | Peer Evaluation 2 | 17/10/2026 | 12/02/2027 | 1.67% | 
-| COMP2261 - AI | AI Search | 16/01/2027 | 19/02/2027 | 25% |
-| COMP2271 - DS | Image Processing | 16/01/2027 | 26/02/2027 | 25% |
-| COMP2281 - SE | Technical Report | 17/10/2026 | 12/03/2027 | 30% |
-| COMP2181 - ToC | Benchtest 2 | 19/03/2027 | 19/03/2027 | 17% | 
-| COMP2281 - SE | Product Presentation | 17/10/2026 | 20/03/2027 | 15% |
+To use this repository, you can download the pdf from each year from their corresponding folders, or view them in place on the repository.
 
-### Easter Holiday Due Dates (5.33 Credits)
+## Note from the Developer
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2281 - SE | Peer Evaluation 3 | 17/10/2026 | 24/03/2027 | 1.67% |
-| COMP2261 - AI | Bias in AI | 06/02/2027 | 26/03/2027 | 25% |
+Hi :wave:, I'm Matthew Emerson. I am a second-year Computer Science student at Durham University with a strong interest in data science and financial computing. 
 
-### Easter Term Due Dates (7 Credits)
-
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2281 - SE | Reflective Experience Report, Project Handover, & Git Commit | 17/10/2026 | 30/04/2027 | 20% + 10% + 5% |
-
-## Final Exams (43.2 Credits)
-*Check details once modules unlock.*
-
-**Exam Period**: 10th May - 4th June
-
-| Module | Title | Date | Weight |
-|--------|-------|------|--------|
-| COMP2181 - ToC | Final Exam | ?? | 66% |
-| COMP2211 - NS | Distributed Systems | ?? | 25% |
-| COMP2211 - NS | Databases | ?? | 25% |
-| COMP2221 - PP | Object Oriented Programming | ?? | 25% |
-| COMP2221 - PP | Functional Programming | ?? | 25% |
-| COMP2271 - DS | Probability | ?? | 25% |
-| COMP2271 - DS | Computer Graphics | ?? | 25% |
+As you've scrolled all the way to the bottom of this README, please take time to look through the rest of [my GitHub profile](https://github.com/MatthewEmer).
