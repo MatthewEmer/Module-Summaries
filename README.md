@@ -1,75 +1,50 @@
 # Module Summaries
 
-This is my notes for the content of all of my BSc Computer Science modules at Durham University.
+![GitHub License](https://img.shields.io/github/license/MatthewEmer/Module-Summaries) ![GitHub top language](https://img.shields.io/github/languages/top/MatthewEmer/Module-Summaries) ![GitHub Release](https://img.shields.io/github/v/release/MatthewEmer/Module-Summaries) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square) ![GitHub Issues](https://img.shields.io/github/issues/MatthewEmer/Module-Summaries) ![Repo Size](https://img.shields.io/github/repo-size/MatthewEmer/Module-Summaries) ![GitHub last commit](https://img.shields.io/github/last-commit/MatthewEmer/Module-Summaries)
 
-## To-Do List
+## Description
 
-## Timetable
-*Check rooms/times once modules unlock.*
+Thank you for choosing to use Module Summaries. If you find any bugs or want some feature not currently included, then my contact information can be found on [my GitHub page](https://github.com/MatthewEmer).
 
-| Day | 9am | 10am | 11am | 12pm | 1pm | 2pm | 3pm | 4pm | 5pm |
-|-----|-----|------|------|------|-----|-----|-----|-----|-----|
-| MON | | | **PP** *CLC202* | **DS** *W103* | | **AI** *TLC025* | --> | **PP** *CB-LG001* | --> |
-| TUE | **SE** *TLC033* | **ToC** *CLC202* | | | | | | **AI** *W103* | |
-| WED | **ToC** *TLC116* | --> | **SE** *TLC033* | | | | | | |
-| THU | **N+S** *CLC202* | --> | **SE** *CC-0007* | --> | | **ToC** *CLC202* | | **N+S** *CC-0007* | --> |
-| FRI | | **DS** *W103* | | | | **PP** *CLC202* | **AI** *W103* | **DS** *CC-0007* | --> |
+This template was designed to create a structured starting point for academics (especially those studying mathematics or computer science) to create professional, well-formatted documents that follow traditional dissertation guidelines.
 
-## Summative Deadlines
-*Check dates once modules unlock.*
+This repository contains the actual template, documentation files (linked below), and their supporting build files, demonstrating the capabilities of the template.
 
-### Michaelmas Term Due Dates (18.33 Credits)
+[![Documentation](https://img.shields.io/badge/documentation-.pdf-blue)](./documentation.pdf) [![Documentation](https://img.shields.io/badge/alternate_documentation-.md-blue)](./documentation.md)
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2211 - NS | Cyber Security | 10/10/2026 | 06/11/2026 | 25% | 
-| COMP2281 - SE | Requirement Documentation & Peer Evaluation 1 | 17/10/2026 | 20/11/2026 | 15% + 1.67% | 
-| COMP2221 - PP | Systems Programming | 31/10/2026 | 11/12/2026 | 50% | 
+### Key Features
 
-### Christmas Holiday Due Dates (15 Credits)
+- Reusable LaTeX document template.
+- Isolated formatting files, making usage simpler.
+- Supporting documentation and build files.
+- Version history and clear changelogs.
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2261 - AI | Machine Learning | 10/10/2026 | 16/12/2026 | 50% | 
-| COMP2211 - NS | Networks | 31/10/2026 | 08/01/2027 | 25% | 
+## Purpose
 
-### Epiphany Term Due Dates (31.1 Credits)
+When beginning this project, I set out to simplify the process of starting a new LaTeX paper by setting up most of the formatting as a template. Rather than configuring document structure and supporting files from scratch, users can begin with an established template and focus on their paper's content.
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2181 - ToC | Benchtest 1 | 12/01/2027 | 12/01/2027 | 17% |
-| COMP2271 - DS | Data Cleaning & Analysis | 31/10/2026 | 16/01/2027 | 25% |
-| COMP2281 - SE | Peer Evaluation 2 | 17/10/2026 | 12/02/2027 | 1.67% | 
-| COMP2261 - AI | AI Search | 16/01/2027 | 19/02/2027 | 25% |
-| COMP2271 - DS | Image Processing | 16/01/2027 | 26/02/2027 | 25% |
-| COMP2281 - SE | Technical Report | 17/10/2026 | 12/03/2027 | 30% |
-| COMP2181 - ToC | Benchtest 2 | 19/03/2027 | 19/03/2027 | 17% | 
-| COMP2281 - SE | Product Presentation | 17/10/2026 | 20/03/2027 | 15% |
+## Development & Maintenance
 
-### Easter Holiday Due Dates (5.33 Credits)
+![GitHub language count](https://img.shields.io/github/languages/count/MatthewEmer/Module-Summaries) ![GitHub top language](https://img.shields.io/github/languages/top/MatthewEmer/Module-Summaries) ![GitHub Release](https://img.shields.io/github/v/release/MatthewEmer/Module-Summaries) ![GitHub Release Date](https://img.shields.io/github/release-date/MatthewEmer/Module-Summaries) ![GitHub commits since latest release](https://img.shields.io/github/commits-since/MatthewEmer/Module-Summaries/latest)
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2281 - SE | Peer Evaluation 3 | 17/10/2026 | 24/03/2027 | 1.67% |
-| COMP2261 - AI | Bias in AI | 06/02/2027 | 26/03/2027 | 25% |
+Development of the Module Summaries is centered around keeping the template simple, reusable, and easy to maintain. 
 
-### Easter Term Due Dates (7 Credits)
+With this in mind, all releases are accompanied by clear changelogs that outline which files have changed, and what new features have been added/deprecated features removed. Similarly, most updates only target [_templateFormatting.tex](./The-Template/_templateFormatting.tex), as to not impact any content on existing documents.
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2281 - SE | Reflective Experience Report, Project Handover, & Git Commit | 17/10/2026 | 30/04/2027 | 20% + 10% + 5% |
+### Contributions
 
-## Final Exams (43.2 Credits)
-*Check details once modules unlock.*
+![GitHub contributors](https://img.shields.io/github/contributors/MatthewEmer/Module-Summaries) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) ![GitHub Issues](https://img.shields.io/github/issues/MatthewEmer/Module-Summaries) ![GitHub last commit](https://img.shields.io/github/last-commit/MatthewEmer/Module-Summaries)
 
-**Exam Period**: 10th May - 4th June
+Contributions and improvements are welcome. When submitting a pull request, please try to provide a clear description of the problem being addressed and the changes made. Contributors should keep changes focused and maintain the existing organisation and conventions of the repository wherever possible.
 
-| Module | Title | Date | Weight |
-|--------|-------|------|--------|
-| COMP2181 - ToC | Final Exam | ?? | 66% |
-| COMP2211 - NS | Distributed Systems | ?? | 25% |
-| COMP2211 - NS | Databases | ?? | 25% |
-| COMP2221 - PP | Object Oriented Programming | ?? | 25% |
-| COMP2221 - PP | Functional Programming | ?? | 25% |
-| COMP2271 - DS | Probability | ?? | 25% |
-| COMP2271 - DS | Computer Graphics | ?? | 25% |
+## Installation
+
+![Repo Size](https://img.shields.io/github/repo-size/MatthewEmer/Module-Summaries) [![Documentation](https://img.shields.io/badge/documentation-.pdf-blue)](./documentation.pdf) [![Documentation](https://img.shields.io/badge/alternate_documentation-.md-blue)](./documentation.md)
+
+To use this template, simply download the [The-Template](./The-Template/) folder, rename [template.tex](./The-Template/template.tex) to the name of your desired output pdf, and begin editing the files, as per the documentation (linked above).
+
+## Note from the Developer
+
+Hi :wave:, I'm Matthew Emerson. I am a second-year Computer Science student at Durham University with a strong interest in data science and financial computing. 
+
+As you've scrolled all the way to the bottom of this README, please take time to look through the rest of [my GitHub profile](https://github.com/MatthewEmer).
