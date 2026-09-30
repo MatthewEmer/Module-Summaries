@@ -1,25 +1,29 @@
 %%% Importing Packages
 
-\usepackage{datetime} % Formatting dates.
-\usepackage{fancyhdr} % Formatting headers.
-\usepackage{lastpage} % Adding page numbers.
-
-\usepackage{graphicx} % Inserting images.
-\usepackage{float} % Postitioning images.
-
-\usepackage{dirtytalk} % Speech and quote marks.
-\usepackage{hyperref} % Hyperlinks and references.
-\usepackage{xcolor} % Colouring text.
-\usepackage{enumitem} % Formatting ordered lists. 
-
-\usepackage{amssymb} % Additional maths symbols.
-\usepackage{amsmath} % Additional maths tools.
-
-\usepackage{algpseudocode} % Adding pseudocode.
-\usepackage{algorithm} % Adding algorithms.
-\usepackage{minted} % Adding code snippets.
-
+% Page Formatting
+\usepackage{fancyhdr} % Creates more customisable headers and footers.
 \usepackage[margin=1in]{geometry} % Reduces the page margins.
+
+% Element Formatting
+\usepackage{float} % Adds greater control over where elements are placed in the document.
+\usepackage{graphicx} % Allows for images to be inserted.
+\usepackage{makecell} % Allows for multi-line cells in tables.
+
+% Text Formatting
+\usepackage{xcolor} % Introduces tools for colouring text.
+\usepackage{dirtytalk} % Adds speech and quote marks.
+\usepackage{enumitem} % Adds additional numbering systems for ordered lists.
+
+\usepackage{datetime} % Allows greater control over the format of dates.
+\usepackage{hyperref} % Simplifies hyperlinks and references.
+
+\usepackage{amsmath} % Adds additional mathematical functions.
+\usepackage{amssymb} % Introduces additional mathematical symbols.
+
+% Programming Tools
+\usepackage{algpseudocode} % Adds pseudocode boxes.
+\usepackage{algorithm} % Allows for algorithms to be inserted into the document.
+\usepackage{minted} % Adds tools for inserting snippets of code into documents.
 
 %%% 
 
@@ -27,9 +31,9 @@
 
 %%% Custom Formatting
 
-\newcommand{\templateversion}{4.0.0}
+\newcommand{\templateversion}{2.1.2}
 
-\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black} % Formatting URLs and links.
+\hypersetup{colorlinks=true, urlcolor=violet, linkcolor=darkgray} % Formatting URLs and links.
 
 \newdateformat{monthyeardate} % The date format for the title page.
 {%
@@ -52,26 +56,26 @@
 \newcommand{\comment}[1]{\colouredText{red}{#1}} % Allows you to leave yourself comments.
 
 % Set notation.
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
 \newcommand{\I}{\mathbb{I}}
+\newcommand{\C}{\mathbb{C}}
 
 % Maths notation.
-\newcommand{\hessian}[1]{\mathbf{H}_{#1}}
-\newcommand{\jacobian}[1]{\mathbf{J}_{#1}}
-\newcommand{\lagrange}{\mathcal{L}}
 \newcommand{\dotproduct}[2]{\langle\mathbf{#1},\mathbf{#2}\rangle}
+\newcommand{\jacobian}[1]{\mathbf{J}_{#1}}
+\newcommand{\hessian}[1]{\mathbf{H}_{#1}}
+\newcommand{\lagrangian}{\mathcal{L}}
 
 % Join symbols.
 \newcommand{\ojoin}{\setbox0=\hbox{$\bowtie$}%
     \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
-\newcommand{\insertinnerjoin}{\mathbin{\bowtie\mkern-5.8mu}\;}
-\newcommand{\insertleftouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
-\newcommand{\insertrightouterjoin}{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
-\newcommand{\insertfullouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+\newcommand{\innerjoin}{\mathbin{\bowtie\mkern-5.8mu}\;}
+\newcommand{\leftouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\newcommand{\rightouterjoin}{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\newcommand{\fullouterjoin}{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
 
 \newcommand{\insertimage}[3]
 {

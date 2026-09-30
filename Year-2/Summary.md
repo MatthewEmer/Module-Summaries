@@ -2,11 +2,10 @@
 
 ## To-Do List
 
-- Double check timetable.
 - Confirm summative deadlines.
 
 ## Timetable
-*Check rooms/times once modules unlock.*
+*Check rooms*
 
 | Day | 9am | 10am | 11am | 12pm | 1pm | 2pm | 3pm | 4pm | 5pm |
 |-----|-----|------|------|------|-----|-----|-----|-----|-----|
@@ -38,14 +37,14 @@
 
 | Module | Title | Opening | Due | Weight |
 |--------|-------|---------|-----|--------|
-| COMP2181 - ToC | Benchtest 1 | 12/01/2027 | 12/01/2027 | 17% |
+| COMP2181 - ToC | Benchtest 1 | Week 11 | n/a | 17% |
 | COMP2271 - DS | Data Cleaning & Analysis | 31/10/2026 | 16/01/2027 | 25% |
 | COMP2281 - SE | Peer Evaluation 2 | 17/10/2026 | 12/02/2027 | 1.67% | 
 | COMP2261 - AI | AI Search | 16/01/2027 | 19/02/2027 | 25% |
 | COMP2271 - DS | Image Processing | 16/01/2027 | 26/02/2027 | 25% |
 | COMP2281 - SE | Technical Report | 17/10/2026 | 12/03/2027 | 30% |
-| COMP2181 - ToC | Benchtest 2 | 19/03/2027 | 19/03/2027 | 17% | 
 | COMP2281 - SE | Product Presentation | 17/10/2026 | 20/03/2027 | 15% |
+| COMP2181 - ToC | Benchtest 2 | Week 20 | n/a | 17% | 
 
 ### Easter Holiday Due Dates (5.33 Credits)
 
