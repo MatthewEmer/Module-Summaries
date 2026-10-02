@@ -38,7 +38,7 @@
 | Module | Title | Opening | Due | Weight |
 |--------|-------|---------|-----|--------|
 | COMP2181 - ToC | Benchtest 1 | Week 11 | n/a | 17% |
-| COMP2271 - DS | Data Cleaning & Analysis | 31/10/2026 | 16/01/2027 | 25% |
+| COMP2271 - DS | Data Cleaning & Analytics | Week 11 | n/a | 25% |
 | COMP2281 - SE | Peer Evaluation 2 | 17/10/2026 | 12/02/2027 | 1.67% | 
 | COMP2261 - AI | AI Search | 16/01/2027 | 19/02/2027 | 25% |
 | COMP2271 - DS | Image Processing | 16/01/2027 | 26/02/2027 | 25% |
@@ -67,9 +67,6 @@
 | Module | Title | Date | Weight |
 |--------|-------|------|--------|
 | COMP2181 - ToC | Final Exam | ?? | 66% |
-| COMP2211 - NS | Distributed Systems | ?? | 25% |
-| COMP2211 - NS | Databases | ?? | 25% |
-| COMP2221 - PP | Object Oriented Programming | ?? | 25% |
-| COMP2221 - PP | Functional Programming | ?? | 25% |
-| COMP2271 - DS | Probability | ?? | 25% |
-| COMP2271 - DS | Computer Graphics | ?? | 25% |
+| COMP2211 - NS | Distributed Systems & Databases | ?? | 50% |
+| COMP2221 - PP | Object Oriented & Functional Programming | ?? | 50% |
+| COMP2271 - DS | Probability & Computer Graphics | ?? | 50% |
