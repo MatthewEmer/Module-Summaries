@@ -32,25 +32,111 @@ This section is taught by \hyperref[lecturer-igorrazgon]{Dr Igor Razgon}. The re
     \item \hyperref[cit:Probability and Statistics]{Probability and Statistics (Degroot, M.H. and Schervish, M.J., 2012)}.
 \end{itemize}
 
-\subsection{Basics of Counting and Probability}
+\subsection{Probability and Statistics: Basic Concepts}
 
-\subsection{Dependence, Conditional Probability, and Bayes' Theorem}
+\subsubsection{Counting Theory}
 
-\subsection{Discrete Random Values and Probability Distributions}
+\definition{The Product Rule}{The \underline{product rule} states that, if a procedure can be broken down into a sequence of two tasks with $n_1$ ways to do the first task and $n_2$ ways to do the second task, then there are $n_1n_2$ ways to complete the entire procedure.}
+
+\separate{7}\example{Product Rule: Flights}
+{John wants to fly to Canada from Germany with a connecting flight through the UK. There are 3 flights from Germany to the UK, and 2 flights from the UK to Canada. How many possible flight combinations are there?
+
+\solution{ex:Product Rule: Flights}{\(3 \times 2 = 6\).}}
+
+\separate{7}\definition{The Sum Rule}{The \underline{sum rule} states that, if you consider two independent sub-tasks (we only have to do one), if the first can be done in \(n_1\) ways, and the second can be done in \(n_2\) ways, then the total number of ways to complete the task is \(n_1+n_2\).}
+
+\separate{7}\example{Sum Rule: Projects}
+{Mary wants to choose a student project from three lists: lecturer 1 offers 5 projects, lecturer 2 offers 2 projects, and lecturer 3 offers 10 projects. How many possible options for her?
+
+\solution{ex:Sum Rule: Projects}{\(5 + 2 + 10 = 17\).}}
+
+\separate{7}\definition{The Inclusion-Exclusion Principle}{The \underline{inclusion-exclusion principle} states that, if two tasks can be done at the same time (unlike the sum rule in which they are independent), then there is a possibility of overcounting since some ways may be counted twice. To counter this, we add up the number of ways to do each task, then subtract the number of ways to do both tasks.
+\begin{equation}
+    |A \cup B| = \left(|A| + |B|\right) - \left(|A \cap B|\right)
+\end{equation}
+\begin{equation}
+    |A \cup B \cup C| = \left(|A| + |B| + |C|\right) - \left(|A \cap B| + |A \cap C| + |B \cap C|\right) + \left(|A \cap B \cap C|\right)
+\end{equation}}
+
+\separate{7}\definition{r-permutations}{An \underline{r-permutation} of a set of \(r\) distinct objects is one ordered arrangement. We denote the number of r-permutations of a set with \(n\) elements in as \(P(n,r)\).
+\begin{equation}\label{eq: permutations: distinct}
+    P(n,r) = n \times (n-1) \times (n-2) \times ... \times (n-r+1) = \frac{n!}{(n-r)!}
+\end{equation}
+
+\noindent Suppose that a set consists of \(n\) objects, of which \(n_1\) are of one type (indistinguishable from one another), \(n_2\) are of a second type, ..., and \(n_k\) are of a \(k_{th}\) type where \(n = n_1 + n_2 + ... + n_k\). The number of permutations of the objects can be calculated with \eqref{eq: permutations: indistinguishable}.
+\begin{equation}\label{eq: permutations: indistinguishable}
+    P(n;n_1,n_2,...,n_k) = \frac{n!}{n_1!n_2!...n_k!}
+\end{equation}} 
+
+\separate{7}\definition{r-combinations}{A \underline{r-combination} is a counting of distinct objects in an unordered arrangement of length \(r\). The number of \(r\) combinations of a set with \(n\) distinct elements is given by \eqref{eq: combinations: distinct}.
+\begin{equation}\label{eq: combinations: distinct}
+    C(n,r) = \binom{n}{r} = \frac{n!}{(n-r)! \times r!}
+\end{equation}}
+
+\separate{7}\example{arrangements vs. combinations}{Assume elements \(A_1, A_2, A_3, A_4\) are in a set. We want to choose 2 elements from them.
+
+\solution{ex:arrangements vs. combinations}{
+\begin{itemize}
+    \item  If the order of elements is important: \(P(4,2) = \frac{4!}{(4-2)!} = 12\).
+    \item If the order of elements is not important: \(C(4,2) = \frac{4!}{(4-2)!2!} = 6\).
+\end{itemize}}}
+
+\subsubsection{Probability Theory}
+
+\definition{Probability}{\underline{Probability} is the formalisation of uncertain events. It enables one to infer probabilities of interest based on assumptions and observations.}
+
+\separate{7}\definition{Statistics}{\underline{Statistics} is the practice of the science of collecting and analysing data. It deals with experimental data and extracting knowledge from it.}
+
+\separate{7}\definition{Experiment}{An \underline{experiment} is a procedure that yields one of a given set of possible outcomes.}
+
+\separate{7}\definition{Sample Space}{The \underline{sample space} of the \hyperref[def:Experiment]{experiment} is the set of possible outcomes.}
+
+\separate{7}\definition{Event}{An \underline{event} is any subset of the \hyperref[def:Sample Space]{sample space}.}
+
+\separate{7}\theorem{Theory of Probability}{The \underline{Theory of Probability} states that, given a finite sample space of all outcomes \(S\), assuming that all outcomes are equally likely, for an event set \(E\) where \(E \subseteq S\), then the probability of occurrence of the event is given by \eqref{eq: Theory of Probability}.
+\begin{equation}\label{eq: Theory of Probability}
+    P(E) = \frac{|E|}{|S|}
+\end{equation}}
+{Proof omitted.}
+
+\separate{7}\definition{Axioms of Probability}{The \underline{axioms of probability} are as follows:
+\begin{itemize}
+    \item \(P(E)\) is always between 0 and 1: \(0 \leq P(E) \leq 1\).
+    \item \(P(S) = 1\).
+    \item For disjoint events \(E_1,E_2,...,E_n\) (with no intersection), \(P(E_1 \cup E_2 \cup ... \cup E_n) = \sum_{i=1}^{n} P(E_i)\). 
+\end{itemize}}
+Then, from the \hyperref[def:Axioms of Probability]{Axioms of Probability} above, we can derive the following:
+\begin{itemize}
+    \item \definition{Complement Rule}{The \underline{complement rule} states that \(P(\overline{E}) = P(S-E) = P(S) - P(E) = 1 - P(E)\).}
+    \item \definition{Impossible Rule}{The \underline{impossible rule} states that \(P(\emptyset) = 0\).}
+    \item \definition{General Addition Rule}{The \underline{general addition rule} states that \(P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2)\).}
+    \item If \(E_1 \subseteq E_2\), then \(P(E_1) \leq P(E_2)\).
+\end{itemize}
+
+\separate{7}\example{Probability}{A sequence of 10 bits is randomly generated. What is the probability that at least 1 of these is 0?
+
+\solution{ex:Probability}{Let \(E\) be an event in which all bits are 1.
+\[P(E) = \frac{|E|}{|S|} = \frac{1}{2^{10}}\]
+Then, by the \hyperref[def:Complement Rule]{complement rule}, \(P(\overline{E}) = P(1-E)\) where \(\overline{E}\) is the event in which at least one bit is not 1.
+\[P(\overline{E}) = 1 - \frac{1}{1024} = \frac{1023}{1024}\]}}
+
+\subsection{Dependency and Bayes Theorem}
+
+\subsection{Discrete Probability Distributions}
 
 \subsection{Continuous Probability Distributions}
 
-\subsection{The Normal Distribution}
+\subsection{Gaussian Distribution and its Characteristics}
 
-\subsection{Multivariate Distributions}
+\subsection{Correlations}
 
-\subsection{Statistics and the Central Limit Theorem}
-
-\subsection{Point Estimators, Confidence Intervals, and Hypothesis Testing}
+\subsection{Central Limit Theorem and Sampling}
 
 \subsection{Hypothesis Testing}
 
-\subsection{From Statistics to Data}
+\subsection{Data Types and Visualisation}
+
+\subsection{Basic Data Analysis with Python}
 
 \section{Data Cleaning and Analytics}
 
