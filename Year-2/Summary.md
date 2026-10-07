@@ -2,71 +2,64 @@
 
 ## To-Do List
 
-- Confirm summative deadlines. UPDATE HERE
+- DUSA Website.
+- Job Applications.
+- REFSIX Data Project.
 
-## Timetable
-*Check rooms*
+## Lecture Catchup
 
-| Day | 9am | 10am | 11am | 12pm | 1pm | 2pm | 3pm | 4pm | 5pm |
-|-----|-----|------|------|------|-----|-----|-----|-----|-----|
-| MON | | | **PP** *CLC202* | **DS** *W103* | | **AI** *TLC025* | --> | **PP** *CB-LG001* | --> |
-| TUE | **SE** *TLC033* | **ToC** *CLC202* | | | | | | **AI** *W103* | |
-| WED | **ToC** *TLC116* | --> | **SE** *TLC033* | | | | | | |
-| THU | **N+S** *CLC202* | --> | **SE** *CC-0007* | --> | | **ToC** *CLC202* | | **N+S** *CC-0007* | --> |
-| FRI | | **DS** *W103* | | | | **PP** *CLC202* | **AI** *W103* | **DS** *CC-0007* | --> |
+- Theory of Computation PowerPoint (Up to Slide 22/55) - I think I'm actually ahead.
 
 ## Summative Deadlines
-*Check dates once modules unlock.*
 
-### Michaelmas Term Due Dates (18.33 Credits)
+### Michaelmas Term Due Dates (5th October - 11th December) - 18.33 Credits 
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2211 - NS | Cyber Security | 10/10/2026 | 06/11/2026 | 25% | 
-| COMP2281 - SE | Requirement Documentation & Peer Evaluation 1 | 17/10/2026 | 20/11/2026 | 15% + 1.67% | 
-| COMP2221 - PP | Systems Programming | 31/10/2026 | 11/12/2026 | 50% | 
+| Module | Title | Opening | Due | Weight | Credits |
+|--------|-------|---------|-----|--------|---------|
+| Networks & Systems | Cyber Security | 9th October | 5th November | 25% | 5 | 
+| Programming Paradigms | *Systems Programming Formative* | 12th October | 12th November | - | - | 
+| Software Engineering | Requirement Documentation & Peer Evaluation 1 | 16th October | 19th November | 15% + 1.67% | 3.33 |
+| Programming Paradigms | Systems Programming | 23rd October | 10th December | 50% | 10 | 
 
-### Christmas Holiday Due Dates (15 Credits)
+### Christmas Holiday Due Dates (12th December - 10th January) - 10 Credits
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2261 - AI | Machine Learning | 10/10/2026 | 16/12/2026 | 50% | 
-| COMP2211 - NS | Networks | 31/10/2026 | 08/01/2027 | 25% | 
+| Module | Title | Opening | Due | Weight | Credits |
+|--------|-------|---------|-----|--------|---------|
+| Artificial Intelligence | Machine Learning | 9th October | 15th December | 50% | 10 |
 
-### Epiphany Term Due Dates (31.1 Credits)
+### Epiphany Term Due Dates (11th January - 19th March) - 34.33 Credits
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2181 - ToC | Benchtest 1 | Week 11 | n/a | 17% |
-| COMP2271 - DS | Data Cleaning & Analytics | Week 11 | n/a | 25% |
-| COMP2281 - SE | Peer Evaluation 2 | 17/10/2026 | 12/02/2027 | 1.67% | 
-| COMP2261 - AI | AI Search | 16/01/2027 | 19/02/2027 | 25% |
-| COMP2271 - DS | Image Processing | 16/01/2027 | 26/02/2027 | 25% |
-| COMP2281 - SE | Technical Report | 17/10/2026 | 12/03/2027 | 30% |
-| COMP2281 - SE | Product Presentation | 17/10/2026 | 20/03/2027 | 15% |
-| COMP2181 - ToC | Benchtest 2 | Week 20 | n/a | 17% | 
+| Module | Title | Opening | Due | Weight | Credits |
+|--------|-------|---------|-----|--------|---------|
+| Theory of Computation | Benchtest 1 | Week 11 | - | 12.5% | 2.5 |
+| Data Science | Data Cleaning & Analytics | Week 11 | - | 25% | 5 |
+| Networks & Systems | Networks | 23rd October | 21st January | 25% | 5 |
+| Software Engineering | Peer Evaluation 2 | 16th October | 11th February | 1.67% | 0.33 |
+| Software Engineering | Product Presentation | Week 16 | - | 15% | 3 |
+| Artificial Intelligence | AI Search | 15th January | 18th February | 25% | 5 |
+| Data Science | Image Processing | 15th January | 2nd March | 25% | 5 |
+| Software Engineering | Technical Report | 5th February | 18th March | 30% | 6 |
+| Theory of Computation | Benchtest 2 | Week 20 | - | 12.5% | 2.5 |
 
-### Easter Holiday Due Dates (5.33 Credits)
+### Easter Holiday Due Dates (20th March - 25th April) - 5.33 Credits
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2281 - SE | Peer Evaluation 3 | 17/10/2026 | 24/03/2027 | 1.67% |
-| COMP2261 - AI | Bias in AI | 06/02/2027 | 26/03/2027 | 25% |
+| Module | Title | Opening | Due | Weight | Credits |
+|--------|-------|---------|-----|--------|---------|
+| Software Engineering | Peer Evaluation 3 | 5th February | 18th March | 1.67% | 0.33 |
+| Artificial Intelligence | Bias in AI | 5th Feburary | 30th March | 25% | 5 |
 
-### Easter Term Due Dates (7 Credits)
+### Easter Term Due Dates (26th March - 9th May) - 7 Credits
 
-| Module | Title | Opening | Due | Weight |
-|--------|-------|---------|-----|--------|
-| COMP2281 - SE | Reflective Experience Report, Project Handover, & Git Commit | 17/10/2026 | 30/04/2027 | 20% + 10% + 5% |
+| Module | Title | Opening | Due | Weight | Credits |
+|--------|-------|---------|-----|--------|---------|
+| Software Engineering | Project Handover, & Git Commit | 5th February | 29th April | 10% + 5% | 3 |
+| Software Engineering | Reflective Experience Report | 5th February | 6th May | 20% | 4 |
 
-## Final Exams (43.2 Credits)
-*Check details once modules unlock.*
+## Final Exams (10th May - 4th June) - 45 Credits
 
-**Exam Period**: 10th May - 4th June
-
-| Module | Title | Date | Weight |
-|--------|-------|------|--------|
-| COMP2181 - ToC | Final Exam | ?? | 66% |
-| COMP2211 - NS | Distributed Systems & Databases | ?? | 50% |
-| COMP2221 - PP | Object Oriented & Functional Programming | ?? | 50% |
-| COMP2271 - DS | Probability & Computer Graphics | ?? | 50% |
+| Module | Title | Date | Weight | Credits |
+|--------|-------|------|--------|---------|
+| Theory of Computation | Final Exam | ?? | 75% | 15 |
+| Networks & Systems | Distributed Systems & Databases | ?? | 50% | 10 |
+| Programming Paradigms | Object Oriented & Functional Programming | ?? | 50% | 10 |
+| Data Science | Probability & Computer Graphics | ?? | 50% | 10 |
