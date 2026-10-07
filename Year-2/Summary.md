@@ -2,7 +2,7 @@
 
 ## To-Do List
 
-- Confirm summative deadlines.
+- Confirm summative deadlines. UPDATE HERE
 
 ## Timetable
 *Check rooms*

@@ -33,6 +33,49 @@ This section is taught by \hyperref[modulelead-yanglong]{Dr Yang Long}. The reco
 
 \subsection{Introduction to Machine Learning}
 
+\subsubsection{Module Information}
+
+This module is organised around a direct connection between teaching and practical work. The lectures introduce the concepts, mathematics, 
+assumptions, and experimental consequences needed for that week's practical. The practical then produces the evidence used in the 
+corresponding coursework report. This can be seen in \elemref{tab:The learning and coursework model.}{Table}.
+
+\inserttable{c|c|c}{The learning and coursework model.}{\textbf{Stage} & \textbf{What you do} & \textbf{What you keep}}
+{Lecture & \makecell{Understand the main question, mechanisms, \\assumptions, and key equations.} & \makecell{Notes in your own words and questions that \\still need an answer.} \\ \hline
+Practical &\makecell{Implement, test, compare, visualise, and \\discuss the method.} & \makecell{A notebook that runs from top to bottom \\with outputs included.} \\ \hline
+\makecell{Weekly \\Report} & \makecell{Select the strongest evidence and explain \\why the result occured.} & \makecell{A concise report that links theory, method, \\result, and interpretation.} \\ \hline
+Portfolio & \makecell{Revise the nine reports and connect ideas \\across the module.} & \makecell{A coherent record of technical progress and \\developing judgement.}}
+
+\noindent For more information about expectations for evidence, see \hyperref[cit:Machine Learning Guide]{(Long and Durham University, 2026, pp.3-4)}.
+
+\subsubsection{What is Machine Learning?}
+
+\definition{Machine Learning}{Arthur Samuel said in 1959 that \underline{machine learning} is the
+\begin{quote}
+    \say{field of study that gives computers the ability to learn without being explicitly programmed.}
+\end{quote}
+The field arose from the question -- can a computer learn on its own in order to perform a specific task, rather than relying on a programmer explicitly setting up 
+rules for it? Similarly, Tom Mitchell defined machine learning in 1997 as
+\begin{quote}
+    \say{A computer program is said to learn from experience \(E\) with respect to some class of tasks \(T\) and performance measure \(P\), if its 
+    performance at tasks in \(T\), as measured by \(P\), improves with experience \(E\).}
+\end{quote}
+From this, we can define a well-defined learning task as \(<T,P,E>\).}
+
+\separate{7}There are three typical types of machine learning, these are:
+\begin{itemize}
+    \item \definition{Supervised Learning}{\underline{Supervised learning} seeks to learn the mapping (rules) between inputs and outputs. Labelled data (correct answers) is provided in past input and output pairs during the learning process to train the model on how it should behave for previously unseen data.}
+    \item \definition{Unsupervised Learning}{\underline{Unsupervised learning} seeks to discover the hidden pattern from a set of inputs. Unlabelled data is provided as the past input during the learning process. The program will then attempt to group similar instances into groups.}
+    \item \definition{Reinforcement Learning}{\underline{Reinforcement learning} works by providing occasional positive and negative feedback to reinforce behaviours. Good behaviours are rewarded with treats and therefore become more common whereas bad behaviours are punished and therefore become less common. This is a balance between exploration (of unchared territory) and exploitation (of current knowledge).}
+\end{itemize}
+
+\subsubsection{Differences between AI, ML, and DL}
+
+\definition{Artificial Intelligence}{\underline{Artificial intelligence} is defined as human intelligence being exhibited by machines.}
+
+\separate{7}\definition{Machine Learning (Simple)}{In simple terms, \underline{machine learning} can be defined as an approach to achieve artificial intelligence.}
+
+\separate{7}\definition{Deep Learning}{\underline{Deep learning} is defined as a technique for achieving machine learning. As such, we can consider AI to be a subset of ML and ML to be a subset of DL.}
+
 \subsection{Machine Learning Workflow and Coding Environment}
 
 \subsection{Data Understanding}
