@@ -25,9 +25,94 @@ This module is taught through one two-hour lecture and one two-hour computer cla
 
 \section{Cyber Security}
 
-This section is taught by \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd}. \comment{Check for recommended reading.}
+This section is taught by \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd}. There is no formal recommended reading for this topic, but you should try out the following games:
+\begin{itemize}
+    \item \href{https://www.hackthissite.org/}{Hack this Site}
+    \item \href{https://www.hackthebox.com/}{Hack the Box}
+    \item \href{https://www.kali.org/}{Kali Linux}
+\end{itemize}
 
 \subsection{Introduction, Threat Modelling, and Applied Cryptography}
+
+\subsubsection{Basic Definitions}
+
+\definition{Adversary or Threat Model}{A system's security depends on the definition of the \underline{adversary}: who they are, what they can do (or their capabilities) and their determination (time, money, resources). This is the \underline{adversary} or \underline{threat model}.}
+
+\separate{7}\definition{Asset}{An \underline{asset} is something that is worth protecting.}
+
+\separate{7}\definition{Threat}{A \underline{threat} is a person or program that may try and access/steal your assets.}
+
+\separate{7}\definition{Assumptions}{An \underline{assumption} is something you are relying on to be true/secure by default.}
+
+\separate{7}\definition{Goals}{Your \underline{goal} should be in terms of what needs to be secure, and how long for.}
+
+\separate{7}\definition{Controls}{The \underline{controls} are the things you can do to attempt to protect your assets.}
+
+\separate{7}The CIA triad are the three main security properties, these are:
+\begin{itemize}
+    \item \definition{Confidentiality}{\underline{Confidentiality}: The outcomes of different actions in the system are only visible by authorised subjects.}
+    \item \definition{Integrity}{\underline{Integrity}: Actions modifying the system can only be performed by authorised subjects.}
+    \item \definition{Availability}{\underline{Availability}: Subjects can perform all actions they are authorised for.}
+\end{itemize}
+In addition to these properties, it is also important to consider additional properties, such as:
+\begin{itemize}
+    \item \definition{Authenticity}{\underline{Authenticity}: An entity is who they claim they claim to be.}
+    \item \definition{Non-Repudiation}{\underline{Non-Repudiation}: An actor cannot easily deny that an action has occurred.}
+    \item \definition{Context-Binding}{\underline{Context-Binding}: An action is valid only for a particular period of time, distance, location, and/or environment.}
+\end{itemize}
+
+\separate{7}\definition{Exploit}{An \underline{exploit} is a piece of code, a tool, or a technique that takes advantage of a flaw in software, hardware, or a network to cause unintended behaviour.}
+
+\separate{7}\definition{Vulnerability}{A \underline{vulnerability} is a weakness or flaw in a system's design, implementation, operation, or human behaviour that an attacker can exploit to compromise security.}
+
+\separate{7}\definition{Risk}{\underline{Risk} is the probability or liklihood that a threat will exploit a vulnerability and cause harm, loss, or negative consequences to an asset.}
+
+\subsubsection{STRIDE Modelling}
+
+\definition{STRIDE}{One method of classifying security risks is STRIDE, which was first developed by Microsoft. It is separated as follows:
+\begin{itemize}
+    \item \definition{Spoofing}{\underline{\textbf{S}poofing} is the act of using someone else's credentials to perform an operation and is a failure of identification and authentication.}
+    \item \definition{Tampering}{\underline{\textbf{T}ampering} is the malicious modification of data and is a failure of integrity and authenticity.}
+    \item \definition{Repudiation}{\underline{\textbf{R}epudiation} is the act of denying having performed an operation and is a failure of accountability and identification.}
+    \item \definition{Information Dislosure}{\underline{\textbf{I}nformation Dislosure} is the exposure of information to unauthorised users and is a failure of confidentiality.}
+    \item \definition{Denial of Service}{\underline{\textbf{D}enial of Service} is the act of denying service to legitimate users and is a failure of availability.}
+    \item \definition{Elevation of Privilege}{\underline{\textbf{E}levation of Privilege} is an instance of an unprivileged user gaining privileged access and is a failure of confinement and authentication.}
+\end{itemize}
+This is a helpful model for structuring the analysis of potential system threats but it is not exhaustive or exclusive.}
+
+\subsubsection{Applied Cryptography}
+
+\definition{Encoding}{To \underline{encode} some given data, it is transformed from one format/domain to another. This is fully reversible, and does not provide any secrecy. The inverse procedure is called \underline{decoding}.}
+\begin{itemize}
+    \item \definition{Steganography}{A subtype of encoding is \underline{steganography}, where the existence of the secret message is concealed.}
+\end{itemize}
+
+\separate{7}\definition{Hashing}{To \underline{hash} some given data, it is transformed into a (usually) smaller, fixed-size. This is most commonly considered a one-way function.}
+\begin{itemize}
+    \item A hashing algorithm works by taking a message \(m\) and applying a hashing algorithm \(h=H(m)\). \(h\) can then be sent securely and the recipient can then take \(h'=H(m')\) where \(m=m'\), and if \(h'=h\), then the message recieved is correct. 
+\end{itemize}
+
+\separate{7}\definition{Encryption}{Non-secret data (plaintext) can be \underline{encrypted} into ciphertext using a secret key. The output is \(Enc(m, K) = c\). The inverse procedure, \underline{decryption}, again uses a secret key to transform the ciphertext back to plaintext \(Dec(c, K)  = m\).}
+
+\subsubsection{Cipher Examples}
+
+\separate{7}\definition{Substitution Ciphers}{A \underline{substitution cipher} works by taking each letter in the alphabet and replacing it with another one. This was purportedly created and used by Julius Caesar. These are weak though and can be broken by:
+\begin{itemize}
+    \item \definition{Brute-Force Attack}{A \underline{brute-force} attack tries every possible key, which for substitution ciphers becomes trivial.}
+    \item \definition{Frequency Analysis}{A \underline{frequency analysis} attack matches the ciphertext to the known frequency of English letters.}
+\end{itemize}}
+
+\separate{7}\definition{Vigenere Cipher}{Another historical example of a cipher is a \underline{Vigenere cipher}. This uses a sliding password, such that repeats of the same letter are coded differently. Attacks against this have to guess possible key lengths and then try all possibilities using frequency analysis. This is much harder to break.}
+
+\separate{7}\definition{One Time Pad}{Another encryption method is using \underline{one time pads}. Here, you select a key as long as your message. Data is converted into binary and bitwise XORed with the key. To decode it, you then bitwise XOR the ciphertext with the key. This is considered theoretically secure as long as the key generation process is truly random, the key is never reused, and the key is kept secret.}
+
+\separate{7}\definition{Stream Ciphers}{\underline{Stream ciphers} use a short secret key and a nonce - a use-once but public value - to generate a long pseudorandom sequence called a keystream. Only the short secret key must be kept private. We then XOR with the message and keystream.
+\begin{itemize}
+    \item To encrypt, you take the secret key \(K\) and the nonce \(N\) and feed them through a keystream generator. The resulting keystream \(S\) is then XORed with the plaintext \(p\) to produce ciphertext \(C\).
+    \item To decrypt, the recipient takes the same secret key \(K\) and nonce \(N\), feeds them through the keystream generator and then XOR the result with the ciphertext \(C\) to produce the original plaintext \(p\).
+\end{itemize}}
+
+\separate{7}\comment{Got to slide 22/40 - block ciphers.}
 
 \section{Networks}
 
