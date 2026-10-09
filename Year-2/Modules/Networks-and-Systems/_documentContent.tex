@@ -25,11 +25,9 @@ This module is taught through one two-hour lecture and one two-hour computer cla
 
 \section{Cyber Security}
 
-This section is taught by \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd}. There is no formal recommended reading for this topic, but you should try out the following games:
+This section is taught by \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd}. The recommended reading for this module is as follows:
 \begin{itemize}
-    \item \href{https://www.hackthissite.org/}{Hack this Site}
-    \item \href{https://www.hackthebox.com/}{Hack the Box}
-    \item \href{https://www.kali.org/}{Kali Linux}
+    \item \hyperref[cit:Practical Cryptography for Developers]{Practical Cryptography for Developers (Nakov, Stefanov and Shideroff, 2018)}, specifically the section on \say{Encryption: Symmetric and Asymmetric}.
 \end{itemize}
 
 \subsection{Introduction, Threat Modelling, and Applied Cryptography}
@@ -87,7 +85,7 @@ This is a helpful model for structuring the analysis of potential system threats
     \item \definition{Steganography}{A subtype of encoding is \underline{steganography}, where the existence of the secret message is concealed.}
 \end{itemize}
 
-\separate{7}\definition{Hashing}{To \underline{hash} some given data, it is transformed into a (usually) smaller, fixed-size. This is most commonly considered a one-way function.}
+\separate{7}\definition{Hashing}{To \underline{hash} some given data, it is transformed into a (usually) smaller, fixed-size. This is most commonly considered a one-way function. An example of this are SHA algorithms.}
 \begin{itemize}
     \item A hashing algorithm works by taking a message \(m\) and applying a hashing algorithm \(h=H(m)\). \(h\) can then be sent securely and the recipient can then take \(h'=H(m')\) where \(m=m'\), and if \(h'=h\), then the message recieved is correct. 
 \end{itemize}
@@ -112,7 +110,17 @@ This is a helpful model for structuring the analysis of potential system threats
     \item To decrypt, the recipient takes the same secret key \(K\) and nonce \(N\), feeds them through the keystream generator and then XOR the result with the ciphertext \(C\) to produce the original plaintext \(p\).
 \end{itemize}}
 
-\separate{7}\comment{Got to slide 22/40 - block ciphers.}
+\separate{7}\definition{Block Cipher}{\underline{Block ciphers} transform a fixed-size block of plaintext into a ciphertext block of the same size, using a secret key. Encryption applies a keyed transformation to the plaintext block, and decryption reverses the transformation using the same key. An example of this is AES encryption. To encrypt longer messages, we use a mode of operation which specifies how to encrypt message blocks in sequence - this usually involves a nonce (initialisation vector).
+\begin{itemize}
+    \item \definition{AES-ECB}{\underline{AES Electronic Code Book (ECB) mode} works by taking the plaintext, splitting it into blocks, and then encrypting each of them separately. This is not secure.}
+    \item \definition{AES-CBC}{\underline{AES Cipher Block Chaining (CBC) mode} splits the plaintext into blocks and encrypts the first one. The result is then XORed with the second plaintext block before it is encrypted, and so on.}
+\end{itemize}}
+
+\subsubsection{Public Key Cryptography}
+
+\definition{RSA}{\underline{Rivest, Shamir, Adelman (RSA)} is an algorithm where person A computes the product of two prime numbers \(n=p \times q\) and makes the value of \(n\) public. Person A then generates a public value \(e\) and a private value \(d\) using \(p\) and \(q\). \(e\) can then be used to encrypt messages to send to person A, and \(d\) used to decrypt them. This is secure based on the computational difficulty of factorisation, but with the rise of quantum computing, is becoming less secure.}
+
+\separate{7}\definition{Digital signatures}{\underline{Digital signatures} enables others to check that a message was signed using a private key and has not been altered. To sign a message, the sender uses their private key, and then sends the message and signature to the recipient. To verify the signature, the recipient uses the sender's public key and compares the result to the message.}
 
 \section{Networks}
 
