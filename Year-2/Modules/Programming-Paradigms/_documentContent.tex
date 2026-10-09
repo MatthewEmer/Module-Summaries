@@ -4,13 +4,14 @@ Programming Paradigms has the module code COMP2221 and is led by \hyperref[modul
 
 \subsection{Assessment}
 
-This module is assessed through one piece of summative coursework and two final exams, these can be seen in \elemref{tab:Assessments for Programming Paradigms.}{Table}. \comment{Final dates to be confirmed.}
+This module is assessed through one piece of summative coursework and two final exams, these can be seen in \elemref{tab:Assessments for Programming Paradigms.}{Table}. Additional formatives are also shown in italics.
 
 \inserttable{c|c|c|c|c|c}{Assessments for Programming Paradigms.}
 {\textbf{Title} & \textbf{Opening} & \textbf{Due} & \textbf{Feedback} & \textbf{Professor} & \textbf{Weight}}
 {
-    Systems Programming & 31/10/2026 & 11/12/2026 & 08/01/2027 & \hyperref[modulelead-stuartjames]{Dr Stuart James} & $50\%$ \\
-    Object Oriented $\&$ Functional & May Exam & n/a & n/a & \hyperref[lecturer-mladenivkovic]{Ivkovic} $\&$ \hyperref[lecturer-billymoses]{Moses} & $50\%$}
+    \textit{Systems Programming} & \textit{12th Oct} & \textit{12th Nov} & \textit{10th Dec} & \textit{\hyperref[modulelead-stuartjames]{Dr Stuart James}} & - \\
+    Systems Programming & 23rd Oct & 10th Dec & 21st Jan & \hyperref[modulelead-stuartjames]{Dr Stuart James} & $50\%$ \\
+    Object Oriented $\&$ Functional & May Exam & - & - & \hyperref[lecturer-mladenivkovic]{Ivkovic} $\&$ \hyperref[lecturer-billymoses]{Moses} & $50\%$}
 
 \subsection{Timetable}
 
@@ -25,7 +26,86 @@ This module is taught through two one-hour lectures and one two-hour computer cl
 
 \section{Systems Programming}
 
-This section is taught by \hyperref[modulelead-stuartjames]{Dr Stuart James}. \comment{Check for recommended reading.}
+This section is taught by \hyperref[modulelead-stuartjames]{Dr Stuart James}. There is no official reading list for this module.
+
+\separate{5}\definition{Systems Programming}{\underline{Systems programming} involves the development of individual pieces of software that allow the entire system to function as a single unit.}
+
+\subsection{Version Control and UNIX}
+
+\subsubsection{Introduction to UNIX}
+
+\subsection{The Basics of C}
+
+\subsubsection{Basic File Setup}
+
+\definition{pre-processor directives}{\underline{Pre-processor directives} are lines which start with a \# and are commands to the C pre-processor.
+\begin{itemize}
+    \item If the directive is \underline{\#include}, and \(<>\) are used, then \(/usr/include\) is prioritised in UNIX by convention, whereas if \say{} are used, then the current directory is prioritised.
+    \item \definition{Definition Macro}{If the directive is \#define, then this is a \underline{definition macro}. These are used to provide definitions in code.}
+    \item \definition{Conditionals}{You can also use directives for debugging without generating overheads, these are called \underline{conditionals}. They are as shown in \elemref{tab:Different types of conditionals.}{Table}.}
+\end{itemize}}
+
+\inserttable{c|c}{Different types of conditionals.}{\textbf{Conditional} & \textbf{Function}}
+{\#ifdef VAR & Tests if VAR is \#defined. \\
+ \#ifndef VAR & Tests if VAR is not \#defined. \\
+ \#else & Runs if the original condition evaluates as false. \\
+ \#endif & Ends the if testing condition.}
+
+\noindent You can also put debugging code in the preamble, as seen in \prealgoref{alg:Debugging Code Example.}.
+
+\noindent\hrulefill
+\begin{minted}{c}
+#define MY_DEBUG // Define an identifier.
+
+#ifdef MY_DEBUG
+    assert(i > 0);
+    printf("i is %d \n", i);
+#endif
+\end{minted}
+\hrule
+\algorithmlabel{Debugging Code Example.}
+
+\noindent \definition{Parameterised macro definitions}{You can also use \#define to define \underline{parameterised macros}. These act like functions, and an example can be seen in \prealgoref{alg:Parameterised Macro Example.}.}
+
+\noindent\hrulefill
+\begin{minted}{c}
+#define ADD(a,b) a + b
+\end{minted}
+\hrule
+\algorithmlabel{Parameterised Macro Example.}
+
+\separate{7}\definition{the main function}{The \underline{main() function} is the entry function for C programs. You can only have one of these.}
+
+\subsubsection{Printf Parameters}
+
+\inserttable{c|c}{First parameter of printf.}{\textbf{Value} & \textbf{Resulting Format}}
+{\(\%d\) & Signed decimal (int). \\
+ \(\%u\) & Unsigned decimal. \\
+ \(\%o,\%x\) & Octal and hexidecimal. \\
+ \(\%l\) & Long. \\
+ \(\%f\) & Floating point, so \(\%1.2f\) will give \(3.14\). \\
+ \(\%e\) & Floating point (exponent form). \\
+ \(\%c,\%s\) & Character and string.}
+
+\subsection{Control Flow and Functions}
+
+\subsection{Data Types and Structures}
+
+\subsection{Advanced Bash Scripting}
+
+\subsection{Pointers}
+
+\subsection{Memory Management}
+
+\subsection{Debugging}
+
+\subsection{Scope and Recursion}
+
+\subsection{Libraries}
+
+\subsection{stdlib}
+
+\subsection{C++}
 
 \section{Functional Programming}
 
@@ -33,7 +113,7 @@ This section is taught by \hyperref[lecturer-billymoses]{Dr Billy Moses Jr.}. \c
 
 \section{Object Oriented Programming}
 
-This section is taught by \hyperref[lecturer-mladenivkovic]{Dr Mladen Ivkovic}. There is no recommended reading for this topic.
+This section is taught by \hyperref[lecturer-mladenivkovic]{Dr Mladen Ivkovic}. \comment{Check for recommended reading.}
 
 \subsection{Java Fundamentals}
 

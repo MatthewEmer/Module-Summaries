@@ -4,37 +4,166 @@ Networks and Systems has the module code COMP2211 and is led by \hyperref[module
 
 \subsection{Assessment}
 
-This module is assessed through two pieces of summative coursework and two final exams, these can be seen in \elemref{tab:Assessments for Networks and Systems.}{Table}. \comment{Final dates to be confirmed.}
+This module is assessed through two pieces of summative coursework and two final exams, these can be seen in \elemref{tab:Assessments for Networks and Systems.}{Table}. Additional formatives are also shown in italics.
 
 \inserttable{c|c|c|c|c|c}{Assessments for Networks and Systems.}
 {\textbf{Title} & \textbf{Opening} & \textbf{Due} & \textbf{Feedback} & \textbf{Professor} & \textbf{Weight}}
 {
-    Cyber Security & 10/10/2026 & 06/11/2026 & 04/12/2026 & \hyperref[lecturer-charlesmorisset]{Dr Charles Morisset} & $25\%$ \\
-    Networks & 31/10/2026 & 08/01/2027 & 05/02/2027 & \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu} & $25\%$ \\
-    Dist. Sys. $\&$ Databases & May Exam & n/a & n/a & \comment{To be confirmed.} & $50\%$}
+    Cyber Security & 9th Oct & 5th Nov & 3rd Dec & \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd} & $25\%$ \\
+    Networks & 23rd Oct & 21st Jan & 18th Feb & \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu} & $25\%$ \\
+    Dist. Sys. $\&$ Databases & May Exam & - & - & \hyperref[lecturer-thirupathaiahvasantam]{Dr Vasantam} & $50\%$}
 
 \subsection{Timetable}
 
-This module is taught through one two-hour lecture and one two-hour computer class each week as seen below in \elemref{tab:Michaelmas Term Timetable for Networks and Systems.}{Table}. \comment{Final times and locations to be confirmed.}
+This module is taught through one two-hour lecture and one two-hour computer class each week as seen below in \elemref{tab:Michaelmas Term Timetable for Networks and Systems.}{Table}.
 
 \inserttable{c|c|c|c|c}{Michaelmas Term Timetable for Networks and Systems.}
 {\textbf{Day} & \textbf{Time} & \textbf{Class Type} & \textbf{Location} & \textbf{Lecturer}}
 {
     Thursday & 09:00 - 11:00 & \colouredText{teal}{Lecture} & CLC202 & \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd} \\
-    Thursday & 16:00 - 18:00 & \colouredText{blue}{Computer Class} & CC-0007 & \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd}}
+    Thursday & 16:00 - 18:00 & \colouredText{blue}{Computer Class} & CC-0007 & -}
 
 \section{Cyber Security}
 
-This section is taught by... \comment{Check for recommended reading.}
+This section is taught by \hyperref[lecturer-carltonshepherd]{Dr Carlton Shepherd}. The recommended reading for this module is as follows:
+\begin{itemize}
+    \item \hyperref[cit:Practical Cryptography for Developers]{Practical Cryptography for Developers (Nakov, Stefanov and Shideroff, 2018)}, specifically the section on \say{Encryption: Symmetric and Asymmetric}.
+\end{itemize}
+
+\subsection{Introduction, Threat Modelling, and Applied Cryptography}
+
+\subsubsection{Basic Definitions}
+
+\definition{Adversary or Threat Model}{A system's security depends on the definition of the \underline{adversary}: who they are, what they can do (or their capabilities) and their determination (time, money, resources). This is the \underline{adversary} or \underline{threat model}.}
+
+\separate{7}\definition{Asset}{An \underline{asset} is something that is worth protecting.}
+
+\separate{7}\definition{Threat}{A \underline{threat} is a person or program that may try and access/steal your assets.}
+
+\separate{7}\definition{Assumptions}{An \underline{assumption} is something you are relying on to be true/secure by default.}
+
+\separate{7}\definition{Goals}{Your \underline{goal} should be in terms of what needs to be secure, and how long for.}
+
+\separate{7}\definition{Controls}{The \underline{controls} are the things you can do to attempt to protect your assets.}
+
+\separate{7}The CIA triad are the three main security properties, these are:
+\begin{itemize}
+    \item \definition{Confidentiality}{\underline{Confidentiality}: The outcomes of different actions in the system are only visible by authorised subjects.}
+    \item \definition{Integrity}{\underline{Integrity}: Actions modifying the system can only be performed by authorised subjects.}
+    \item \definition{Availability}{\underline{Availability}: Subjects can perform all actions they are authorised for.}
+\end{itemize}
+In addition to these properties, it is also important to consider additional properties, such as:
+\begin{itemize}
+    \item \definition{Authenticity}{\underline{Authenticity}: An entity is who they claim they claim to be.}
+    \item \definition{Non-Repudiation}{\underline{Non-Repudiation}: An actor cannot easily deny that an action has occurred.}
+    \item \definition{Context-Binding}{\underline{Context-Binding}: An action is valid only for a particular period of time, distance, location, and/or environment.}
+\end{itemize}
+
+\separate{7}\definition{Exploit}{An \underline{exploit} is a piece of code, a tool, or a technique that takes advantage of a flaw in software, hardware, or a network to cause unintended behaviour.}
+
+\separate{7}\definition{Vulnerability}{A \underline{vulnerability} is a weakness or flaw in a system's design, implementation, operation, or human behaviour that an attacker can exploit to compromise security.}
+
+\separate{7}\definition{Risk}{\underline{Risk} is the probability or liklihood that a threat will exploit a vulnerability and cause harm, loss, or negative consequences to an asset.}
+
+\subsubsection{STRIDE Modelling}
+
+\definition{STRIDE}{One method of classifying security risks is STRIDE, which was first developed by Microsoft. It is separated as follows:
+\begin{itemize}
+    \item \definition{Spoofing}{\underline{\textbf{S}poofing} is the act of using someone else's credentials to perform an operation and is a failure of identification and authentication.}
+    \item \definition{Tampering}{\underline{\textbf{T}ampering} is the malicious modification of data and is a failure of integrity and authenticity.}
+    \item \definition{Repudiation}{\underline{\textbf{R}epudiation} is the act of denying having performed an operation and is a failure of accountability and identification.}
+    \item \definition{Information Dislosure}{\underline{\textbf{I}nformation Dislosure} is the exposure of information to unauthorised users and is a failure of confidentiality.}
+    \item \definition{Denial of Service}{\underline{\textbf{D}enial of Service} is the act of denying service to legitimate users and is a failure of availability.}
+    \item \definition{Elevation of Privilege}{\underline{\textbf{E}levation of Privilege} is an instance of an unprivileged user gaining privileged access and is a failure of confinement and authentication.}
+\end{itemize}
+This is a helpful model for structuring the analysis of potential system threats but it is not exhaustive or exclusive.}
+
+\subsubsection{Applied Cryptography}
+
+\definition{Encoding}{To \underline{encode} some given data, it is transformed from one format/domain to another. This is fully reversible, and does not provide any secrecy. The inverse procedure is called \underline{decoding}.}
+\begin{itemize}
+    \item \definition{Steganography}{A subtype of encoding is \underline{steganography}, where the existence of the secret message is concealed.}
+\end{itemize}
+
+\separate{7}\definition{Hashing}{To \underline{hash} some given data, it is transformed into a (usually) smaller, fixed-size. This is most commonly considered a one-way function. An example of this are SHA algorithms.}
+\begin{itemize}
+    \item A hashing algorithm works by taking a message \(m\) and applying a hashing algorithm \(h=H(m)\). \(h\) can then be sent securely and the recipient can then take \(h'=H(m')\) where \(m=m'\), and if \(h'=h\), then the message recieved is correct. 
+\end{itemize}
+
+\separate{7}\definition{Encryption}{Non-secret data (plaintext) can be \underline{encrypted} into ciphertext using a secret key. The output is \(Enc(m, K) = c\). The inverse procedure, \underline{decryption}, again uses a secret key to transform the ciphertext back to plaintext \(Dec(c, K)  = m\).}
+
+\subsubsection{Cipher Examples}
+
+\separate{7}\definition{Substitution Ciphers}{A \underline{substitution cipher} works by taking each letter in the alphabet and replacing it with another one. This was purportedly created and used by Julius Caesar. These are weak though and can be broken by:
+\begin{itemize}
+    \item \definition{Brute-Force Attack}{A \underline{brute-force} attack tries every possible key, which for substitution ciphers becomes trivial.}
+    \item \definition{Frequency Analysis}{A \underline{frequency analysis} attack matches the ciphertext to the known frequency of English letters.}
+\end{itemize}}
+
+\separate{7}\definition{Vigenere Cipher}{Another historical example of a cipher is a \underline{Vigenere cipher}. This uses a sliding password, such that repeats of the same letter are coded differently. Attacks against this have to guess possible key lengths and then try all possibilities using frequency analysis. This is much harder to break.}
+
+\separate{7}\definition{One Time Pad}{Another encryption method is using \underline{one time pads}. Here, you select a key as long as your message. Data is converted into binary and bitwise XORed with the key. To decode it, you then bitwise XOR the ciphertext with the key. This is considered theoretically secure as long as the key generation process is truly random, the key is never reused, and the key is kept secret.}
+
+\separate{7}\definition{Stream Ciphers}{\underline{Stream ciphers} use a short secret key and a nonce - a use-once but public value - to generate a long pseudorandom sequence called a keystream. Only the short secret key must be kept private. We then XOR with the message and keystream.
+\begin{itemize}
+    \item To encrypt, you take the secret key \(K\) and the nonce \(N\) and feed them through a keystream generator. The resulting keystream \(S\) is then XORed with the plaintext \(p\) to produce ciphertext \(C\).
+    \item To decrypt, the recipient takes the same secret key \(K\) and nonce \(N\), feeds them through the keystream generator and then XOR the result with the ciphertext \(C\) to produce the original plaintext \(p\).
+\end{itemize}}
+
+\separate{7}\definition{Block Cipher}{\underline{Block ciphers} transform a fixed-size block of plaintext into a ciphertext block of the same size, using a secret key. Encryption applies a keyed transformation to the plaintext block, and decryption reverses the transformation using the same key. An example of this is AES encryption. To encrypt longer messages, we use a mode of operation which specifies how to encrypt message blocks in sequence - this usually involves a nonce (initialisation vector).
+\begin{itemize}
+    \item \definition{AES-ECB}{\underline{AES Electronic Code Book (ECB) mode} works by taking the plaintext, splitting it into blocks, and then encrypting each of them separately. This is not secure.}
+    \item \definition{AES-CBC}{\underline{AES Cipher Block Chaining (CBC) mode} splits the plaintext into blocks and encrypts the first one. The result is then XORed with the second plaintext block before it is encrypted, and so on.}
+\end{itemize}}
+
+\subsubsection{Public Key Cryptography}
+
+\definition{RSA}{\underline{Rivest, Shamir, Adelman (RSA)} is an algorithm where person A computes the product of two prime numbers \(n=p \times q\) and makes the value of \(n\) public. Person A then generates a public value \(e\) and a private value \(d\) using \(p\) and \(q\). \(e\) can then be used to encrypt messages to send to person A, and \(d\) used to decrypt them. This is secure based on the computational difficulty of factorisation, but with the rise of quantum computing, is becoming less secure.}
+
+\separate{7}\definition{Digital signatures}{\underline{Digital signatures} enables others to check that a message was signed using a private key and has not been altered. To sign a message, the sender uses their private key, and then sends the message and signature to the recipient. To verify the signature, the recipient uses the sender's public key and compares the result to the message.}
 
 \section{Networks}
 
-This section is taught by... \comment{Check for recommended reading.}
-
-\section{Distributed Systems}
-
-This section is taught by... \comment{Check for recommended reading.}
+This section is taught by \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu}. \comment{Check for recommended reading.}
 
 \section{Databases}
 
-This section is taught by... \comment{Check for recommended reading.}
+This section is taught by \hyperref[lecturer-thirupathaiahvasantam]{Dr Vasantam}. The recommended reading for this topic is:
+\begin{itemize}
+    \item \hyperref[cit:Database Systems]{Connolly, T.M. and Begg, C.E. (2015). Database Systems: A practical approach to design, \\implementation, and management. 6th edn. Harlow, Essex, England: Pearson Education Limited.}
+\end{itemize}
+
+\subsection{Enhanced Entity-Relationship Model}
+
+\subsection{Semistructured Databases (XML)}
+
+\subsection{XML Data Manipulation (XPath and XQuery)}
+
+\subsection{Transactions}
+
+\subsection{Concurrency Control}
+
+\subsection{Distributed Transactions}
+
+\subsection{Distributed Concurrency Control}
+
+\section{Distributed Systems}
+
+This section is taught by \hyperref[lecturer-thirupathaiahvasantam]{Dr Vasantam}. The recommended reading for this topic is:
+\begin{itemize}
+    \item \hyperref[cit:Distributed Systems]{Van Steen, M. and Tanenbaum, A.S. (2025). Distributed Systems. 4th edn. [online] Self-Published. Available at: https://www.distributed-systems.net/index.php/books/ds4/ [Accessed 5 Oct. 2026].}
+\end{itemize}
+
+\subsection{Introduction to Distributed Systems}
+
+\subsection{Middleware and RMI Technologies}
+
+\subsection{Message-Oriented Middleware and Web Services}
+
+\subsection{Replication Models}
+
+\subsection{Concurrent Events and Consistency Control}
+
+\subsection{Fault Tolerance}
+
+\subsection{Load Distribution}

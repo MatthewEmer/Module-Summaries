@@ -4,14 +4,14 @@ Theory of Computation has the module code COMP2181 and is led by \hyperref[modul
 
 \subsection{Assessment}
 
-This module is assessed through two summative benchtests, and one final exams, these can be seen in \elemref{tab:Assessments for Theory of Computation.}{Table}.
+This module is assessed through two summative benchtests, and one final exams, these can be seen in \elemref{tab:Assessments for Theory of Computation.}{Table}. Additional formatives are also shown in italics.
 
 \inserttable{c|c|c|c|c|c}{Assessments for Theory of Computation.}
 {\textbf{Title} & \textbf{Opening} & \textbf{Due} & \textbf{Feedback} & \textbf{Professor} & \textbf{Weight}}
 {
-    Benchtest 1 & Week 11 & n/a & 09/02/2027 & \hyperref[lecturer-stefandantchev]{Dr Dantchev} and \hyperref[lecturer-georgemertzios]{Dr Mertzios} & $17\%$ \\
-    Benchtest 2 & Week 20 & n/a & 07/05/2027 & \hyperref[lecturer-stefandantchev]{Dr Dantchev} and \hyperref[lecturer-georgemertzios]{Dr Mertzios} & $17\%$ \\
-    Final Exam & May Exam & n/a & n/a & \hyperref[modulelead-barnabymartin]{Dr Barnaby Martin} & $66\%$}
+    Benchtest 1 & Week 11 & - & 2nd Feb & \hyperref[lecturer-stefandantchev]{Dr Dantchev} and \hyperref[lecturer-georgemertzios]{Dr Mertzios} & $12.5\%$ \\
+    Benchtest 2 & Week 20 & - & - & \hyperref[lecturer-stefandantchev]{Dr Dantchev} and \hyperref[lecturer-georgemertzios]{Dr Mertzios} & $12.5\%$ \\
+    Final Exam & May Exam & - & - & \hyperref[modulelead-barnabymartin]{Dr Barnaby Martin} & $75\%$}
 
 \subsection{Timetable}
 
@@ -21,14 +21,82 @@ This module is taught through two one-hour lectures and one two-hour computer cl
 {\textbf{Day} & \textbf{Time} & \textbf{Class Type} & \textbf{Location} & \textbf{Lecturer}}
 {
     Tuesday & 10:00 - 11:00 & \colouredText{teal}{Lecture} & CLC202 & \hyperref[modulelead-barnabymartin]{Dr Barnaby Martin} \\
-    Wednesday & 09:00 - 11:00 & \colouredText{blue}{Problem Class} & TLC116 & n/a \\
+    Wednesday & 09:00 - 11:00 & \colouredText{blue}{Problem Class} & TLC116 & - \\
     Thursday & 14:00 - 15:00 & \colouredText{teal}{Lecture} & CLC202 & \hyperref[lecturer-toc-sukanyapandey]{Dr Sukanya Pandey}}
 
 \section{Models of Computation}
 
-This section is taught by \hyperref[modulelead-barnabymartin]{Dr Barnaby Martin}.
+This section is taught by \hyperref[modulelead-barnabymartin]{Dr Barnaby Martin}. \comment{Check for recommended reading.}
 
 \subsection{Finite-State Automata and Regular Languages}
+
+\subsubsection{Formal Definitions}
+
+\definition{Deterministic Finite-State Automaton}{A \underline{deterministic finite-state automaton} is a five-tuple \((Q,\Sigma,\delta,q_0,F)\) where \(Q\) is the finite set of states, \(\Sigma\) is a finite alphabet, \(\delta: Q \times \Sigma \rightarrow Q\) is the transition function, \(q_0 \in Q\) is the start state, and \(F \subseteq Q\) is the set of accept states.}
+
+\separate{7}\definition{Recognises}{A DFA \(M\) recognises the language \(L\) if \(L = \{w | M \text{ accepts } W\}\).}
+
+\separate{7}\definition{Regular Languages}{A language is called a \underline{regular language} if some DFA recognises it.}
+
+\separate{7}\definition{Regular Expression}{A \underline{regular expression} \(R\) defines a language \(L(R)\). We shall eventually prove that \(RE \equiv DFA\). \(R\) is a regular expression over the alphabet \(\Sigma\) if \(R\) is:
+\begin{enumerate}
+    \item \(a\) for some \(a \in \Sigma\).
+    \item \(\epsilon\) (the empty string).
+    \item \(\emptyset\) (the empty set).
+    \item \((R_1 \cup R_2)\) where \(R_1\) and \(R_2\) are regular expressions.
+    \item \(R_1 \cdot R_2\) where \(R_1\) and \(R_2\) are regular expressions.
+    \item \(R_1^*\) where \(R_1\) is a regular expression.
+\end{enumerate}
+The list of regular operations can be seen in \elemref{tab:Regular Operations.}{Table} where the operations labelled with \(^+\) are language theory specific.}
+
+\inserttable{c|c|c}{Regular Operations.}{\textbf{Operation Name} & \textbf{Notation} & \textbf{Set Equivalent}}
+{Union & \(A \cup B\) & \(\{ x | x \in A \text{ or } x \in B\}\) \\
+ Intersection & \(A \cap B\) & \(\{ x | x \in A \text{ and } x \in B\}\) \\
+ Difference & \(A \backslash B\) & \(\{ x | x \in A \text{ and } x \notin B\}\) \\
+ Complement & \(\overline{A}\) & \(\Sigma* \backslash A\) \\
+ Concatenation\(^+\) & \(A \circ B\) & \(\{ xy | x \in A \text{ and } y \in B\}\) \\
+ Star\(^+\) & \(A*\) & \(\{ x_1x_2...x_k | k \geq 0 \text{ and } x_i \in A \text{ for every } i, 1 \leq i \leq k\} \equiv \cup^\infty_{i=0}A^i\)}
+
+\subsubsection{Combining Automata}
+
+Sometimes we may want to implement an operation on multiple languages. We can do this by combining their automata. If we have that \(L_1\) is recognised by \(M_1 = (Q_1,\Sigma,\delta_1,q_1,F_1)\) and \(L_2\) is recognised by \(M_2 = (Q_2,\Sigma,\delta_2,q_2,F_2)\); we want to combine \(M_1\) and \(M_2\) into a new automaton \(M\) that would recognise \(L_1 \cup L_2\).
+
+You would think that we could just run the automata sequentially, and accept if either \(M_1\) or \(M_2\) accept, but this does not work. This is because after \(M_1\) has run on the input, the input is exhausted and there is no way to rewind it in order to run \(M_2\).
+
+Instead, we can attempt to run \(M_1\) and \(M_2\) on the input in parallel. We do this by using pairs of states (one for each DFA). Formally, the components of the new automaton \(M = (Q, \Sigma, \delta, q_0, F)\) are:
+\begin{enumerate}
+    \item The set of possible states contains every possible cross-set pair of \(Q_1\) and \(Q_2\).
+    \[Q = Q_1 \times Q_2\] 
+    \item For every \(s \in Q_1, u \in Q_2, a \in \Sigma\). The transition function contains every transition from a pair of states from \(Q\) being given any input from \(\Sigma\).
+    \[\delta((s,u),a) = (\delta_1(s,a),\delta(u,a))\]
+    \item The start state is the pair containing both start states from \(M_1\) and \(M_2\).
+    \[q_0 = (q_1,q_2)\]
+    \item The set of accept states is every possible cross-set pair of accept states from \(F_1\) and \(F_2\).
+    \[F = \{(s,u) \in Q | s \in F_1 \text{ or } u \in F_2\}\]
+\end{enumerate}
+
+\subsubsection{Non-Deterministic Finite Automaton}
+
+If, instead you wish to work with concatenation, such that \(w \in L_1 \circ L_2\) only if there are words \(x\) and \(y\) such that \(w=xy\), \(x \in L_1\) and \(y \in L_2\). You need to run \(M_1\) on a prefix of \(w\) and then run \(M_2\) on the rest. This must be done non-deterministically and stops becoming a DFA as all accept states of \(M_1\) have to map to the start state of \(M_2\).
+
+\separate{7}\definition{Non-Deterministic Finite Automata}{A \underline{non-deterministic finite automaton} is a five-tuple \((Q,\Sigma,\delta,q_0,F)\), where \(Q\) is the finite set of states, \(\Sigma\) is a finite alphabet, \(\delta: Q \times (\Sigma \cup \{\epsilon\}) \rightarrow \mathscr{P}(Q)\) is the transition function, \(q_0 \in Q\) is the start state, and \(F \subseteq Q\) is the set of accept states.}
+
+\subsubsection*{Computing NFA}
+
+Before computing an NFA, an important convention to note is that a single step in a computation consists of first reading the next input symbol followed by taking any number of \(\epsilon\)-transitions. This means that empty strings \(\epsilon\)s can be freely added inside the actual word \(\in \Sigma*\), e.g., 010110 can be viewed as, say, \(\epsilon 01 \epsilon\epsilon 01 \epsilon 01\).
+
+Let \(M = (Q,\Sigma,\delta,q_0,F)\) be an NFA and \(w=w_1w_2...w_n\) be a word over \(\Sigma \cup \{\epsilon\}\). \(M\) accepts \(w\) if there exists a sequence of states \(r_0,r_1,r_2,...,r_n\) satisfying the following conditions:
+\begin{enumerate}
+    \item \(r_0 = q_0\).
+    \item \(r_{i+1} \in \delta(r_i,w_{i+1})\) for every \(i, 0 \leq i \leq n-1\).
+    \item \(r_n \in F\).
+\end{enumerate}
+
+\subsubsection{Converting NFA into DFA}
+
+The difference between a DFA and NFA is that a DFA has a unique computation (path) and either accepts or rejects, while a NFA generally has many computation paths and accepts if at least one computation accepts and only rejects if all the computations reject.
+
+\separate{10}\comment{Reached slide 22/55 (powerpoint says slide 21).}
 
 \subsection{B{\"u}chi Automata and Omega-Regular Languages}
 
@@ -38,10 +106,12 @@ This section is taught by \hyperref[modulelead-barnabymartin]{Dr Barnaby Martin}
 
 This section is taught by \hyperref[lecturer-toc-sukanyapandey]{Dr Sukanya Pandey}. The recommended reading for this topic is: 
 \begin{itemize}
-    \item \hyperref[cit:Introduction to Algorithms]{Introduction to Algorithms (Cormen et al., 2009)}.
+    \item \hyperref[cit:Introduction to Algorithms]{Introduction to Algorithms (Cormen T.H., et al., 2009)}.
 \end{itemize}
 
 \subsection{Asymptotic Complexity and Notation}
+
+Lecture one was just a recall of some of last year's Algorithms and Data Structures module.
 
 \subsection{Greedy Algorithms}
 
