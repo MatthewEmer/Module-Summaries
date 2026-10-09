@@ -13,7 +13,11 @@ This module is assessed through two pieces of summative coursework and two final
     Image Processing & 15th Jan & 2nd Mar & 6th May & \hyperref[lecturer-georgekoulieris]{Dr George Koulieris} & $25\%$ \\
     Probability and Graphics & May Exam & - & - & \hyperref[lecturer-igorrazgon]{Razgon} $\&$ \hyperref[lecturer-georgekoulieris]{Koulieris} & $50\%$} 
 
-\noindent\textbf{Note}: The Data Cleaning $\&$ Analytics test in Week 11 is closed book, and will be held during practicals (mine is Friday 4pm). 
+\noindent\textbf{Data Cleaning $\&$ Analytics Benchtest Information}: The Data Cleaning $\&$ Analytics test in Week 11 is a closed book, multiple choice test, and will be held during practicals (mine is Friday 4pm). 
+\begin{itemize}
+    \item Closed-book assessment over one hour. \comment{Check information closer to the time.}
+    \item Comprised of 15 multiple-choice questions, split equally between: basic NumPy, basic Pandas, data cleaning, data analytics, and visualisation.
+\end{itemize}
 
 \subsection{Timetable}
 
@@ -142,7 +146,59 @@ Then, by the \hyperref[def:Complement Rule]{complement rule}, \(P(\overline{E}) 
 
 \section{Data Cleaning and Analytics}
 
-This section is taught by \hyperref[lecturer-igorrazgon]{Dr Igor Razgon}. \comment{Check for recommended reading.}
+This section is taught by \hyperref[lecturer-igorrazgon]{Dr Igor Razgon}. The recommended reading for this topic is:
+\begin{itemize}
+    \item \hyperref[cit:Python for Data Analytics]{Python for Data Analytics (McKinney, 2022)}.
+\end{itemize}
+
+\subsection{Data Quality and How to Produce High-Quality Data}
+
+\subsubsection{Data Quality}
+
+\definition{Data Cleansing}{\underline{Data cleansing} is the process of detecting and correcting (or removing) corrupt or inaccurate records from a record set, table, or database and refers to identifying incomplete, inaccurate, or irrelevant parts of the data and then replacing, modifying, or deleting the dirty or coarse data.}
+
+\separate{7}For data to be considered high-quality, it should meet the following criteria:
+\begin{itemize}
+    \item \definition{Data Quality: Validity}{\underline{Validity}: The degree to which the measures conform to defined business rules or constraints.}
+    \item \definition{Data Quality: Accuracy}{\underline{Accuracy}: The degree of conformity of a measure to a standard or a true value.}
+    \item \definition{Data Quality: Completeness}{\underline{Completeness}: The degree to which all required measures are known.}
+    \item \definition{Data Quality: Consistency}{\underline{Consistency}: The degree to which the data is consistent, within the same data set or across multiple data sets.}
+    \item \definition{Data Quality: Uniformity}{\underline{Uniformity}: The degree to which the data is specified using the same unit of measure.}
+\end{itemize}
+
+\subsubsection{How to Produce High-Quality Data}
+
+Producing high-quality data is an iterative process moving through \hyperref[def:Inspection]{inspection}, \hyperref[def:Cleaning]{cleaning}, \hyperref[def:Verifying]{verifying}, and \hyperref[def:Reporting]{reporting}.
+
+\separate{7}\definition{Inspection}{\underline{Inspection}: Detect unexpected, incorrect, and inconsistent data.}
+\begin{itemize}
+    \item \definition{Data Profiling}{\underline{Data profiling} is the process of viewing the summary statistics of your data to identify standards or patterns in columns of data. Here it is also important to note the data type, any missing values, the number of unique values, the distribution of values, and the relationship between the data and other columns.}
+    \item Visualising the data can also be helpful for identifying outliers, as can using statistical methods such as mean, standard deviation, range, and/or quartiles.
+\end{itemize}
+
+\separate{7}\definition{Cleaning}{\underline{Cleaning}: Fix or remove the anomalies detected.}
+\begin{itemize}
+    \item It is important to identify and remove duplicate entries in your data sets.
+    \item When converting the data into a consistent data type, values unable to fit the format should be flagged and converted to NA value.
+    \item Beyond the data types, the data should be further standardised. This means strings are of a consistent capitalisation, numerical values use the same measurement unit, and dates are in the same format (pick either the UK or US format).
+    \item It can also be useful to scale/transform your data to fit within a certain scale (i.e. 0-100 or 0-1). This can make data easier to plot (e.g., exponential data being logged).
+    \item You can either replace missing values by using a mask to indicate where they are missing, or choosing a sentinel value to replace the missing entries. Conversely, you can also drop the whole record from the data set, or where possible calculate the missing values from other observations.
+    \item \definition{Outliers}{We define \underline{outliers} as values which fall 1.5 times the interquartile range from both the first and third quartiles.}
+\end{itemize}
+
+\separate{7}\definition{Verifying}{\underline{Verifying}: After cleaning, the results are inspected to verify correctness.}
+
+\separate{7}\definition{Reporting}{\underline{Reporting}: A report about the changes made and the quality of the currently stored data is recorded.}
+
+\subsection{Working with Various File Types}
+
+\subsection{Pandas and Various Features of NumPy}
+
+\subsection{Data Cleaning and Preparation}
+
+\subsection{Python Data Visualisation Libraries}
+
+\subsection{Data Analytics and Reporting}
 
 \section{Computer Graphics}
 
