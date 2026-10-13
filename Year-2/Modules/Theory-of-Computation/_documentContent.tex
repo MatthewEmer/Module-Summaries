@@ -115,6 +115,75 @@ Lecture one was just a recall of some of last year's Algorithms and Data Structu
 
 \subsection{Greedy Algorithms}
 
+\definition{The Knapsack Problem}{\underline{The knapsack problem} is defined as one of two variants. Either:
+\begin{itemize}
+    \item The \underline{0-1 knapsack problem} (the classic variant), where a thief robs a store and finds \(n\) items. Item \(i\) is worth \(v_i\) euros and weighs \(w_i\) kilos. The thief can carry at most \(W\) kilos in his knapsack. \textit{Which items can he take to maximise his profit?}
+    \item the \underline{fractional knap problem}, which has the same setup, but this time the thief can take fractions of items.
+    \item We can assume (without loss of generality) that the knapsack is not big enough to carry all items:
+    \begin{equation}
+        W < w_1 + w_2 + ... + w_n
+    \end{equation}
+\end{itemize}}
+
+\subsubsection{The Greedy Approach}
+
+To solve the fractional problem, the greedy approach would be to calculate the value per kilo using \eqref{equ:knapsack_value} for each item. You then sort the items by value per kilo, in decreasing order. You then take as much of the first item as possible, then the second item, etc., until you reach the capacity of the knapsack \(W\).
+\begin{equation}\label{equ:knapsack_value}
+    r_i = \frac{v_i}{w_i}
+\end{equation}
+
+
+\separate{7}\example{Greedy knapsack}{For example, if \(W=10\), and \(\mathbf{v} = \{4, 10, 12, 20\}\) and \(\mathbf{w} = \{4, 2, 8, 5\}\). We can then calculate \(\mathbf{r} = \{1, 5, 1.5, 4\}\). The greedy algorithm then dictates that you should take all of item 2, all of item 4, and 3 kilos of item 3 \(W = 2 + 5 + 3\). This gives a total value of \(V = 10 + 20 + (3 \times 1.5) = 34.5\).}
+
+\separate{7}The running time of this algorithm can be calculated by taking that:
+\begin{enumerate}
+    \item Step 1, calculating the value per kilo takes \(\Theta (n)\).
+    \item Step 2, sorting the value per kilo array takes \(\Theta (n\;log\;n)\).
+    \item Step 3, selecting the items can be done in \(\Theta (n)\).
+\end{enumerate}
+Therefore, the worst-case running time is \(\Theta (n\;log\;n)\).
+
+\separate{7}However, approach will not work for the 0-1 knapsack problem.
+
+\subsubsection{Correctness of the Greedy Algorithm for Fractional Knapsack}
+
+\(n\) items are sorted by value per kilo, \eqref{equ:knapsack_value} in decreasing order, i.e., 
+\begin{equation}
+    r_1 \geq r_2 \geq ... \geq r_n
+\end{equation}
+Two items, \(p\) and \(q\) with \(r_p = r_q\) are considered to be equivalent. Hence, we may assume that
+\begin{equation}
+    r_1 > r_2 > ... > r_n
+\end{equation}
+The total available amount of item \(i\) is \(w_i\). Let \(k\) be such that
+\begin{equation}
+    w_1 + w_2 + ... + w_k \leq W
+\end{equation}
+and
+\begin{equation}
+    w_1 + w_2 + ... + w_{k+1} > W
+\end{equation}
+Let \(\mathbf{x} = (x_1, x_2, ..., x_n)\) denote a solution: \(0 \leq x_i \leq w_i\) is the amount the thief takes of item \(i\) for \(i = [0, n]\). The total value taken is then given by
+\begin{equation}
+    \sum_{i=1}^{n} r_ix_i
+\end{equation}
+The greedy solution \(\mathbf{x}\) is given by \(x_i = w_i\) for \(1 \leq i \leq k\) and 
+\begin{equation}
+    x_{k+1} = W - (w_1 + w_2 + ... + w_k)
+\end{equation}
+\(x_i = 0\) for \(k+2 \leq i \leq n\). Let \(\mathbf{x}^* = (x_1^*, x_2^*, ..., x_n^*)\) be an optimal solution.
+
+\separate{7}Suppose that \(\mathbf{x}^* \neq \mathbf{x}\). Then
+\begin{itemize}
+    \item \(x_i^* < x_i\) for some \(i \leq k+1\). 
+    \item Let \(j = \min\{i:x_i^* < x_i\}\).
+    \item And \(x_l^* > x_l\) for some \(l > j\).
+\end{itemize}
+Let us add some more of item \(j\) to the optimal choice. Let \(y\) be another solution, defined by 
+\begin{equation}
+    y = \begin{cases}y_j = \min\{w_j, x_j^* + (x_l^* - x_l)\}\\y_l = x_l^* - (y_j - x_j^*)\\y_i=x_i^* \text{   otherwise.}\end{cases}
+\end{equation}
+
 \subsection{Divide and Conquer Algorithms}
 
 \subsection{Dynamic Programming Algorithms}
