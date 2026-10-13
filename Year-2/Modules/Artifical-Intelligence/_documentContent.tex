@@ -99,6 +99,24 @@ When programming, we traditionally set out the features as variable \(X\) and th
 
 \subsection{Data Understanding}
 
+\definition{Sample}{A \underline{sample} is the unit for which the model recieves features and, during training, a label.}
+
+\separate{7}We then set up a feature matrix \(X\) where each row is a different sample and each column is a new feature and \(y\) is a matrix where each row is sample's label corresponding to the sample's features in \(X\).
+
+\separate{7}\definition{Nearest-centroid classification}{\underline{Nearest-centroid classification} attempts to classify the samples by setting out one centre for each species and then classifying them based on their nearest centroid. The formula for calculating this is:
+\begin{equation}
+    \mu_c = \left(\frac{1}{N_c}\right) \sum_i:y^{(i)} = c x^{(i)}
+\end{equation}
+For each species \(c\), average the feature vectors belonging to that species. Then, subtract the centroid from the new example, square the differences, add them, then take the square root, as shown below.
+\begin{equation}
+    d(x,\mu_c) = ||x=\mu_x||_2
+\end{equation}
+To predict a sample's species, compute the distances from each species' centroid and choose the class with the smallest distance.
+\begin{equation}
+    \hat{y} = arg\;min_c || x - \mu_c ||_2
+\end{equation}
+}
+
 \subsection{Data Preparation Workflow}
 
 \section{Artificial Intelligence Search}

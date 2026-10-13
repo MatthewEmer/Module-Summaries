@@ -128,6 +128,39 @@ Then, by the \hyperref[def:Complement Rule]{complement rule}, \(P(\overline{E}) 
 
 \subsection{Dependency and Bayes Theorem}
 
+\subsubsection{Conditional Probability}
+
+The probability of event A, given that event B happens is given by:
+\begin{equation}
+    P(A|B) = \frac{P(A \cap B)}{P(B)}
+\end{equation}
+Therefore, the probability of both A and B occuring can be given by:
+\begin{equation}
+    P(A \cap B) = P(A|B) \times P(B)
+\end{equation}
+
+\separate{7}\definition{Independence}{Events can occur independently. The occurrence of one event is not dependent on the occurrence of another if, and only if:
+\begin{equation}
+    P(A \cap B) = P(A) \times P(B)
+\end{equation}}
+
+\separate{7}\definition{Bayes Theorem}{\(P(A \cap B)\) can be presented in two ways, either \(P(A|B) \times P(B)\) or \(P(B|A) \times P(A)\). Equating these, we can obtain \underline{Bayes' Theorem}.
+\begin{equation}
+    P(A|B) = \frac{P(B|A) \times P(A)}{P(B)}
+\end{equation}
+This can be rewritten by using variables, where \(P(A|B)\) is the posterior, \(P(A)\) is the prior, \(P(B|A)\) is the likelihood, and \(P(B)\) is the evidence.
+\begin{equation}
+    posterior = \frac{likelihood \times prior}{evidence}
+\end{equation}
+Suppose that \(E_1,E_2,...,E_n\) are mutually exclusive events such that:
+\begin{equation}
+    \bigcup^n_{i=1} E_i = S
+\end{equation}
+This means that one of the events \textbf{must} occur. Then, in any case, Bayes' Theorem states:
+\begin{equation}
+    P(E_k|A) = \frac{P(E_k) \times P(A|E_k)}{\sum_{j=1}^{n} P(E_j) \times P(A|E_j)}
+\end{equation}}
+
 \subsection{Discrete Probability Distributions}
 
 \subsection{Continuous Probability Distributions}

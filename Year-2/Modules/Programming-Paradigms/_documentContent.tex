@@ -26,13 +26,61 @@ This module is taught through two one-hour lectures and one two-hour computer cl
 
 \section{Systems Programming}
 
-This section is taught by \hyperref[modulelead-stuartjames]{Dr Stuart James}. There is no official reading list for this module.
+This section is taught by \hyperref[modulelead-stuartjames]{Dr Stuart James}. The reading list for this module is as follows:
+\begin{itemize}
+    \item \hyperref[cit:Computer Systems]{Bryant, R. and O'Hallaron, D. (2015). Computer systems: A Programmer's Perspective. 3rd edn. Pearson Education, Limited.}
+\end{itemize}
 
 \separate{5}\definition{Systems Programming}{\underline{Systems programming} involves the development of individual pieces of software that allow the entire system to function as a single unit.}
 
 \subsection{Version Control and UNIX}
 
 \subsubsection{Introduction to UNIX}
+
+Files are stored in a hierarchical structure, allowing for grouping. To navigate around these files, we can use UNIX navigation commands as seen in \elemref{tab:UNIX file navigation commands.}{Table}.
+
+\inserttable{c|c}{UNIX file navigation commands.}{\textbf{Action} & \textbf{Command}}
+{List the contents of the current folder. & \(ls\) \\
+Change folder/directory. & \(cd\) \\
+Make new folder/directory. & \(mkdir\) \\
+Move a file/folder. & \(mv\) \\
+Copy a file/folder. & \(cp\) \\
+Delete a file or, by adding \(-r\), a directory. & \(rm\) \\
+Check file/folder size. & \(du\) \\
+List all files. & \(find\)}
+
+\subsection{The Basics of Shell}
+
+All shell files are saved with a \(.sh\) extension and must begin with \#\(!/bin/bash\). 
+
+\subsubsection{Basic Commands}
+
+\noindent\hrulefill
+\begin{minted}{bash}
+#!/bin/bash
+for f in *
+do 
+    #something in here
+    echo $f
+done
+\end{minted}
+\hrule
+\algorithmlabel{For loop example.}
+
+\separate{3}\hrulefill
+\begin{minted}{bash}
+./myscript.sh 10 2
+
+#!/bin/bash
+if [$1 -lt $2]
+then 
+    echo "yes" $1 "is less than" $2
+else
+    echo "no it isn't"
+fi
+\end{minted}
+\hrule
+\algorithmlabel{If statement example (compares 10 and 2).}
 
 \subsection{The Basics of C}
 
