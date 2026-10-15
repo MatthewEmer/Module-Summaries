@@ -122,6 +122,73 @@ This is a helpful model for structuring the analysis of potential system threats
 
 \separate{7}\definition{Digital signatures}{\underline{Digital signatures} enables others to check that a message was signed using a private key and has not been altered. To sign a message, the sender uses their private key, and then sends the message and signature to the recipient. To verify the signature, the recipient uses the sender's public key and compares the result to the message.}
 
+\subsection{System Security}
+
+\subsubsection{Analysing the Security of Systems}
+
+\definition{System}{A \underline{system} is a set of components that interact to achieve a purpose. It generally consists of five components:}
+\begin{itemize}
+    \item \definition{Subjects}{\underline{Subjects} are active entities with an identity and capabilities.}
+    \item \definition{Resources}{\underline{Resources} are passive entities with an identity and properties.}
+    \item \definition{Actions}{\underline{Actions} are interactions between subjects and resources.}
+    \item \definition{Purpose}{The \underline{purpose} of a system is what it is used for, and so what security must preserve.}
+    \item \definition{Boundary}{A \underline{boundary} defines what is inside (what you control), and what is outside.}
+\end{itemize}
+
+\separate{7}When considering the security of a system, we should consider four questions:
+\begin{itemize}
+    \item \textbf{What matters?} An asset and a security property (e.g., confidentiality).
+    \item \textbf{Who could cause harm?} An adversary with stated capabilities.
+    \item \textbf{Why could they succeed?} A weakness and the assumptions it violates.
+    \item \textbf{What changes the outcome?} Controls and countermeasures. What is the remaining risk?
+\end{itemize}
+
+\separate{7}\definition{Trust boundary}{A \underline{trust boundary} is where data or control passes between parties that trust each other differently (e.g., a phone to a ticketing service).}
+
+\separate{7}\definition{Attack surface}{An \underline{attack surface} is every entry point an adversary can reach.}
+
+\separate{7}\definition{TCB}{A \underline{trusted computing base (TCB)} is what must work correctly for the goal to hold. If any part fails, security fails.}
+
+\separate{7}\definition{Reference monitor}{A \underline{reference monitor} sits between the subjects and objects. It recieves requests for the objects, compares them with the security policy, and if it passes, returns the requested objects. It is important when designing a system that this is always invoked, it is tamper-proof, and that the check is verifiable.}
+
+\inserttable{c|c|c|c}{Potential adversaries to a system.}{\textbf{Actor} & \textbf{Motivation} & \textbf{Typical Capability} & \textbf{Example}}
+   {Opportunists & \makecell{Curiosity, notoriety, \\easy money.} & \makecell{Low: Off-the-shelf tools and \\mass scanning.} & Mirai Botnet (2016).\\\hline
+    Hacktivists & \makecell{Publicity for a cause.} & \makecell{Low-to-Medium: DDoS, leaks, \\defacement.} & \makecell{Operation Payback \\(2010).}\\\hline
+    Organised Criminals & Money. & \makecell{Medium-to-High: Ransomware, \\affiliates, access brokers.} & Rhysida (2023).\\\hline
+    Insiders & \makecell{Grievance money, or \\simple mistakes.} & \makecell{High: They already have \\legitimate access.} & Morrisons (2014).\\\hline
+    Nation States & \makecell{Espionage, sabotage, \\strategic advantage.} & \makecell{Very High: Custom tools, \\patience, zero-days.} & SolarWinds (2020).}
+
+\separate{7}\example{Hezbollah Pager Attack}{The \underline{Hezbollah pager attack} was an attack where Hezbollah ordered thousands of new pagers for members across Lebanon and Syria. This consignment was intercepted by agents in a supply chain attack and 10 to 20 grams of military grade explosive was packed into each device. These pagers were then delivered to Hezbollah and handed out to members. The pagers then recieved a code, buzzed, and exploded in pockets, on belts, or in faces of users.}
+
+\separate{7}\definition{Kill chain}{It can also be useful to consider system security from an adversarial perspective. To do this, people commonly use the \underline{kill chain} model.
+\begin{itemize}
+    \item Reconnaissance: Harvesting email addresses, conference information, etc.
+    \item Weaponisation: Coupling an exploit with a backdoor into a deliverable payload.
+    \item Delivery: Delivering a weaponised bundle to the victim via email, USB, etc.
+    \item Exploitation: Exploiting a vulnerability to execute code on the victim's systems.
+    \item Installation: Installing malware on an asset.
+    \item Command and Control (C2): Setting up a control channel for remote manipulation of victims.
+    \item Actions on Objectives: With \say{hands on keyboard} access, intruders can accomplish their original goals.
+\end{itemize}}
+
+\separate{7}\definition{Reconnaissance}{\underline{Reconnaissance} can be split into a few types: \underline{passive gathering} where attackers have no interaction with the target, \underline{active gathering} where they do, and \underline{open-source intelligence (OSINT)} where the attacker analyses data from publically available sources. They do this to identify potential attack vectors.}
+
+\separate{7}\example{British Library}{The \underline{British Library attack} in 2023 can be split into the categories shown in the Kill chain:
+\begin{itemize}
+    \item Reconnaissance: Hostile reconnaissance on the 25th-26th October was detected and blocked, but treated as a one-off.
+    \item Delivery and Exploitation: Most likely privileged credentials obtained by phishing or brute force, then used on a remote-access server without MFA. No software exploit was needed.
+    \item Installation and C2: The attackers hijacked the network's own administration tools, and deleted log files to cover their tracks.
+    \item Actions on Objectives: A \say{historically complex} legacy network let them reach well beyond the entry point and roughly 600 GB was copied. The servers were then encrypted or destroyed.
+\end{itemize}}
+
+\subsection{Defence}
+
+\definition{Asymmetry in Security}{\underline{Asymmetry in security} is the principle that finding a hole is much easier than securing all possible holes. However, an attack is a sequence of stages that are all opportunities to detect or stop it.}
+
+\separate{7}\definition{Attack Trees}{An \underline{attack tree} is constructed such that: the root is the attackers' goal, the children are the different ways to achieve it, and the leaves are concrete actions. An OR node indicates that any of the children achieves the parent, while an AND node indicates that all children are required to achieve the parent. A set of leaves that satisfies the root is a complete attack.}
+
+\separate{7}When designing a system, it is important to consider the following principles: minimise the attack surface, split your defence across many layers, assign users as few privileges as necessary, deny requests as a default reponse unless explicitly allowed, attackers will always take the weakest link, and you should always assume there will be a breach, so monitor and plan for recovery.
+
 \section{Networks}
 
 This section is taught by \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu}. \comment{Check for recommended reading.}
