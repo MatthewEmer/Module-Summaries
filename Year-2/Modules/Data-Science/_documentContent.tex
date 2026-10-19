@@ -163,6 +163,76 @@ This means that one of the events \textbf{must} occur. Then, in any case, Bayes'
 
 \subsection{Discrete Probability Distributions}
 
+\subsubsection{Random Variables}
+
+\definition{Random variables}{A \underline{random variable} is a function that assigns a number to each outcome in the sample space of a random experiment. 
+It is also known as a \underline{stochastic variable}. 
+They are usually denoted by a capital \(X\) or \(Y\).}
+
+\separate{5}\definition{Discrete random variables}{We say that \(X\) is a \underline{discrete random variable} if \(X\) can take a finite number of \(k\) values \(x_1,.x_2,...,x_k\) and an infinite sequence of different values \(x_1,x_2,...\) which can be distinguished from one another.}
+
+\separate{5}\definition{Probability distribution}{The probability distribution of a random variable \(X\) describes the probabilities associated with each possible outcome of \(X\).
+Let \(X\) be a discrete random variable. 
+Suppose that the possible values it can assume are \(x_1,x_2,...,x_n\).
+Then, these values are associated with probabilities given by
+\begin{equation}\label{equation:discrete distribution}
+    P(X = x_k) = f(x_k), k=1,2,...,n
+\end{equation}
+This function \(f\) is known as the probability mass function (PMF).}
+
+\subsubsection{Distribution Functions}
+
+\separate{5}\definition{PMF}{The \underline{probability mass function (PMF)} is function where the value is a probability and has the following characteristics:
+\begin{itemize}
+    \item \(f(x_k) \geq 0\).
+    \item \(\sum_{k=1}^{n} f(x_k) = 1\).
+\end{itemize}
+The mathematical definition is that, for a discrete random variable \(X\) with possible values \(x_1,x_2,...\) the probability mass function is a function \(f:\{x_1,x_2,...\} \rightarrow [0,1]\) satisfying \(f(x_i) \geq 0\), \(\sum_{k=1}^{\infty} f(x_i) = 1\), and \(P(X = x_i) = f(x_i)\).
+They can be calculated by collecting all possible outcomes where \(X=x\) and summing their probabilities for all \(x\).}
+
+\separate{5}\definition{CDF}{The \underline{cumulative distribution function (CDF)} or \underline{distribution function} for a random variable \(X\) is defined as
+\begin{equation}
+    F(x) = P(X \leq x) = \sum_{x_i \leq x} P(X = x_i) = \sum_{x_i \leq x} f(x_i), \text{ where } x \in \R
+\end{equation}}
+
+\separate{5}\definition{Mean}{The \underline{mean (\(\mu\)) or expected value \(E\)} of a function is the measure of dispersion or variability in a distribution.}
+
+\separate{5}\definition{Variance}{The \underline{variance} of a function is the measure of dispersion or variability in a distribution.}
+
+\separate{5}It is important to consider two laws when discussing random variables:
+\begin{enumerate}
+    \item Functions of random variables are also random variables. 
+        Let \(X\) be a random variable, and \(h:\R\rightarrow\R\) be an arbitrary function.
+        Then \(Y = h(X)\) is also a random variable.
+    \item \definition{Law of the Unconscious Statistician}{The \underline{law of the unconscious statistician}: Let \(X\) be a random variable with PMF \(f\) and \(h:\R\rightarrow\R\) be an arbitrary function.
+        Then \(Y=h(X)\) is also a random variable. If \(X\) is discrete and takes values \(\{x_1,x_2,...\}\) then
+        \begin{equation}
+            E[Y] = E[h(x)] = \sum_i h(x_i)f(x_i)
+        \end{equation}}
+\end{enumerate}
+These two laws result in the conclusion that one can perform arithmetic operations with random variables to get new ones, and the expectation and variance can be computed from them.
+\begin{itemize}
+    \item \(E(aX + b) = aE[X] + b\).
+    \item \(E[h(X)] = \sum_x h(x)f(x)\).
+    \item \(V(aX + b) = a^2V(X)\).
+    \item \(V(X) = E(X^2) - [E(X)]^2\).
+\end{itemize}
+From this, \(E[X]\) is named the first moment, and \(E[X]^2\) is the second moment. The variance is also called the central second moment.
+
+\separate{5}We can consider two random variables \(X\) and \(Y\) to be independent if, for sets \(A\) and \(B\), we have
+\begin{equation}
+    P(\{X \in A\} \cap \{Y \in B\}) \equiv P(X \in A, Y \in B) = P(X \in A)P(Y \in B)
+\end{equation}
+For independent random variables only, we have
+\begin{equation}
+    V(X_1 + X_2 + ... + X_n) = V(X_1) + V(X_2) + ... + V(X_n)
+\end{equation}
+This equation holds for expectation \(E\), whether the variables are independent or not.
+
+\subsubsection{Special Discrete Distributions}
+
+\comment{Reached slide 20/40.}
+
 \subsection{Continuous Probability Distributions}
 
 \subsection{Gaussian Distribution and its Characteristics}
