@@ -94,9 +94,81 @@ Let \(M = (Q,\Sigma,\delta,q_0,F)\) be an NFA and \(w=w_1w_2...w_n\) be a word o
 
 \subsubsection{Converting NFA into DFA}
 
-The difference between a DFA and NFA is that a DFA has a unique computation (path) and either accepts or rejects, while a NFA generally has many computation paths and accepts if at least one computation accepts and only rejects if all the computations reject.
+The difference between a DFA and NFA is that a DFA has a unique computation (path) and either accepts or rejects, while an NFA generally has many computation paths and accepts if at least one computation accepts and only rejects if all the computations reject.
 
-\separate{10}\comment{Reached slide 22/55 (powerpoint says slide 21).}
+\separate{7}\theorem{nfa to dfa}{Every NFA has an equivalent DFA.}
+{To formally convert an NFA to a DFA, let \(N = (Q, \Sigma, \delta, q_0, F)\) be an NFA recognising some language \(L\) (assume that \(N\) has no \(\epsilon\)-transitions). We shall construct a DFA \(M = (Q', \Sigma, \delta', q_0', F')\) that recognises the same language \(L\) as follows.
+\begin{enumerate}
+    \item \(Q' = \mathscr{P}(Q)\).
+    \item For \(R \in Q'\) and \(a \in \Sigma\), let
+    \begin{equation}\label{equation:step2a}
+        \delta'(R,a) = \{q \in Q | q \in \delta(r,a) \text{ for some } r \in R\}
+    \end{equation}
+    equivalently,
+    \begin{equation}\label{equation:step2b}
+        \delta'(R,a) = \bigcup_{r \in R} \delta(r,a)
+    \end{equation}
+    \item \(q_0' = \{q_0\}\).
+    \item \(F' = \{R \in Q' | \exists r \in R, r \in F\}\).
+\end{enumerate}
+Now, to consider \(\epsilon\)-transitions, for \(R \subseteq Q\), let 
+\begin{equation}
+    E(R) = \{q | q \text{ is reachable from } R \text{ through a number of } \epsilon \text{-transitions.}\}
+\end{equation}
+Now, taking the above steps, we modify \eqref{equation:step2a} to
+\begin{equation}
+    \delta'(R,a) = \{q \in Q | q \in E(\delta(r,a)) \text{ for some } r \in R\}
+\end{equation}
+and \eqref{equation:step2b} to
+\begin{equation}
+    \delta'(R,a) = \bigcup_{r \in R} E(\delta(r,a))
+\end{equation}
+We then modify step 3 to say \(q_0' = E(\{q_0\})\).}
+
+\separate{7}\numberedentry{corollary regex nfa}{Corollary}{A language is regular iff some NFA recognises it.}
+\proof{entry:corollary regex nfa}{See \postenvref{thm:nfa to dfa}{Theorem}{theoremnumber}.}
+
+\separate{7}\theorem{regex expression recognition}{A language is regular iff some regular expression describes it.}
+{\(\Leftarrow\) Given a regular expression \(R\), construct a NFA that recognises \(L(R)\) by structural induction:
+\begin{itemize}
+    \item \textit{Base Case}: All initial regular expressions can be implemented by NFAs.
+    \item \textit{Inductive Step}: We have already proven that the class of regular languages is closed under regular operations.
+\end{itemize}
+
+\noindent \(\Rightarrow\) Given a DFA \(M\), construct a regular expression that recognises \(L(M)\).
+\begin{enumerate}
+    \item Convert the given \(n\)-state DFA into an equivalent \(n+2\) state GNFA.
+    \item Eliminate all the internal states of the GNFA one-by-one, while preserving the language recognised by the automaton.
+    \begin{enumerate}
+        \item Pick an internal state \(r\) for elimination.
+        \item For every two states \(u\) and \(v\) with transitions between them and \(r\), \(u \neq r, v \neq r\), combine the regular expressions of the three into one, new expression.
+    \end{enumerate}
+    \item \(L(R)\) should now equal \(L(M)\).
+\end{enumerate}}
+
+\separate{7}\definition{GNFA}{A \underline{generalised non-deterministic finite automaton} is defined as having a single start state with no incoming edges, a single end state with no outgoing edges, and every transition being labelled with a regular expression.}
+
+\subsubsection{Non-Regular Expression}
+
+\definition{Non-Regular Expressions}{A \underline{non-regular expression} is a language which cannot be recognised by any DFA. We prove a language is non-regular by assuming there is a DFA that recognises language \(L\) and then use an adversary argument against that DFA to get a contradiction.}
+
+\separate{7}\lemma{Pumping Lemma}{The \underline{pumping lemma} states that, for every regular language \(L\), there is a number \(p\) (the pumping length of \(L\)) such that every word \(w \in L\) of length at least \(p\) can be divided into three parts \(w=xyz\), satisfying the following conditions:
+\begin{enumerate}
+    \item \(xy^iz \in L\) for every \(i \in N\) (in particular \(xz \in L\) as one can take \(i = 0\)).
+    \item \(y\) is a non-empty string.
+    \item The length of the string \(xy\) is not greater than \(p\).
+\end{enumerate}}
+{Let \(M = (Q, \Sigma, \delta, q_0, F)\) be a DFA that recognises \(L\), and let us set the pumping length \(p\) to be the number of states in \(M: p=|Q|\). Consider the computation of \(M\) on the word \(w=w_1w_2...w_n\) where \(n \geq p\).
+\begin{equation}
+    q_0 = r_0 \rightarrow w_1 \rightarrow r_1 \rightarrow w_2 \rightarrow ... r_{n-1} \rightarrow w_n \rightarrow r_n \in F
+\end{equation}
+Let \(i\) be the first moment in time when we see a repetition in the sequence of states \(r_0,r_1,...,r_n\) (such an \(i\) must exist by the Pigeon-Hole principle, as \(n+1 > p\)). i.e., \(r_i = r_j\) for some \(i > j\) and the states \(r_0,r_1,...,r_{i-1}\) are all different. We can then set
+\begin{equation}
+    x = w_1w_2...w_j \quad y = w_{j+1}...w_i \quad z = w_{i+1}...w_n
+\end{equation}
+It is now straightforward to check that all three conditions are met.}
+
+\separate{7}\comment{Reached slide 41/55.}
 
 \subsection{B{\"u}chi Automata and Omega-Regular Languages}
 
@@ -114,6 +186,75 @@ This section is taught by \hyperref[lecturer-toc-sukanyapandey]{Dr Sukanya Pande
 Lecture one was just a recall of some of last year's Algorithms and Data Structures module.
 
 \subsection{Greedy Algorithms}
+
+\definition{The Knapsack Problem}{\underline{The knapsack problem} is defined as one of two variants. Either:
+\begin{itemize}
+    \item The \underline{0-1 knapsack problem} (the classic variant), where a thief robs a store and finds \(n\) items. Item \(i\) is worth \(v_i\) euros and weighs \(w_i\) kilos. The thief can carry at most \(W\) kilos in his knapsack. \textit{Which items can he take to maximise his profit?}
+    \item the \underline{fractional knap problem}, which has the same setup, but this time the thief can take fractions of items.
+    \item We can assume (without loss of generality) that the knapsack is not big enough to carry all items:
+    \begin{equation}
+        W < w_1 + w_2 + ... + w_n
+    \end{equation}
+\end{itemize}}
+
+\subsubsection{The Greedy Approach}
+
+To solve the fractional problem, the greedy approach would be to calculate the value per kilo using \eqref{equ:knapsack_value} for each item. You then sort the items by value per kilo, in decreasing order. You then take as much of the first item as possible, then the second item, etc., until you reach the capacity of the knapsack \(W\).
+\begin{equation}\label{equ:knapsack_value}
+    r_i = \frac{v_i}{w_i}
+\end{equation}
+
+
+\separate{7}\example{Greedy knapsack}{For example, if \(W=10\), and \(\mathbf{v} = \{4, 10, 12, 20\}\) and \(\mathbf{w} = \{4, 2, 8, 5\}\). We can then calculate \(\mathbf{r} = \{1, 5, 1.5, 4\}\). The greedy algorithm then dictates that you should take all of item 2, all of item 4, and 3 kilos of item 3 \(W = 2 + 5 + 3\). This gives a total value of \(V = 10 + 20 + (3 \times 1.5) = 34.5\).}
+
+\separate{7}The running time of this algorithm can be calculated by taking that:
+\begin{enumerate}
+    \item Step 1, calculating the value per kilo takes \(\Theta (n)\).
+    \item Step 2, sorting the value per kilo array takes \(\Theta (n\;log\;n)\).
+    \item Step 3, selecting the items can be done in \(\Theta (n)\).
+\end{enumerate}
+Therefore, the worst-case running time is \(\Theta (n\;log\;n)\).
+
+\separate{7}However, approach will not work for the 0-1 knapsack problem.
+
+\subsubsection{Correctness of the Greedy Algorithm for Fractional Knapsack}
+
+\(n\) items are sorted by value per kilo, \eqref{equ:knapsack_value} in decreasing order, i.e., 
+\begin{equation}
+    r_1 \geq r_2 \geq ... \geq r_n
+\end{equation}
+Two items, \(p\) and \(q\) with \(r_p = r_q\) are considered to be equivalent. Hence, we may assume that
+\begin{equation}
+    r_1 > r_2 > ... > r_n
+\end{equation}
+The total available amount of item \(i\) is \(w_i\). Let \(k\) be such that
+\begin{equation}
+    w_1 + w_2 + ... + w_k \leq W
+\end{equation}
+and
+\begin{equation}
+    w_1 + w_2 + ... + w_{k+1} > W
+\end{equation}
+Let \(\mathbf{x} = (x_1, x_2, ..., x_n)\) denote a solution: \(0 \leq x_i \leq w_i\) is the amount the thief takes of item \(i\) for \(i = [0, n]\). The total value taken is then given by
+\begin{equation}
+    \sum_{i=1}^{n} r_ix_i
+\end{equation}
+The greedy solution \(\mathbf{x}\) is given by \(x_i = w_i\) for \(1 \leq i \leq k\) and 
+\begin{equation}
+    x_{k+1} = W - (w_1 + w_2 + ... + w_k)
+\end{equation}
+\(x_i = 0\) for \(k+2 \leq i \leq n\). Let \(\mathbf{x}^* = (x_1^*, x_2^*, ..., x_n^*)\) be an optimal solution.
+
+\separate{7}Suppose that \(\mathbf{x}^* \neq \mathbf{x}\). Then
+\begin{itemize}
+    \item \(x_i^* < x_i\) for some \(i \leq k+1\). 
+    \item Let \(j = \min\{i:x_i^* < x_i\}\).
+    \item And \(x_l^* > x_l\) for some \(l > j\).
+\end{itemize}
+Let us add some more of item \(j\) to the optimal choice. Let \(y\) be another solution, defined by 
+\begin{equation}
+    y = \begin{cases}y_j = \min\{w_j, x_j^* + (x_l^* - x_l)\}\\y_l = x_l^* - (y_j - x_j^*)\\y_i=x_i^* \text{   otherwise.}\end{cases}
+\end{equation}
 
 \subsection{Divide and Conquer Algorithms}
 

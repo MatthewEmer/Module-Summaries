@@ -82,13 +82,39 @@ From this, we can define a well-defined learning task as \(<T,P,E>\).}
 
 \definition{Train a Model}{To \underline{train a model}, you use data to create a model and fine-tune it to make better predictions. We can then use this predictive model to make predictions on previously unseen data in order to perform specific tasks.}
 
-\separate{7}\comment{Add notes while in lecture, because the PPT is useless.}
+\separate{7}The machine learning workflow is set out as shown below:
+\begin{enumerate}
+    \item \definition{Problem Framing}{\underline{Project Framing}: When setting out to create a model, we must first frame the problem. Here, we set out a clear objective that we want the model to achieve. We then define inputs and outputs and establish success metrics (e.g., prediction accuracy).}
+    \item \definition{Data Preparation}{\underline{Data Preparation}: The next step is to prepare the data. To do that, we identify \underline{features} (inputs) and a \underline{label} (output). We then carry out data cleaning on the dataset and split the data into training and test sets.}
+    \item \definition{Algorithm Selection}{\underline{Algorithm Selection}: Next, we select the algorithm we want to use for the model based on the dataset and the objective.}
+    \item \definition{Model Training}{\underline{Model Training}: The training data is used to incrementally improve the model's performance. The progress made in this step is dependant on the quality of the work done in the previous two stages.}
+    \item \definition{Model Testing}{\underline{Model Testing}: The next step is to take the model and test it against previously unseen data (the test set).}
+    \item \definition{Hyperparameter Tuning}{\underline{Hyperparameter Tuning}: We can then attempt to improve the training process to further increase the model's accuracy.}
+    \item \definition{Inference/Prediction}{\underline{Inference/Prediction}: Finally, the model can be deployed for the task outlined in the first step.}
+\end{enumerate}
 
 \subsubsection{Coding Environment}
 
-\comment{Add notes while in lecture, because the PPT is useless.}
+When programming, we traditionally set out the features as variable \(X\) and the target label as \(Y\).
 
 \subsection{Data Understanding}
+
+\definition{Sample}{A \underline{sample} is the unit for which the model recieves features and, during training, a label.}
+
+\separate{7}We then set up a feature matrix \(X\) where each row is a different sample and each column is a new feature and \(y\) is a matrix where each row is sample's label corresponding to the sample's features in \(X\).
+
+\separate{7}\definition{Nearest-centroid classification}{\underline{Nearest-centroid classification} attempts to classify the samples by setting out one centre for each species and then classifying them based on their nearest centroid. The formula for calculating this is:
+\begin{equation}
+    \mu_c = \left(\frac{1}{N_c}\right) \sum_i:y^{(i)} = c x^{(i)}
+\end{equation}
+For each species \(c\), average the feature vectors belonging to that species. Then, subtract the centroid from the new example, square the differences, add them, then take the square root, as shown below.
+\begin{equation}
+    d(x,\mu_c) = ||x=\mu_x||_2
+\end{equation}
+To predict a sample's species, compute the distances from each species' centroid and choose the class with the smallest distance.
+\begin{equation}
+    \hat{y} = arg\;min_c || x - \mu_c ||_2
+\end{equation}}
 
 \subsection{Data Preparation Workflow}
 
