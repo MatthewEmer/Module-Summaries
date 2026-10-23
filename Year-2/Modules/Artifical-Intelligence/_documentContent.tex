@@ -165,6 +165,15 @@ This means that if it is above 5\%, then there is insufficient evidence of a dif
 \end{equation}
 where \(O_j\) is the observed count and \(E_j\) is the expected count.}
 
+\subsubsection{Building Trustworthy Evaluation Sets}
+
+A row should only serve one role. 
+Either as a training set (to fit parameters), a validation set (to compare choices), or as a test set (to get a final accuracy estimate).
+
+\separate{7}Random splitting preserves population proportions only in expectation. 
+A finite test set can contain too many or too few examples from an important region. 
+Rare strata show the largest relative variation.
+
 \subsection{Data Transformation}
 
 \section{Artificial Intelligence Search}
