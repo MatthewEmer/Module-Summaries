@@ -176,6 +176,54 @@ Rare strata show the largest relative variation.
 
 \subsection{Data Transformation}
 
+\subsubsection{Numerical Transforms}
+
+\definition{Min-max normalisation}{In \underline{min-max normalisation}, the training minimum becomes 0 and the training maximum becomes 1.
+Values between them retain their relative position in the observed training range.
+\begin{equation}
+    x' = \frac{x - min_{train}}{max_{train} - min_{train}}
+\end{equation}}
+
+\definition{Standardisation}{In \underline{standardisation}, values have the training mean subtracted, and then divided by the training standard deviation.
+The transformed training column has mean near 0 and standard deviation near 1.
+\begin{equation}
+    x' = \frac{x-\mu_{train}}{\sigma_{train}}
+\end{equation}}
+
+\separate{7}\definition{Estimator Interface}{The \underline{estimator interface} has three functions: fit (to learn the statistics), transform (to apply statistics), and fit\_transform (combines on training).
+It is also used in imputers, encoders, ColumnTransformer, and Pipeline.}
+
+\separate{7}\definition{Data Leakage}{\underline{Data leakage} occurs when preprocessing learns from rows that should remain unseen.
+Test-set statistics carry information about the future evaluation distribution back into training.}
+
+\subsubsection{Skew and Bins}
+
+To reduce the impact of skewed columns, they can be log scaled to compress multiplicative differences into smaller additive differences.
+\begin{equation}
+    x' = \log(1+x)
+\end{equation}
+The transformed distribution spreads common values while compressing the tail.
+
+\separate{7}If you use equal-width bins, you may end up with sparse bins if data is skewed.
+To fix this, we use quartile bins to keep roughly the same number of rows in each bin.
+
+\subsubsection{Categories and Missing Values}
+
+\definition{one-hot}{If a column is unordered, then we can apply a \underline{one-hot representation} where each unique value in the column becomes a new column with a boolean value of whether it is present.
+This is done with a \underline{one-hot encoder} which learns categories during fit and then applies the same column order during transform.}
+
+\separate{7}If you have a column with missing data, you can take one of two approaches:
+\begin{itemize}
+    \item Delete the incomplete rows - this does remove observations and can impact the data distribution.
+    \item Impute a fitted statistic - preserves row count and creates a value for future rows (normally median).
+\end{itemize}
+
+\subsubsection{A Leakage-Free Preprocessing Pipeline}
+
+Column-specific preprocessing uses ColumnTransformer to take each column and applies median imputation and standardisation for numeric columns, and categorical encoding for categorical ones.
+
+\separate{7}The end-to-end data flow becomes: taking the raw DataFrame and fit preprocessing, then taking the resulting matrix and training the model.
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
