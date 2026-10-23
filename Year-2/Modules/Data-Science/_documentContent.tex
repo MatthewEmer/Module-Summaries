@@ -169,9 +169,9 @@ This means that one of the events \textbf{must} occur. Then, in any case, Bayes'
 It is also known as a \underline{stochastic variable}. 
 They are usually denoted by a capital \(X\) or \(Y\).}
 
-\separate{5}\definition{Discrete random variables}{We say that \(X\) is a \underline{discrete random variable} if \(X\) can take a finite number of \(k\) values \(x_1,.x_2,...,x_k\) and an infinite sequence of different values \(x_1,x_2,...\) which can be distinguished from one another.}
+\separate{7}\definition{Discrete random variables}{We say that \(X\) is a \underline{discrete random variable} if \(X\) can take a finite number of \(k\) values \(x_1,.x_2,...,x_k\) and an infinite sequence of different values \(x_1,x_2,...\) which can be distinguished from one another.}
 
-\separate{5}\definition{Probability distribution}{The probability distribution of a random variable \(X\) describes the probabilities associated with each possible outcome of \(X\).
+\separate{7}\definition{Probability distribution}{The probability distribution of a random variable \(X\) describes the probabilities associated with each possible outcome of \(X\).
 Let \(X\) be a discrete random variable. 
 Suppose that the possible values it can assume are \(x_1,x_2,...,x_n\).
 Then, these values are associated with probabilities given by
@@ -182,7 +182,7 @@ This function \(f\) is known as the probability mass function (PMF).}
 
 \subsubsection{Distribution Functions}
 
-\separate{5}\definition{PMF}{The \underline{probability mass function (PMF)} is function where the value is a probability and has the following characteristics:
+\separate{7}\definition{PMF}{The \underline{probability mass function (PMF)} is function where the value is a probability and has the following characteristics:
 \begin{itemize}
     \item \(f(x_k) \geq 0\).
     \item \(\sum_{k=1}^{n} f(x_k) = 1\).
@@ -190,16 +190,16 @@ This function \(f\) is known as the probability mass function (PMF).}
 The mathematical definition is that, for a discrete random variable \(X\) with possible values \(x_1,x_2,...\) the probability mass function is a function \(f:\{x_1,x_2,...\} \rightarrow [0,1]\) satisfying \(f(x_i) \geq 0\), \(\sum_{k=1}^{\infty} f(x_i) = 1\), and \(P(X = x_i) = f(x_i)\).
 They can be calculated by collecting all possible outcomes where \(X=x\) and summing their probabilities for all \(x\).}
 
-\separate{5}\definition{CDF}{The \underline{cumulative distribution function (CDF)} or \underline{distribution function} for a random variable \(X\) is defined as
+\separate{7}\definition{CDF}{The \underline{cumulative distribution function (CDF)} or \underline{distribution function} for a random variable \(X\) is defined as
 \begin{equation}
     F(x) = P(X \leq x) = \sum_{x_i \leq x} P(X = x_i) = \sum_{x_i \leq x} f(x_i), \text{ where } x \in \R
 \end{equation}}
 
-\separate{5}\definition{Mean}{The \underline{mean (\(\mu\)) or expected value \(E\)} of a function is the measure of dispersion or variability in a distribution.}
+\separate{7}\definition{Mean}{The \underline{mean (\(\mu\)) or expected value \(E\)} of a function is the measure of dispersion or variability in a distribution.}
 
-\separate{5}\definition{Variance}{The \underline{variance} of a function is the measure of dispersion or variability in a distribution.}
+\separate{7}\definition{Variance}{The \underline{variance} of a function is the measure of dispersion or variability in a distribution.}
 
-\separate{5}It is important to consider two laws when discussing random variables:
+\separate{7}It is important to consider two laws when discussing random variables:
 \begin{enumerate}
     \item Functions of random variables are also random variables. 
         Let \(X\) be a random variable, and \(h:\R\rightarrow\R\) be an arbitrary function.
@@ -219,7 +219,7 @@ These two laws result in the conclusion that one can perform arithmetic operatio
 \end{itemize}
 From this, \(E[X]\) is named the first moment, and \(E[X]^2\) is the second moment. The variance is also called the central second moment.
 
-\separate{5}We can consider two random variables \(X\) and \(Y\) to be independent if, for sets \(A\) and \(B\), we have
+\separate{7}We can consider two random variables \(X\) and \(Y\) to be independent if, for sets \(A\) and \(B\), we have
 \begin{equation}
     P(\{X \in A\} \cap \{Y \in B\}) \equiv P(X \in A, Y \in B) = P(X \in A)P(Y \in B)
 \end{equation}
@@ -231,7 +231,108 @@ This equation holds for expectation \(E\), whether the variables are independent
 
 \subsubsection{Special Discrete Distributions}
 
-\comment{Reached slide 20/40.}
+\definition{Discrete Uniform Distribution}{The \underline{discrete uniform distribution} is the simplest discrete random variable.
+It assumes a finite number of possible values, each with equal probability.
+A random variable \(X\) has a discrete uniform distribution if each of the \(n\) values in its range \(x_1,x_2,...,x_n\) has equal probability.
+Suppose random variable \(X\) has uniform distribution. 
+The probability mass function of \(X\) is given by (\(X \sim Uni(n)\)).
+\begin{equation}
+    P(X = k) = f(k) = \frac{1}{n}
+\end{equation}
+If we assume \(X\) is a discete uniform distribution on the consecutive integers \(a, a+1, a+2,...,b\) for \(a < b\), then:
+\begin{equation}
+    \mu = E[X] = \frac{a+b}{2}
+\end{equation}
+\begin{equation}
+    \sigma^2 = Var(X) = \frac{(b-a+1)^2-1}{12}
+\end{equation}}
+
+\separate{7}\definition{Bernoulli Distribution}{The most common discrete distributions are associated with \underline{Bernoulli trials}.
+In a random experiment if each outcome consists of only two probabilities, such as in a toss of a coin, then the random experiment is called a Bernoulli trial.
+In a Bernoulli trial, let the possible events in each outcome be denoted by \(A\) and \(B\).
+Then, \(A \cap B = \emptyset\) and \(A \cup B = S\).
+Let the occurrence of \(A\) be a success, and the occurrence of \(B\) be a fail and let the probability of \(A\) be \(p\), then:
+\begin{equation}\label{equation:Bernoulli q}
+    P(B) = P(\overline{A}) = 1 - P(A) = 1 - p = q
+\end{equation}
+Let \(X\) be a random variable taking only two possible values \(\{0,1\}\) and let \(p = P(X=1)\).
+Then \(X\) is said to be a \underline{Bernoulli random variable} with parameter \(p\): \(X \sim Ber(p)\), then:
+\begin{equation}
+    E[X] = 0 \times P(X = 0) + 1 \times P(X = 1) = p
+\end{equation}
+\begin{equation}
+    E[X^2] = 0^2 \times P(X=0) + 1^2 \times P(X=1) = p
+\end{equation}
+\begin{equation}\label{equation:Bernoulli V}
+    V(X) = E[X^2] - (E[X])^2 = p-p^2 = p(1-p)
+\end{equation}
+Taking \eqref{equation:Bernoulli q} and \eqref{equation:Bernoulli V}, we get that \(E[X] = p\) and \(V(X) = pq\).}
+
+\separate{7}\definition{Discrete Binomial Distribution}{Consider a random experiment consisting of \(n \in \N\) independent Bernoulli trials.
+If the probability of success for each trial equals \(p\), \(0 \leq p \leq 1\), and it remains the same throughout the experiment, then we say that the random variable \(X\) that equals the number of successful trials is a \underline{binomial random variable} with parameters \(n\) and \(p\).
+The probability mass function of \(X\) is given by \(X \sim Bin(n,p)\).
+\begin{equation}
+    P(X = k) = f(k) = \binom{n}{k}p^k(1-p)^{n-k}, k=0,1,...,n
+\end{equation}
+The binomial random variable is \(n\) independent repetitions of a Bernoulli variable, \(X = X_1 + X_2 + ... + X_n\). 
+So we can calculate 
+\begin{equation}
+    E[X] = E[X_1 + X_2 + ... + E_n] = E[X_1] + E[X_2] + ... + E[X_n]
+\end{equation}
+\begin{equation}
+    V(X) = V[X_1 + X_2 + ... + X_n] = V(X_1) + V(X_2) + ... + V(X_n)
+\end{equation}
+Therefore, \(E[X] = np\) and \(V(X) = np(1-p)\).}
+
+\separate{7}\definition{Discrete Geometric Distribution}{Consider a series of independent Bernoulli trials with constant probability of success \(p\).
+Let the random variable \(X\) denote the number of trials until the first success. 
+Then \(X\) is called a \underline{geometric random variable} with parameter \(p\): \(X \sim Geom(p)\).
+\begin{equation}
+    P(X = k) = f(k) = p(1-p)^{k-1}, k=1,2,...
+\end{equation}
+and \(E[X] = \frac{1}{p}\) and \(V(X) = \frac{1-p}{p^2}\).}
+
+\separate{7}\theorem{The Memoryless Property}{The geometric distribution has no memory of the past. 
+This is called the \underline{memoryless} \underline{property}, meaning that if you have waited \(k\) trials already without seeing a success, you must wait \(m\) more trials to get success with probability of \(p(1-p)^{m-1}\): \(P(X = k+m | X > k) = P(X =m)\).}
+{\begin{equation}
+    P(X = k + m | X > k) = \frac{P(\{X = k+m\} \cap \{X > k\})}{P(\{X > k\})}
+\end{equation}
+\begin{equation}
+    \frac{P(X = k+m)}{P(X > k)} = \frac{P(X = k+m)}{1 - P(X \geq k)}
+\end{equation}
+\begin{equation}
+    = \frac{p(1-p)^{k+m-1}}{(1-p)^k} = p(1-p)^{m-1} = P(X = m)
+\end{equation}}
+
+\separate{7}\definition{Negative Binomial Distribution}{We can generalise the idea behind the geometric distribution - instead of waiting for the first success, we can wait until \(r\) successes.
+Consider a series of independent Bernoulli trials with constant success probability \(p\). 
+Let the random variable \(X\) denote the number of trials until \(r \in \N\) successes are attained.
+Then \(X\) is called a \underline{negative binomial random variable} with parameter \(p\) and \(r\): \(X \sim NegBin(p,r)\).
+\begin{equation}
+    P(X=k) = f(k) = \begin{cases}
+                        0, \text{ if } k < r \\
+                        \binom{k-1}{r-1}p^r(1-p)^{k-r}, \text{ if } k \geq r
+                    \end{cases}, \text{ where } k \in \N
+\end{equation}
+Then \(E[X] = \frac{r}{p}\) and \(V(X) = r \frac{1-p}{p^2}\).}
+
+\separate{7}\definition{Poisson}{Suppose that you want to model the number of customers entering a store over the period of one day.
+To do this we make two assumptions: the customers behave independently from one another and the expected number of customers per unit of time is constant \(\lambda\).
+
+Breaking the day into four-hour intervals gives six pieces \((n=6)\), so the expected number of customers for each interval is \(\frac{\lambda}{n} = \frac{\lambda}{6}\).
+If the intervals are really small, then the number of customers is either 0 or 1 with very high probability. 
+Then the number of customers in each interval is approximately a Bernoulli random variable with \(p = \frac{\lambda}{n}\), they are also all independent.
+
+Now look at getting \(k\) arrivals in a \(Bin(n,p)\), where the number of bins \(n\) grows towards \(+\infty\).
+In this case, the probability of a single event will be \(p = \frac{\lambda}{n}\).
+
+A \underline{Poisson random variable} has a distribution that shows how many times an event is likely to happen within a specific period of time.
+\(X\) is called a \underline{Poisson random variable} with parameter \(\lambda > 0\). 
+It is the number of events in a Poisson process, \(X \sim Poisson(\lambda)\).
+\begin{equation}
+    P(X=k) = f(k) = \frac{e^{-\lambda}\lambda^k}{k!}, k=0,1,2,...
+\end{equation}
+and \(E[X] = \lambda\) and \(V(X) = \lambda\).}
 
 \subsection{Continuous Probability Distributions}
 
@@ -297,7 +398,9 @@ Producing high-quality data is an iterative process moving through \hyperref[def
 
 There is no new content here, it is just an introduction to Python's file read/write operations.
 
-\subsection{Pandas and Various Features of NumPy}
+\subsection{Pandas and Numpy}
+
+There is no new content here, it is just an introduction to Pandas and Numpy.
 
 \subsection{Data Cleaning and Preparation}
 

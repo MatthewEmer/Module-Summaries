@@ -118,6 +118,55 @@ To predict a sample's species, compute the distances from each species' centroid
 
 \subsection{Data Preparation Workflow}
 
+\definition{Data Preparation Workflow}{To prepare data for machine learning, we use the \underline{data preparation workflow} which follows the steps as below:
+\begin{enumerate}
+    \item Read and inspect the data.
+    \item Clean and split the data into train and test sets.
+    \item Fit the baseline and model.
+    \item Test and compare the model against the baseline.
+    \item Scale the model and predict unseen data.
+\end{enumerate}}
+
+\separate{7}\definition{Training-set Standardisation}{We can standardise our dataset using \underline{training-set standardisation} to reduce the unbalanced impact features with large average Euclidean distances have on predictions.
+To do this, we use \eqref{equation:training-set standardisation}.
+\begin{equation}\label{equation:training-set standardisation}
+    x' = \frac{x - \mu_{train}}{\sigma_{train}}
+\end{equation}}
+
+\subsection{Data Construction}
+
+\subsubsection{Analysing the Raw Data}
+
+\definition{Skewness}{Data can be considered \underline{skewed} to the right if the majority of the data lies to the left with a long tail to the right.
+To measure this, we use a measure called \underline{skewness} which can be calculated with \eqref{equation:skewness}
+\begin{equation}\label{equation:skewness}
+    \text{Skewness} = \frac{3 \times (\text{Mean} - \text{Median})}{\text{Standard Deviation}} = \frac{3(\mu - Mdn)}{\sigma}
+\end{equation}}
+
+\separate{7}\definition{Capping}{Datasets may sometimes contain \underline{capped} features. 
+This can be identified by graphing the data.
+If there is a spike on the maximum-value, then it is likely that the data is capped.}
+
+\subsubsection{Sampling}
+
+When deciding how large of a sample to take from a population, you have to balance the size as a larger sample reduces random sampling noise, but also increases processing time.
+
+\separate{7}\definition{Kolmogorov-Smirnov}{The \underline{Kolmogorov-Smirnov test} compares the distributions of two samples. 
+It returns the maximum vertical distance between two cumulative distribution functions.
+\begin{equation}\label{equation:ks test}
+    D = sup_x | F_{sample}(x) - F_{population}(x)|
+\end{equation}
+It can then be used to calculate a p-value measuring the evidence against equal distributions.
+This means that if it is above 5\%, then there is insufficient evidence of a difference in the distributions.}
+
+\separate{7}\definition{Chi-square}{Similarly, for categorical data, you can use the \underline{Chi-square goodness of fit test} which compares the expected and observed counts of each unique value.
+\begin{equation}\label{equation:chi-square}
+    \chi^2 = \sum_j \frac{(O_j - E_j)^2}{E_j}
+\end{equation}
+where \(O_j\) is the observed count and \(E_j\) is the expected count.}
+
+\subsection{Data Transformation}
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
