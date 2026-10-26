@@ -168,7 +168,26 @@ Let \(i\) be the first moment in time when we see a repetition in the sequence o
 \end{equation}
 It is now straightforward to check that all three conditions are met.}
 
-\separate{7}\comment{Reached slide 41/55.}
+\separate{7}\example{Pumping}{Prove that the language \(L = \{0^n1^n | n \in \N\}\) is not regular.
+
+\separate{3}\proof{ex:Pumping}{Take the word \(0^p1^p \in L\) where \(p\) is the pumping length of \(L\).
+If \(0^p1^p = xyz\) and \(|xy| \leq p\), then \(x=0^i, y=1^j\) and \(z=0^{p-i-j}1^p\).
+But then \(xy^2z = 0^{p+j}1 \notin L\) as \(|y| > 0\), i.e., \(j > 0\).}}
+
+\separate{7}\definition{DFA Minimisation}{An algorithm that \underline{minimises} any given DFA, i.e., finds an equivalent DFA with the minimal number of states.
+It answers both \say{What is the smallest DFA that recognises the same language?} and \say{Given two DFAs, do they recognise the same language?}.
+It can be achieved by removing any states not reachable from the start state and contracting a set of states that are equivalent into a single state.}
+
+\separate{7}\definition{Equivalent States}{Two states \(s\) and \(t\) are \underline{equivalent} if any word \(w\), which is accepted when starting from \(s\), is also accepted when starting from \(t\).}
+
+\separate{7}\definition{ETM}{A \underline{extended transition function} is defined by letting a DFA \(M = (Q,\Sigma,\delta,q_0,F)\) be given, and let \(\hat{\delta}: Q \times \Sigma^* \rightarrow Q\) be defined as:
+\begin{equation}
+    \hat{\delta}(s, \epsilon) = s
+\end{equation}
+\begin{equation}
+    \hat{\delta}(s, w_1w_2...w_n) = \hat{\delta}(\delta(s,w_1),w_2,...,w_n)
+\end{equation}
+for every state \(s\) and every word \(w_1w_2...w_n\).}
 
 \subsection{B{\"u}chi Automata and Omega-Regular Languages}
 
