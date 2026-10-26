@@ -181,13 +181,59 @@ This is a helpful model for structuring the analysis of potential system threats
     \item Actions on Objectives: A \say{historically complex} legacy network let them reach well beyond the entry point and roughly 600 GB was copied. The servers were then encrypted or destroyed.
 \end{itemize}}
 
-\subsection{Defence}
+\subsubsection{Defence}
 
 \definition{Asymmetry in Security}{\underline{Asymmetry in security} is the principle that finding a hole is much easier than securing all possible holes. However, an attack is a sequence of stages that are all opportunities to detect or stop it.}
 
 \separate{7}\definition{Attack Trees}{An \underline{attack tree} is constructed such that: the root is the attackers' goal, the children are the different ways to achieve it, and the leaves are concrete actions. An OR node indicates that any of the children achieves the parent, while an AND node indicates that all children are required to achieve the parent. A set of leaves that satisfies the root is a complete attack.}
 
 \separate{7}When designing a system, it is important to consider the following principles: minimise the attack surface, split your defence across many layers, assign users as few privileges as necessary, deny requests as a default reponse unless explicitly allowed, attackers will always take the weakest link, and you should always assume there will be a breach, so monitor and plan for recovery.
+
+\subsection{Authorisation, Authentication, Accountability and Access Control}
+
+\definition{Identification}{\underline{Identification} identifies who someone claims to be.}
+
+\separate{7}\definition{Authentication}{\underline{Authentication} tests whether a person can prove their identity.}
+
+\separate{7}\definition{Authorisation}{\underline{Authorisation} defines what a user is allowed to do.}
+
+\separate{7}\definition{Access Control}{\underline{Access control} ensures that a user's authorisation is enforced on every request.}
+
+\separate{7}\definition{Accountability}{\underline{Accountability} ensures that actions can be traced back to the user.}
+
+\subsubsection{Authentication}
+
+\definition{Authentication Lifecycle}{The \underline{authentication lifecycle} is separated into five steps. These are:
+\begin{itemize}
+    \item \textbf{Enrolment} binds an identity to a credential. This can go wrong if an attacker registers as you.
+    \item \textbf{Authentication} requires the user to present their credentials for the verifier to check. This can go wrong after brute-force, phishing, or stolen password attacks.
+    \item A \textbf{session} sets up a token to stand in for you on every later request. This goes wrong if a stolen cookie skips the login entirely.
+    \item \textbf{Recovery} regains access when a credential is lost. This can go wrong if there are guessable security questions, or by exploiting the help-desk.
+    \item \textbf{Revocation} removes access when people leave, or when credentials leak. This goes wrong if old codes still work.
+\end{itemize}}
+
+\separate{7}\definition{MFA}{\underline{Multi-factor authentication} can make a system more secure. The factors you can use are: something you know; something you have; and something you are.}
+
+\separate{7}\definition{FAR/FRR}{No authenticator is perfect, we can judge their accuracy by measuring their \underline{false} \underline{acceptance rate} and \underline{false rejection rate}. 
+Generally, lowering one raises the other.
+For example, touch ID has a FAR of \(1:50,000\) and face ID has a FAR of \(1:1,000,000\).}
+
+\separate{7}\definition{Similarity Score}{Each authentication attempt gives a \underline{similarity score}, not a boolean value. The threshold (visualised in \elemref{fig:Threshold Trade-off.}{Figure}\footnote{Image taken from \hyperref[cit:The Threshold Trade-Off]{Deparment of Computer Science (2026)}.}) turns it into a decision.
+If we raise the threshold, then there will be fewer false accepts, but more false rejects, and vice-versa.}
+
+\insertimage{./Images/threshold-trade-off.png}{Threshold Trade-off.}{0.6}
+
+\separate{7}\definition{EER}{The \underline{equal error rate} is where \(FAR=FRR\). 
+This is good for comparing systems, but is rarely the right operating point.
+The right setting depends on what each error costs.}
+
+\separate{7}Passwords persist because they are free and work anywhere. However, because people choose them, reuse them, and/or type them anywhere, they can become insecure.
+Some common attacks against passwords are in \elemref{tab:Common attacks against passwords.}{Table}.
+
+\inserttable{c|c|c}{Common attacks against passwords.}{\textbf{Attack} & \textbf{How It Works} & \textbf{Main Defence}}
+{Online guessing & Try common passwords against the login page. & \makecell{Rate limiting, blocklists of common \\passwords.}}
+
+\separate{7}\comment{FINISH THIS LECTURE - TABLE IS NOT DONE}
 
 \section{Networks}
 
