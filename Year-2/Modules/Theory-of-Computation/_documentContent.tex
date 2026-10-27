@@ -191,6 +191,41 @@ for every state \(s\) and every word \(w_1w_2...w_n\).}
 
 \subsection{B{\"u}chi Automata and Omega-Regular Languages}
 
+\subsubsection{Finite-State Automata Over Infinite Words}
+
+\definition{Buchi Automata}{If we have a NFA where the input is infinite (i.e., \(\Sigma^\omega\)), we have a \underline{B{\"u}chi automaton}.}
+A B{\"u}chi automaton accepts \(w_1w_2...\in \Sigma^\omega\) if there is a sequence of states \(r_0,r_1,r_2,...\in Q^\omega\) satisfying the following conditions:
+\begin{itemize}
+    \item \(r_0 = q_0\).
+    \item \((r_i,w_{i+1},r_{i+1}) \in \Delta\) for every \(i > 0\).
+    \item There are infinitely many \(r_i\)'s in \(F\).
+\end{itemize}
+
+\separate{7}\definition{Omega-Language}{An \underline{\(\omega\)-regular language/expression} is build upon regular languages, using the following operations:
+\begin{itemize}
+    \item \(A \cup B\), where both \(A\) and \(B\) are \(\omega\)-regular.
+    \item \(AB\), where \(A\) is regular, and \(B\) is \(\omega\)-regular.
+    \item \(A^\omega\), which is \(\{a_1...|a_i \in A\}\), i.e., an infinite sequence of words from \(A\), where \(A\) is regular and doesn't contain the empty word.
+\end{itemize}}
+
+\separate{7}Let \(A\) be a regular language. 
+The limit of \(A\), \(\lim A\) is the language \(\{a \in \Sigma^\omega | a \text{ has infinitely many prefixes in } A\}\).
+
+\separate{7}\(L_1 = \{a \in \Sigma^\omega | a \text{ contains infinitely many 0s.}\}\).
+\\\(L_2 = \{a \in \Sigma^\omega | a \text{ contains finitely many 1s.}\}\).
+
+\separate{7}\proposition{buchi_determinism}{\(L_2\) cannot be recognised by a deterministic B{\"u}chi automaton.}
+{Assume that \(L_2\) can be recognised by some deterministic B{\"u}chi automaton \(M\).
+We will construct a word accepted by \(M\) that contains infinitely many 1s and thus doesn't belong to \(L_2\).
+\begin{enumerate}
+    \item \(0^\omega \in L_2\) must be accepted by \(M\), so there is some finite prefix \(0^{n_1}\) that leads into accepting state \(p_1\).
+    \item \(0^{n_1}10^\omega \in L_2\) must be accepted by \(M\), so there is some finite prefix \(0^{n_1}10^{n_2}\) that leads into accepting state \(p_2\).
+    \item \(0^{n_1}10^{n_2}10^\omega \in L_2\) must be accepted by \(M\), so there is some finite prefix \(0^{n_1}10^{n_2}10^{n_3}\) that leads into accepting state \(p_3\).
+    \item ...
+\end{enumerate}
+The limit of the infinite process is a word of the form \((0^*1)^\omega \notin L_2\) that is accepted by \(M\) since it visits an infinite sequence of accepting states \(p_1,p_2,...\).
+}
+
 \subsection{Linear-Time Logic and Translating Into B{\"u}chi Automata}
 
 \section{Algorithms and Complexity}
