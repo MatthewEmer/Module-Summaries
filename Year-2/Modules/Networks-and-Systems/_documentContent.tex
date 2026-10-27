@@ -262,6 +262,36 @@ Session Theft & Steal the cookie after login, MFA has already happened.}
 
 \subsubsection{Authorisation and Access Control}
 
+\definition{Access Control Approaches}{\underline{Access control} can be implemented using one of the following approaches:
+\begin{itemize}
+    \item\underline{Discetionary (DAC)} where the owner decides who gets access. 
+        Examples of this are Unix permissions, Windows ACLs, or sharing a Google Doc.
+        It is flexible, but anything running as you, including malware, can give your data away.
+    \item\underline{Mandatory (MAC)} where a system-wide policy decides and users cannot override it, even for files they create.
+        Examples include government classifications or SELinux.
+        It is rigid byt contains Trojan horses and careless users.
+    \item\underline{Caoabilities} where unforgeable tokens are held by subjects. 
+        It is good for delegation or distributed systems, but can lead to issues with revocation.
+    \item\underline{Role-Based (RBAC)} where permissions attach to roles which are assigned to users.
+        Joins, moves, and leaves change one assignment, rather than hundreds of permissions.
+    \item\underline{Attribute-Based (ABAC)} where you decide the access from attributes of the subject, the object, the action, and the environment.
+        This is good because it is fine-grained and context aware, but can lead to compications when trying to work out who can access a given file.
+\end{itemize}}
+
+\noindent An important principle is that users with a set access level cannot read up (you can only read an object if your clearance is \(\geq\) its classification), and cannot write down (write an object only if its classification \(\geq\) your clearance.)
+
+\separate{7}Access control can fail when: the user is logged in, but nobody checks that this record is theirs;
+admin pages are protected only by hiding the link from the menu;
+or a role/price is in a hidden field, cookie, or JavaScript.
+
+\subsubsection{Accountability}
+
+When maintaining a system you should have methods for automatically logging: logins (successes and failures); MFA changes, password resets and recovery; role/permission changes; access to sensitive objects and denied requests; and administrative actions.
+
+These logs should be protected by placing them off the host and making them append-only. 
+They should also either use synchronised clocks, or there is no timeline, and should have an alert on patterns. 
+They should also not allow any shared accounts.
+
 \separate{7}\comment{FINISH THIS LECTURE}
 
 \section{Networks}
