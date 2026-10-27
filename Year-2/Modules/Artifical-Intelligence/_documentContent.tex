@@ -224,6 +224,92 @@ Column-specific preprocessing uses ColumnTransformer to take each column and app
 
 \separate{7}The end-to-end data flow becomes: taking the raw DataFrame and fit preprocessing, then taking the resulting matrix and training the model.
 
+\subsection{Machine Learning Algorithms}
+
+\subsubsection{What a Learning Algorithm Contains}
+
+\definition{Learning Algorithm}{A \underline{learning algorithm} consists of the five parts:
+\begin{itemize}
+    \item The \underline{representation} defines possible predictions. 
+    \item The \underline{parameters}.
+    \item The \underline{objective} scores each parameter choice.
+    \item The \underline{optimiser} searches.
+    \item The \underline{Hyperparameters} control the search rather than the fitted relationship.
+\end{itemize}}
+
+\noindent\definition{Representation}{A \underline{representation} states which relationships the model can express.
+A straight line can change its intercept and slope.
+It cannot bend, create a threshold, or model separate local patterns.}
+
+\separate{7}\definition{Parameters/Hyperparameters}{\underline{Parameters} determine the fitted line.
+The algorithm estimates them from the training data. 
+Whereas, the \underline{hyperparameters} such as learning rate \(\alpha\) and iteration count control optimisation.
+The algorithm does not estimate them through the same update rule.}
+
+\separate{7}\definition{Objective Function}{The \underline{objective} converts a complete set of predictions into one number.
+A lower cost means the current parameter values match the training observations more closely under the chosen definition of error.}
+
+\separate{7}\definition{Optimiser}{An \underline{optimiser} proposes new parameter values.
+Gradient descent uses local slope information from the objective.
+Other solvers can reach the same least-squares solution by different routes.}
+
+\subsubsection{A Straight-Line Model}
+
+\definition{Simple Linear Regression}{A \underline{simple linear regression model} assigns one predicted value to each input \(x\).
+The intercept sets the prediction at \(x=0\).
+The slope states how much the prediction changes when \(x\) increases by one unit.
+\begin{equation}
+    \hat{y} = \theta_0 + \theta_1x
+\end{equation}}
+
+\separate{7}\definition{Hypothesis}{The \underline{hypothesis} is a single pair of parameters that produce predictions for every observation.
+\begin{equation}
+    h\theta(x_i) = \theta_0 + \theta_1x_1
+\end{equation}}
+
+\separate{7}\definition{Residual}{The \underline{residual} measures the vertical gap between prediction and observation.
+\begin{equation}
+    e_i = \hat{y}_i - y_i
+\end{equation}}
+
+\separate{7}\definition{Least-Squares Cost}{The \underline{least-squares cost} averages squared residuals across all \(m\) training observations.
+\begin{equation}
+    J(\theta_0,\theta_1) = \frac{1}{2m}\sum_{j=1}^{m} (h\theta(x_i) - y_i)^2
+\end{equation}}
+
+\separate{7}\definition{Parameter Space}{Each point in \underline{parameter space} represents one complete line. 
+Moving horizontally changes \(\theta_0\) and moving vertically changes \(\theta_1\).
+The height \(J(\theta_0,\theta_1)\) records how badly the line fits the data.}
+
+\subsubsection{Gradient Descent}
+
+\definition{Gradient Vector}{The \underline{gradient vector} is defined as follows, where both partial derivatives aare evaluated using the same current parameter values:
+\begin{equation}
+    \nabla J(\theta_0,\theta_1) = \left[\frac{\delta J}{\delta \theta_0}, \frac{\delta J}{\delta \theta_1}\right]^T
+\end{equation}}
+
+\separate{7}Adapting the equation, we can get the gradient with respect to the intercept.
+\begin{equation}
+    \frac{\delta J}{\delta \theta_0} = \frac{1}{M} \sum_i h\theta(x_i) - y_i
+\end{equation}
+
+\separate{7}Adapting the equation, we can get the gradient with respect to the slope.
+\begin{equation}
+    \frac{\delta J}{\delta \theta_1} = \frac{1}{M} \sum_i (h\theta(x_i) - y_i)x_i
+\end{equation}
+
+\subsubsection{The Controlled Experiment}
+
+When viewing a learning-rate curve we can adapt the hyperparameters based on the emerging patterns.
+
+\inserttable{c|c|c}{Reading the learning-rate curves.}{\textbf{Pattern} & \textbf{What The Curve Shows} & \textbf{Likely Response}}
+{Slow Descent & Cost decreases. & Increase \(\alpha\) cautiously.\\
+Smooth Convergence & Cost fails and stabilises. & Retain and verify predictions.\\
+Oscillation & Cost alternates. & Reduce \(\alpha\).\\
+Divergence & Cost grows rapidly. & Reduce \(\alpha\) and inspect scaling.}
+
+\subsection{Linear Regression}
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
