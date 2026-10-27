@@ -231,9 +231,38 @@ The right setting depends on what each error costs.}
 Some common attacks against passwords are in \elemref{tab:Common attacks against passwords.}{Table}.
 
 \inserttable{c|c|c}{Common attacks against passwords.}{\textbf{Attack} & \textbf{How It Works} & \textbf{Main Defence}}
-{Online guessing & Try common passwords against the login page. & \makecell{Rate limiting, blocklists of common \\passwords.}}
+{Online Guessing & Try common passwords against the login page. & \makecell{Rate limiting, blocklists of \\common passwords.}\\\hline
+\makecell{Credential \\Stuffing} & \makecell{Replay uername-password pairs leaked from \\other sites.} & \makecell{MFA, checks against breached \\passwords.}\\\hline
+Phishing & \makecell{A look-alike site collects whatever the \\user types.} & \makecell{Phishing-resistant authentication \\(passkeys).} \\\hline
+\makecell{Infostealer \\Malware} & \makecell{Malware copies saved passwords and \\session cookies.} & \makecell{Endpoint protection, device-\\bound credentials.} \\\hline
+Offline Cracking & \makecell{Steal the password database, guess at \\leisure, no rate limit.} & Salted, slow password hashing.}
 
-\separate{7}\comment{FINISH THIS LECTURE - TABLE IS NOT DONE}
+\noindent When hashing passwords, you should aim to use a slow hash function so that you can reduce the number of guesses per second, and therefore increase the time required to try all possible passwords.
+For example, SHA-256 allows for 28 billion guesses per second, and so passwords can be guessed in a maximum of 2 minutes, whereas bcrypt only alows 9.5 thousand guesses per second, therefore increasing the time required to around 9 years.
+
+\separate{7}\definition{Entropy}{\underline{Entropy} measures uncertainty in bits.
+A secret chosen uniformly from \(S\) possibilities has \(H = \log_2 S\) bits.
+\begin{equation}
+    H(N,L) = \log_2(N^L) = L \log_2 N
+\end{equation}
+where \(N\) is the size of the alphabet, \(L\) is the length.}
+
+\separate{7}\definition{Relay Attacks}{In \underline{relay attacks}, the attacker never breaks the cryptography.
+Instead, they forward the challenge and the response so both ends belive they are closed.
+To defend against this, you can introduce distance bounding where you time the challenge-response, or to require a user action.}
+
+\separate{7}Multi-factor authentication can be defeated if attackers use one of the techniques in \elemref{tab:Common attacks against MFA.}{Table}.
+
+\inserttable{c|c}{Common attacks against MFA.}{\textbf{Technique} & \textbf{How It Works}}
+{Push Fatigue & Spam approval requests until the user taps \say{approve}.\\\hline
+Real-Time Phishing Proxy & \makecell{A fake site relays password and code to the real one, then keeps the \\session cookie.}\\\hline
+SIM Swap & \makecell{Persuade the mobile operator to move your number to the attacker's \\sim.}\\\hline
+Help-Desk Social Engineering & Phone IT support as the victim and have MFA reset.\\\hline
+Session Theft & Steal the cookie after login, MFA has already happened.}
+
+\subsubsection{Authorisation and Access Control}
+
+\separate{7}\comment{FINISH THIS LECTURE}
 
 \section{Networks}
 
