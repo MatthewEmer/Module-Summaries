@@ -310,6 +310,49 @@ Divergence & Cost grows rapidly. & Reduce \(\alpha\) and inspect scaling.}
 
 \subsection{Linear Regression}
 
+\subsubsection{Three Routes to the Same Least-Squares Line}
+
+The iterative route uses gradient descent.
+It starts from an initial guess and repeatedly reduces the cost.
+Its result depends on learning rate, iteration budget, and numerical behaviour.
+
+\separate{7}The direct route uses the closed form to calculate the least-squares parameters from summary quantities.
+\textit{LinearRegression} packages a robust estimator behind a standard interface.
+\begin{equation}
+    \theta_0 = \frac{\sum_i (x_i - \overline{x})(y_i - \overline{y})}{\sum_i (x_i-\overline{x})^2}
+\end{equation}
+
+\subsubsection{Regression Metrics}
+
+Mean Square Error:
+\begin{equation}
+    MSE = \frac{1}{m}\sum_{i} (\hat{y}_i - y_i)^2
+\end{equation}
+
+\noindent Root Mean Squared Error:
+\begin{equation}
+    RMSE = \sqrt{MSE} = \sqrt{\frac{1}{m}\sum_{i} (\hat{y}_i - y_i)^2}
+\end{equation}
+
+\noindent Mean Absolute Error:
+\begin{equation}
+    MAE = \frac{1}{m} \sum_i |\hat{y}_i - y_i|
+\end{equation}
+
+\noindent\definition{CoD}{The \underline{coefficient of determination} compares squared error with the test-set mean baseline.
+\begin{equation}
+    R^2 = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y})^2}
+\end{equation}} 
+
+\subsubsection{Implementation and Optimisation Variants}
+
+\definition{Batch gradient descent}{\underline{Batch gradient descent} uses every training row for each update. 
+The path is stable, but each update costs a full pass through the data.}
+
+\separate{7}\definition{Stochastic and mini-batch}{\underline{Stochastic gradient descent} uses one row per update.
+\underline{Mini-Batch gradient descent} uses a small group such as 32 rows. 
+Updates become noisier but more frequent.}
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
