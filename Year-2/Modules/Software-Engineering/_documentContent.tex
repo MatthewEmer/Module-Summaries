@@ -132,8 +132,6 @@ Create sprints with product backlogs, that go into sprint planning.
 Then do a sprint review and potentially have a releasable product increment. 
 There should also be regular checkups throughout the sprint to identify progress and issues.
 
-\separate{7}\comment{Alternate slides not covered yet.}
-
 \subsection{Agile Development in Practice}
 
 This lecture was taught by \hyperref[lecturer-nellybencomo]{Dr Nelly Bencomo}.
@@ -148,6 +146,33 @@ Generally, we split XP into 12 basic practices: the planning game, small release
 \separate{7}\definition{Pair Programming}{\underline{Pair programming} is the practice of coding in pairs where one person is the driver and uses the keyboard, while the other is the observer who discusses with the driver and ensures the code makes sense.
 The pair swap roles on a regular basis.
 This provides learning benefits for less-experienced programmers.}
+
+\subsection{Requirements I}
+
+This lecture was taught by \hyperref[guest-pete-sawyer]{Professor Pete Sawyer}, taking content from his book: \hyperref[cit:Requirements Engineering]{Requirement Engineering: A Good Practice Guide}.
+
+\separate{7}Requirements are important for a project as having wrong requirements can lead to the resulting software not being fit for purpose and errors can propogate and become costly to fix later.
+It is important to validate early to ensure you have the right requirements.
+As such, requirements statements become about communication. 
+Stakeholders need confidence you understand what they want and developers need to know what to build.
+
+\separate{7}\definition{Functional Requirements}{\underline{Functional requirements} give details about features the software provides.}
+
+\separate{7}\definition{Non-Functional Requirements}{\underline{Non-functional requirements} give details about qualities or constraints for the project.
+They can be dynamic (reliability, accuracy, availability, etc.) or static (maintainability, compliance, etc.).
+They often act as design constraints such as budget or time.}
+
+\separate{7}\definition{Stakeholders}{People or organisations with requirements are \underline{stakeholders}. 
+Users perform the taret tasks, clients/customers pay for development, external/regulatory bodies ensure compliance, and other systems provide interaction requirements.
+As such, it is good practice to identify and document the software's stakeholders.}
+
+\separate{7}When trying to elicit requirements from stakeholders you can conduct interviews, observations, workshops, or focus groups.
+You can also add requirements after the software has deployed through bug reports and feature requests.
+UML models can also be useful to contextualise workflows and the organisation's architecture / stakeholders' requirements.
+
+\separate{7}Verification ensures that requirements have been met.
+To do this, each requirement should have a test case. 
+This can be challenging for NFRs as they can easily become poorly defined.
 
 \section{Legal, Social, Ethical, and Professional Issues}
 
@@ -172,7 +197,7 @@ This lecture was taught by \hyperref[modulelead-craigstewart]{Dr Craig Stewart}.
     \item \textbf{Paradigm}: The philosophy or approach for building a project.
 \end{itemize}}
 
-\separate{7}\definition{Stakeholders}{For this module, a stakeholder will generally fall into one of three roles:
+\separate{7}\definition{Stakeholder Roles}{For this module, a \underline{stakeholder} will generally fall into one of three roles:
 \begin{itemize}
     \item \textbf{Customer/Client}: The company, organisation, or person who pays for the software system. 
     \item \textbf{Developer}: The company, organisation, or person who is building the software system.
