@@ -371,6 +371,43 @@ This means that when a \(SYN\) arrives, the server replies with \(y\) and stores
 A real client would then return \(ACK = y+1\).
 The server can then reconstruct the \(MAC\), and if they match it will establish the connection.}
 
+\subsubsection{Cryptography on the Wire}
+
+On a network, cryptography is applied in many layers: WiFi (WPA2/WPA3) acts between you and the router; a VPN tunnel acts between you and a VPN server; TLS (HTTPS) works all the way between you and the server; and DNSSEC works between you and the ISP.
+
+\separate{7}\definition{TLS}{\underline{TLS} acts as the security layer between HTTP and TCP/IP. 
+It ensures confidentiality by encrypting traffic, provides integrity by detecting any changes in transit (AEAD), and authenticates the server by adding a certificate to prove that you reached the name you asked for.
+It also uses a handshake algorithm, called the \underline{TLS 1.3 handshake}:
+\begin{enumerate}
+    \item The browser sends a \textit{ClientHello} with a key share and cipher suites.
+    \item The server then responds with \textit{ServerHello} with a key share.
+    \item These two shares are used to create a shared key where the key parameters are unique to the session and deleted post-use.
+        Stealing the server's key later does not decrypt today's traffic.
+    \item The server then uses this shared key to send \textit{Certificate}, \textit{CertificateVerify}, and \textit{Finished}.
+    \item The browser then also sends \textit{Finished}, followed by the application data.
+\end{enumerate}}
+
+\separate{7}TLS fails in practice when it is implemented wrongly, if the certificate authorities cannot be trusted, if the protocols you are using are downgraded/stripped en-route, or through exploiting the users of the system.
+
+\subsubsection{Virtual Private Networks (VPNs), Firewalls, and Segmentation}
+
+\definition{VPNs}{\underline{Virtual private networks (VPNs)} are effectively \say{tunnels through the Internet}.
+They are generally one of: 
+\begin{itemize}
+    \item IPsec + IKEv2 which is the standard for site-to-site communication and is built into most operating systems.
+    \item TLS-based which is used by OpenVPN and many other vendors' SSL VPNs.
+    \item WireGuard which is a bespoke protocol which has been used in Linux since 2020.
+\end{itemize}}
+
+\separate{5}\definition{Firewalls}{\underline{Firewalls} are a reference monitor for the network. 
+It checks every incoming packet against the network policy and refuses any that don't meet the standard.
+It can consist of any from: 
+\begin{itemize}
+    \item A packet filter which is stateless and checks each packet's addresses, ports, and protocol on its own.
+    \item Connnection tracking which is stateful and remembers connections to allow replies to existing connections.
+    \item The application layer which uses a proxy, NGFW, and WAF to read the content of packets, including HTTP requests, DNS queries, and users.
+\end{itemize}}
+
 \section{Networks}
 
 This section is taught by \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu}. \comment{Check for recommended reading.}
