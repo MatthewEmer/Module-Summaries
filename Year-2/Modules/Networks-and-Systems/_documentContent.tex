@@ -292,6 +292,85 @@ These logs should be protected by placing them off the host and making them appe
 They should also either use synchronised clocks, or there is no timeline, and should have an alert on patterns. 
 They should also not allow any shared accounts.
 
+\subsection{Network Security}
+
+When using a network, each hop gives an opportunity for an attacker to read (confidentiality issue), change (integrity issue), drop or flood (availability issue), or fake (authenticity) your traffic.
+
+\separate{7}These attackers can take one of three forms:
+\begin{itemize}
+    \item \definition{Off-path}{An \underline{off-path attacker} is not on your path.
+        They can send packets with any source address, but cannot see the replies.}
+    \item \definition{On-path}{A \underline{on-path attacker} sees every packet. 
+        They can read, modify, drop, inject, and/or replay.}
+    \item \definition{Volumetric}{A \underline{volumetric attacker} needs no cleverness, it just sends more traffic than a target system can handle.}
+\end{itemize}
+
+\subsubsection{Protocols}
+
+Each layer of the network stack wraps the one above it in its own header (e.g., data \(\rightarrow\) TCP segment \(\rightarrow\) IP packet \(\rightarrow\) WiFi or Ethernet frame). 
+A header is just bytes that the sender wrote. 
+The original protocols check for accidents (checksums), but these are not necessarily for security.
+The security was instead added later at different layers:
+\begin{itemize}
+    \item The application layer: DNSSEC (signed DNS answers) and HTTPS.
+    \item The transport layer: TLS.
+    \item The network layer: IPsec, WireGuard (VPNs).
+    \item The link layer: WPA2/WPA3 (WiFi).
+\end{itemize}
+
+\separate{7}UDP uses a \say{fire and forget} approach to communication.
+It has no connection, no ordering, and no retransmission.
+Examples of its implementations include in DNS, NTP, video calls, and games.
+
+Conversely, TCP is a reliable byte stream.
+It uses handshakes, sequence numbers, acknowledgements, and retransmission.
+It is used by the web, email, and SSH.
+
+\separate{7}\definition{3-Way Handshake}{The handshake system that TCP uses is called the \underline{three-way handshake}.
+In practice, it uses the following steps:
+\begin{enumerate}
+    \item The client sends a \textit{synchronise} \(SYN\) request with a sequence number \(x\).
+    \item The server responds with a \textit{synchronise acknowledgement} \(SYN-ACK\) with a sequence number \(y\) and an acknowledgement number \(x+1\).
+        An acknowledgement \(ACK\) says \say{I have everything up to here}, so each side proves it saw the other's number.
+        Each side counts its bytes from its own random start.
+    \item After the \(SYN\), the system must remember the client. 
+        It does this by keeping one slot in its queue for half-open connections.
+    \item Once the client recieves the \(SYN-ACK\) they send one more \(ACK\) with acknowledgement number \(y+1\) before sending the data.
+        This means that if \(y\) is guessable, an attacker that never sees the \(SYN-ACK\) can still send the right \(ACK\).
+\end{enumerate}}
+
+\definition{DNS Record Types}{DNS records are stored in one of a few set types which provide various information about a target host. The common types are:
+\begin{itemize}
+    \item \underline{Address (A) records} which give the IP address for the host.
+    \item \underline{AAAA records} which provide an IPv6 address for the host.
+    \item \underline{Cannonical name (CNAME) records} which map one name to another and is used for redirection.
+    \item \underbar{Mail exchange (MX) records} which the server uses for sending/recieving emails.
+    \item \underline{Nameserver (NS) records} which indicate the authoritative DNS server for this domain.
+\end{itemize}}
+
+\subsubsection{Flooding Attacks}
+
+\definition{DoS}{\underline{Denial-of-service} attacks max out the bandwidth of a service using UDP floods, reflection, and amplication.
+The attack also manipulates the states by maliciously filling up look-up tables using DNS cache poisoning and SYN floods.
+It achieves the denial of service by making each request expensive for the application using HTTP floods on search/login pages.
+The attack becomes \underline{distributed (DDoS)} when thousands/millions of sources, either hijacked devices or innocent servers, are used to make the requests.}
+
+\separate{7}\definition{DNS Cache Poisoning}{A \underline{DNS cache poisoning attack} is used by an off-path attacker who waits for a resolver to make a request to a server, before then flooding the resolver with forged answers before the real one arrives.}
+
+\separate{7}\definition{DNSSEC}{The \underline{DNSSEC} system uses the .root's \(DNSKEY\) (the root key, KSK-2024) which is used to vouch for .com which has a \(DS\) from .root.
+Then, example.com uses the \(DS\) from .com which authenticates it. 
+This system provides origin authentication and upkeeps the integrity of answers.
+However it does not provide confidentiality, availability, or protection for the last hop.}
+
+\separate{7}\definition{SYN Flood}{A \underline{\(SYN\) flood attack} floods a server with \(SYN\) requests with random, spoofed sources.
+These are cheap to send as they consist of one packet and don't require a reply, but they are costly to recieve as each \(SYN\) holds a queue slot until it times out.
+Once the queue fills up, genuine users will be turned away.
+
+This can be prevented by remembering nothing after a request. Instead, the system designs its sequence number \(y\) to be 32-bits, split into \(t\) which is 5 bits, \(MSS\) which is 3 bits, and then \(MAC\) which is constructed from a secret, the client IP, the client port, the server IP, the server port, and \(t\).
+This means that when a \(SYN\) arrives, the server replies with \(y\) and stores nothing.
+A real client would then return \(ACK = y+1\).
+The server can then reconstruct the \(MAC\), and if they match it will establish the connection.}
+
 \section{Networks}
 
 This section is taught by \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu}. \comment{Check for recommended reading.}
