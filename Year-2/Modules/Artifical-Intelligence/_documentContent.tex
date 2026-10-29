@@ -353,6 +353,50 @@ The path is stable, but each update costs a full pass through the data.}
 \underline{Mini-Batch gradient descent} uses a small group such as 32 rows. 
 Updates become noisier but more frequent.}
 
+\subsection{Multivariate Linear Regression}
+
+\subsubsection{From One Feature to Many}
+
+In multivariate machine learning models, a prediction adds one weighted contribution per feature.
+With two features, the fitted object is a plane.
+Higher dimensions follow the same algebra.
+
+\separate{7}\definition{Vector Hypothesis}{The \underline{vector hypothesis} is defined as:
+\begin{equation}
+    h\theta(\mathbf{x}) = \theta_0 + \theta_1 x_1 + ... + \theta_n x_n = \mathbf{\theta}^T \mathbf{x}
+\end{equation}}
+
+\separate{7}\definition{Design Matrix}{The \underline{design matrix} stacks \(m\) examples as rows and \(n\) features as columns.
+The resulting matrix \(\mathbf{X}\) lets one matrix multiplication produce every prediction at once.
+We then prepend a bias column where \(x_0 = 1\) for every example which lets the intercept participate in the same dot product as the remaining coefficient.
+Column 0 contains ones, \(\theta_0\) multiplies that column, and there is no separate intercept code.
+
+In this matrix, \(\mathbf{X}\) is the design matrix including bias (\(m \times (n+1)\)), \(\mathbf{\theta}\) is the coefficient vector (\((n+1) \times 1\)), \(\mathbf{y}\) is the observed targets (\(m \times 1\)), \(\mathbf{X\theta}\) is the predictions (\(m \times 1\)), and \(\mathbf{X}^T(\mathbf{X\theta} - \mathbf{y})\) is the gradient numerator (\((n+1) \times 1\)).}
+
+\separate{7}\definition{Vectorised Cost}{The \underline{vectorised cost} is the residual vector containing one prediction error per row.
+\begin{equation}
+    J(\theta) = \frac{1}{2m} (\mathbf{X\theta} - \mathbf{y})^T(\mathbf{X\theta} - \mathbf{y})
+\end{equation}}
+
+\separate{7}\definition{Vectorised Gradient}{The \underline{vectorised graident} is the transpose combining the residual evidence for every coefficient at once.
+\begin{equation}
+    \nabla J(\theta) = \frac{1}{m} \mathbf{X}^T(\mathbf{X\theta} - \mathbf{y})
+\end{equation}}
+
+\separate{7}\definition{Multivariate Gradient Descent}{\underline{Multivariate gradient descent} initialises \(\theta\), computes \(\mathbf{X}\theta\), forms residuals, computes \(\frac{\mathbf{X}^Te}{m}\), and then updates \(\theta\).}
+
+\subsubsection{Feature Scaling and Optimisation Geometry}
+
+When feature scales differ greatly, equal changes in different coefficients produce very different movements in prediction space. 
+Gradient descent can zigzag across a narrow valley, slowing progress.
+
+\subsubsection{Direct and Iterative Solvers}
+
+The normal equation sets the gradient to zero to produce a linear system for the least-squares coefficients.
+\begin{equation}
+    \theta = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
+\end{equation}
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
