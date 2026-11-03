@@ -112,6 +112,8 @@ Then set priority bands (e.g., 1-5 is low, 6-14 is medium, 15-25 is high).
 
 This lecture was taught by \hyperref[lecturer-nellybencomo]{Dr Nelly Bencomo}.
 
+\subsubsection{Introduction to Software Development}
+
 \separate{7}\definition{The Software Development Lifecycle}{The software development lifecycle is split into 6 stages: planning, analysis, design, implementation, testing and integration, and maintenance.}
 This can be implemented in a number of ways:
 \begin{itemize}
@@ -123,20 +125,26 @@ This can be implemented in a number of ways:
     \item Agile: Adaptive planning and frequent valuable increments. Good: Responsiveness. Bad: Sustained collaboration required.
 \end{itemize}
 
-\separate{7}The Agile Manifesto (2001) defines their priorities as people (individuals and interactions over processes and tools), software (working software over comprehensive documentation), collaboration (customer collaboration over contract negotiation), and change (responding to change over following a plan). 
+\subsubsection{Agile}
 
-It still requires engineering discipline though with requirements (clarify and revisit user needs), design (make and review architecture decisions), quality (test and integrate continuously), and feedback (inspect results with stakeholders).
+\definition{Agile}{\underline{The Agile Manifesto} (first used in 2001) defines their priorities as people (individuals and interactions over processes and tools), software (working software over comprehensive documentation), collaboration (customer collaboration over contract negotiation), and change (responding to change over following a plan).}
 
-\separate{7}Sprints: involves product owner, scrum master, and development team. 
-Create sprints with product backlogs, that go into sprint planning. 
-Then do a sprint review and potentially have a releasable product increment. 
-There should also be regular checkups throughout the sprint to identify progress and issues.
+It requires engineering discipline, implementing requirements (clarify and revisit user needs), design (make and review architecture decisions), quality (test and integrate continuously), and feedback (inspect results with stakeholders).
+
+\separate{7}\definition{Scrum}{A \underline{scrum} is a set period of time within an project and involves a product owner, scrum master, and development team. 
+\begin{enumerate}
+    \item When beginning a scrum, the product owner will usually provide a product backlog which is taken into a sprint planning meeting. 
+    \item Here, the scrum master discusses with the development team and sets out the work to be completed during the upcoming sprint.
+    \item The team then start a sprint and work through as much of the backlog as possible. 
+    \item At the end of a chosen period of time (usually 1-4 weeks), the team carry a sprint review, identifying work done and issues preventing progress, before potentially choosing to release a product increment. 
+    \item Ideally there should also be regular checkups throughout the sprint to identify progress and potential issues.
+\end{enumerate}}
 
 \subsection{Agile Development in Practice}
 
 This lecture was taught by \hyperref[lecturer-nellybencomo]{Dr Nelly Bencomo}.
 
-\subsubsection{Extreme Programming}
+\subsubsection{Approaches to Programming}
 
 \separate{7}\definition{Extreme Programming}{\underline{Extreme Programming (XP)} is built from five core values: communication, simplicity, feedback, courage, and respect.
 Whilst doing this, we take engineering discipline into account by making small releases early to get client feedback, making continuous integrations to reduce surprises when merging teammates' work, and refactoring frequently to keep change affordable.
@@ -146,6 +154,14 @@ Generally, we split XP into 12 basic practices: the planning game, small release
 \separate{7}\definition{Pair Programming}{\underline{Pair programming} is the practice of coding in pairs where one person is the driver and uses the keyboard, while the other is the observer who discusses with the driver and ensures the code makes sense.
 The pair swap roles on a regular basis.
 This provides learning benefits for less-experienced programmers.}
+
+\separate{7}\definition{Test-First Development}{\underline{Test-first development} is the practice of specifying an observable test, implementing the smallest change that passes the test before running all other existing tests and then refactoring the solution until all other tests are green.}
+
+\subsubsection{Task Management}
+
+\definition{Kanban}{Agile projects generally utilise a \underbar{Kanban board} to keep track of project progress. 
+It consists of columns representing the workflow stages (to-do, in progress, review, done, etc.) and cards representing individual tasks.
+The \say{in progress} column is often limited to a set number of items to reduce the likelihood of burnout.}
 
 \subsection{Project Requirements}
 
