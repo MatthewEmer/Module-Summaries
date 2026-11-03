@@ -223,8 +223,7 @@ We will construct a word accepted by \(M\) that contains infinitely many 1s and 
     \item \(0^{n_1}10^{n_2}10^\omega \in L_2\) must be accepted by \(M\), so there is some finite prefix \(0^{n_1}10^{n_2}10^{n_3}\) that leads into accepting state \(p_3\).
     \item ...
 \end{enumerate}
-The limit of the infinite process is a word of the form \((0^*1)^\omega \notin L_2\) that is accepted by \(M\) since it visits an infinite sequence of accepting states \(p_1,p_2,...\).
-}
+The limit of the infinite process is a word of the form \((0^*1)^\omega \notin L_2\) that is accepted by \(M\) since it visits an infinite sequence of accepting states \(p_1,p_2,...\).}
 
 \subsection{Linear-Time Logic and Translating Into B{\"u}chi Automata}
 
@@ -310,7 +309,131 @@ Let us add some more of item \(j\) to the optimal choice. Let \(y\) be another s
     y = \begin{cases}y_j = \min\{w_j, x_j^* + (x_l^* - x_l)\}\\y_l = x_l^* - (y_j - x_j^*)\\y_i=x_i^* \text{   otherwise.}\end{cases}
 \end{equation}
 
-\subsection{Divide and Conquer Algorithms}
+\subsection{Divide-and-Conquer Algorithms}
+
+\subsubsection{Colouring for Restricted Inputs}
+
+\definition{DaC Algorithms}{Many useful algorithms utilise recursions to quickly resolve subproblems. 
+We refer to these as \underline{divide-and-conquer algorithms}, as at each step they:
+\begin{enumerate}
+    \item \textit{Divide} the problem into a number of subproblems.
+    \item \textit{Conquer} the subproblems by solving them, either recursively or directly depending on size.
+    \item \textit{Combine} the solutions for the subproblems into a solution for the original problem.
+\end{enumerate}
+A natural way to calculate the running time of these algorithms is recurrence relations using the Master Theorem (covered in Year 1 - Algorithms and Data Structures).}
+
+\separate{7}\definition{Colouring}{A \underline{colouring} of a graph is an assignment of colours to its vertices such that any two adjacent vertices get a different colour. 
+A colouring using at most \(k\) colours is a \underline{\(k\)-colouring}.}
+
+\separate{7}\definition{Chromatic Number}{The \underline{chromatic number}, \(\chi_G\), of a graph is the smallest integer \(k\) for which \(G\) has a \(k\)-colouring.
+Calculating the chromatic number of any given graph is considered a NP-hard problem.}
+
+\separate{7}\definition{Disjoint Union}{Let \(G_1\) and \(G_2\) be two vertex-disjoint graphs.
+The \underline{disjoint union} \(G_1+G_2\) is the graph with vertex set \(V(G_1) \cup V(G_2)\) and edge set \(E(G_1) \cup E(G_2)\).}
+
+\separate{7}\definition{Join}{Let \(G_1\) and \(G_2\) be two vertex-disjoint graphs.
+The \underline{join} \(G_1 \times G_2\) is the graph with vertex set \(V(G_1) \cup V(G_2)\) and edge set \(E(G_1) \cup E(G_2) \cup E^*\), where \(E^*\) is the set of all edges between vertices of \(G_1\) and vertices of \(G_2\).}
+
+\separate{7}\definition{Cograph}{Let \(G_1\) and \(G_2\) be two vertex-disjoint graphs.
+A graph \(G\) is a \underline{cograph} if it can be created using the following rules:
+\begin{itemize}
+    \item The 1-vertex graph is a cograph.
+    \item If \(G_1\) and \(G_2\) are cographs, then so is \(G_1 + G_2\).
+    \item If \(G_1\) and \(G_2\) are cographs, then so is \(G_1 \times G_2\).
+\end{itemize}
+Alternatively, let \(P_4\) denote the path on 4 vertices. 
+A graph \(G\) contains \(P_4\) as an \underline{induced subgraph} if \(G\) can be modified to \(P_4\) via vertex deletions.
+If not, then \(G\) is said to be \underline{\(P_4\)-free}.}
+
+\separate{7}\theorem{Cographs}{A graph \(G\) is a cograph \(\iff\) \(G\) is \(P_4\)-free.}
+{Proof excluded.}
+
+\separate{7}\definition{Cotree}{Let \(G\) be a cograph. 
+The \underline{cotree} \(T_G\) of \(G\) is the unique decomposition tree that satisfies:
+\begin{enumerate}
+    \item The root \(r\) of the tree represents the graph \(G_r = G\).
+    \item Every leaf \(x\) of the tree represents exactly one vertex of \(G\), and vice-versa.
+    \item Every internal node \(x\) of the tree has at least two children and is either labelled \(+\) or \(\times\). 
+        The node represents an induced subgraph \(G_x\) of \(G\), defined as follows:
+        \begin{itemize}
+            \item If \(x\) is a \(+\)-node, then \(G_x\) is the disjoint union of all graphs \(G_y\) where \(y\) is a child of \(x\).
+            \item If \(x\) is a \(\times\)-node, then \(G_x\) is the join of all graphs \(G_y\) where \(y\) is a child of \(x\).
+        \end{itemize}  
+    \item Along the path from the root \(r\) to any leaf, the labels of the internal notes alternate between \(+\) and \(\times\).
+\end{enumerate}}
+
+\separate{7}\theorem{Cotrees}{Any cograph \(G\) has a unique cotree.
+However, if we drop condition 4, there may be many trees representing \(G\).}
+{Proof excluded.}
+
+\separate{7}We can use a divide-and-conquer algorithm to colour a cograph. 
+Given a cograph \(G\), construct its cotree \(T_G\). 
+This can be done in \(O(n+m)\) time \hyperref[cit:A Linear Recognition Algorithm for Cographs]{(Corneil, Perl and Stewart, 1985)}. 
+We follow a bottom-up approach: only process node \(x\) after first processing its children.
+\begin{itemize}
+    \item \textit{Leaves}: Each leaf represents a single vertex of \(G\).
+        The chromatic number of a single-vertex graph is 1.
+    \item \textit{Union-Nodes}: If \(x\) is a \(+\)-node, then \(\chi_{G_x}\) is the maximum of the chromatic numbers of the graphs \(G_y\), where \(y\) is a child of \(x\).
+    \item \textit{Join-Nodes}: If \(x\) is a \(\times\)-node, then \(\chi_{G_x}\) is the sum of the chromatic numbers of the graphs \(G_y\), where \(y\) is a child of \(x\).
+\end{itemize}
+This way, the last node we process is the root \(r\), which represents the graph \(G_r=G\).
+As the number of nodes of \(T\) is \(O(n)\) and we used \(O(n)\) time per node, the total running time is polynomial.
+
+\begin{algorithm}[H]
+    \caption{MAX-SUBARR}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(A\), low, high
+        \State \textbf{Output}: low, high, sum
+        
+        \separate{7}
+        \If{high = low}
+            \Return (low, high, \(A\)[low])
+        \Else
+            \State median \(\gets \left\lfloor \frac{\text{low} + \text{high}}{2} \right\rfloor\)
+            \State \((L_{low}, L_{high}, L_{sum}) \gets\) MAX-SUBARR(\(A\), low, median) 
+            \State \((R_{low}, R_{high}, R_{sum}) \gets\) MAX-SUBARR(\(A\), median\(+1\), high) 
+            \State \((\text{Cross}_{low}, \text{Cross}_{high}, \text{Cross}_{sum}) \gets\) MAX-CROSS-SUBARR(\(A\), low, median, high) 
+
+            \If{\(L_{sum} \geq \max\{R_{sum}, \text{Cross}_{sum}\}\)}
+                \Return \((L_{low}, L_{high}, L_{sum})\)
+            \EndIf
+            \If{\(R_{sum} \geq \max\{L_{sum}, \text{Cross}_{sum}\}\)}
+                \Return \((R_{low}, R_{high}, R_{sum})\)
+            \Else \( \) \Return \((\text{Cross}_{low}, \text{Cross}_{high}, \text{Cross}_{sum})\)
+            \EndIf
+        \EndIf
+    \end{algorithmic}
+    \label{alg:maxsumarr}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{MAX-CROSS-SUBARR}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(A\), low, mid, high
+        \State \textbf{Output}: max\_left, max\_right, left\_sum\(+\)right\_sum
+        
+        \separate{7}
+        \State left\_sum\(\gets -\infty\)
+        \For{\(i \gets\)\text{mid} to low}
+            \State sum \(\gets\) sum\(+ A[i]\)
+            \If{sum \(>\) left\_sum}
+                \State left\_sum \(\gets\) sum
+                \State max\_left \(\gets i\)
+            \EndIf
+        \EndFor
+
+        \For{\(j \gets\)\text{mid}\(+1\) to high}
+            \State sum \(\gets\) sum\(+ A[j]\)
+            \If{sum \(>\) right\_sum}
+                \State right\_sum \(\gets\) sum
+                \State max\_right \(\gets j\)
+            \EndIf
+        \EndFor
+
+        \noindent\Return (max\_left, max\_right, left\_sum\(+\)right\_sum)
+    \end{algorithmic}
+    \label{alg:maxcrosssubarr}
+\end{algorithm}
 
 \subsection{Dynamic Programming Algorithms}
 
