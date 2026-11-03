@@ -224,6 +224,179 @@ Column-specific preprocessing uses ColumnTransformer to take each column and app
 
 \separate{7}The end-to-end data flow becomes: taking the raw DataFrame and fit preprocessing, then taking the resulting matrix and training the model.
 
+\subsection{Machine Learning Algorithms}
+
+\subsubsection{What a Learning Algorithm Contains}
+
+\definition{Learning Algorithm}{A \underline{learning algorithm} consists of the five parts:
+\begin{itemize}
+    \item The \underline{representation} defines possible predictions. 
+    \item The \underline{parameters}.
+    \item The \underline{objective} scores each parameter choice.
+    \item The \underline{optimiser} searches.
+    \item The \underline{Hyperparameters} control the search rather than the fitted relationship.
+\end{itemize}}
+
+\noindent\definition{Representation}{A \underline{representation} states which relationships the model can express.
+A straight line can change its intercept and slope.
+It cannot bend, create a threshold, or model separate local patterns.}
+
+\separate{7}\definition{Parameters/Hyperparameters}{\underline{Parameters} determine the fitted line.
+The algorithm estimates them from the training data. 
+Whereas, the \underline{hyperparameters} such as learning rate \(\alpha\) and iteration count control optimisation.
+The algorithm does not estimate them through the same update rule.}
+
+\separate{7}\definition{Objective Function}{The \underline{objective} converts a complete set of predictions into one number.
+A lower cost means the current parameter values match the training observations more closely under the chosen definition of error.}
+
+\separate{7}\definition{Optimiser}{An \underline{optimiser} proposes new parameter values.
+Gradient descent uses local slope information from the objective.
+Other solvers can reach the same least-squares solution by different routes.}
+
+\subsubsection{A Straight-Line Model}
+
+\definition{Simple Linear Regression}{A \underline{simple linear regression model} assigns one predicted value to each input \(x\).
+The intercept sets the prediction at \(x=0\).
+The slope states how much the prediction changes when \(x\) increases by one unit.
+\begin{equation}
+    \hat{y} = \theta_0 + \theta_1x
+\end{equation}}
+
+\separate{7}\definition{Hypothesis}{The \underline{hypothesis} is a single pair of parameters that produce predictions for every observation.
+\begin{equation}
+    h\theta(x_i) = \theta_0 + \theta_1x_1
+\end{equation}}
+
+\separate{7}\definition{Residual}{The \underline{residual} measures the vertical gap between prediction and observation.
+\begin{equation}
+    e_i = \hat{y}_i - y_i
+\end{equation}}
+
+\separate{7}\definition{Least-Squares Cost}{The \underline{least-squares cost} averages squared residuals across all \(m\) training observations.
+\begin{equation}
+    J(\theta_0,\theta_1) = \frac{1}{2m}\sum_{j=1}^{m} (h\theta(x_i) - y_i)^2
+\end{equation}}
+
+\separate{7}\definition{Parameter Space}{Each point in \underline{parameter space} represents one complete line. 
+Moving horizontally changes \(\theta_0\) and moving vertically changes \(\theta_1\).
+The height \(J(\theta_0,\theta_1)\) records how badly the line fits the data.}
+
+\subsubsection{Gradient Descent}
+
+\definition{Gradient Vector}{The \underline{gradient vector} is defined as follows, where both partial derivatives aare evaluated using the same current parameter values:
+\begin{equation}
+    \nabla J(\theta_0,\theta_1) = \left[\frac{\delta J}{\delta \theta_0}, \frac{\delta J}{\delta \theta_1}\right]^T
+\end{equation}}
+
+\separate{7}Adapting the equation, we can get the gradient with respect to the intercept.
+\begin{equation}
+    \frac{\delta J}{\delta \theta_0} = \frac{1}{M} \sum_i h\theta(x_i) - y_i
+\end{equation}
+
+\separate{7}Adapting the equation, we can get the gradient with respect to the slope.
+\begin{equation}
+    \frac{\delta J}{\delta \theta_1} = \frac{1}{M} \sum_i (h\theta(x_i) - y_i)x_i
+\end{equation}
+
+\subsubsection{The Controlled Experiment}
+
+When viewing a learning-rate curve we can adapt the hyperparameters based on the emerging patterns.
+
+\inserttable{c|c|c}{Reading the learning-rate curves.}{\textbf{Pattern} & \textbf{What The Curve Shows} & \textbf{Likely Response}}
+{Slow Descent & Cost decreases. & Increase \(\alpha\) cautiously.\\
+Smooth Convergence & Cost fails and stabilises. & Retain and verify predictions.\\
+Oscillation & Cost alternates. & Reduce \(\alpha\).\\
+Divergence & Cost grows rapidly. & Reduce \(\alpha\) and inspect scaling.}
+
+\subsection{Linear Regression}
+
+\subsubsection{Three Routes to the Same Least-Squares Line}
+
+The iterative route uses gradient descent.
+It starts from an initial guess and repeatedly reduces the cost.
+Its result depends on learning rate, iteration budget, and numerical behaviour.
+
+\separate{7}The direct route uses the closed form to calculate the least-squares parameters from summary quantities.
+\textit{LinearRegression} packages a robust estimator behind a standard interface.
+\begin{equation}
+    \theta_0 = \frac{\sum_i (x_i - \overline{x})(y_i - \overline{y})}{\sum_i (x_i-\overline{x})^2}
+\end{equation}
+
+\subsubsection{Regression Metrics}
+
+Mean Square Error:
+\begin{equation}
+    MSE = \frac{1}{m}\sum_{i} (\hat{y}_i - y_i)^2
+\end{equation}
+
+\noindent Root Mean Squared Error:
+\begin{equation}
+    RMSE = \sqrt{MSE} = \sqrt{\frac{1}{m}\sum_{i} (\hat{y}_i - y_i)^2}
+\end{equation}
+
+\noindent Mean Absolute Error:
+\begin{equation}
+    MAE = \frac{1}{m} \sum_i |\hat{y}_i - y_i|
+\end{equation}
+
+\noindent\definition{CoD}{The \underline{coefficient of determination} compares squared error with the test-set mean baseline.
+\begin{equation}
+    R^2 = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y})^2}
+\end{equation}} 
+
+\subsubsection{Implementation and Optimisation Variants}
+
+\definition{Batch gradient descent}{\underline{Batch gradient descent} uses every training row for each update. 
+The path is stable, but each update costs a full pass through the data.}
+
+\separate{7}\definition{Stochastic and mini-batch}{\underline{Stochastic gradient descent} uses one row per update.
+\underline{Mini-Batch gradient descent} uses a small group such as 32 rows. 
+Updates become noisier but more frequent.}
+
+\subsection{Multivariate Linear Regression}
+
+\subsubsection{From One Feature to Many}
+
+In multivariate machine learning models, a prediction adds one weighted contribution per feature.
+With two features, the fitted object is a plane.
+Higher dimensions follow the same algebra.
+
+\separate{7}\definition{Vector Hypothesis}{The \underline{vector hypothesis} is defined as:
+\begin{equation}
+    h\theta(\mathbf{x}) = \theta_0 + \theta_1 x_1 + ... + \theta_n x_n = \mathbf{\theta}^T \mathbf{x}
+\end{equation}}
+
+\separate{7}\definition{Design Matrix}{The \underline{design matrix} stacks \(m\) examples as rows and \(n\) features as columns.
+The resulting matrix \(\mathbf{X}\) lets one matrix multiplication produce every prediction at once.
+We then prepend a bias column where \(x_0 = 1\) for every example which lets the intercept participate in the same dot product as the remaining coefficient.
+Column 0 contains ones, \(\theta_0\) multiplies that column, and there is no separate intercept code.
+
+In this matrix, \(\mathbf{X}\) is the design matrix including bias (\(m \times (n+1)\)), \(\mathbf{\theta}\) is the coefficient vector (\((n+1) \times 1\)), \(\mathbf{y}\) is the observed targets (\(m \times 1\)), \(\mathbf{X\theta}\) is the predictions (\(m \times 1\)), and \(\mathbf{X}^T(\mathbf{X\theta} - \mathbf{y})\) is the gradient numerator (\((n+1) \times 1\)).}
+
+\separate{7}\definition{Vectorised Cost}{The \underline{vectorised cost} is the residual vector containing one prediction error per row.
+\begin{equation}
+    J(\theta) = \frac{1}{2m} (\mathbf{X\theta} - \mathbf{y})^T(\mathbf{X\theta} - \mathbf{y})
+\end{equation}}
+
+\separate{7}\definition{Vectorised Gradient}{The \underline{vectorised graident} is the transpose combining the residual evidence for every coefficient at once.
+\begin{equation}
+    \nabla J(\theta) = \frac{1}{m} \mathbf{X}^T(\mathbf{X\theta} - \mathbf{y})
+\end{equation}}
+
+\separate{7}\definition{Multivariate Gradient Descent}{\underline{Multivariate gradient descent} initialises \(\theta\), computes \(\mathbf{X}\theta\), forms residuals, computes \(\frac{\mathbf{X}^Te}{m}\), and then updates \(\theta\).}
+
+\subsubsection{Feature Scaling and Optimisation Geometry}
+
+When feature scales differ greatly, equal changes in different coefficients produce very different movements in prediction space. 
+Gradient descent can zigzag across a narrow valley, slowing progress.
+
+\subsubsection{Direct and Iterative Solvers}
+
+The normal equation sets the gradient to zero to produce a linear system for the least-squares coefficients.
+\begin{equation}
+    \theta = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
+\end{equation}
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 

@@ -336,6 +336,109 @@ and \(E[X] = \lambda\) and \(V(X) = \lambda\).}
 
 \subsection{Continuous Probability Distributions}
 
+\subsubsection{Continuous Random Variables}
+
+\definition{Continuous Random Variable}{A \underline{continuous random variable} is a random variable such that the probability of any one specific value is unknown, and thus is treated as zero.
+Instead, we calculate the probability of the value being in a given interval.}
+
+\separate{7}\definition{PDF}{In general, continuous random variables are described by a \underline{probability density function}. 
+It maps a probability of a range of events from the sample space to a function.
+The probability density function of a continuous random variable \(X\) is denoted \(f_X\) or simply \(f\).
+\begin{equation}
+    P(a \leq X \leq b) = \int_{a}^{b} f_X (x) dx
+\end{equation}
+We define the probability density function \(f(x)\) for a continuous random variable \(X\) such that:
+\begin{itemize}
+    \item \(f(x) \geq 0, \forall x \in \R\).
+    \item \(\int_{-\infty}^{+\infty} f(x) dx = 1\).
+    \item \(P(a \leq X \leq b) = \int_{a}^{b} f(x) dx, \forall (a,b) | (a,b) \in \R^2, a \leq b\).
+\end{itemize}}
+
+\separate{7}\definition{Continuous CDF}{Similarly, we can define the \underline{continuous cumulative distribution function} \(F(x):\R \rightarrow [0,1]\) of a continuous random variable \(X\) where \(x \in \R\) as
+\begin{equation}
+    F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) dt
+\end{equation}
+As in the discrete case, a continuous CDF has the following properties:
+\begin{itemize}
+    \item \(F(x)\) is non-decreasing: if \(x \leq y\) then \(F(x) \leq F(y)\).
+    \item \(0 \leq F(x) \leq 1\): \(\lim_{x \rightarrow -\infty} F(x) = 0\), \(\lim_{x \rightarrow +\infty} F(x) = 1\).
+    \item For \(a \leq b\) we have: \(P(a \leq X \leq b) = F(b) - F(a)\).
+\end{itemize}}
+
+\separate{7}If \(F(x)\) is the cumulative distribution function of a continuous random variable \(X\), then its derivative is the probability distribution function \(f(x)\).
+\begin{equation}
+    f(x) = F'(x) = \frac{d}{dx}F(x) 
+\end{equation}
+
+\separate{7}\example{continuous random variables question}{A continuous random variable \(X\) has the density function \eqref{equation:example:continuous random variables question}.
+Find the value of the constant \(c\).
+\begin{equation}\label{equation:example:continuous random variables question}
+    f(x) = \frac{c}{x^2+1} \text{ where } -\infty < x < +\infty 
+\end{equation}
+
+\separate{3}\solution{example:continuous random variables question}
+{From \postenvref{def:PDF}{Definition}{definitionnumber}, we know that 
+\begin{equation}
+    F(+\infty) = P(X \leq +\infty) = \int_{-\infty}^{+\infty} f(t) dt = 1
+\end{equation}
+Substituting in \(f(x)\), we get
+\begin{equation}
+    \int_{-\infty}^{+\infty} \frac{c}{x^2+1} dx = \left[\arctan(x)\right]_{-\infty}^{+\infty} = 1
+\end{equation}
+\begin{equation}
+    c \lim_{x \rightarrow \infty} \left[\left(\arctan(x) - \arctan(-x)\right)\right]_{-\infty}^{+\infty} = c\left[\left(\frac{\pi}{2}\right) - \left(-\frac{\pi}{2}\right)\right] = 1
+\end{equation}
+This gives us that, \(1 = c\pi\), giving \(c = \frac{1}{\pi}\).}}
+
+\subsubsection{Mean and Variance}
+
+\separate{7}Going back to the continuous random variable \(X\), we can define its mean and variance as values to summarise its distribution such that,
+\begin{equation}
+    \mu = E[X] = \int_{-\infty}^{+\infty} x f(x) dx
+\end{equation}
+and 
+\begin{equation}
+    \sigma^2 = V(X) = E\left[(X - \mu)^2\right] = \int_{-\infty}^{+\infty} (x-\mu)^2 f(x) dx
+\end{equation}
+As for discrete random variables, mean and variance have the following properties:
+\begin{itemize}
+    \item \(E[aX + b] = aE[X] + b\).
+    \item \(V(aX + b) = a^2V(X)\).
+    \item \(\sqrt{V(aX+b)} = |a|\sqrt{V(X)}\).
+\end{itemize}
+
+\subsubsection{Specific Continuous Distributions}
+
+\definition{Continuous Uniform Distribution}{The \underline{continuous uniform distribution} sets all samples in a range as having the same probability.
+Formally, let \(X\) be a continuous random variable with density function
+\begin{equation}
+    f(x) = \begin{cases}
+                \frac{1}{b-a}, \text{ if } a \leq x \leq b \\
+                0, \text{ otherwise}
+            \end{cases}
+\end{equation}
+We have that the mean and variance of this distribution are \(E(X) = \frac{b+a}{2}\) and \(V(X) = \frac{(b-a)^2}{12}\).}
+
+\separate{7}\definition{Exponential Distribution}{The \underline{exponential distribution} is used to model the time elapsing between events.
+The probability of occurrence of an event after a unit of time.
+It has a parameter \(\lambda\) which is the rate parameter and is the average number of events occuring in a period of one time unit.
+
+Formally, a random variable \(X\) is called an \underline{exponential random variable} with parameter \(\lambda > 0\) (denoted by \(X \sim Exp(\lambda)\)) when the probability density function is
+\begin{equation}
+    f(x) = \begin{cases}
+                \lambda e^{-\lambda x}, \text{ if } x \geq 0 \\
+                0, \text{ otherwise}
+            \end{cases}
+\end{equation}
+and 
+\begin{equation}
+    F(x) = \begin{cases}
+                1 - e^{-\lambda x}, \text{ if } x \geq 0 \\
+                0, \textit{ otherwise}
+            \end{cases}
+\end{equation}
+We can then define the mean and variance as \(E(X) = \frac{1}{\lambda}\) and \(V(X) = \frac{1}{\lambda^2}\).}
+
 \subsection{Gaussian Distribution and its Characteristics}
 
 \subsection{Correlations}

@@ -181,13 +181,232 @@ This is a helpful model for structuring the analysis of potential system threats
     \item Actions on Objectives: A \say{historically complex} legacy network let them reach well beyond the entry point and roughly 600 GB was copied. The servers were then encrypted or destroyed.
 \end{itemize}}
 
-\subsection{Defence}
+\subsubsection{Defence}
 
 \definition{Asymmetry in Security}{\underline{Asymmetry in security} is the principle that finding a hole is much easier than securing all possible holes. However, an attack is a sequence of stages that are all opportunities to detect or stop it.}
 
 \separate{7}\definition{Attack Trees}{An \underline{attack tree} is constructed such that: the root is the attackers' goal, the children are the different ways to achieve it, and the leaves are concrete actions. An OR node indicates that any of the children achieves the parent, while an AND node indicates that all children are required to achieve the parent. A set of leaves that satisfies the root is a complete attack.}
 
 \separate{7}When designing a system, it is important to consider the following principles: minimise the attack surface, split your defence across many layers, assign users as few privileges as necessary, deny requests as a default reponse unless explicitly allowed, attackers will always take the weakest link, and you should always assume there will be a breach, so monitor and plan for recovery.
+
+\subsection{Authorisation, Authentication, Accountability and Access Control}
+
+\definition{Identification}{\underline{Identification} identifies who someone claims to be.}
+
+\separate{7}\definition{Authentication}{\underline{Authentication} tests whether a person can prove their identity.}
+
+\separate{7}\definition{Authorisation}{\underline{Authorisation} defines what a user is allowed to do.}
+
+\separate{7}\definition{Access Control}{\underline{Access control} ensures that a user's authorisation is enforced on every request.}
+
+\separate{7}\definition{Accountability}{\underline{Accountability} ensures that actions can be traced back to the user.}
+
+\subsubsection{Authentication}
+
+\definition{Authentication Lifecycle}{The \underline{authentication lifecycle} is separated into five steps. These are:
+\begin{itemize}
+    \item \textbf{Enrolment} binds an identity to a credential. This can go wrong if an attacker registers as you.
+    \item \textbf{Authentication} requires the user to present their credentials for the verifier to check. This can go wrong after brute-force, phishing, or stolen password attacks.
+    \item A \textbf{session} sets up a token to stand in for you on every later request. This goes wrong if a stolen cookie skips the login entirely.
+    \item \textbf{Recovery} regains access when a credential is lost. This can go wrong if there are guessable security questions, or by exploiting the help-desk.
+    \item \textbf{Revocation} removes access when people leave, or when credentials leak. This goes wrong if old codes still work.
+\end{itemize}}
+
+\separate{7}\definition{MFA}{\underline{Multi-factor authentication} can make a system more secure. The factors you can use are: something you know; something you have; and something you are.}
+
+\separate{7}\definition{FAR/FRR}{No authenticator is perfect, we can judge their accuracy by measuring their \underline{false} \underline{acceptance rate} and \underline{false rejection rate}. 
+Generally, lowering one raises the other.
+For example, touch ID has a FAR of \(1:50,000\) and face ID has a FAR of \(1:1,000,000\).}
+
+\separate{7}\definition{Similarity Score}{Each authentication attempt gives a \underline{similarity score}, not a boolean value. The threshold (visualised in \elemref{fig:Threshold Trade-off.}{Figure}\footnote{Image taken from \hyperref[cit:The Threshold Trade-Off]{Deparment of Computer Science (2026)}.}) turns it into a decision.
+If we raise the threshold, then there will be fewer false accepts, but more false rejects, and vice-versa.}
+
+\insertimage{./Images/threshold-trade-off.png}{Threshold Trade-off.}{0.6}
+
+\separate{7}\definition{EER}{The \underline{equal error rate} is where \(FAR=FRR\). 
+This is good for comparing systems, but is rarely the right operating point.
+The right setting depends on what each error costs.}
+
+\separate{7}Passwords persist because they are free and work anywhere. However, because people choose them, reuse them, and/or type them anywhere, they can become insecure.
+Some common attacks against passwords are in \elemref{tab:Common attacks against passwords.}{Table}.
+
+\inserttable{c|c|c}{Common attacks against passwords.}{\textbf{Attack} & \textbf{How It Works} & \textbf{Main Defence}}
+{Online Guessing & Try common passwords against the login page. & \makecell{Rate limiting, blocklists of \\common passwords.}\\\hline
+\makecell{Credential \\Stuffing} & \makecell{Replay uername-password pairs leaked from \\other sites.} & \makecell{MFA, checks against breached \\passwords.}\\\hline
+Phishing & \makecell{A look-alike site collects whatever the \\user types.} & \makecell{Phishing-resistant authentication \\(passkeys).} \\\hline
+\makecell{Infostealer \\Malware} & \makecell{Malware copies saved passwords and \\session cookies.} & \makecell{Endpoint protection, device-\\bound credentials.} \\\hline
+Offline Cracking & \makecell{Steal the password database, guess at \\leisure, no rate limit.} & Salted, slow password hashing.}
+
+\noindent When hashing passwords, you should aim to use a slow hash function so that you can reduce the number of guesses per second, and therefore increase the time required to try all possible passwords.
+For example, SHA-256 allows for 28 billion guesses per second, and so passwords can be guessed in a maximum of 2 minutes, whereas bcrypt only alows 9.5 thousand guesses per second, therefore increasing the time required to around 9 years.
+
+\separate{7}\definition{Entropy}{\underline{Entropy} measures uncertainty in bits.
+A secret chosen uniformly from \(S\) possibilities has \(H = \log_2 S\) bits.
+\begin{equation}
+    H(N,L) = \log_2(N^L) = L \log_2 N
+\end{equation}
+where \(N\) is the size of the alphabet, \(L\) is the length.}
+
+\separate{7}\definition{Relay Attacks}{In \underline{relay attacks}, the attacker never breaks the cryptography.
+Instead, they forward the challenge and the response so both ends belive they are closed.
+To defend against this, you can introduce distance bounding where you time the challenge-response, or to require a user action.}
+
+\separate{7}Multi-factor authentication can be defeated if attackers use one of the techniques in \elemref{tab:Common attacks against MFA.}{Table}.
+
+\inserttable{c|c}{Common attacks against MFA.}{\textbf{Technique} & \textbf{How It Works}}
+{Push Fatigue & Spam approval requests until the user taps \say{approve}.\\\hline
+Real-Time Phishing Proxy & \makecell{A fake site relays password and code to the real one, then keeps the \\session cookie.}\\\hline
+SIM Swap & \makecell{Persuade the mobile operator to move your number to the attacker's \\sim.}\\\hline
+Help-Desk Social Engineering & Phone IT support as the victim and have MFA reset.\\\hline
+Session Theft & Steal the cookie after login, MFA has already happened.}
+
+\subsubsection{Authorisation and Access Control}
+
+\definition{Access Control Approaches}{\underline{Access control} can be implemented using one of the following approaches:
+\begin{itemize}
+    \item\underline{Discetionary (DAC)} where the owner decides who gets access. 
+        Examples of this are Unix permissions, Windows ACLs, or sharing a Google Doc.
+        It is flexible, but anything running as you, including malware, can give your data away.
+    \item\underline{Mandatory (MAC)} where a system-wide policy decides and users cannot override it, even for files they create.
+        Examples include government classifications or SELinux.
+        It is rigid byt contains Trojan horses and careless users.
+    \item\underline{Caoabilities} where unforgeable tokens are held by subjects. 
+        It is good for delegation or distributed systems, but can lead to issues with revocation.
+    \item\underline{Role-Based (RBAC)} where permissions attach to roles which are assigned to users.
+        Joins, moves, and leaves change one assignment, rather than hundreds of permissions.
+    \item\underline{Attribute-Based (ABAC)} where you decide the access from attributes of the subject, the object, the action, and the environment.
+        This is good because it is fine-grained and context aware, but can lead to compications when trying to work out who can access a given file.
+\end{itemize}}
+
+\noindent An important principle is that users with a set access level cannot read up (you can only read an object if your clearance is \(\geq\) its classification), and cannot write down (write an object only if its classification \(\geq\) your clearance.)
+
+\separate{7}Access control can fail when: the user is logged in, but nobody checks that this record is theirs;
+admin pages are protected only by hiding the link from the menu;
+or a role/price is in a hidden field, cookie, or JavaScript.
+
+\subsubsection{Accountability}
+
+When maintaining a system you should have methods for automatically logging: logins (successes and failures); MFA changes, password resets and recovery; role/permission changes; access to sensitive objects and denied requests; and administrative actions.
+
+These logs should be protected by placing them off the host and making them append-only. 
+They should also either use synchronised clocks, or there is no timeline, and should have an alert on patterns. 
+They should also not allow any shared accounts.
+
+\subsection{Network Security}
+
+When using a network, each hop gives an opportunity for an attacker to read (confidentiality issue), change (integrity issue), drop or flood (availability issue), or fake (authenticity) your traffic.
+
+\separate{7}These attackers can take one of three forms:
+\begin{itemize}
+    \item \definition{Off-path}{An \underline{off-path attacker} is not on your path.
+        They can send packets with any source address, but cannot see the replies.}
+    \item \definition{On-path}{A \underline{on-path attacker} sees every packet. 
+        They can read, modify, drop, inject, and/or replay.}
+    \item \definition{Volumetric}{A \underline{volumetric attacker} needs no cleverness, it just sends more traffic than a target system can handle.}
+\end{itemize}
+
+\subsubsection{Protocols}
+
+Each layer of the network stack wraps the one above it in its own header (e.g., data \(\rightarrow\) TCP segment \(\rightarrow\) IP packet \(\rightarrow\) WiFi or Ethernet frame). 
+A header is just bytes that the sender wrote. 
+The original protocols check for accidents (checksums), but these are not necessarily for security.
+The security was instead added later at different layers:
+\begin{itemize}
+    \item The application layer: DNSSEC (signed DNS answers) and HTTPS.
+    \item The transport layer: TLS.
+    \item The network layer: IPsec, WireGuard (VPNs).
+    \item The link layer: WPA2/WPA3 (WiFi).
+\end{itemize}
+
+\separate{7}UDP uses a \say{fire and forget} approach to communication.
+It has no connection, no ordering, and no retransmission.
+Examples of its implementations include in DNS, NTP, video calls, and games.
+
+Conversely, TCP is a reliable byte stream.
+It uses handshakes, sequence numbers, acknowledgements, and retransmission.
+It is used by the web, email, and SSH.
+
+\separate{7}\definition{3-Way Handshake}{The handshake system that TCP uses is called the \underline{three-way handshake}.
+In practice, it uses the following steps:
+\begin{enumerate}
+    \item The client sends a \textit{synchronise} \(SYN\) request with a sequence number \(x\).
+    \item The server responds with a \textit{synchronise acknowledgement} \(SYN-ACK\) with a sequence number \(y\) and an acknowledgement number \(x+1\).
+        An acknowledgement \(ACK\) says \say{I have everything up to here}, so each side proves it saw the other's number.
+        Each side counts its bytes from its own random start.
+    \item After the \(SYN\), the system must remember the client. 
+        It does this by keeping one slot in its queue for half-open connections.
+    \item Once the client recieves the \(SYN-ACK\) they send one more \(ACK\) with acknowledgement number \(y+1\) before sending the data.
+        This means that if \(y\) is guessable, an attacker that never sees the \(SYN-ACK\) can still send the right \(ACK\).
+\end{enumerate}}
+
+\definition{DNS Record Types}{DNS records are stored in one of a few set types which provide various information about a target host. The common types are:
+\begin{itemize}
+    \item \underline{Address (A) records} which give the IP address for the host.
+    \item \underline{AAAA records} which provide an IPv6 address for the host.
+    \item \underline{Cannonical name (CNAME) records} which map one name to another and is used for redirection.
+    \item \underbar{Mail exchange (MX) records} which the server uses for sending/recieving emails.
+    \item \underline{Nameserver (NS) records} which indicate the authoritative DNS server for this domain.
+\end{itemize}}
+
+\subsubsection{Flooding Attacks}
+
+\definition{DoS}{\underline{Denial-of-service} attacks max out the bandwidth of a service using UDP floods, reflection, and amplication.
+The attack also manipulates the states by maliciously filling up look-up tables using DNS cache poisoning and SYN floods.
+It achieves the denial of service by making each request expensive for the application using HTTP floods on search/login pages.
+The attack becomes \underline{distributed (DDoS)} when thousands/millions of sources, either hijacked devices or innocent servers, are used to make the requests.}
+
+\separate{7}\definition{DNS Cache Poisoning}{A \underline{DNS cache poisoning attack} is used by an off-path attacker who waits for a resolver to make a request to a server, before then flooding the resolver with forged answers before the real one arrives.}
+
+\separate{7}\definition{DNSSEC}{The \underline{DNSSEC} system uses the .root's \(DNSKEY\) (the root key, KSK-2024) which is used to vouch for .com which has a \(DS\) from .root.
+Then, example.com uses the \(DS\) from .com which authenticates it. 
+This system provides origin authentication and upkeeps the integrity of answers.
+However it does not provide confidentiality, availability, or protection for the last hop.}
+
+\separate{7}\definition{SYN Flood}{A \underline{\(SYN\) flood attack} floods a server with \(SYN\) requests with random, spoofed sources.
+These are cheap to send as they consist of one packet and don't require a reply, but they are costly to recieve as each \(SYN\) holds a queue slot until it times out.
+Once the queue fills up, genuine users will be turned away.
+
+This can be prevented by remembering nothing after a request. Instead, the system designs its sequence number \(y\) to be 32-bits, split into \(t\) which is 5 bits, \(MSS\) which is 3 bits, and then \(MAC\) which is constructed from a secret, the client IP, the client port, the server IP, the server port, and \(t\).
+This means that when a \(SYN\) arrives, the server replies with \(y\) and stores nothing.
+A real client would then return \(ACK = y+1\).
+The server can then reconstruct the \(MAC\), and if they match it will establish the connection.}
+
+\subsubsection{Cryptography on the Wire}
+
+On a network, cryptography is applied in many layers: WiFi (WPA2/WPA3) acts between you and the router; a VPN tunnel acts between you and a VPN server; TLS (HTTPS) works all the way between you and the server; and DNSSEC works between you and the ISP.
+
+\separate{7}\definition{TLS}{\underline{TLS} acts as the security layer between HTTP and TCP/IP. 
+It ensures confidentiality by encrypting traffic, provides integrity by detecting any changes in transit (AEAD), and authenticates the server by adding a certificate to prove that you reached the name you asked for.
+It also uses a handshake algorithm, called the \underline{TLS 1.3 handshake}:
+\begin{enumerate}
+    \item The browser sends a \textit{ClientHello} with a key share and cipher suites.
+    \item The server then responds with \textit{ServerHello} with a key share.
+    \item These two shares are used to create a shared key where the key parameters are unique to the session and deleted post-use.
+        Stealing the server's key later does not decrypt today's traffic.
+    \item The server then uses this shared key to send \textit{Certificate}, \textit{CertificateVerify}, and \textit{Finished}.
+    \item The browser then also sends \textit{Finished}, followed by the application data.
+\end{enumerate}}
+
+\separate{7}TLS fails in practice when it is implemented wrongly, if the certificate authorities cannot be trusted, if the protocols you are using are downgraded/stripped en-route, or through exploiting the users of the system.
+
+\subsubsection{Virtual Private Networks (VPNs), Firewalls, and Segmentation}
+
+\definition{VPNs}{\underline{Virtual private networks (VPNs)} are effectively \say{tunnels through the Internet}.
+They are generally one of: 
+\begin{itemize}
+    \item IPsec + IKEv2 which is the standard for site-to-site communication and is built into most operating systems.
+    \item TLS-based which is used by OpenVPN and many other vendors' SSL VPNs.
+    \item WireGuard which is a bespoke protocol which has been used in Linux since 2020.
+\end{itemize}}
+
+\separate{5}\definition{Firewalls}{\underline{Firewalls} are a reference monitor for the network. 
+It checks every incoming packet against the network policy and refuses any that don't meet the standard.
+It can consist of any from: 
+\begin{itemize}
+    \item A packet filter which is stateless and checks each packet's addresses, ports, and protocol on its own.
+    \item Connnection tracking which is stateful and remembers connections to allow replies to existing connections.
+    \item The application layer which uses a proxy, NGFW, and WAF to read the content of packets, including HTTP requests, DNS queries, and users.
+\end{itemize}}
 
 \section{Networks}
 
