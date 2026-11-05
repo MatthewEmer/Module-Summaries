@@ -408,6 +408,68 @@ It can consist of any from:
     \item The application layer which uses a proxy, NGFW, and WAF to read the content of packets, including HTTP requests, DNS queries, and users.
 \end{itemize}}
 
+\subsection{Software Security}
+
+\subsubsection{Software Attackers}
+
+\definition{Remote Software Attacker}{A \underline{remote software attacker} sends input that controls any bytes the program reads: packets, form fields, files, headers, and/or log lines.
+Examples of this include Heartbleed, SQL injection, and LogShell.}
+
+\separate{7}\definition{Local Software Attacker}{A \underline{local software attacker} is on the machine and already runs as an ordinary user or app, and wants more privilege.
+Examples of this include PwnKit, kernel bugs, and phone jailbreaks.}
+
+\separate{7}\definition{Upstream Software Attacker}{An \underline{upstream software attacker} is in the supply chain and gets code into your program before you run it, e.g., a library, build server, or update.
+Examples of this include XZ Utils, SolarWinds, and npm worms.}
+
+\subsubsection{Memory Safety}
+
+\definition{Buffer Overflow}{A \underline{buffer overflow attack} is where an attacker sends a too large input, running straight over the return address.
+This means that the attacker can choose the bytes and point the new return address wherever they like.
+When the input function finishes, the attacker, rather than the programmer, decides what runs next.}
+
+\separate{7}Some other common main memory bugs are:
+\begin{itemize}
+    \item \textit{Out-of-bounds read}, where the input reads past the end of a buffer, such as with Heartbleed or Crowdstrike.
+    \item \textit{Integer overflow}, where a number wraps around, often a size, such as with Stagefright.
+    \item \textit{Format string}, where an input becomes printf's instructions, such as the iPhone Wi-Fi name.
+    \item \textit{Use after free}, where memory is used after it was given back, such as with many browser zero-days. 
+\end{itemize}
+
+\separate{7}Developers can mitigate the risks of these attacks by implementing:
+\begin{itemize}
+    \item \textit{Stack canary}, where a random value below the return address is checked before returning.
+        If it has changed, then the program stops.
+    \item \textit{No-execute (NX)}, where data areas are marked as not runnable, so smuggled bytess will not run.
+    \item \textit{ASLR}, where everything loads at random places each run.
+    \item \textit{Control-flow checks}, such as in newer CPUs, which keep a protected copy of each return address.
+\end{itemize}
+
+\subsubsection{Injection}
+
+To prevent SQL injections, code and data should be kept apart.
+The query's structure should be fixed first and then the values should travel separately and are only ever data.
+Similarly, least privilege and a web application firewall should be implemented to restrict what the web app is allowed to run.
+
+\subsubsection{Finding and Fixing}
+
+A vulnerability falls into one of 5 lifecycle stages: the bug is first written, the bug is found, the vendor is told about the bug, a patch is released, the patch is installed.
+
+\subsubsection{Digital Forensics}
+
+When examining an incident, you should never change data that may be relied on in court.
+If you must touch originals, be competent, and able to explain what your actions did.
+Keep an audit trail -- an independent examiner should get the same result.
+The person in charge is responsible for following the law and these principles.
+
+Similarly, you should consider the order of volatility when collecting data about an incident.
+CPU registers, cache, and memory may be replaced early, whereas temporary files, disk, remote logs/monitoring, or backups/archives will not.
+
+Evidence of an incident can be: 
+logs about who connected, when, and what they sent;
+timestamps for when data was created, modified, accessed;
+deleted files that have not yet been overwritten;
+and metadata such as authors and edit history.
+
 \section{Networks}
 
 This section is taught by \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu}. \comment{Check for recommended reading.}
