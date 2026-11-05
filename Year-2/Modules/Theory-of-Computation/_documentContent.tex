@@ -435,6 +435,76 @@ As the number of nodes of \(T\) is \(O(n)\) and we used \(O(n)\) time per node, 
     \label{alg:maxcrosssubarr}
 \end{algorithm}
 
+\subsubsection{The Master Theorem}
+
+\definition{Master Theorem}{The \underline{master theorem} is formally defined as follows:\\
+Let \(T(n)\) be a function on the natural numbers defined by
+\begin{equation}
+    T(n) = aT \left(\frac{n}{b}\right) + f(n)
+\end{equation}
+for some constants \(a \geq 1\) and \(b > 1\).
+Then:
+\begin{enumerate}
+    \item If \(f(n) = O \left(n^{\log_b a-\epsilon}\right)\) for some constant \(\epsilon > 0\), then \(T(n) = \Theta \left(n^{\log_b a}\right)\).
+    \item If \(f(n) = \Theta \left(n^{\log_b a}\right)\), then \(T(n) = \Theta \left(n^{\log_b a} \cdot \log n \right)\).
+    \item If \(f(n) = \Omega \left(n^{\log_b a+\epsilon}\right)\) for some constant \(\epsilon > 0\), and if \(a \cdot f \left(\frac{n}{b}\right) \leq cf(n)\) for some constant \(c < 1\) and for sufficiently large \(n\), then \(T(n) = \Theta (f(n))\).
+\end{enumerate}}
+
+\separate{7}When multiplying two matrices, \(A,B \in \R^{n \times n}\) with output \(C \in \R^{n \times n}\), we can normally complete the computation in time \(\Theta \left(n^3\right)\) by using the following definition:
+\begin{equation}
+    c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}
+\end{equation}
+However, we can design a divide-and-conquer algorithm to do this much quicker using \hyperref[alg:mult]{MULT(A,B)}.
+The running time of MULT(\(A,B\)) satisfies
+\begin{equation}
+    T(n) = 8 T \left(\frac{n}{2}\right) + \Theta \left(n^2\right)
+\end{equation}
+since we have 8 multiplications of \(\frac{n}{2} \times \frac{n}{2}\) matrices and 4 matrix additions, each taking time \(\Theta \left(\frac{n}{2} \cdot \frac{n}{2}\right) = \Theta\left(n^2\right)\).
+Therefore, the master theorem implies that \(T(n) = \Theta \left(n^3\right)\).
+
+\begin{algorithm}[H]
+    \caption{MULT(A,B)}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(A,B \in \R^{n \times n}\)
+        \State \textbf{Output}: \(C \in \R^{n \times n}\)
+        
+        \separate{7}
+        \State Let \(C\) be a new \(n \times n\) matrix.
+
+        \If{\(n = 1\)}
+            \State \(c_{1,1} \gets a_{1,1}b_{1,1}\)
+        \Else
+            \State Partition \(A,B,C\) into the block matrices.
+            \State \(C_{1,1} \gets \text{MULT}(A_{1,1}, B_{1,1}) + \text{MULT}(A_{1,2}, B_{2,1})\)
+            \State \(C_{1,2} \gets \text{MULT}(A_{1,1}, B_{1,2}) + \text{MULT}(A_{1,2}, B_{2,2})\)
+            \State \(C_{2,1} \gets \text{MULT}(A_{2,1}, B_{1,1}) + \text{MULT}(A_{2,2}, B_{2,1})\)
+            \State \(C_{2,2} \gets \text{MULT}(A_{2,1}, B_{1,2}) + \text{MULT}(A_{2,2}, B_{2,2})\)
+        \EndIf
+
+        \noindent\Return \(C\)
+    \end{algorithmic}
+    \label{alg:mult}
+\end{algorithm}
+
+\subsubsection{Strassen's Algorithm}
+
+\definition{Strassen's Algorithm}{In 1969, Strassen introduced a sophisticated divide-and-conquer approach called \underline{Strassen's} \underline{algorithm}.
+It has four steps:
+\begin{enumerate}
+    \item Divide \(A,B\), and \(C\) into four parts as before, with running time \(\Theta(1)\).
+    \item Create 10 auxiliary matrices \(S_1,...,S_10 \in \R^{\frac{n}{2} \times \frac{n}{2}}\), obtained by sums or differences of \(A_{1,1},...,B_{2,2}\), with running time \(\Theta \left(n^2\right)\).
+    \item Using all the matrices available, recursively compute seven product matrices \(P_1,...,P_7 \in \R^{\frac{n}{2} \times \frac{n}{2}}\), with running time \(7 T \left(\frac{n}{2}\right)\).
+    \item Compute \(C_{1,1},...,C_{2,2}\) by adding/subtracting combinations of \(P_1,...,P_7\), with running time \(\Theta \left(n^2\right)\).
+\end{enumerate}
+Thus, the worst-case running time of Strassen's algorithm satisfies
+\begin{equation}
+    T(n) \leq 7 T \left( \frac{n}{2} \right) + \Theta \left( n^2 \right)
+\end{equation}
+so, by the master theorem, we obtain
+\begin{equation}
+    T(n) = \Theta \left( n^{log_2 7} \right) = \Theta \left( n^{2.8074} \right)
+\end{equation}}
+
 \subsection{Dynamic Programming Algorithms}
 
 \subsection{Machinings in Graphs}
