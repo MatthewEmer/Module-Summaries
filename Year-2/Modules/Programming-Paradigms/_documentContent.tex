@@ -31,6 +31,9 @@ This section is taught by \hyperref[modulelead-stuartjames]{Dr Stuart James}. Th
     \item \hyperref[cit:Computer Systems]{Bryant, R. and O'Hallaron, D. (2015). Computer systems: A Programmer's Perspective. 3rd edn. Pearson Education, Limited.}
 \end{itemize}
 
+\separate{5}I have not made notes on the majority of this module as most of it is simply learning C. 
+Where lecture contents differ from this, I have made notes.
+
 \separate{5}\definition{Systems Programming}{\underline{Systems programming} involves the development of individual pieces of software that allow the entire system to function as a single unit.}
 
 \subsection{Version Control and UNIX}
@@ -135,25 +138,21 @@ fi
  \(\%e\) & Floating point (exponent form). \\
  \(\%c,\%s\) & Character and string.}
 
-\subsection{Control Flow and Functions}
+\subsubsection{Variables}
 
-\subsection{Data Types and Structures}
-
-\subsection{Advanced Bash Scripting}
-
-\subsection{Pointers}
-
-\subsection{Memory Management}
-
-\subsection{Debugging}
-
-\subsection{Scope and Recursion}
-
-\subsection{Libraries}
-
-\subsection{stdlib}
-
-\subsection{C++}
+Each variable in C has one of the following four storage types.
+\begin{itemize}
+    \item \definition{Extern}{\underline{extern}: When a variable is defined, it is allocated storage. 
+        When a variable is declared, the compiler knows a variable of a given type exists.
+        Top-level variables default to extern storage class.
+        They last for the lifetime and scope of the whole program.}
+    \item \definition{Static}{\underline{static}: Static variables have the same lifetime as the program, static global variables have file scope, and static local variables have function scope.
+        A static variable inside a function keeps its value between invocations.}
+    \item \definition{Auto}{\underline{auto}: Auto variables have the same lifetime as the function where they are defined.
+        They have function scope and function lifetime.}
+    \item \definition{Register}{\underline{register}: Suggests that a variable should be stored in a register rather than in main memory. 
+        It cannot use the address of (\&) operator.}
+\end{itemize}
 
 \section{Functional Programming}
 
