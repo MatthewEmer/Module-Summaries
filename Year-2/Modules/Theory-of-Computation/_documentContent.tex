@@ -505,6 +505,59 @@ so, by the master theorem, we obtain
     T(n) = \Theta \left( n^{log_2 7} \right) = \Theta \left( n^{2.8074} \right)
 \end{equation}}
 
+\subsubsection{Rod Cutting}
+
+\definition{Rod Cutting Problem}{The \underline{rod cutting problem} states that you work for a company that buys steel rods and cuts them into shorter rods, which it then sells.
+You are asked to determine the best way to cut the rods so as to maximise profit. 
+You know, for \(i=1,...,n\), the price \(p_i\) in euros that the company charges for a rod of length \(i\) centimeters.
+Given a rod of length \(n\) and a table of prices \(p_i\) for \(i=1,...,n\), determine the maximum revenue \(r_n\) obtained by cutting up the rod and selling the pieces.}
+
+\separate{7}\definition{Partition}{An \underline{integer partition} of a positive integer \(n\) is a list of positive integers \((a_1,...,a_k)\) such that \(a_1 \leq ... \leq a_k\) and
+\begin{equation}
+    \sum_{i=1}^k a_i = n
+\end{equation}
+Let \(p(n)\) denote the number of integer partitions of \(n\), then
+\begin{equation}
+    p(1) = 1, p(2) = 2, p(3) = 3, p(4) = 5
+\end{equation}
+Hardy and Ramanujan proved that 
+\begin{equation}
+    p(n) \sim \frac{1}{4n\sqrt{3}} \exp \left( \pi \sqrt{\frac{2n}{3}} \right)
+\end{equation}
+Therefore, brute force has an exponential running time.}
+
+\separate{7}\definition{Optimal Substructure}{\underline{Optimal Substructure}: Optimal solutions to a problem incorporate optimal solutions to related subproblems, which we may solve independently.}
+
+\separate{7}More specifically, for the rod cutting problem, we have for all \(n \geq 1\),
+\begin{equation}
+    r_n = \max \{p_i + r_{n-i}: 1 \leq i \leq n\}
+\end{equation}
+The idea behind this is that \(p_n\) corresponds to no cuts and \(p_i + p_{n-i}\) to cutting into a rod of length \(i\) and another rod of length \(n-i\).
+To solve the original problem of size \(n\), we solve independent smaller problems of the same type, but of smaller sizes. 
+For the rod problem, we can use the following algorithm:
+
+\begin{algorithm}[H]
+    \caption{ROD(\(p,n\))}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(p,n\)
+        \State \textbf{Output}: \(q\)
+        
+        \separate{7}
+        \If{\(n = 0\)}
+            \Return 0
+        \EndIf
+
+        \State \(q \gets -1\)
+        
+        \For{\(i \gets 1\) to \(n\)}
+            \State \(q \gets \max \{q,p[i] + ROD(p,n-i)\}\)
+        \EndFor
+
+        \noindent\Return \(q\)
+    \end{algorithmic}
+    \label{alg:rod}
+\end{algorithm}
+
 \subsection{Dynamic Programming Algorithms}
 
 \subsection{Machinings in Graphs}
