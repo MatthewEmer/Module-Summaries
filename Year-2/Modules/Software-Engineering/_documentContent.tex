@@ -202,12 +202,33 @@ This lecture was taught by \hyperref[lecturer-nellybencomo]{Dr Nelly Bencomo}.
     \item A \underline{non-functional} requirement can be a performance requirement.
 \end{itemize}}
 
-\separate{7}Non-functional requirements are characteristics of the system which cannot be expressed as functions (e.g., maintainability, portability, security, etc.). 
-These characteristics can be measurable (i.e., response time must be under XX ms 95\% of the time).
+\separate{7}\definition{Non-Functional Requirements II}{\underline{Non-functional requirements} are characteristics of the system which cannot be expressed as functions (e.g., maintainability, portability, security, etc.). 
+These characteristics can be measurable (i.e., response time must be under 10 ms 95\% of the time).
 Constraints are NFR (e.g., hardware to be used, OS, DBMS, etc.).
-Project management issues are also NFR (e.g., costs, schedules, logistics, etc.).
+Project management issues are also NFR (e.g., costs, schedules, logistics, etc.).}
 
-\separate{10}\comment{NOT BEEN PAYING ATTENTION SO DO IT ONCE SLIDES COME UP.}
+\separate{7}\definition{MoSCoW}{When gathering requirements, we can use the \underline{MoSCoW prioritisation} method where requirements are sorted into one of \say{must haves}, \say{should haves}, \say{could haves}, and \say{won't haves}.
+We can then designate our workflow accordingly, giving maximum 60\%, 20\%, 20\%, and 0\% effort to these areas accordingly.}
+
+\separate{7}\definition{BDD}{\underline{Behaviour driven development} focuses on user stories and supports and encourages collaborative development.
+It is built on test-driven development and acceptance test driven development.}
+
+\separate{7}\definition{Gherkin}{When presenting a requirement back to the user it should be human-readable by non-experts whilst still explaining the proposed workflow. 
+Therefore, we use \underline{Gherkin} which is the syntax language of Cucumber. 
+This description is behavioural in nature but leads to a clearer understanding of what to code.}
+
+\separate{7}When outlining project requirements, we follow the following stages:
+\begin{enumerate}
+    \item User needs domain information, existing system information, regulations, standards, etc.
+    \item Requirements Elicitation.
+    \item Requirements Analysis and Negotiation.
+    \item Requirements Documentation.
+    \item Requirements Validation (and optionally dropping back to any previous stage if needed).
+    \item This approach produces a requirement document and system specification which can then be approved by the client.
+\end{enumerate}
+
+\separate{7}\definition{Requirements Validation}{\underline{Requirements validation} checks that the right product is being built and that it will satisfy the stakeholders.
+This is important as fixing a requirements error after delivery is much more expensive than fixing an implementation error.}
 
 \section{Legal, Social, Ethical, and Professional Issues}
 
