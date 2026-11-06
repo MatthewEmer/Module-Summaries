@@ -397,6 +397,27 @@ The normal equation sets the gradient to zero to produce a linear system for the
     \theta = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
 \end{equation}
 
+\subsection{Polynomial Regression}
+
+The prediction curves in \(x\), while every coefficient still enters as a linear multiplier.
+\begin{equation}
+    \hat{y} = \theta_0 + \theta_1 x + \theta_2 x^2 + ... + \theta_d x^d
+\end{equation}
+
+\separate{7}In a known synthetic relationship, thirty training observations sample a smooth signal with Gaussian noise. 
+A separate set of 1,000 observations estimates validation error.
+\begin{equation}
+    y = \sin (2 \pi x) + \epsilon
+\end{equation}
+
+\subsubsection{Bias}
+
+\definition{Bias}{\underline{Bias} describes systematic error created by restrictive assumptions. 
+Across different training samples, a high-bias model tends to miss the same parts of the true relationship.}
+
+\separate{7}\definition{Variance}{\underline{Variance} describes sensitivity to the particular training sample.
+A high-variance model changes its fitted curve substantially when the sample changes.}
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
