@@ -439,7 +439,47 @@ and
 \end{equation}
 We can then define the mean and variance as \(E(X) = \frac{1}{\lambda}\) and \(V(X) = \frac{1}{\lambda^2}\).}
 
-\subsection{Gaussian Distribution and its Characteristics}
+\subsection{Normal (Gaussian) Distributions}
+
+\subsubsection{Introduction to the Normal Distribution}
+
+\definition{Normal Distribution}{A \underline{normal distribution} usually represents the sum of many independent random variables, and almost always looks like a bell curve.
+These bell curves can have different centres and spreads depending on the mean \(\mu\) and variance \(\sigma^2\) of the random variables.
+
+Formally, a random variable \(X\) is said to have \underline{normal distribution} with parameters mean \(-\infty < \mu < +\infty\) and variance \(\sigma^2, \sigma > 0\), written as \(X \sim \mathscr{N}(\mu, \sigma^2)\).
+The probability density function is defined as:
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{- \frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+with \(E(X) = \mu\) and \(Var(X) = \sigma^2\).}
+
+\subsubsection{The Standard Normal Distribution}
+
+\definition{Standard Normal Distribution}{The \underline{standard normal distribution} is a special case of the normal distribution defined formally as:
+A random variable \(Z\) with probability density function as follows is called a \underline{standard normal} \underline{random variable}:
+\begin{equation}
+    f(z) = \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}
+\end{equation}
+This is a normal random variable with parameters \(\mu = 0\) and \(\sigma^2 = 1\).
+The corresponding cumulative distribution function is denoted as \(\Phi(z) = P(Z \leq z)\).
+This means that any normal distribution \(X\) can be converted into a standard normal distribution \(Z\) using the formula \(Z = \frac{X - \mu}{\sigma}\).
+This is called the z-score or Z-score, and can be used to compare scores from distributions with different scales, or to determine the relationship between one score and the rest.}
+Before using the normal approximation \(P(X \leq x)\) should be changed to \(P(X \leq x + 0.5)\).
+
+\subsubsection{Normal Approximations}
+
+When you have a binomial distribution where \(n\) is large and \(p\) is the middle-of-the-road, then the binomial distribution tends to look like a normal distribution.
+\begin{equation}
+    X \sim \text{Bin}(n,p) \Rightarrow P(X \leq x) \approx \Phi \left( \frac{x-np}{\sqrt{npq}} \right)
+\end{equation}
+This approximation is generally good for \(np > 5\) and \(n(1-p) > 5\).
+
+\separate{7}If \(X\) is a Poisson random variable with \(E(X) = \lambda\) and \(V(X) = \lambda\), then
+\begin{equation}
+    X \sim \text{Poisson}(\lambda) \Rightarrow P(X \leq x) \approx \Phi \left( \frac{x-\lambda}{\sqrt{\lambda}} \right)
+\end{equation}
+The same continuity correction used for the binomial distribution can also be applied.
+The approximation is good for \(\lambda > 5\).
 
 \subsection{Correlations}
 
@@ -506,6 +546,25 @@ There is no new content here, it is just an introduction to Python's file read/w
 There is no new content here, it is just an introduction to Pandas and Numpy.
 
 \subsection{Data Cleaning and Preparation}
+
+\subsubsection{Missing Values and Duplicates}
+
+See notes from Artificial Intelligence.
+
+\subsubsection{Removal of Outliers}
+
+\definition{Outlier}{When trying to identify \underline{outliers}, we need to provide precise specifications for a rare occurrence.
+For this, we generally use one of three interpretations:
+\begin{itemize}
+    \item \textit{Threshold Limit}: We set some threshold limit, say 3, and all values that occur fewer than 3 times are considered outliers.
+    \item \textit{Threshold Limit for Clusters}: We classify all the values into several classes and again set a limit, say 3. 
+        A value is considered an outlier if its class occurs fewer than 3 times.
+    \item \textit{Quartiles-Based}: We apply a standard statistical methodology involving quartiles and interquartile range.
+\end{itemize}}
+
+\subsubsection{Splitting and Merging}
+
+See notes from Artificial Intelligence.
 
 \subsection{Python Data Visualisation Libraries}
 

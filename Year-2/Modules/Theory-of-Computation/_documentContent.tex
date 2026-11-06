@@ -223,8 +223,7 @@ We will construct a word accepted by \(M\) that contains infinitely many 1s and 
     \item \(0^{n_1}10^{n_2}10^\omega \in L_2\) must be accepted by \(M\), so there is some finite prefix \(0^{n_1}10^{n_2}10^{n_3}\) that leads into accepting state \(p_3\).
     \item ...
 \end{enumerate}
-The limit of the infinite process is a word of the form \((0^*1)^\omega \notin L_2\) that is accepted by \(M\) since it visits an infinite sequence of accepting states \(p_1,p_2,...\).
-}
+The limit of the infinite process is a word of the form \((0^*1)^\omega \notin L_2\) that is accepted by \(M\) since it visits an infinite sequence of accepting states \(p_1,p_2,...\).}
 
 \subsection{Linear-Time Logic and Translating Into B{\"u}chi Automata}
 
@@ -310,7 +309,254 @@ Let us add some more of item \(j\) to the optimal choice. Let \(y\) be another s
     y = \begin{cases}y_j = \min\{w_j, x_j^* + (x_l^* - x_l)\}\\y_l = x_l^* - (y_j - x_j^*)\\y_i=x_i^* \text{   otherwise.}\end{cases}
 \end{equation}
 
-\subsection{Divide and Conquer Algorithms}
+\subsection{Divide-and-Conquer Algorithms}
+
+\subsubsection{Colouring for Restricted Inputs}
+
+\definition{DaC Algorithms}{Many useful algorithms utilise recursions to quickly resolve subproblems. 
+We refer to these as \underline{divide-and-conquer algorithms}, as at each step they:
+\begin{enumerate}
+    \item \textit{Divide} the problem into a number of subproblems.
+    \item \textit{Conquer} the subproblems by solving them, either recursively or directly depending on size.
+    \item \textit{Combine} the solutions for the subproblems into a solution for the original problem.
+\end{enumerate}
+A natural way to calculate the running time of these algorithms is recurrence relations using the Master Theorem (covered in Year 1 - Algorithms and Data Structures).}
+
+\separate{7}\definition{Colouring}{A \underline{colouring} of a graph is an assignment of colours to its vertices such that any two adjacent vertices get a different colour. 
+A colouring using at most \(k\) colours is a \underline{\(k\)-colouring}.}
+
+\separate{7}\definition{Chromatic Number}{The \underline{chromatic number}, \(\chi_G\), of a graph is the smallest integer \(k\) for which \(G\) has a \(k\)-colouring.
+Calculating the chromatic number of any given graph is considered a NP-hard problem.}
+
+\separate{7}\definition{Disjoint Union}{Let \(G_1\) and \(G_2\) be two vertex-disjoint graphs.
+The \underline{disjoint union} \(G_1+G_2\) is the graph with vertex set \(V(G_1) \cup V(G_2)\) and edge set \(E(G_1) \cup E(G_2)\).}
+
+\separate{7}\definition{Join}{Let \(G_1\) and \(G_2\) be two vertex-disjoint graphs.
+The \underline{join} \(G_1 \times G_2\) is the graph with vertex set \(V(G_1) \cup V(G_2)\) and edge set \(E(G_1) \cup E(G_2) \cup E^*\), where \(E^*\) is the set of all edges between vertices of \(G_1\) and vertices of \(G_2\).}
+
+\separate{7}\definition{Cograph}{Let \(G_1\) and \(G_2\) be two vertex-disjoint graphs.
+A graph \(G\) is a \underline{cograph} if it can be created using the following rules:
+\begin{itemize}
+    \item The 1-vertex graph is a cograph.
+    \item If \(G_1\) and \(G_2\) are cographs, then so is \(G_1 + G_2\).
+    \item If \(G_1\) and \(G_2\) are cographs, then so is \(G_1 \times G_2\).
+\end{itemize}
+Alternatively, let \(P_4\) denote the path on 4 vertices. 
+A graph \(G\) contains \(P_4\) as an \underline{induced subgraph} if \(G\) can be modified to \(P_4\) via vertex deletions.
+If not, then \(G\) is said to be \underline{\(P_4\)-free}.}
+
+\separate{7}\theorem{Cographs}{A graph \(G\) is a cograph \(\iff\) \(G\) is \(P_4\)-free.}
+{Proof excluded.}
+
+\separate{7}\definition{Cotree}{Let \(G\) be a cograph. 
+The \underline{cotree} \(T_G\) of \(G\) is the unique decomposition tree that satisfies:
+\begin{enumerate}
+    \item The root \(r\) of the tree represents the graph \(G_r = G\).
+    \item Every leaf \(x\) of the tree represents exactly one vertex of \(G\), and vice-versa.
+    \item Every internal node \(x\) of the tree has at least two children and is either labelled \(+\) or \(\times\). 
+        The node represents an induced subgraph \(G_x\) of \(G\), defined as follows:
+        \begin{itemize}
+            \item If \(x\) is a \(+\)-node, then \(G_x\) is the disjoint union of all graphs \(G_y\) where \(y\) is a child of \(x\).
+            \item If \(x\) is a \(\times\)-node, then \(G_x\) is the join of all graphs \(G_y\) where \(y\) is a child of \(x\).
+        \end{itemize}  
+    \item Along the path from the root \(r\) to any leaf, the labels of the internal notes alternate between \(+\) and \(\times\).
+\end{enumerate}}
+
+\separate{7}\theorem{Cotrees}{Any cograph \(G\) has a unique cotree.
+However, if we drop condition 4, there may be many trees representing \(G\).}
+{Proof excluded.}
+
+\separate{7}We can use a divide-and-conquer algorithm to colour a cograph. 
+Given a cograph \(G\), construct its cotree \(T_G\). 
+This can be done in \(O(n+m)\) time \hyperref[cit:A Linear Recognition Algorithm for Cographs]{(Corneil, Perl and Stewart, 1985)}. 
+We follow a bottom-up approach: only process node \(x\) after first processing its children.
+\begin{itemize}
+    \item \textit{Leaves}: Each leaf represents a single vertex of \(G\).
+        The chromatic number of a single-vertex graph is 1.
+    \item \textit{Union-Nodes}: If \(x\) is a \(+\)-node, then \(\chi_{G_x}\) is the maximum of the chromatic numbers of the graphs \(G_y\), where \(y\) is a child of \(x\).
+    \item \textit{Join-Nodes}: If \(x\) is a \(\times\)-node, then \(\chi_{G_x}\) is the sum of the chromatic numbers of the graphs \(G_y\), where \(y\) is a child of \(x\).
+\end{itemize}
+This way, the last node we process is the root \(r\), which represents the graph \(G_r=G\).
+As the number of nodes of \(T\) is \(O(n)\) and we used \(O(n)\) time per node, the total running time is polynomial.
+
+\begin{algorithm}[H]
+    \caption{MAX-SUBARR}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(A\), low, high
+        \State \textbf{Output}: low, high, sum
+        
+        \separate{7}
+        \If{high = low}
+            \Return (low, high, \(A\)[low])
+        \Else
+            \State median \(\gets \left\lfloor \frac{\text{low} + \text{high}}{2} \right\rfloor\)
+            \State \((L_{low}, L_{high}, L_{sum}) \gets\) MAX-SUBARR(\(A\), low, median) 
+            \State \((R_{low}, R_{high}, R_{sum}) \gets\) MAX-SUBARR(\(A\), median\(+1\), high) 
+            \State \((\text{Cross}_{low}, \text{Cross}_{high}, \text{Cross}_{sum}) \gets\) MAX-CROSS-SUBARR(\(A\), low, median, high) 
+
+            \If{\(L_{sum} \geq \max\{R_{sum}, \text{Cross}_{sum}\}\)}
+                \Return \((L_{low}, L_{high}, L_{sum})\)
+            \EndIf
+            \If{\(R_{sum} \geq \max\{L_{sum}, \text{Cross}_{sum}\}\)}
+                \Return \((R_{low}, R_{high}, R_{sum})\)
+            \Else \( \) \Return \((\text{Cross}_{low}, \text{Cross}_{high}, \text{Cross}_{sum})\)
+            \EndIf
+        \EndIf
+    \end{algorithmic}
+    \label{alg:maxsumarr}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{MAX-CROSS-SUBARR}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(A\), low, mid, high
+        \State \textbf{Output}: max\_left, max\_right, left\_sum\(+\)right\_sum
+        
+        \separate{7}
+        \State left\_sum\(\gets -\infty\)
+        \For{\(i \gets\)\text{mid} to low}
+            \State sum \(\gets\) sum\(+ A[i]\)
+            \If{sum \(>\) left\_sum}
+                \State left\_sum \(\gets\) sum
+                \State max\_left \(\gets i\)
+            \EndIf
+        \EndFor
+
+        \For{\(j \gets\)\text{mid}\(+1\) to high}
+            \State sum \(\gets\) sum\(+ A[j]\)
+            \If{sum \(>\) right\_sum}
+                \State right\_sum \(\gets\) sum
+                \State max\_right \(\gets j\)
+            \EndIf
+        \EndFor
+
+        \noindent\Return (max\_left, max\_right, left\_sum\(+\)right\_sum)
+    \end{algorithmic}
+    \label{alg:maxcrosssubarr}
+\end{algorithm}
+
+\subsubsection{The Master Theorem}
+
+\definition{Master Theorem}{The \underline{master theorem} is formally defined as follows:\\
+Let \(T(n)\) be a function on the natural numbers defined by
+\begin{equation}
+    T(n) = aT \left(\frac{n}{b}\right) + f(n)
+\end{equation}
+for some constants \(a \geq 1\) and \(b > 1\).
+Then:
+\begin{enumerate}
+    \item If \(f(n) = O \left(n^{\log_b a-\epsilon}\right)\) for some constant \(\epsilon > 0\), then \(T(n) = \Theta \left(n^{\log_b a}\right)\).
+    \item If \(f(n) = \Theta \left(n^{\log_b a}\right)\), then \(T(n) = \Theta \left(n^{\log_b a} \cdot \log n \right)\).
+    \item If \(f(n) = \Omega \left(n^{\log_b a+\epsilon}\right)\) for some constant \(\epsilon > 0\), and if \(a \cdot f \left(\frac{n}{b}\right) \leq cf(n)\) for some constant \(c < 1\) and for sufficiently large \(n\), then \(T(n) = \Theta (f(n))\).
+\end{enumerate}}
+
+\separate{7}When multiplying two matrices, \(A,B \in \R^{n \times n}\) with output \(C \in \R^{n \times n}\), we can normally complete the computation in time \(\Theta \left(n^3\right)\) by using the following definition:
+\begin{equation}
+    c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}
+\end{equation}
+However, we can design a divide-and-conquer algorithm to do this much quicker using \hyperref[alg:mult]{MULT(A,B)}.
+The running time of MULT(\(A,B\)) satisfies
+\begin{equation}
+    T(n) = 8 T \left(\frac{n}{2}\right) + \Theta \left(n^2\right)
+\end{equation}
+since we have 8 multiplications of \(\frac{n}{2} \times \frac{n}{2}\) matrices and 4 matrix additions, each taking time \(\Theta \left(\frac{n}{2} \cdot \frac{n}{2}\right) = \Theta\left(n^2\right)\).
+Therefore, the master theorem implies that \(T(n) = \Theta \left(n^3\right)\).
+
+\begin{algorithm}[H]
+    \caption{MULT(A,B)}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(A,B \in \R^{n \times n}\)
+        \State \textbf{Output}: \(C \in \R^{n \times n}\)
+        
+        \separate{7}
+        \State Let \(C\) be a new \(n \times n\) matrix.
+
+        \If{\(n = 1\)}
+            \State \(c_{1,1} \gets a_{1,1}b_{1,1}\)
+        \Else
+            \State Partition \(A,B,C\) into the block matrices.
+            \State \(C_{1,1} \gets \text{MULT}(A_{1,1}, B_{1,1}) + \text{MULT}(A_{1,2}, B_{2,1})\)
+            \State \(C_{1,2} \gets \text{MULT}(A_{1,1}, B_{1,2}) + \text{MULT}(A_{1,2}, B_{2,2})\)
+            \State \(C_{2,1} \gets \text{MULT}(A_{2,1}, B_{1,1}) + \text{MULT}(A_{2,2}, B_{2,1})\)
+            \State \(C_{2,2} \gets \text{MULT}(A_{2,1}, B_{1,2}) + \text{MULT}(A_{2,2}, B_{2,2})\)
+        \EndIf
+
+        \noindent\Return \(C\)
+    \end{algorithmic}
+    \label{alg:mult}
+\end{algorithm}
+
+\subsubsection{Strassen's Algorithm}
+
+\definition{Strassen's Algorithm}{Strassen (1969) made a sophisticated divide-and-conquer approach called \underline{Strassen's} \underline{algorithm}.
+It has four steps:
+\begin{enumerate}
+    \item Divide \(A,B\), and \(C\) into four parts as before, with running time \(\Theta(1)\).
+    \item Create 10 auxiliary matrices \(S_1,...,S_10 \in \R^{\frac{n}{2} \times \frac{n}{2}}\), obtained by sums or differences of \(A_{1,1},...,B_{2,2}\), with running time \(\Theta \left(n^2\right)\).
+    \item Using all the matrices available, recursively compute seven product matrices \(P_1,...,P_7 \in \R^{\frac{n}{2} \times \frac{n}{2}}\), with running time \(7 T \left(\frac{n}{2}\right)\).
+    \item Compute \(C_{1,1},...,C_{2,2}\) by adding/subtracting combinations of \(P_1,...,P_7\), with running time \(\Theta \left(n^2\right)\).
+\end{enumerate}
+Thus, the worst-case running time of Strassen's algorithm satisfies
+\begin{equation}
+    T(n) \leq 7 T \left( \frac{n}{2} \right) + \Theta \left( n^2 \right)
+\end{equation}
+so, by the master theorem, we obtain
+\begin{equation}
+    T(n) = \Theta \left( n^{log_2 7} \right) = \Theta \left( n^{2.8074} \right)
+\end{equation}}
+
+\subsubsection{Rod Cutting}
+
+\definition{Rod Cutting Problem}{The \underline{rod cutting problem} states that you work for a company that buys steel rods and cuts them into shorter rods, which it then sells.
+You are asked to determine the best way to cut the rods so as to maximise profit. 
+You know, for \(i=1,...,n\), the price \(p_i\) in euros that the company charges for a rod of length \(i\) centimeters.
+Given a rod of length \(n\) and a table of prices \(p_i\) for \(i=1,...,n\), determine the maximum revenue \(r_n\) obtained by cutting up the rod and selling the pieces.}
+
+\separate{7}\definition{Partition}{An \underline{integer partition} of a positive integer \(n\) is a list of positive integers \((a_1,...,a_k)\) such that \(a_1 \leq ... \leq a_k\) and
+\begin{equation}
+    \sum_{i=1}^k a_i = n
+\end{equation}
+Let \(p(n)\) denote the number of integer partitions of \(n\), then
+\begin{equation}
+    p(1) = 1, p(2) = 2, p(3) = 3, p(4) = 5
+\end{equation}
+Hardy and Ramanujan proved that 
+\begin{equation}
+    p(n) \sim \frac{1}{4n\sqrt{3}} \exp \left( \pi \sqrt{\frac{2n}{3}} \right)
+\end{equation}
+Therefore, brute force has an exponential running time.}
+
+\separate{7}\definition{Optimal Substructure}{\underline{Optimal Substructure}: Optimal solutions to a problem incorporate optimal solutions to related subproblems, which we may solve independently.}
+
+\separate{7}More specifically, for the rod cutting problem, we have for all \(n \geq 1\),
+\begin{equation}
+    r_n = \max \{p_i + r_{n-i}: 1 \leq i \leq n\}
+\end{equation}
+The idea behind this is that \(p_n\) corresponds to no cuts and \(p_i + p_{n-i}\) to cutting into a rod of length \(i\) and another rod of length \(n-i\).
+To solve the original problem of size \(n\), we solve independent smaller problems of the same type, but of smaller sizes. 
+For the rod problem, we can use the following algorithm:
+
+\begin{algorithm}[H]
+    \caption{ROD(\(p,n\))}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(p,n\)
+        \State \textbf{Output}: \(q\)
+        
+        \separate{7}
+        \If{\(n = 0\)}
+            \Return 0
+        \EndIf
+
+        \State \(q \gets -1\)
+        
+        \For{\(i \gets 1\) to \(n\)}
+            \State \(q \gets \max \{q,p[i] + ROD(p,n-i)\}\)
+        \EndFor
+
+        \noindent\Return \(q\)
+    \end{algorithmic}
+    \label{alg:rod}
+\end{algorithm}
 
 \subsection{Dynamic Programming Algorithms}
 
