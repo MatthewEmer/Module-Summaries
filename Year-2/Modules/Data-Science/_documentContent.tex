@@ -505,7 +505,128 @@ This joint PMF of \(X\) and \(Y\) inside the range \(R\) and \(S\) respectively 
     F(x,y) = P(X \leq x, Y \leq y) = \sum_{s \leq x} \sum_{t \leq y} f(s,t) \text{ for } -\infty < x, y < +\infty
 \end{equation}}
 
-\comment{Slide 10/38.}
+\subsubsection{Splitting the Distribution}
+
+\definition{Marginal Probability Distributions}{Although a bivariate probability distribution describes the joint probability, we may still need to explore \(X\) and \(Y\) separately.
+This is done through \underline{marginal probability distributions}.
+Basically, the goal is to remove the other variable from the probability distribution.
+
+Let \(X\) and \(Y\) be two discrete random variables taking values in range \(R\) and \(S\) respectively with joint probability mass function \(f_{XY}(x,y)\).
+Then, the corresponding \underline{marginal probability mass functions} are given by:
+\begin{equation}
+    f_X(x) = P(X=x) = \sum_{y \in S} P(X=x, Y=y) = \sum_{y \in S} f_{XY}(x,y)
+\end{equation}
+\begin{equation}
+    f_Y(y) = P(Y=y) = \sum_{x \in R} P(X=x, Y=y) = \sum_{x \in R} f_{XY}(x,y)
+\end{equation}}
+
+\separate{7}\definition{Conditional Distributions}{For \underline{conditional distributions}, let \(X\) and \(Y\) be two discrete random variables taking values in range \(R\) and \(S\) respectively with joint probability mass function \(f_{XY}(x,y)\).
+Assume \(f_X(x) > 0\) (meaning \(X=x\) is possible), then:
+\begin{equation}
+    f_{Y|X=x}(y) = P(Y=y|X=x) = \frac{P(X=x,Y=y)}{P(X=x)} = \frac{f_{XY}(x,y)}{f_X(x)}
+\end{equation}
+Similarly, if \(f_Y(y) > 0\):
+\begin{equation}
+    f_{X|Y=y}(x) = P(X=x|Y=y) = \frac{P(X=x,Y=y)}{P(Y=y)} = \frac{f_{XY}(x,y)}{f_Y(y)}
+\end{equation}
+If \(X\) and \(Y\) are discrete random variables, then:
+\begin{itemize}
+    \item \(\sum_{y \in Y} f_{Y|X=x}(y) = 1\).
+    \item For any set \(B\):
+        \begin{equation}
+            P(Y \in B | X = x) = \sum_{y \in B} f_{Y|X=x} (y)
+        \end{equation}
+\end{itemize}}
+
+\subsubsection{Continuous Variables}
+
+If we consider \(X\) taking a value in \([a,b]\) and \(Y\) a value in \([c,d]\):
+\begin{itemize}
+    \item \((X,Y)\) takes a value in \([a,b] \times [c,d]\).
+    \item If the joint probability density function is \(f_{XY}(x,y)\) then:
+        \begin{equation}
+            P(a \leq X \leq b, c \leq Y \leq d) = \int^b_a \int^d_c f_{XY}(x,y) dydx
+        \end{equation}
+    \item \(f_{XY}(x,y) dxdy\) can be interpreted as the probability of lying in a small rectangle.
+\end{itemize}
+
+\separate{7}Let \(X\) and \(Y\) be two continuous random variables.
+The joint PDF of \(X\) and \(Y\) has the following properties:
+\begin{itemize}
+    \item \(f_{XY}(x,y) \geq 0\).
+    \item \(\int^{+\infty}_{-\infty}\int^{+\infty}_{-\infty} f_{XY}(x,y) dydx = 1\).
+    \item For any set \(R\) in the \(R^2\) plane:
+        \begin{equation}
+            P((X,Y) \in R) = \int\int_R f_{XY}(x,y) dydx
+        \end{equation}
+\end{itemize}
+
+\separate{7}Let \(X\) and \(Y\) be two continuous random variables with joint PDF \(f_{XY}(x,y)\).
+Then the corresponding marginal PMFs are given by:
+\begin{equation}
+    f_X(x) = \int f_{XY}(x,y) dy
+\end{equation}
+\begin{equation}
+    f_Y(y) = \int f_{XY}(x,y) dx
+\end{equation}
+
+\separate{7}Let \(X\) and \(Y\) be two continuous random variables with joint PDF \(F_{XY}(x,y)\).
+Assume \(f_X(x) > 0\), then:
+\begin{equation}
+    f_{Y|X=x}(y) = \frac{f_{XY}(x,y)}{f_X(x)}
+\end{equation}
+similarly, if \(f_Y(y) > 0\):
+\begin{equation}
+    f_{X|Y=y}(x) = \frac{f_{XY}(x,y)}{f_Y(y)}
+\end{equation}
+as the continuous CDF is actually a proper PDF,
+\begin{equation}
+    \int f_{Y | X=x} (y) dy = 1
+\end{equation}
+and, for any set \(B \subseteq \R\):
+\begin{equation}
+    P(Y \in B | X = x) = \int_B f_{Y|X=x} (y) dy
+\end{equation}
+
+\subsubsection{Properties of Random Variables}
+
+\definition{Multivariate Independence}{Let \(X\) and \(Y\) be two random variables (if discrete, with values in \(R\) and \(S\); if continuous, with values in \(\R\)).
+We say \(X\) and \(Y\) are \underline{independent} if one of the following equivalent statements hold:
+\begin{itemize}
+    \item \(f_X(x)f_Y(y) = f_{XY}(x,y)\) for all \(x,y \in R \times S\) (discrete), or \(x,y \in \R^2\) (continuous).
+    \item \(f_{Y|X=x}(y) = f_Y(y)\) for all \(x,y \in R \times S\) (discrete), or \(x,y \in \R^2\) (continuous) with \(f_X(x) > 0\).
+    \item \(f_{X|Y=y}(x) = f_X(x)\) for all \(x,y \in R \times S\) (discrete), or \(x,y \in \R^2\) (continuous) with \(f_Y(y) > 0\).
+    \item \(P(X \in A, Y \in B) = P(X \in A)P(Y \in B)\) for any two sets \(A\) and \(B\).
+\end{itemize}}
+
+\separate{7}\definition{Mean and Variance}{Suppose \(X\) and \(Y\) are discrete random variables taking values in \(R\) and \(S\) respectively.
+Let \(f_{XY}(x,y)\) be the PMF and \(f_X(x)\) and \(f_Y(y)\) be the marginal PMFs of \(X\) and \(Y\).
+We can define the \underline{means} and \underline{variances} as:
+\begin{equation}
+    E(X) = \mu_X = \sum_{x \in R} xf_X(x)
+\end{equation}
+\begin{equation}
+    E(Y) = \mu_Y = \sum_{y \in S} yf_Y(y)
+\end{equation}
+\begin{equation}
+    V(X) = \sum_{x \in R} x^2f_X(x) - \left( E(X) \right)^2
+\end{equation}
+\begin{equation}
+    V(Y) = \sum_{y \in S} y^2f_Y(y) - \left( E(Y) \right)^2
+\end{equation}}
+
+\separate{7}\definition{Covariance}{The \underline{covariance} between two discrete or continuous random variables \(X\) and \(Y\) is denoted by \(cov(X,Y)\) and is given by:
+\begin{equation}
+    cov(X,Y) = \sigma_{XY} = E[XY] - E[X]E[Y]
+\end{equation}
+You can also compute covariance by this formula:
+\begin{equation}
+    cov(X,Y) = E[(X - \mu_x)(Y - \mu_y)]
+\end{equation}
+Similarly, we can measure the \underline{correlation coefficient} between two variables using:
+\begin{equation}
+    Corr(X,Y) = \rho_{XY} = \frac{cov(X,Y)}{\sqrt{V(X)V(Y)}}
+\end{equation}}
 
 \subsection{Correlations}
 
