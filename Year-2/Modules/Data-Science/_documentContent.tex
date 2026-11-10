@@ -481,6 +481,32 @@ This approximation is generally good for \(np > 5\) and \(n(1-p) > 5\).
 The same continuity correction used for the binomial distribution can also be applied.
 The approximation is good for \(\lambda > 5\).
 
+\subsection{Multiple Random Variables}
+
+\definition{Distributions}{Distributions with two variables are called \underline{bivariate distributions}, and those with more than two are \underline{multivariate distributions}.}
+
+\subsubsection{Bivariate Distributions}
+
+\definition{Discrete Bivariate Joint Distribution}{The probability mass function of a single discrete random variable \(X\) specifies how much probability mass if placed on each possible \(X\) value.
+The joint PMF of two discrete variables \(X\) and \(Y\) describes how much probability mass is placed on each possible pair of values \((x,y)\).}
+
+\separate{7}\definition{Joint PMF}{The notion of join probability distribution can be formally defined as:
+If \(X\) and \(Y\) are discrete random variables, the function given by \(f(x,y) = P(X=x, Y=y)\) for each pair of values \((x,y)\) within the range of \(X\) and \(Y\) is called the \underline{joint probability distribution} (\underline{joint probability mass function}) of \(X\) and \(Y\).
+
+This joint PMF of \(X\) and \(Y\) inside the range \(R\) and \(S\) respectively has the following properties:
+\begin{itemize}
+    \item \(f_{XY}(x,y) \geq 0\).
+    \item \(\sum_{x \in R} \sum_{y \in S} f_{XY}(x,y) = 1\).
+    \item \(f_{XY}(x,y) = P(X=x, Y=y) \equiv P(\{X=x\} \cup \{Y = y\})\).
+\end{itemize}}
+
+\separate{7}\definition{Joint CDF}{Then, we can extend the above definition to the \underline{Joint Cumulative Function} as follows: If \(X\) and \(Y\) are discrete random variables, the joint CDF is the function given by:
+\begin{equation}
+    F(x,y) = P(X \leq x, Y \leq y) = \sum_{s \leq x} \sum_{t \leq y} f(s,t) \text{ for } -\infty < x, y < +\infty
+\end{equation}}
+
+\comment{Slide 10/38.}
+
 \subsection{Correlations}
 
 \subsection{Central Limit Theorem and Sampling}
