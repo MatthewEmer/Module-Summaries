@@ -418,6 +418,86 @@ Across different training samples, a high-bias model tends to miss the same part
 \separate{7}\definition{Variance}{\underline{Variance} describes sensitivity to the particular training sample.
 A high-variance model changes its fitted curve substantially when the sample changes.}
 
+\subsection{Regression Loss Functions}
+
+\subsubsection{What the Model Minimises}
+
+\definition{Loss}{A model family states which predictions are possible.
+The \underline{loss} states which mistakes matter most.
+Optimisation then searches for parameters that minimise the average loss.}
+
+\separate{7}\definition{Residual Convention}{Positive residuals indicate overpredictions and negative residuals indicate underpredictions, where magnitiude gives size.
+This can be calculated using:
+\begin{equation}
+    r_i = \hat{y}_i - y_i
+\end{equation}
+We can calculate loss using one of the methods specified in \elemref{tab:Methods of calculating loss.}{Table}.}
+
+\inserttable{c|c|c}{Methods of calculating loss.}{\textbf{Loss} & \textbf{Per-Example Expression} & \textbf{Main Behaviour}}
+{Squared & \(r^2\) & Quadratic Growth \\
+Absolute & \(|r|\) & Linear Growth \\
+Huber, \(\sigma=1\) & \(\frac{1}{2}r^2\) near 0, \(|r|-\frac{1}{2}\) outside. & Smooth and Robust \\
+Log-Cosh & \(\log \cosh (r)\) & Smooth, nearly linear outside \\
+Quantile, \(q\) & \(\max (qe, (q-1)e), e = -r\) & Asymmetric}
+
+\noindent When considering which type of loss to use, it is useful to consider the situation. 
+Some common examples are listed below in \elemref{tab:Common situations and their recommended loss types.}{Table}.
+
+\inserttable{c|c|c}{Common situations and their recommended loss types.}{\textbf{Situation} & \textbf{Useful Loss} & \textbf{Reason}}
+{Gaussian-like without severe outliers. & Squared & Efficient, smooth, and familiar. \\
+Strong contamination or heavy tails. & Absolute & Limited influence from extreme residuals. \\
+Mostly clean data with some outliers. & Huber/log-cosh & Quadratic near zero and robust in tails. \\
+A conditional percentile is required. & Quantile & Asymmetric loss targets \(q\) directly.}
+
+\subsubsection{Outliers and Robust Fitting}
+
+\definition{Squared-loss gradients}{The \underline{squared-loss gradient} demonstrates that a large residual produces a proportionally large contribution.
+\begin{equation}
+    \frac{\delta J}{\delta \theta_0} = mean (2r), \frac{\delta J}{\delta \theta_1} = mean (2rx)
+\end{equation}
+This produces a smooth update where large errors dominate, and that matches MSE fitting.}
+
+\separate{7}\definition{Absolute-loss gradients}{The \underline{absolute-loss gradient} removes the residual magnitude from the derivative, making a bounded contribution that is non-differentiable at zero.
+\begin{equation}
+    \frac{\delta J}{\delta \theta_0} = mean (sign(r)), \frac{\delta J}{\delta \theta_1} = mean (sign(r)x)
+\end{equation}}
+
+\separate{7}\definition{Huber gradients}{The \underline{Huber gradient} gives the threshold which clips the influence of large residuals.
+\begin{equation}
+    L'\delta(r) = r \text{ if } |r| \leq \delta, \text{ otherwise } \delta sign(r)
+\end{equation}}
+
+\separate{7}When fitting a generic robust line, we use the following steps.
+When doing this, only loss\_grad changes between experiments, with representation and gradient-descent loops staying fixed.
+\begin{enumerate}
+    \item Initialise \(\theta\).
+    \item Predict \(\hat{y}\).
+    \item Compute \(r\).
+    \item Evaluate \(L'(r)\).
+    \item Update both \(\theta\) values.
+\end{enumerate}
+
+\subsubsection{Quantile Regression}
+
+A mean or median gives one central value.
+Many decisions need a range that changes with \(x\), especially when outcome variability grows across the input space.
+
+\separate{7}\definition{Prediction Interval}{The \underline{prediction interval} describes where a future individual outcome may fall.
+It includes irreducible observation noise.}
+
+\separate{7}\definition{Confidence Interval}{The \underline{confidence interval for the mean} describes uncertainty in the estimated conditional mean.
+It narrows as the mean becomes more precisely estimated.}
+
+\separate{7}When selecting a regression loss model, you should follow these steps:
+\begin{enumerate}
+    \item Identify whether extreme residuals represent noise or real risk.
+    \item Decide whether the target is a mean, median, or another quantile.
+    \item Inspect the tail growth of \(L(r)\).
+    \item Inspect whether \(L'(r)\) is bounded.
+    \item Check optimisation smoothness and available solvers.
+    \item Validate behavious with plots, parameters, and held-out evidence.
+\end{enumerate}
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
