@@ -225,6 +225,34 @@ We will construct a word accepted by \(M\) that contains infinitely many 1s and 
 \end{enumerate}
 The limit of the infinite process is a word of the form \((0^*1)^\omega \notin L_2\) that is accepted by \(M\) since it visits an infinite sequence of accepting states \(p_1,p_2,...\).}
 
+\subsubsection{Modal Logic}
+
+\definition{Box Operator}{The \underline{box operator} is used with propositional logic \(\square\varphi\) to mean \say{I know/can prove} \(\varphi\).
+More generally - necessarily \(\varphi\).
+Probably \(\square\varphi \rightarrow \varphi\), but not the other way round (\(\varphi\) is true, but we may not be able to prove it).}
+
+\separate{7}\definition{Diamond Operator}{The \underline{diamond operator} is used in \(\lnot \square \varphi \stackrel{\text{def}}{=} \diamond \lnot \varphi\) to indicate that you cannot prove \(\varphi\), so it is possible that \(\lnot \varphi\).
+Conversely, \(\lnot \diamond \varphi\) (\(\varphi\) is impossible) is the same as proving \(\lnot \varphi\), i.e., \(\square \lnot \varphi\).
+Simply, \(\diamond\) means \say{it is possible that}.}
+
+\separate{7}From these definitions and propositional logic, we get:
+\begin{itemize}
+    \item \(\frac{\varphi}{\square \varphi}\) is the Neccesitation Rule \(\mathbf{N}\).
+    \item \(\square(\varphi \rightarrow \psi) \rightarrow (\square \varphi \rightarrow \square \psi)\) is the Distribution Axiom \(\mathbf{K}\).
+\end{itemize}
+
+\separate{7}\definition{Kripke Semantics}{\underline{Kripke semantics} state that, over a set of atomic propositions (Boolean variables) \(P\), and a set of worlds (states) \(W\), we are given a valuation function
+\begin{equation}
+    f: P \times W \rightarrow \{true, false\}
+\end{equation}
+and an accessibilty relation
+\begin{equation}
+    R \subseteq W \times W
+\end{equation}
+\((u,v) \in R\) if \(v\) is accessible from \(u\).
+\(\square a\) holds at \(u\) iff \(a\) holds at every \(v\), s.t. \((u,v) \in R\).
+Thus, \(\diamond a\) holds at \(u\) iff \(a\) holds at some \(v\), s.t. \((u,v) \in R\).}
+
 \subsection{Linear-Time Logic and Translating Into B{\"u}chi Automata}
 
 \section{Algorithms and Complexity}
