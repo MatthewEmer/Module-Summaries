@@ -227,8 +227,48 @@ This description is behavioural in nature but leads to a clearer understanding o
     \item This approach produces a requirement document and system specification which can then be approved by the client.
 \end{enumerate}
 
-\separate{7}\definition{Requirements Validation}{\underline{Requirements validation} checks that the right product is being built and that it will satisfy the stakeholders.
-This is important as fixing a requirements error after delivery is much more expensive than fixing an implementation error.}
+\subsubsection{Requirements III}
+
+\definition{Requirements Validation}{The role of \underline{requirements validation} is to check that the right product is being built.
+It ensures that the software being developed (or changed) will satisfy the stakeholders and compares the software requirements specification against the stakeholders' goals and requirements.
+This is important as fixing a requirements error after delivery is much more expensive than fixing an implementation error.
+
+To carry out this process, we use the following three steps throughout the process:
+\begin{itemize}
+    \item \textit{Elicitation}: Checking back with the elicitation sources (e.g., \say{So, are you saying that...?}).
+    \item \textit{Analysis}: Checking that the domain description and requirements are correct.
+    \item \textit{Specification}: Checking that the defined system requirement will meet the user requirements under the assumptions of the domain/environment.
+        Checking conformity to the well-formedness rules/standards.
+\end{itemize}}
+
+\separate{7}\definition{Requirements Verification}{The role of \underline{requirements verification} is to check that the product is being built correctly.
+It ensures that each step followed in the process of building software yields the right products and checks the consistency of the software requirements specification artefacts and other software development products against the specification.
+
+To carry out this process, we use the following steps throughout the process:
+\begin{itemize}
+    \item \textit{Validity Checks}: Does the system provide the functions which best support the customer's needs?
+    \item \textit{Consistency Checks}: Are there any requirements conflicts?
+    \item \textit{Completeness Checks}: Are all functions required by the customer included?
+    \item \textit{Realism Checks}: Can the requirements be implemented given available budget and technology?
+    \item \textit{Verifibility Checks}: Can the requirements be checked/tested?
+    \item \textit{Traceable}: Where/who did the requirement come from and rationale?
+\end{itemize}}
+
+\separate{7}\definition{Fit Criteria}{Each requirement carries a \underline{fit criteria}.
+This is a benchmark or goal that the testing activity uses to determine whether the eventual solution satisfies the requirement.
+For functional requirements (FR), the function is either completed or not, and thus has no scales of measure.
+A non-functional requirement (NFR) is a quality the product must have, and fit criterion is a measure of that.
+
+If such criteria cannot be easily expressed or quantified, then the requirement is likely to be ambiguous, incomplete, or incorrect.
+It is relatively easy to determine fit criteria for quality requirements that are naturally quantitative.}
+
+\separate{7}\definition{Prototyping}{The \underline{prototyping process} can start with those requirements which are poorly understood. 
+This helps stakeholders understand what the system will do.
+
+Prototypes for validation must be more complete than for elicitation as they must contain sufficient facilities for practical use to be made of it.
+This is because implementation of a number of features can help the user(s) to identify important features and those that are no so important.}
+
+\separate{7}We should translate requirements into a testable specification using the following process: understanding the client's need; creating a user story; setting fit criteria; writing Gherkin code to represent it; and then setting priority and rationale.
 
 \section{Legal, Social, Ethical, and Professional Issues}
 
