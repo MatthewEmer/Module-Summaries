@@ -470,9 +470,92 @@ timestamps for when data was created, modified, accessed;
 deleted files that have not yet been overwritten;
 and metadata such as authors and edit history.
 
-\section{Networks}
+\newpage\section{Networks}
 
 This section is taught by \hyperref[modulelead-wanqingtu]{Dr Wanqing Tu}. \comment{Check for recommended reading.}
+
+\subsection{Introduction to Networks and Basic Components}
+
+\subsubsection{Basic Definitions}
+
+\definition{Computer Network}{A \underline{computer network} is a group of devices that are connected to one another in order to exchange information or share resources.}
+
+\separate{7}\definition{End Devices}{\underline{End devices} form the interface between users and the underlying communication network.}
+
+\separate{7}\definition{Intermediary Devices}{\underline{Intermediary devices} interconnect end devices.}
+
+\separate{7}\definition{Transmission Media}{\underline{Transmission media} provides the channels over which the message travels from source to destination. 
+Data appears as signals in transmission media.}
+
+\separate{7}\definition{Wireless Media}{\underline{Wireless media} carries signals in the electromagnetic spectrum without any physical wires.}
+
+\subsubsection{Network Protocols}
+
+\definition{Network Protocol}{A \underline{network protocol} defines the format and order of messages sent and recieved among network entities, and controls the actions taken on message transmisison and/or reciept.
+They must account for the following requirements/rules: 
+\begin{itemize}
+    \item The sender and receiver must both always be identified.
+    \item There must be a common language and grammar used.
+    \item The messages should be delivered within a given timing/at a given speed.
+    \item There must be a confirmation or acknowledgement of requirements.
+\end{itemize}
+Protocols are designed to deal with one or more of these five factors:
+\begin{itemize}
+    \item \textit{Message Timing}: 
+        When someone is able to send a message; 
+        how much information can be sent, and the speed at which it can be delivered; 
+        and how long to wait for responses, and what action to take if a response timeout occurs.
+    \item \textit{Message Delivery Options}: Unicast, multicast, or broadcast.
+    \item \textit{Message Encoding}: 
+        Converting information into another acceptable form for transmission.
+        Decoding is to reverse the process.
+    \item \textit{Message Formatting and Encapsulation}: Placing one message format inside another message format.
+    \item \textit{Message Size}: Breaking a long message into individual pieces that meet both the minimum and maximum size requirements.
+\end{itemize}}
+
+\subsubsection{Access Networks}
+
+\definition{DSL}{A \underline{digital subscriber line (DSL)} uses existing telephone lines to a central office DSLAM.
+Data over a DSL phone line goes to the Internet, and voice over a DSL phone line goes to the telephone net.
+
+It has asymmetric access, so the downstream and upstream rates are different (2.5 Mbps upsteam vs. 24 Mbps downstream).}
+
+\separate{7}\definition{Cable Network}{The \underline{cable network} is a network of cable where fiber cables attach homes to the ISP router.
+Unlike DSL, which has a dedicated access to the central office, homes share an access network that connects to a cable headend.
+
+It uses hybrid fiber coax (HFC), which is also assymetric.
+It has a 42.8 Mbps transmission rate downstream, and a 30.7 Mbps upstream rate.}
+
+\separate{7}\definition{Ethernet}{\underline{Enterprise access networks (Ethernet)} is widely used in companies, universities, etc. 
+It has a wide range of possible transmission rates (from around 10 Mbps to 10 Gbps).
+Today, end systems are typically connected by Ethernet switches.}
+
+\separate{7}\definition{Wireless Access Networks}{\underline{Wireless access networks} connect end systems to a router wirelessly via a base station (a wireless access point).
+
+These networks can either be: 
+a LAN (local-access network), which is typically within one building, and uses WiFi to provide a fast transmission rate; 
+or a WAN (wide-area network), which is typically provided by a telco (mobile) operator over 10's of kilometers, and thus generally has a much slower transmission rate.}
+
+\subsubsection{Network Security}
+
+\definition{Packet Sniffing}{\underline{Packet sniffing} is an attack where some network interface reads/records all packets passing by on the network.
+An example of this is Wireshark.}
+
+\subsection{Core Concepts of Computer Networks}
+
+\subsection{Application Layer}
+
+\subsection{Transport Layer}
+
+\subsection{Network Layer}
+
+\subsection{Medium Access Control (MAC) Sublayer}
+
+\subsection{Data-Link Layer}
+
+\subsection{Wireless MAC}
+
+\subsection{Wireless MAC in the Physical Layer}
 
 \section{Databases}
 
