@@ -498,6 +498,70 @@ It narrows as the mean becomes more precisely estimated.}
     \item Validate behavious with plots, parameters, and held-out evidence.
 \end{enumerate}
 
+\subsection{Regularisation}
+
+\subsubsection{Penalised Objectives}
+
+\definition{Regularisation}{A flexible model can use large coefficients to follow small details in the training sample.
+\underline{Regularisation} asks the optimiser to fit the data while also limiting coefficient magnitude.}
+
+\separate{7}\definition{Regularised Least Squares}{The \underline{regularised least squares equation} takes into account both the fit of the model and the chosen form of simplicity.
+\begin{equation}
+    J(\theta) = \frac{1}{2m}||X\theta - y||^2 + \lambda\Omega(\theta)
+\end{equation}
+where \(\Omega(\theta)\) is the penalty and \(\lambda \geq 0\) is the strength.
+
+The first part of this equation measures the disagreement between predictions and observations.
+This is \underline{residual cost}, and a flexible model can drive this down very low.
+
+The second part is the \underline{coefficient penalty} and measures the size of the fitted parameters.
+It discourages solutions that rely on large compensating weights.
+\begin{equation}
+    \Omega(\theta) = \sum_{j=1} \geq 1 \text{ penalty}(\theta_j) 
+\end{equation}
+This means that the bias remains unpenalised as the intercept \(\theta_0\) controls the overall level and does not express dependence on a measured feature.}
+
+\separate{7}\definition{Ridge Penalty}{A \underline{ridge penalty} is a smooth penalty whose gradient grows with the magnitude of the coefficient.
+\begin{equation}
+    \Omega_{ridge} (\theta) = \sum_{j=1} \geq 1 \theta_j^2
+\end{equation}}
+
+\separate{7}\definition{Lasso Penalty}{A \underline{lasso penalty} uses absolute values to create a corner at zero, allowing the optimum to set coefficients exactly to zero.
+\begin{equation}
+    \Omega_{lasso} (\theta) = \sum_{j=1} \geq 1 |\theta_j|
+\end{equation}}
+
+\inserttable{c|c|c}{Information about ridge and lasso penalties.}{\textbf{Property} & \textbf{Ridge} & \textbf{Lasso}}
+{Penalty & Sum of squares. & Sum of absolute values. \\
+ Coefficient Effect & Smooth shrinkage. & Shrinkage with exact zeroes. \\
+ Correlated Features & Shares weight. & May choose one among several. \\
+ Optimisation & Smooth objective. & Non-differentiable at zero. \\
+ Practical Role & Stability. & Sparse feature set.}
+
+\subsubsection{Ridge on an Unstable Polynomial}
+
+We can create a closed form ridge solution where the penalty adds \(\lambda\) to the diagonal entries associated with feature coefficients.
+\begin{equation}
+    \theta = (X^TX + \lambda I_0)^{-1}X^Ty
+\end{equation}
+where \(I_0\) leaves the bias free and is:
+\begin{equation}
+    I_0 = diag(0,1,1,...,1)
+\end{equation}
+this is because the leading zero prevents the shrinkage of \(\theta_0\) and every polynomial feature coefficient recieves the same penalty after standardisation.
+
+\separate{7}We can fit a ridge using the following algorithm:
+\begin{enumerate}
+    \item Build powers.
+    \item Standardise.
+    \item Add bias.
+    \item Form \(A\) and \(B\).
+    \item Solve \(A\theta = b\) where \(A = X^TX + \lambda I_0\) and \(b = X^Ty\).
+\end{enumerate}
+
+\separate{7}For the ridge model, if the penalty is too small then the model retains the unstable high-degree behaviour and remains sensitive to the particular training sample. 
+Conversely, if the penalty is too large then the coefficients become too small to represent the relationship, raising bias and validation error.
+
 \section{Artificial Intelligence Search}
 
 This section is taught by \hyperref[lecturer-iainstewart]{Professor Iain Stewart}. There is no recommended reading for this topic however there may be an additional video to watch after lectures to enable more content to be covered. 
