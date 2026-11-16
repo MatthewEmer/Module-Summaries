@@ -628,9 +628,88 @@ Similarly, we can measure the \underline{correlation coefficient} between two va
     Corr(X,Y) = \rho_{XY} = \frac{cov(X,Y)}{\sqrt{V(X)V(Y)}}
 \end{equation}}
 
-\subsection{Correlations}
-
 \subsection{Central Limit Theorem and Sampling}
+
+\subsubsection{Statistics}
+
+\definition{Population}{A \underline{population} is a group that includes all the cases in which the researcher is interested.}
+
+\separate{7}\definition{Sample}{A \underline{sample} is a relatively small subset that is representative of a population and is usually randomly chosen.}
+
+\separate{7}\definition{Parameter}{A \underline{parameter} is a numerical feature of a population.}
+
+\separate{7}\definition{Statistic}{A numerical valued function of the sample observation is called a \underline{statistic}.}
+
+\separate{7}\definition{Population Distribution}{The \underline{population distribution} of a variable is the distribution of values of the variable among all individuals in the population.}
+
+\separate{7}\definition{Sampling Distribution of a Statistic}{The \underline{sampling distribution of a statistic} is the distribution of values taken by the statistic in all possible samples of the same size from the same population.
+It is a probability distribution based on a large number of samples of size \(n\) from a given population (with replacement).}
+
+\subsubsection{Statistical Inference}
+
+\definition{Statistical Inference}{The process of \underline{statistical inference} involves using information from a sample to draw conclusions about a wider population.}
+
+\separate{7}\theorem{Markov's Inequality}{The \underline{Markov inequality} is defined as such: let \(X\) be a non-negative random variable
+\begin{equation}
+    P(X \geq a)  \leq \frac{E(X)}{a}, \text{ for all } a > 0
+\end{equation}}
+{Let
+\begin{equation}
+    I = \begin{cases}
+            1, \text{ if } X \geq a \\
+            0, \text{ otherwise}
+        \end{cases}
+\end{equation}
+Since \(X \geq 0\), \(I \leq \frac{X}{a}\).
+Taking expectations,
+\begin{equation}
+    P(X \geq a) = E(I) \leq E\left( \frac{X}{a} \right) = \frac{E(X)}{a}
+\end{equation}
+The \underline{Markov inequality} can give a very loose bound.}
+
+\separate{7}\theorem{Chebyshev's Inequality}{The \underline{Chebyshev inequality} is defined as such: let \(X\) be a random variable with \(E(X) = \mu\) and \(V(X) = \sigma^2\).
+\begin{equation}
+    P(|X - \mu| \geq k) \leq \frac{\sigma^2}{k^2}, \text{ for all } k > 0
+\end{equation}}
+{Since \((X-\mu)^2\) is a non-negative random variable, we can apply Markov's inequality with \(a=k^2\).
+\begin{equation}
+    P((X-\mu)^2 \geq k^2) \leq \frac{E((X-\mu^2))}{k^2} = \frac{\sigma^2}{k^2}
+\end{equation}
+Note that \((X-\mu^2) \geq k^2 \iff |X-\mu| \geq k\), so we can conclude
+\begin{equation}
+    P(|X - \mu| \geq k) \leq \frac{\sigma^2}{k^2}, \text{ for all } k > 0
+\end{equation}}
+
+\separate{7}\theorem{Weak Law of Large Numbers}{The \underline{weak law of large numbers} is defined as such: consider independent and identically distributed random variables \(X_1,X_2,...\).
+Suppose all the \(X_i\) have distribution \(F\) with \(E(X_i) = \mu\) and \(V(X_i) = \sigma^2\) and let \(\overline{X} = \frac{\sum^n_{i=1} X_i}{n}\).
+For any \(\epsilon > 0\), we will have:
+\begin{equation}
+    P(|\overline{X} - \mu| \geq \epsilon) \xrightarrow{n \rightarrow +\infty} 0
+\end{equation}}
+{\(E(\overline{X}) = \mu\) and \(V(\overline{X}) = \frac{\sigma^2}{n}\). 
+By Chebyshev's inequality,
+\begin{equation}
+    P(|X-\mu| \geq k) \leq \frac{\sigma^2}{k^2} \xrightarrow{\text{replace } x \text{ with } \overline{x}} P(|\overline{X}| - \mu \geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \xrightarrow{n \rightarrow +\infty} 0
+\end{equation}}
+
+\separate{7}\theorem{Strong Law of Large Numbers}{The \underline{strong law of large numbers} is defined as such: consider I.I.D. random variables \(X_1,X_2,...\).
+Suppose all the \(X_i\) have distribution \(F\) with \(E(X_i) = \mu\).
+Let \(\overline{X} = \frac{\sigma^n_{i=1} X_i}{n}\).
+We will have:
+\begin{equation}
+    P \left( \lim_{n \rightarrow +\infty} \left( \frac{X_1 + X_2 + ... + X_n}{n} \right) = \mu \right) = 1
+\end{equation}}{Proof excluded.}
+
+This gives us that if you draw observations at random from any population with a finite mean \(\mu\), as the number of observations drawn increases, the mean \(\overline{x}\) of the observed values converges to the mean \(\mu\) of the population.
+
+\subsubsection{Central Limit Theorem}
+
+\theorem{Central Limit Theorem}{The \underline{central limit theorem} is defined such that: consider the I.I.D. random variables \(X_1,X_2,...\).
+Suppose all the \(X_i\) have distribution \(F\) with \(E(X_i) = \mu\) and \(V(X_i) = \sigma^2\) and let \(\overline{X} = \frac{\sum^n_{i=1} X_i}{n}\).
+As \(n \rightarrow \infty\), we will have \(\overline{X} \sim N \left( \mu, \frac{\sigma^2}{n} \right)\).
+
+Simply put, the \underline{central limit theorem} states that the distribution of the sample mean will be approximately a normal distribution if the sample is large enough.}
+{Proof excluded.}
 
 \subsection{Hypothesis Testing}
 
