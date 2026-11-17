@@ -253,6 +253,64 @@ and an accessibilty relation
 \(\square a\) holds at \(u\) iff \(a\) holds at every \(v\), s.t. \((u,v) \in R\).
 Thus, \(\diamond a\) holds at \(u\) iff \(a\) holds at some \(v\), s.t. \((u,v) \in R\).}
 
+\subsubsection{Linear Temporal Logic}
+
+\definition{Atomic Propositions}{We have a boolean state (or word), in which a number of \underline{atomic propositions (AP)} are true or false.}
+
+\separate{7}\definition{Discrete Linear Time}{We'd like to reason about \underline{discrete linear time}, which is an infinite sequence of states \(A_0A_1...\) with state \(A_0\) at time 0 being the current state (thus any propositional formula over the AP talks about \(A_0\)).}
+
+\separate{7}\definition{Temporal Modalities}{We'd like to add \underline{temporal modalities}, such as \say{always \(a\)}, \(\square a\), \say{eventually \(a\)}, \(\diamond a\), \say{next \(a\)}, \(\circ a\), etc. which talk about the entire sequence.
+These let us express other temporal proporties, such as \say{infinitely often \(a\)}, \(\square \diamond a\), and others.}
+
+\separate{7}\definition{LTL}{We are given a finite set \(AP\) of atomic propositions, boolean connectives plus two temporal modalities, \(\circ\) (next) and \(\cup\) (until).
+
+A formula in \underline{linear temporal logic} is defined by the following grammar (in which brackets are omitted).
+\begin{equation}
+    \varphi := \text{true} | a | \varphi_1 \land \varphi_2 | \lnot \varphi | \circ \varphi | \varphi_1 \cup \varphi_2
+\end{equation}
+where \(a \in AP\) and \(\varphi_1,\varphi_2\) are LTL formulae.
+Other modalities can be expressed, e.g., 
+\begin{equation}
+    \diamond a \stackrel{\text{def}}{=} \text{true} \cup a
+\end{equation}
+\begin{equation}
+    \square a \stackrel{\text{def}}{=} \lnot \diamond \lnot a
+\end{equation}
+etc.}
+
+\separate{7}\definition{Satisfaction Relation}{A world is labelled by the \(AP\) that are true in it, so it is just a letter from the alphabet \(2^{AP}\) (the set of all subsets of \(AP\)).
+A word \(\sigma\) is an infinite sequence of worlds, i.e., \(\sigma \in \left( 2^{AP} \right)^\omega\).
+
+The \underline{satisfaction relation}, \(\sigma \models \varphi\), where \(\sigma = A_0A_1...\) is a word and \(\varphi\) is a formula, and is defined recursively by
+\begin{itemize}
+    \item \(\sigma \models \text{true}\).
+    \item \(\sigma \models a \iff a \in A_0\).
+    \item \(\sigma \models \varphi_1 \land \varphi_2 \iff \sigma \models \varphi_1 \text{ and } \sigma \models \varphi_2\).
+    \item \(\sigma \models \lnot \varphi \iff \sigma \not\models \varphi\).
+    \item \(\sigma \models \circ \varphi \iff A_1... \models \varphi\).
+    \item \(\sigma \models \varphi_1 \cup \varphi_2 \iff\) there is \(i \geq 0\) s.t. \(A_i... \models \varphi_2\) and \(A_j... \models \varphi_1\) for all \(0 \leq j < i\).
+\end{itemize}
+The set of all words that satisfy a formula \(\varphi\) is called \(\text{Words}(\varphi)\).}
+
+\separate{7}\definition{Transition Systems}{A \underline{transition system \(TS\)} has:
+\begin{itemize}
+    \item A finite set of states \(S\).
+    \item A transition relation \(\rightarrow \subseteq S \times S\), which is left-total (for every \(s_1 \in S\), there is \(s_2 \in S\) such that \(s_1 \rightarrow s_2\)).
+    \item A set of initial states \(I \subseteq S\).
+    \item A finite set of atomic propositions \(AP\).
+    \item A labelling function \(L: S \rightarrow 2^{AP}\).
+\end{itemize}
+The transitions may be labelled by a finite set of actions \(A_{ct}\), in which case, the transition relation becomes \(\rightarrow \subseteq S \times A_{ct} \times S\).}
+
+\separate{7}\definition{Run of TS}{A \underline{run of transition systems \(TS\)} is an infinite sequence of states
+\begin{equation}
+    s_0 \rightarrow s_1 \rightarrow ...
+\end{equation}
+where \(s_0 \in I\), which produces an infinite trace \(\sigma \in \left( 2^{AP} \right)^\omega, \sigma = L(s_0)L(s_1)...\).
+The set of all possible traces of the \(TS\) is called Traces(\(TS\)).
+Finally, \(TS\) satisfies \(\varphi\), \(TS \models \varphi\), if Traces(\(TS) \subseteq\) Words(\(\varphi\)), i.e., if each trace of the \(TS\) satisifes the formula \(\varphi\).
+Thus, it is possible that \(TS \not\models \varphi\) and \(TS \not\models \lnot \varphi\).}
+
 \subsection{Linear-Time Logic and Translating Into B{\"u}chi Automata}
 
 \section{Algorithms and Complexity}
