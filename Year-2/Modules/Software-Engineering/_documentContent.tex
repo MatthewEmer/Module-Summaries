@@ -19,7 +19,6 @@ This module is assessed through a group project, the deadlines for this can be s
     Project Handover & 5th Feb & 29th Apr & 1st Jul & \hyperref[modulelead-craigstewart]{Dr Craig Stewart} & $10\%$ \\
     Reflective Experience Report & 5th Feb & 6th May & 1st Jul & \hyperref[modulelead-craigstewart]{Dr Craig Stewart} & $20\%$}
 
-
 \subsection{Timetable}
 
 This module is taught through two one-hour lectures and one two-hour computer class each week as seen below in \elemref{tab:Michaelmas Term Timetable for Software Engineering.}{Table}.
@@ -269,6 +268,52 @@ Prototypes for validation must be more complete than for elicitation as they mus
 This is because implementation of a number of features can help the user(s) to identify important features and those that are no so important.}
 
 \separate{7}We should translate requirements into a testable specification using the following process: understanding the client's need; creating a user story; setting fit criteria; writing Gherkin code to represent it; and then setting priority and rationale.
+
+\subsection{Software Modelling}
+
+\subsubsection{Models in Software Engineering}
+
+\definition{Model}{A \underline{model} has a purpose. 
+A \underline{model} describes some entity that exists or is intended to exist in the future.
+A \underline{model} is an abstraction, that is, it does not describe details of the entity that are not of interest to the audience of the model.
+\comment{(Stachowiak, 1973), not in Bibliography yet}.
+
+According to \comment{Bran Selic (2003), (not in bib)}, a model should be:
+\begin{itemize}
+    \item \textit{Abstract}: Emphasise important aspects, hide irrelevant ones.
+    \item \textit{Understandable}: Expressed in a form readily understood by users.
+    \item \textit{Accurate}: Faithfully represents the modelled system.
+    \item \textit{Predictive}: Can be used to derive correct conclusions about the system.
+    \item \textit{Inexpensive}: Cheaper to construct and study than the system.
+\end{itemize}}
+
+\say{Models are better than code for answering high-level abstraction questions stated by different stakeholders.} \comment{(Czarn04), not in Bibliography yet}.
+
+Models capture the intentions of stakeholders more precisely, ignore more implementation-oriented facts, and are more amenable to analysis.
+
+\say{Models provide information about consequences of building artefacts before they are actually made.}  \comment{(Ludew03), not in Bibliography yet}.
+
+\separate{7}\definition{Chaining Models}{The entity described by a model may just be another model.
+This is called a \underline{chain of models}.
+Chaining models is the basis for refining models from higher levels of abstraction down to the level of implementation details.
+
+For example, we can develop design models of the code, while the code is a model of the computation performed by the computer when the code is executed. \comment{(Ludew03), not in Bibliography yet}.}
+
+\separate{7}Models are useful for specifying the system's structure and behaviour, to separate concepts at different conceptual levels, and to facilitate communication with stakeholders.
+They can also be useful when attempting to understand the system, to validate the system, e.g., detecting errors and omissions in the design, to prototype the system, or in formal analysis of the system properties.
+They can also be used to drive implementation with code skeletons and templates.
+
+They encourage a systematic reuse of development knowledge and experience, provide a higher level of abstraction, and drive design transformations.
+
+\subsubsection{Unified Modelling Language}
+
+\definition{UML}{\underline{Unified modelling language (UML)} can be used to model the structure or functionality of software.
+Common examples of its use is in:
+\begin{itemize}
+    \item Class diagrams.
+    \item Use-case diagrams.
+    \item State machine diagrams.
+\end{itemize}}
 
 \section{Legal, Social, Ethical, and Professional Issues}
 
