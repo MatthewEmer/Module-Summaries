@@ -591,6 +591,8 @@ so, by the master theorem, we obtain
     T(n) = \Theta \left( n^{log_2 7} \right) = \Theta \left( n^{2.8074} \right)
 \end{equation}}
 
+\subsection{Dynamic Programming Algorithms}
+
 \subsubsection{Rod Cutting}
 
 \definition{Rod Cutting Problem}{The \underline{rod cutting problem} states that you work for a company that buys steel rods and cuts them into shorter rods, which it then sells.
@@ -644,6 +646,140 @@ For the rod problem, we can use the following algorithm:
     \label{alg:rod}
 \end{algorithm}
 
-\subsection{Dynamic Programming Algorithms}
+\subsubsection{Longest Common Subsequence}
+
+\definition{Longest Common Subsequence}{Given a sequence \(X = \langle x_1,...,x_m \rangle\), another sequence \(Z = \langle z_1,...,z_k \rangle\) is a \underline{subsequence} of \(X\) if, for some \(i_1<i_2<...<i_k\), we have \(z_1=x_{i_1},...,z_k=x_{i_k}\).
+However, these do not need to be consecutive.
+
+A \underline{common subsequence} of \(X\) and \(Y\) is a subsequence of both \(X\) and \(Y\).
+The \underline{longest-common-subsequence} problem takes input \(X\) and \(Y\) and attempts to find the longest common subsequence \(Z\).}
+
+\separate{7}\theorem{LCS Optimal Substructure}{The optimal substructure of the LCS problem is defined by:
+Let \(Z = \langle z_1,...,z_k \rangle\) be an LCS of \(X = \langle x_1,...,x_m \rangle\) and \(Y = \langle y_1,...,y_n\).
+\begin{enumerate}
+    \item If \(x_m = y_n\) then:
+        \begin{itemize}
+            \item \(z_k = x_m = y_n\).
+            \item \(Z_{k-1}\) is an LCS of \(X_{m-1}\) and \(Y_{n-1}\).
+        \end{itemize}
+    \item If \(x_m \neq y_n\) then:
+        \begin{itemize}
+            \item \(z_k \neq x_m\) implies that \(Z\) is an LCS of \(X_{m-1}\) and \(Y\).
+            \item \(z_k \neq y_n\) implies that \(Z\) is an LCS of \(X\) and \(Y_{n-1}\).
+        \end{itemize}
+\end{enumerate}}
+{\begin{enumerate}
+    \item If \(x_m = y_n\) then:
+        \begin{itemize}
+            \item \(z_k = x_m = y_n\).
+            \item \(Z_{k-1}\) is an LCS of \(X_{m-1}\) and \(Y_{n-1}\).
+        \end{itemize}
+        Otherwise assume that \(z_k \neq x_m\). 
+        Then appending \(x_m = y_n\) to \(Z\) gives a common subsequence of \(X\) and \(Y\) that is longer than \(Z\).
+        This is a contradiction to the assumption that \(Z\) is the longest subsequence.
+        Therefore \(z_k = x_m\).
+
+        From the above, clearly \(Z_{k-1}\) is a common subsequence of \(X_{m-1}\) and \(Y_{n-1}\).
+        Assume there is a longer one, say \(W\).
+        Then appending \(x_m = y_n\) to \(W\) gives a common subsequence of \(X\) and \(Y\) that is longer than \(Z\).
+        This again is a contradiction.
+
+        Thus \(W\) does not exist, i.e., \(Z_{k-1}\) is an LCS of \(X_{m-1}\) and \(Y_{n-1}\).
+
+    \item If \(x_m \neq y_n\) then:
+        \begin{itemize}
+            \item \(z_k \neq x_m\) implies that \(Z\) is an LCS of \(X_{m-1}\) and \(Y\).
+        \end{itemize}
+        Suppose that \(z_k \neq x_m\).
+        Then, clearly \(Z\) is a common subsequence of \(X_{m-1}\) and \(Y\).
+        Suppose there is a longer one, say \(W\).
+        Then \(W\) is also a common subsequence of \(X\) and \(Y\) (since \(X_{m-1} \subseteq X\)), which is longer than \(Z\).
+        This is a contradiction to the assumption that \(Z\) is the longest subsequence.
+        Thus, Z is an LCS of \(X_{m-1}\) and \(Y\).
+    \item Can be proved in the same why via symmetry.
+\end{enumerate}}
+
+\separate{7}Let \(c[i,j]\) be the length of an LCS of the prefixes \(X_i\) and \(Y_j\).
+The theorem implies:
+\begin{equation}
+    c[i,j] = \begin{cases}
+                0, \text{ if } i = 0 \text{ or } j = 0 \\
+                c[i-1, j-1] + 1, \text{ if } i,j > 0 \text{ and } x_i = y_j \\
+                \max \{ c[i,j-1], c[i-1, j] \}, \text{ if } i,j > 0 \text{ and } x_i \neq y_j
+             \end{cases}
+\end{equation}
+The above recursive equation gives an exponential-time recursive algorithm but there are \(\Omega(mn)\) distinct subproblems.
+
+\separate{7}We can compute the length of an LCS using a bottom-up approach.
+Let \(X = \langle x_1, ..., x_m \rangle\) and \(Y = \langle y_1, ..., y_n \rangle\).
+The algorithm:
+\begin{itemize}
+    \item Stores the values \(c[0...m, 0...n]\) (length of the various LCSs).
+    \item Also maintains the table \(b[1...m,1...n]\), where \(b[i,j]\) points to the next pair \((i,j)\) while reconstructing the LCS.
+    \item Optimum solution is \(c(m,n)\).
+\end{itemize}
+In the bottom-up approach:
+\begin{itemize}
+    \item The table \(c\) is computed in a row-major order.
+    \item First fill in the first row from left-to-right.
+    \item Then the second one...
+\end{itemize}
+
+\begin{algorithm}[H]
+    \caption{LCS(\(X,Y\))}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(X,Y\)
+        \State \textbf{Output}: \(c,b\)
+        
+        \separate{7}
+        \State \textbf{let} \(b[1...m, 1...n]\) and \(c[0...m, 0...n]\) be new tables.
+        \For{\(i \gets 1\) to \(m\)}
+            \State \(c[i,0] \gets 0\)
+        \EndFor
+        \For{\(j \gets 1\) to \(n\)}
+            \State \(c[o,j] \gets 0\)
+        \EndFor
+        
+        \For{\(i \gets 1\) to \(m\)}
+            \For{\(j \gets 1\) to \(n\)}
+                \If{\(x_i = y_j\)}
+                    \State \(c[i,j] \gets c[i-1, j-1] + 1\)
+                    \State \(b[i,j] \gets\) \say{\(\nwarrow\)}
+                \ElsIf{\(c[i-1,j] \geq c[i,j-1]\)}
+                    \State \(c[i,j] \gets c[i-1, j]\)
+                    \State \(b[i,j] \gets\) \say{\(\uparrow\)}
+                \Else
+                    \State \(c[i,j] \gets c[i, j-1]\)
+                    \State \(b[i,j] \gets\) \say{\(\leftarrow\)}
+                \EndIf
+            \EndFor
+        \EndFor
+
+        \noindent\Return \(c\) and \(b\)
+    \end{algorithmic}
+    \label{alg:lcs}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{PRINT-LCS(\(b, X, i, j\))}
+    \begin{algorithmic}
+        \State \textbf{Input}: \(b, X, i, j\)
+        \State \textbf{Output}: n/a
+        
+        \separate{7}
+        \If{\(i = 0\) or \(j = 0\)}
+            \Return \say{}
+        \EndIf
+        \If{\(b[i,j] =\) \say{\(\nwarrow\)}}
+            \State PRINT-LCS(\(b, X, i-1, j-1\))
+            \State print(\(x_i\))
+        \ElsIf{\(b[i,j] =\) \say{\(\uparrow\)}}
+            \State PRINT-LCS(\(b, X, i-1, j\))
+        \Else
+            \State PRINT-LCS(\(b, X, i, j-1\))
+        \EndIf
+    \end{algorithmic}
+    \label{alg:print-lcs}
+\end{algorithm}
 
 \subsection{Machinings in Graphs}
