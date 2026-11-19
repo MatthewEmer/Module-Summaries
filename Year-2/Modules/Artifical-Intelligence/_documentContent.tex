@@ -31,9 +31,9 @@ This section is taught by \hyperref[modulelead-yanglong]{Dr Yang Long}. The reco
     \item \hyperref[cit:Mastering Machine Learning with scikit-learn]{Mastering Machine Learning with scikit-learn (Hackeling, G., 2017)}.
 \end{itemize}
 
-\subsection{Introduction to Machine Learning}
+\subsection{Python for Machine Learning and the Machine Learning Workflow}
 
-\subsubsection{Module Information}
+\subsubsection{Introduction to Machine Learning}
 
 This module is organised around a direct connection between teaching and practical work. The lectures introduce the concepts, mathematics, 
 assumptions, and experimental consequences needed for that week's practical. The practical then produces the evidence used in the 
@@ -47,9 +47,7 @@ Portfolio & \makecell{Revise the nine reports and connect ideas \\across the mod
 
 \noindent For more information about expectations for evidence, see \hyperref[cit:Machine Learning Guide]{(Long and Durham University, 2026, pp.3-4)}.
 
-\subsubsection{What is Machine Learning?}
-
-\definition{Machine Learning}{Arthur Samuel said in 1959 that \underline{machine learning} is the
+\separate{7}\definition{Machine Learning}{Arthur Samuel said in 1959 that \underline{machine learning} is the
 \begin{quote}
     \say{field of study that gives computers the ability to learn without being explicitly programmed.}
 \end{quote}
@@ -68,17 +66,13 @@ From this, we can define a well-defined learning task as \(<T,P,E>\).}
     \item \definition{Reinforcement Learning}{\underline{Reinforcement learning} works by providing occasional positive and negative feedback to reinforce behaviours. Good behaviours are rewarded with treats and therefore become more common whereas bad behaviours are punished and therefore become less common. This is a balance between exploration (of unchared territory) and exploitation (of current knowledge).}
 \end{itemize}
 
-\subsubsection{Differences between AI, ML, and DL}
-
-\definition{Artificial Intelligence}{\underline{Artificial intelligence} is defined as human intelligence being exhibited by machines.}
+\separate{7}\definition{Artificial Intelligence}{\underline{Artificial intelligence} is defined as human intelligence being exhibited by machines.}
 
 \separate{7}\definition{Machine Learning (Simple)}{In simple terms, \underline{machine learning} can be defined as an approach to achieve artificial intelligence.}
 
 \separate{7}\definition{Deep Learning}{\underline{Deep learning} is defined as a technique for achieving machine learning. As such, we can consider AI to be a subset of ML and ML to be a subset of DL.}
 
-\subsection{Machine Learning Workflow and Coding Environment}
-
-\subsubsection{Machine Learning Workflow}
+\subsubsection{Machine Learning Workflow and Coding Environment}
 
 \definition{Train a Model}{To \underline{train a model}, you use data to create a model and fine-tune it to make better predictions. We can then use this predictive model to make predictions on previously unseen data in order to perform specific tasks.}
 
@@ -93,11 +87,11 @@ From this, we can define a well-defined learning task as \(<T,P,E>\).}
     \item \definition{Inference/Prediction}{\underline{Inference/Prediction}: Finally, the model can be deployed for the task outlined in the first step.}
 \end{enumerate}
 
-\subsubsection{Coding Environment}
+\separate{7}When programming, we traditionally set out the features as variable \(X\) and the target label as \(Y\).
 
-When programming, we traditionally set out the features as variable \(X\) and the target label as \(Y\).
+\subsection{Data Construction and Data Transformation}
 
-\subsection{Data Understanding}
+\subsubsection{Data Understanding}
 
 \definition{Sample}{A \underline{sample} is the unit for which the model recieves features and, during training, a label.}
 
@@ -116,7 +110,7 @@ To predict a sample's species, compute the distances from each species' centroid
     \hat{y} = arg\;min_c || x - \mu_c ||_2
 \end{equation}}
 
-\subsection{Data Preparation Workflow}
+\subsubsection{Data Preparation Workflow}
 
 \definition{Data Preparation Workflow}{To prepare data for machine learning, we use the \underline{data preparation workflow} which follows the steps as below:
 \begin{enumerate}
@@ -133,9 +127,7 @@ To do this, we use \eqref{equation:training-set standardisation}.
     x' = \frac{x - \mu_{train}}{\sigma_{train}}
 \end{equation}}
 
-\subsection{Data Construction}
-
-\subsubsection{Analysing the Raw Data}
+\subsubsection{Data Construction}
 
 \definition{Skewness}{Data can be considered \underline{skewed} to the right if the majority of the data lies to the left with a long tail to the right.
 To measure this, we use a measure called \underline{skewness} which can be calculated with \eqref{equation:skewness}
@@ -165,18 +157,14 @@ This means that if it is above 5\%, then there is insufficient evidence of a dif
 \end{equation}
 where \(O_j\) is the observed count and \(E_j\) is the expected count.}
 
-\subsubsection{Building Trustworthy Evaluation Sets}
-
-A row should only serve one role. 
+\separate{7}A row should only serve one role. 
 Either as a training set (to fit parameters), a validation set (to compare choices), or as a test set (to get a final accuracy estimate).
 
 \separate{7}Random splitting preserves population proportions only in expectation. 
 A finite test set can contain too many or too few examples from an important region. 
 Rare strata show the largest relative variation.
 
-\subsection{Data Transformation}
-
-\subsubsection{Numerical Transforms}
+\subsubsection{Data Transformation}
 
 \definition{Min-max normalisation}{In \underline{min-max normalisation}, the training minimum becomes 0 and the training maximum becomes 1.
 Values between them retain their relative position in the observed training range.
@@ -196,9 +184,7 @@ It is also used in imputers, encoders, ColumnTransformer, and Pipeline.}
 \separate{7}\definition{Data Leakage}{\underline{Data leakage} occurs when preprocessing learns from rows that should remain unseen.
 Test-set statistics carry information about the future evaluation distribution back into training.}
 
-\subsubsection{Skew and Bins}
-
-To reduce the impact of skewed columns, they can be log scaled to compress multiplicative differences into smaller additive differences.
+\separate{7}To reduce the impact of skewed columns, they can be log scaled to compress multiplicative differences into smaller additive differences.
 \begin{equation}
     x' = \log(1+x)
 \end{equation}
@@ -207,9 +193,7 @@ The transformed distribution spreads common values while compressing the tail.
 \separate{7}If you use equal-width bins, you may end up with sparse bins if data is skewed.
 To fix this, we use quartile bins to keep roughly the same number of rows in each bin.
 
-\subsubsection{Categories and Missing Values}
-
-\definition{one-hot}{If a column is unordered, then we can apply a \underline{one-hot representation} where each unique value in the column becomes a new column with a boolean value of whether it is present.
+\separate{7}\definition{one-hot}{If a column is unordered, then we can apply a \underline{one-hot representation} where each unique value in the column becomes a new column with a boolean value of whether it is present.
 This is done with a \underline{one-hot encoder} which learns categories during fit and then applies the same column order during transform.}
 
 \separate{7}If you have a column with missing data, you can take one of two approaches:
@@ -218,15 +202,13 @@ This is done with a \underline{one-hot encoder} which learns categories during f
     \item Impute a fitted statistic - preserves row count and creates a value for future rows (normally median).
 \end{itemize}
 
-\subsubsection{A Leakage-Free Preprocessing Pipeline}
-
-Column-specific preprocessing uses ColumnTransformer to take each column and applies median imputation and standardisation for numeric columns, and categorical encoding for categorical ones.
+\separate{7}Column-specific preprocessing uses ColumnTransformer to take each column and applies median imputation and standardisation for numeric columns, and categorical encoding for categorical ones.
 
 \separate{7}The end-to-end data flow becomes: taking the raw DataFrame and fit preprocessing, then taking the resulting matrix and training the model.
 
-\subsection{Machine Learning Algorithms}
+\subsection{Linear Regression and Gradient Descent from Scratch}
 
-\subsubsection{What a Learning Algorithm Contains}
+\subsubsection{Machine Learning Algorithms}
 
 \definition{Learning Algorithm}{A \underline{learning algorithm} consists of the five parts:
 \begin{itemize}
@@ -253,9 +235,7 @@ A lower cost means the current parameter values match the training observations 
 Gradient descent uses local slope information from the objective.
 Other solvers can reach the same least-squares solution by different routes.}
 
-\subsubsection{A Straight-Line Model}
-
-\definition{Simple Linear Regression}{A \underline{simple linear regression model} assigns one predicted value to each input \(x\).
+\separate{7}\definition{Simple Linear Regression}{A \underline{simple linear regression model} assigns one predicted value to each input \(x\).
 The intercept sets the prediction at \(x=0\).
 The slope states how much the prediction changes when \(x\) increases by one unit.
 \begin{equation}
@@ -298,9 +278,7 @@ The height \(J(\theta_0,\theta_1)\) records how badly the line fits the data.}
     \frac{\delta J}{\delta \theta_1} = \frac{1}{M} \sum_i (h\theta(x_i) - y_i)x_i
 \end{equation}
 
-\subsubsection{The Controlled Experiment}
-
-When viewing a learning-rate curve we can adapt the hyperparameters based on the emerging patterns.
+\separate{7}When viewing a learning-rate curve we can adapt the hyperparameters based on the emerging patterns.
 
 \inserttable{c|c|c}{Reading the learning-rate curves.}{\textbf{Pattern} & \textbf{What The Curve Shows} & \textbf{Likely Response}}
 {Slow Descent & Cost decreases. & Increase \(\alpha\) cautiously.\\
@@ -308,9 +286,7 @@ Smooth Convergence & Cost fails and stabilises. & Retain and verify predictions.
 Oscillation & Cost alternates. & Reduce \(\alpha\).\\
 Divergence & Cost grows rapidly. & Reduce \(\alpha\) and inspect scaling.}
 
-\subsection{Linear Regression}
-
-\subsubsection{Three Routes to the Same Least-Squares Line}
+\subsubsection{Linear Regression}
 
 The iterative route uses gradient descent.
 It starts from an initial guess and repeatedly reduces the cost.
@@ -322,9 +298,7 @@ Its result depends on learning rate, iteration budget, and numerical behaviour.
     \theta_0 = \frac{\sum_i (x_i - \overline{x})(y_i - \overline{y})}{\sum_i (x_i-\overline{x})^2}
 \end{equation}
 
-\subsubsection{Regression Metrics}
-
-Mean Square Error:
+\noindent Mean Square Error:
 \begin{equation}
     MSE = \frac{1}{m}\sum_{i} (\hat{y}_i - y_i)^2
 \end{equation}
@@ -344,18 +318,16 @@ Mean Square Error:
     R^2 = 1 - \frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i (y_i - \overline{y})^2}
 \end{equation}} 
 
-\subsubsection{Implementation and Optimisation Variants}
-
-\definition{Batch gradient descent}{\underline{Batch gradient descent} uses every training row for each update. 
+\separate{7}\definition{Batch gradient descent}{\underline{Batch gradient descent} uses every training row for each update. 
 The path is stable, but each update costs a full pass through the data.}
 
 \separate{7}\definition{Stochastic and mini-batch}{\underline{Stochastic gradient descent} uses one row per update.
 \underline{Mini-Batch gradient descent} uses a small group such as 32 rows. 
 Updates become noisier but more frequent.}
 
-\subsection{Multivariate Linear Regression}
+\subsection{Multivariate and Polynomial Regression}
 
-\subsubsection{From One Feature to Many}
+\subsubsection{Multivariate Linear Regression}
 
 In multivariate machine learning models, a prediction adds one weighted contribution per feature.
 With two features, the fitted object is a plane.
@@ -385,19 +357,15 @@ In this matrix, \(\mathbf{X}\) is the design matrix including bias (\(m \times (
 
 \separate{7}\definition{Multivariate Gradient Descent}{\underline{Multivariate gradient descent} initialises \(\theta\), computes \(\mathbf{X}\theta\), forms residuals, computes \(\frac{\mathbf{X}^Te}{m}\), and then updates \(\theta\).}
 
-\subsubsection{Feature Scaling and Optimisation Geometry}
-
-When feature scales differ greatly, equal changes in different coefficients produce very different movements in prediction space. 
+\separate{7}When feature scales differ greatly, equal changes in different coefficients produce very different movements in prediction space. 
 Gradient descent can zigzag across a narrow valley, slowing progress.
 
-\subsubsection{Direct and Iterative Solvers}
-
-The normal equation sets the gradient to zero to produce a linear system for the least-squares coefficients.
+\separate{7}The normal equation sets the gradient to zero to produce a linear system for the least-squares coefficients.
 \begin{equation}
     \theta = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
 \end{equation}
 
-\subsection{Polynomial Regression}
+\subsubsection{Polynomial Regression}
 
 The prediction curves in \(x\), while every coefficient still enters as a linear multiplier.
 \begin{equation}
@@ -410,17 +378,15 @@ A separate set of 1,000 observations estimates validation error.
     y = \sin (2 \pi x) + \epsilon
 \end{equation}
 
-\subsubsection{Bias}
-
-\definition{Bias}{\underline{Bias} describes systematic error created by restrictive assumptions. 
+\separate{7}\definition{Bias}{\underline{Bias} describes systematic error created by restrictive assumptions. 
 Across different training samples, a high-bias model tends to miss the same parts of the true relationship.}
 
 \separate{7}\definition{Variance}{\underline{Variance} describes sensitivity to the particular training sample.
 A high-variance model changes its fitted curve substantially when the sample changes.}
 
-\subsection{Regression Loss Functions}
+\subsection{Loss Functions and Regularisation}
 
-\subsubsection{What the Model Minimises}
+\subsubsection{Regression Loss Functions}
 
 \definition{Loss}{A model family states which predictions are possible.
 The \underline{loss} states which mistakes matter most.
@@ -498,9 +464,7 @@ It narrows as the mean becomes more precisely estimated.}
     \item Validate behavious with plots, parameters, and held-out evidence.
 \end{enumerate}
 
-\subsection{Regularisation}
-
-\subsubsection{Penalised Objectives}
+\subsubsection{Regularisation}
 
 \definition{Regularisation}{A flexible model can use large coefficients to follow small details in the training sample.
 \underline{Regularisation} asks the optimiser to fit the data while also limiting coefficient magnitude.}
@@ -561,6 +525,49 @@ this is because the leading zero prevents the shrinkage of \(\theta_0\) and ever
 
 \separate{7}For the ridge model, if the penalty is too small then the model retains the unstable high-degree behaviour and remains sensitive to the particular training sample. 
 Conversely, if the penalty is too large then the coefficients become too small to represent the relationship, raising bias and validation error.
+
+\subsection{k-Nearest Neighbours and Classifier Evaluation}
+
+\subsubsection{k-Nearest Neighbours}
+
+\definition{Binary Classification}{Regression predicts a numerical quantity.
+\underline{Binary classification} assigns one of two labels (0 or 1).
+A separate score can express how strongly the local evidence supports class 1.}
+
+We can calculate Euclidean distance in the vector form using
+\begin{equation}
+    ||a-b||^2 = (a-b)^T(a-b)
+\end{equation}
+We can also separate the row norms and one matrix product in the pairwise distance identity
+\begin{equation}
+    ||a-b||^2 = ||a||^2 + ||b||^2 - 2a^Tb
+\end{equation}
+
+\separate{7}\definition{Neighbour Vote}{One way we can make predictions for binary labels is through \underline{neighbour vote} using the following equation
+\begin{equation}
+    \hat{y} = \text{mode}\left( y_{n_1}, ..., y_{n_k} \right)
+\end{equation}}
+
+\separate{7}\definition{Probability-Like Score}{For some entry \(x\) we can create a \underline{probability-like score} \(s(x)\) which can be used to support threshold analysis.
+\begin{equation}
+    s(x) = \frac{1}{k} \sum_{r=1}^k 1 \left[ y_{nr} = 1 \right]
+\end{equation}
+A score of 0 means no positive neighbours, and 1 means that all are positive.
+The score moves up in intermediate steps of \(\frac{1}{k}\) to show vote share.
+
+From this score, the default binary decision is
+\begin{equation}
+    \hat{y} = \begin{cases}
+                1, \text{ when } s(x) > 0.5 \\
+                0, \text{ otherwise}
+              \end{cases}
+\end{equation}}
+
+\subsection{Logistic Regression from Scratch}
+
+\subsection{Decision Trees and Ensemble Methods}
+
+\subsection{Unsupervised Learning with k Means and PCA}
 
 \section{Artificial Intelligence Search}
 

@@ -619,7 +619,111 @@ where \(d_{proc}\) is the nodal processing delay, \(d_{queue}\) is the queueing 
 
 \subsection{Application Layer}
 
+\subsubsection{Network Application Architecture}
+
+\definition{Processes}{\underline{Processes} are programs running within a host.
+Within the same host, two processes communicate using inter-process communication (defined by the OS).
+Processes on different hosts communicate by exchanging messages.}
+
+\separate{7}\definition{Socket}{A \underline{socket} is a software mechanism that allows a process to create and send messages into, and recieve messages from, the network.}
+
+\subsubsection{Protocols}
+
+\definition{TCP}{The \underline{TCP} protocol provides the following services:
+\begin{itemize}
+    \item \textit{Connection-Oriented}: Setup required between the client and server processes.
+    \item \textit{Reliable transport} between the sending and recieving processes.
+    \item \textit{Flow Control}: The sender won't overwhelm the reciever.
+    \item \textit{Full-Duplex Connection}: The connection can send messages in both directions at the same time.
+    \item \textit{Unreliable data transfer} between the sending and recieving processes.
+        \begin{itemize}
+            \item It does not provide reliability, flow control, congestion control, security, or connection setup.
+        \end{itemize}
+    \item \textit{Short-delay transmissions} between sending and recieving processes.
+\end{itemize}}
+
+\separate{7}\definition{HTTP}{\underline{HTTP (Hypertext transfer protocol)} is an application-layer protocol for web services that uses a client-server model where the client is a browser that requests, recieves, and displays web objects; and the server is the web server that sends objects in response to requests.
+
+The protocol achieves this using the transport layer:
+\begin{itemize}
+    \item The client initiates a TCP connection to the server on port 80.
+    \item The server accepts the TCP connection from the client.
+    \item HTTP messages are exchanged between the browser and the web server.
+    \item The TCP connection is closed.
+    \item HTTP is stateless as the server maintains no information about past client requests.
+\end{itemize}}
+
+\separate{7}\definition{Non-Persistent HTTP}{\underline{Non-Persistent HTTP} is a form of the HTTP protocol where at most one object is sent over the TCP connection, the connection is then closed, which means that downloading multiple objects requires multiple connections.
+For example,suppose a user enters a URL then,
+\begin{enumerate}
+    \item The HTTP client initiates a TCP connection to the HTTP server on port 80.
+    \item The HTTP server at host is waiting for TCP connections on port 80 and accepts the connection, notifying the client.
+    \item The HTTP client sends a HTTP request message into the TCP connection socket. 
+        The message indicates that the client wants the given URL.
+    \item The HTTP server recieves the request message, forms a response message containing the requested object, and sends the message into its socket.
+    \item The HTTP server closes the TCP connection as soon as the client recieves the response intact.
+    \item The HTTP client recieves the response message containing the HTML file and displays it.
+    \item Steps 2-6 are repeated for each of the objects requested by the client.
+\end{enumerate}
+The response time for these requests is \(2 RTT + FTT\), where \(RTT\) is the round trip time, and \(FTT\) is the file transmission time.}
+
+\separate{7}\definition{Persistent HTTP}{\underline{Persistent HTTP} is a form of the HTTP protocol where multiple objects can be sent over a single TCP connection between the client and the server.
+It has a response time of \(RTT + FTT\), assuming that connections to the server have already been established, and that all files are requested in parallel.}
+
 \subsection{Transport Layer}
+
+\subsubsection{Transport Layer Services}
+
+The transport layer primarily uses transport control protocol (TCP) and user datagram protocol (UDP). 
+These protocols commonly provide segmentation and logical communication services between applications running on different hosts.
+
+\separate{7}\definition{TCP Segments}{\underline{TCP segments} use encapsulation to send information. 
+This consists of three sections, with each section encapsulating the previous one:
+\begin{itemize}
+    \item \textit{TCP Segment}: This contains the TCP header and the TCP payload.
+    \item \textit{IP Datagram}: This contains the IP header and the IP payload (this is the TCP segment).
+    \item \textit{Ethernet Frame}: This contains the Ethernet header, the Ethernet payload (the IP datagram), and the FCS (the frame check sequence).
+\end{itemize}}
+
+\separate{7}\definition{UDP Protocol}{The \underline{UDP protocol} provides the following services:
+\begin{itemize}
+    \item \textit{Connectionless}: The data is sent directly without any handshakes between the sender and the reciever.
+    \item \textit{Unreliable Data Transfer}: No datagram reordering, so there is noretransmission to recover loss or error.
+    \item \textit{Many other services are reliable} as there is no flow control, congestion control, security, etc.
+\end{itemize}
+Typically, the UDP protocol works by:
+\begin{enumerate}
+    \item The client sends some data to the server.
+    \item The server recieves the data and processes it.
+    \item The server then sends the modified data back to the client.
+    \item The client recieves the modified data.
+\end{enumerate}}
+
+\separate{7}TCP provides a reliable, in-order byte-stream transfer \say{pipe} between the client and the server.
+\begin{enumerate}
+    \item The server must first be running and must have created a socket that accepts the clients' connection requests.
+    \item The client contacts the server by:
+        \begin{itemize}
+            \item Creating TCP/IP socket, specifying the IP address and the port number of the server process.
+            \item When the client creates a socket, the client TCP establishes a connection to the server TCP.
+        \end{itemize}
+    \item When contacted by the client, the server TCP creates a new socket for the server process to communicate with that particular client.
+        \begin{itemize}
+            \item This allows the server to talk with multiple clients.
+            \item Source port numbers are used to distinguish different processes on the same clients.
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{Multiplexing}
+
+\definition{Multiplexing}{TCP and UDP extend the IP delivery service between hosts to deliver service between processes.
+\underline{Multiplexing} occurs at the sender, where data from multiple sockets is handled and the transport header is added.
+At the reciever end, \underline{demultiplexing} uses the header information to deliver the recieved segments/datagrams to the correct socket.}
+
+\separate{7}\definition{Connectionless Multiplexing}{\underline{Connectionless multiplexing} occurs when a host sends a UDP segment:
+All sockets have a host-local port number and are assigned automatically, or via \textit{bind()}.
+
+Similarly, when a host recieves a UDP segment, \underline{connectionless multiplexing} occurs where the host checks the destination port number in the datagram and directs the UDP datagram to the socket with that port number.}
 
 \subsection{Network Layer}
 
