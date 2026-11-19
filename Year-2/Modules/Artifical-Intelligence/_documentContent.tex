@@ -545,12 +545,12 @@ We can also separate the row norms and one matrix product in the pairwise distan
 
 \separate{7}\definition{Neighbour Vote}{One way we can make predictions for binary labels is through \underline{neighbour vote} using the following equation
 \begin{equation}
-    \hat{y} = \text{mode}\left( y_{n_1}, ..., y_{n_k} \right)
+    \hat{y} = \text{mode}\left( y_{n,1}, ..., y_{n,k} \right)
 \end{equation}}
 
 \separate{7}\definition{Probability-Like Score}{For some entry \(x\) we can create a \underline{probability-like score} \(s(x)\) which can be used to support threshold analysis.
 \begin{equation}
-    s(x) = \frac{1}{k} \sum_{r=1}^k 1 \left[ y_{nr} = 1 \right]
+    s(x) = \frac{1}{k} \sum_{r=1}^k 1 \left[ y_{n,r} = 1 \right]
 \end{equation}
 A score of 0 means no positive neighbours, and 1 means that all are positive.
 The score moves up in intermediate steps of \(\frac{1}{k}\) to show vote share.
@@ -562,6 +562,48 @@ From this score, the default binary decision is
                 0, \text{ otherwise}
               \end{cases}
 \end{equation}}
+
+\subsubsection{Classifier Evaluation}
+
+We can calculate the accuracy of a model by checking the proportion of all test cases that have been classified correctly.
+\begin{equation}
+    \text{accuracy} = \frac{TP + TN}{TP + FP + TN + FN}
+\end{equation}
+where \(TP\) is true positive, \(TN\) is true negative, \(FP\) is false positive, and \(FN\) is false negative.
+
+Similarly, we can calculate a model's precision using
+\begin{equation}
+    \text{precision} = \frac{TP}{TP + FP}
+\end{equation}
+
+\separate{7}\definition{Recall}{The \underline{recall/sensitivity/TPR} penalises false negatives and is calculated using
+\begin{equation}
+    \text{recall} = \frac{TP}{TP + FN}
+\end{equation}}
+
+\separate{7}\definition{Specificity}{The \underline{specificity/TNR} focuses on the negative class to penalise false positives using
+\begin{equation}
+    \text{specificity} = \frac{TN}{TN + FP}
+\end{equation}}
+
+\separate{7}\definition{NPV}{The \underline{negative predictive value} calculates how many true negative values are in the set of predicted negative values
+\begin{equation}
+    NPV = \frac{TN}{TN + FN}
+\end{equation}}
+
+\separate{7}\definition{F1 Score}{The \underline{F1 score} summarises positive-class performance without using specificity.
+\begin{equation}
+    F1 = 2 \times \frac{(\text{precision})(\text{recall})}{\text{precision} + \text{recall}}
+\end{equation}}
+
+\separate{7}\definition{ROC Coordinates}{We can create \underline{ROC coordinates} by taking a pair of TPR and FPR values as a set of coordinates which we can plot in ROC space.
+We plot the true-positive rate on the y-axis and false-positive rate on the x-axis.
+
+We can then calculate the area under the curve of a set \(k\) value using
+\begin{equation}
+    AUC = \int^1_0 TPR \times FPR dFPR
+\end{equation}
+If \(AUC = 1.0\) then there is a perfect ranking, and \(AUC=0.5\) matches random ordering.}
 
 \subsection{Logistic Regression from Scratch}
 
