@@ -647,7 +647,7 @@ It is a probability distribution based on a large number of samples of size \(n\
 
 \subsubsection{Statistical Inference}
 
-\definition{Statistical Inference}{The process of \underline{statistical inference} involves using information from a sample to draw conclusions about a wider population.}
+\definition{Statistical Inference 1}{The process of \underline{statistical inference} involves using information from a sample to draw conclusions about a wider population.}
 
 \separate{7}\theorem{Markov's Inequality}{The \underline{Markov inequality} is defined as such: let \(X\) be a non-negative random variable
 \begin{equation}
@@ -711,11 +711,71 @@ As \(n \rightarrow \infty\), we will have \(\overline{X} \sim N \left( \mu, \fra
 Simply put, the \underline{central limit theorem} states that the distribution of the sample mean will be approximately a normal distribution if the sample is large enough.}
 {Proof excluded.}
 
-\subsection{Hypothesis Testing}
+\subsection{Statistical Inference}
 
-\subsection{Data Types and Visualisation}
+\subsubsection{Types of Statistical Inference}
 
-\subsection{Basic Data Analysis with Python}
+\definition{Statistical Inference}{\underline{Statistical inference} is the process of making guesses about the truth from a sample.
+Some common types of statistical inference are:
+\begin{itemize}
+    \item \textit{Point Estimation}: Using a sample statistic to estimate a population parameter.
+    \item \textit{Interval Estimation}: Estimation of the amount of variability in a sample statistic when many samples are repeatedly taken from a population.
+    \item \textit{Hypothesis Testing}: The comparison of sample results with a known or hypothesized population parameter.
+\end{itemize}}
+
+\separate{7}\definition{Point Estimator}{A \underline{point estimator} draws inference about a population by estimating the value of an unknown parameter using a single value or point.}
+
+\separate{7}Let \(\hat{\theta}\) be an estimator of a parameter \(\theta\).
+The bias of the estimator is defined as:
+\begin{equation}
+    b \left( \hat{\theta} \right) = E \left( \hat{\theta} \right) - \theta
+\end{equation}
+An unbiased estimator satisfies \(b \left( \hat{\theta} \right) = 0\).
+For instance, the sample mean is an unbiased estimator of the parameter \(\mu\):
+\begin{equation}
+    E \left( \overline{X} \right) = \mu \rightarrow E \left( \overline{X} \right) - \mu = 0
+\end{equation}
+The variance of the estimator measures the amount of divergence from the estimator mean:
+\begin{equation}
+    V \left( \hat{\theta} \right) = E \left[ \left( \hat{\theta} - E \left( \hat{\theta} \right) \right)^2 \right]
+\end{equation}
+
+\separate{7}\definition{Interval Estimator}{An \underline{interval estimator} draws inferences about a population by estimating the value of an unknown parameter using an interval.
+The interval estimator is affected by the sample size.}
+
+\separate{7}\definition{Confidence Interval}{The \underline{confidence interval} is a plausible range of values for a population parameter.
+It quantifies the precision of an estimate and is especially useful when sampling variability is high.
+
+Based on the CLT, the point estimate will likely have a normal distribution, so we can use the unique characteristics of the bell-shaped plot here.
+\begin{equation}
+    \text{point estimate} \left( \hat{\theta} \right) \pm (z) \times (\sigma)
+\end{equation}
+Depending on the confidence interval we intend to have, the value of \(z\) changes.
+\begin{equation}
+    \left( \hat{\theta} - \left| Z \frac{\alpha}{2} \right| \times s.e \leq \theta \leq \hat{\theta} + \left| Z \frac{\alpha}{2} \right| \times s.e \right) = 1 - \alpha
+\end{equation}
+where \(s.e.\) is standard error, \(\alpha = 1 - \text{confidence value}\) (called the confidence coefficient), and \(Z \sim N(0,1)\).
+
+For example, if we want to have a 95\% confidence interval, \(\alpha = 0.05\), and the \(Z\)-score is calculated where the area under the curve equals 2.5\%, e.g., \(Z \frac{0.05}{2} = Z_{0.025} \rightarrow z = -1.96\).}
+
+\subsubsection{Hypothesis Testing}
+
+\definition{Hypothesis Testing}{\underline{Hypothesis testing} is a statistical method that uses sample data to evaluate a hypothesis about a population parameter.
+It involves two parts: a hypothesis and a process to determine if we can reject the hypothesis.
+
+The \textit{null hypothesis} \(H_0\) states the assumption to be tested.
+It states that there is no difference between a parameter and a specific value, or that there is no difference between to parameters.
+
+The \textit{alternative hypothesis} \(H_1\) is the opposite of the null hypothesis and is typically believed to be true by the researcher.
+It states a specific difference between a parameter and a specific value.
+\begin{enumerate}
+    \item Assume \(H_0\) and \(H_1\) are both about a parameter \(\theta\).
+    \item Take a random sample and compute the sample statistic \(\hat{\theta}\).
+    \item Calculate the probability that the sample statistic of a random sample is \(\leq\) (or \(\geq\)) \(\hat{\theta}\) under the assumption that \(H_0\) is true.
+        Call this probability the p-value.
+    \item If the p-value is smaller than the significance level, reject \(H_0\) and accept \(H_1\).
+    \item Otherwise there is no significant evidence to reject \(H_0\).
+\end{enumerate}}
 
 \section{Data Cleaning and Analytics}
 
