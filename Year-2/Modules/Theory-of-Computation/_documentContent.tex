@@ -253,6 +253,8 @@ and an accessibilty relation
 \(\square a\) holds at \(u\) iff \(a\) holds at every \(v\), s.t. \((u,v) \in R\).
 Thus, \(\diamond a\) holds at \(u\) iff \(a\) holds at some \(v\), s.t. \((u,v) \in R\).}
 
+\subsection{Linear-Time Logic and Translating Into B{\"u}chi Automata}
+
 \subsubsection{Linear Temporal Logic}
 
 \definition{Atomic Propositions}{We have a boolean state (or word), in which a number of \underline{atomic propositions (AP)} are true or false.}
@@ -311,7 +313,75 @@ The set of all possible traces of the \(TS\) is called Traces(\(TS\)).
 Finally, \(TS\) satisfies \(\varphi\), \(TS \models \varphi\), if Traces(\(TS) \subseteq\) Words(\(\varphi\)), i.e., if each trace of the \(TS\) satisifes the formula \(\varphi\).
 Thus, it is possible that \(TS \not\models \varphi\) and \(TS \not\models \lnot \varphi\).}
 
-\subsection{Linear-Time Logic and Translating Into B{\"u}chi Automata}
+\subsubsection{Model Checking LTL by B{\"u}chi Automata}
+
+We are given a TS \(\tau\) and an LTL formula \(\varphi\), both over the same set of atomic proportions \(AP\).
+The task is to decide if \(\tau \models \varphi\).
+
+That is, if all runs of \(\tau\) satisfy \(\varphi\), i.e., if \(\text{Traces}(\tau) \subseteq \text{Words}(\varphi)\).
+Equivalently, \(\text{Traces}(\tau) \cap \text{Words}(\lnot \varphi) = \emptyset\), which is the same as \(\text{Traces}(\tau) \cap \left( \left( 2^{AP} \right)^\omega \backslash \text{Words}(\varphi) \right) = \emptyset\).
+
+So if both the runs of \(\tau\) and the models of \(\varphi\) are represented by B{\"u}chi Automata, we can construct the intersection and check for emptiness.
+If it is empty, reply that \(\tau \models \varphi\); otherwise return \(a,b \in \left( 2^{AP} \right)^*\) such that \(ab^\omega\) is a run of \(\tau\) that falsifies \(\varphi\).
+
+\begin{enumerate}
+    \item Transforming a TS into a B{\"u}chi Automata is trivial: move each label from the state onto all outgoing transitions and introduce a new start state (of the automaton) instead of the multiple ones (of the TS).
+    \item Constructing the intersection of two BA is easy (by the product and then making sure that we alternate infinitely often accepting states from the two) and so is checking a BA for emptiness (by checking if there is a non-trivial strongly connected component that contains an accepting state and is reachable from the start state).
+    \item Transforming an LTL into an equivalent BA is not so easy, yet intuitive.
+        We first translate it into a generalised BA that has multiple sets of accepting states and the acceptance condition is that a state from each set is visited infinitely often.
+        A GBA is however easily transformed into an equivalent BA.
+\end{enumerate}
+
+\separate{7}When converting an LTL into B{\"u}chi (specifically for the states), we recall that the input is an infinite sequence of worlds \(A_0A_1...\), where each world \(A_i \in 2^{AP}\).
+There is a special initial state \(s_0\) (to be described later).
+Every other state has two components:
+\begin{enumerate}
+    \item A subset of the \(AP\) (that is true, all the others are false) that records the current world, which is the last input seen.
+    \item A subset of all subformulae of the \(\varphi\) that should be true in the future, from this sate onwards.
+\end{enumerate}
+A state must be proportionally consistent.
+This takes care of all Boolean connectives.
+
+Then, when considering the transitions, we take that a transition from \(s_1\) into \(s_2\) labelled by \(a \in 2^{AP}\) is added if:
+\begin{enumerate}
+    \item The label \(a\) matches the first component of the state \(s_2\).
+    \item The state \(s_1\) has the subformula \(\circ \psi\) iff the state \(s_2\) has the subformula \(\psi\) - this takes care of the \textit{next} operator.
+    \item Whenever the state \(s_1\) has the subformula \(\varphi_1 \cup \varphi_2\):
+        \begin{enumerate}
+            \item The state \(s_1\) has \(\varphi_2\), or
+            \item the state \(s_1\) has \(\varphi_1\) and the state \(s_2\) has \(\varphi_1 \cup \varphi_2\).
+        \end{enumerate}
+\end{enumerate}
+This partly takes care of the \textit{until} operator as \(\varphi_1 \cup \varphi_2 \rightarrow \varphi_2 \lor (\varphi_1 \land \circ (\varphi_1 \cup \varphi_2))\), but eventually \(\varphi_2\) is not guaranteed.
+
+The expansion \(\varphi_1 \cup \varphi_2 \rightarrow \varphi_2 \lor (\varphi_1 \land \circ (\varphi_1 \cup \varphi_2))\) doesn't guarantee that \(\varphi_2\) eventually happens.
+Thus, any infinite run that always has \(\varphi_1 \cup \varphi_2\) but never \(\varphi_2\) is inconsistent.
+We can prevent it, though, by insisting that every run has states that have \(\varphi_2\) or haven't \(\varphi_1 \cup \varphi_2\) infinitely often.
+
+In other words, any input that satisfies from some time onwards always \((\varphi_1 \cup \varphi_2) \land \lnot \varphi_2\) is inconsistent with the semantics of the \textit{until} operator.
+In formal notation,
+\begin{equation}
+    \diamond \square ((\varphi_1 \cup \varphi_2) \land \lnot \varphi_2)
+\end{equation}
+We must force the negation of the above, which is
+\begin{equation}
+    \square \diamond (\lnot(\varphi_1 \cup \varphi_2) \lnot \varphi_2)
+\end{equation}
+But the latter simply says infinitely often \(\lnot (\varphi_1 \cup \varphi_2)\) or \(\varphi_2\), which is achieved by visiting a state that has \(\varphi_2\) or hasn't \(\varphi_1 \cup \varphi_2\) infinitely often.
+
+Thus for every subformula of the form \(\varphi_1 \cup \varphi_2\), we introduce an accepting set of states \(F_{\varpi_1 \cup \varphi_2}\) that contains every state that has \(\varphi_2\) or hasn't \(\varphi_1 \cup \varphi_2\).
+
+Finally, we introduce the start state \(s_0\) that has a transition to a state \(s\), which is labelled with the first component of \(s\), and only if the formula \(\varphi\) is in the second component of \(s\) (since we are interested in inputs that satisfy \(\varphi\)).
+
+We can merge many accepting states into one.
+A Generalised B{\"u}chi Automaton has \(k\) accepting sets of states \(F_1,...,F_k\) and an infinite run with states \(r_0,r_1,r_2,...\) accepts if there are infinitely many \(r_j\)s in each \(F_i\).
+
+\separate{7}\proposition{GBA}{Every Generalised B{\"u}chi Automaton is equivalent to some B{\"u}chi Automaton.}
+{Let \(M\) be a GBA with accepting sets of states \(F_1,...,F_k\).
+Creake \(k\) identical copies of \(M\), \(M_1,...,M_k\).
+The start state of the new automaton is the copy of the start state in \(M_1\).
+In each \(M_i\), replace each transition of the form \(p \xrightarrow{a} q\) where \(p \in F_i\) by the transition \(p \xrightarrow{a} r\) where \(r\) is the copy of \(q\) in \(M_{i+1}\) (in \(M_1\) if \(i=k\)).
+The set of accepting states in the new automaton could be any (copy of) the set \(F_i\) in \(M_i\).}
 
 \section{Algorithms and Complexity}
 
