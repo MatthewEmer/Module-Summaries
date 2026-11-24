@@ -601,11 +601,92 @@ We plot the true-positive rate on the y-axis and false-positive rate on the x-ax
 
 We can then calculate the area under the curve of a set \(k\) value using
 \begin{equation}
-    AUC = \int^1_0 TPR \times FPR dFPR
+    AUC = \int^1_0 TPR \times FPR \; dFPR
 \end{equation}
 If \(AUC = 1.0\) then there is a perfect ranking, and \(AUC=0.5\) matches random ordering.}
 
 \subsection{Logistic Regression from Scratch}
+
+\subsubitem{Probabilities, Log-Odds, and Linear Decision Boundaries}
+
+The conditional probability is calculated using
+\begin{equation}
+    p(x) = P(y = 1 | x)
+\end{equation}
+The same probability supports multiple decisions when costs or thresholds change.
+
+\inserttable{c|c|c}{The definitions of each machine learning feature.}
+    {Feature & Plain-Language Role & Model Input}
+    {Variance & Spread of transformed image coefficients. & Continuous \\
+    Skewness & Asymmetry of the coefficient distribution. & Continuous \\
+    Curtosis & Tail and peak behavious of coefficients. & Continuous \\ 
+    Entropy & Irregulatiry or information content. & Continuous}
+
+\noindent First, we start with a linear score
+\begin{equation}
+    z = \theta_0 + \theta_1x_1 + ... + \theta_nx_n = \theta^T\hat{x}
+\end{equation}
+The score combines evidence additively so it can take any real value.
+We then create a sigmoid 
+\begin{equation}
+    \sigma (z) = \frac{1}{1 + e^{-z}}
+\end{equation}
+where the logistic regression model is \(p(x) = \sigma \left( \theta^T\hat{X} \right)\) where \(0 < \sigma(z) < 1, \; \forall z in \R\) and \(\sigma(0) = 0.5\).
+
+We can also define the derivative
+\begin{equation}
+    \frac{d \sigma}{d z} = \sigma(z) [1 - \sigma(z)]
+\end{equation}
+which is largest at \(z = 0\) and becomes small near the extremes with a maximum slope of 0.25.
+
+\separate{7}\definition{Odds}{\underline{Odds} compare the probability of the event with the probability of its complement. 
+\begin{equation}
+    \text{odds} = \frac{p}{1-p}
+\end{equation}
+i.e., if \(p = 0.75\), then the odds are \(\frac{0.75}{0.25} = 3\), meaning it is 3 to 1 in favour.}
+
+\separate{7}\definition{Logit}{\underline{Log-odds or logit} is the inverse of the sigmoid and expands odds from \((0,\infty)\) onto the whole real line. 
+\begin{equation}
+    \text{logit}(p) = \log \left[ \frac{p}{1-p} \right]
+\end{equation}}
+
+\separate{7}\definition{Logistic Regression}{We can define \underline{logistic regression} using the equation
+\begin{equation}
+    \log \left[ \frac{p(x)}{1-p(x)} \right] = \theta^T\hat{x}
+\end{equation}
+where features contribute additively to log-odds, while probability changes non-linearly.}
+
+\separate{7}We can hold other features fixed while changing one input by one unit using \(e^{\theta_j}\) which is the multiplicative change in odds for a one-unit rise in \(x_j\).
+We define a one-unit increase as one training-set standard deviation to make coefficients easier to compare across features.
+
+\separate{7}\definition{Threshold Rule}{The \underline{threshold rule} states that
+\begin{equation}
+    \hat{y} = 1 \text{ if } p(x) \geq t, \text{ otherwise } \hat{y} = 0
+\end{equation}
+The common default is \(t = 0.5\), but the threshold is an operating choice.}
+
+Because \(\sigma = 0.5\), the default boundary is a line in two dimensions and a hyperplane in higher dimensions.
+\begin{equation}
+    p(x) = 0.5 \iff \theta^T\hat{x} = 0
+\end{equation}
+Similarly, we know that all constant-probability contours are parallel when the score is linear.
+\begin{equation}
+    p(x) = q \iff \theta^T\hat{x} = \log \left[ \frac{q}{1-q} \right]
+\end{equation}
+
+\separate{7}We can make a Bernoulli observation
+\begin{equation}
+    P(y|x) = p(x)^y [1 - p(x)]^{1-y}
+\end{equation}
+when \(y=1\) only \(p\) remains; when \(y=0\) only \(1-p\) remains.
+
+\separate{7}\definition{Binary Cross-Entropy}{\underline{Binary cross-entropy} is the average negative log-likelihood of the observed labels.
+\begin{equation}
+    J(\theta) = - \frac{1}{m} \sum_i \left[ y_i \log (p_i) + (1 - y_i) \log (1 - p_i) \right]
+\end{equation}
+Cross-entropy matches the probabilistic model rather than treating labels as ordinary numbers.
+
+Each curve (predicted probability against cross-entropy loss) approaches zero when the model is confidently correct and rises without bound when confidently wrong.}
 
 \subsection{Decision Trees and Ensemble Methods}
 
