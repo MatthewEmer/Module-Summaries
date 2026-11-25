@@ -315,6 +315,43 @@ Common examples of its use is in:
     \item State machine diagrams.
 \end{itemize}}
 
+\separate{7}\definition{Aggregation}{When we link two independent parts, we use \underline{aggregation}.
+Here, one parent node is linked other child nodes that exist independently and that will survive if the parent node is destroyed.
+
+For example, a team has players, but these players can exist independently of the team, and disolving the team does not destroy its players.}
+
+\separate{7}\definition{Composition}{In contrast, \underline{composition} indicates strong ownership of one node by another.
+Here, an child belongs to at most one node at a time, and destroying that parent destroys its remaining children.
+However, a part may be detatched before the whole is destroyed.
+
+For example, one order can consist of many order lines, and deleting the order destroys all remaining order lines; but one order line could be separated into a new order before the original is deleted.}
+
+\separate{7}\definition{Sequence Diagrams}{A \underline{sequence diagram} consists of lifelines (objects), messages (calls/returns), activation bars, and loops and conditions.
+
+In a sequence diagram participants are arranged horizontally and time progresses downwards.
+\begin{itemize}
+    \item A \textit{participant head} identifies and object, actor, service, or component.
+    \item A \textit{lifeline} (vertical dashed line) represents the participant throughout the interaction.
+    \item The \textit{activation bar} (narrow rectangle) represents an execution specification which may include waiting for a reply.
+\end{itemize}
+Vertical spacing shows ordering, not necessarily elapsed time.}
+
+\separate{7}\definition{Message Arrows}{Horizontal lines between participants are \underline{message arrows} representing calls and replies.
+\begin{itemize}
+    \item A solid line with a full arrow head indicates a \textit{synchronous call} where the caller waits for completion.
+    \item A solid line with an empty arrow head indicates an \textit{asynchronous message} where the sender can continue without waiting.
+    \item A dashed line indicates a \textit{reply message} which returns a result to the caller. 
+\end{itemize}}
+
+\separate{7}\definition{Frame}{A \underline{frame} groups interactions; its operator defines how they execute.
+\begin{itemize}
+    \item \textit{alt - alternatives}: At most one branch is selected.
+    \item \textit{opt - optional}: Execute only if the guard is true.
+    \item \textit{loop - repetition}: Repeat subject to guard or bounds.
+    \item \textit{par - parallel}: Operands may execute concurrently.
+\end{itemize}
+We also have \textit{guard conditions}, which are encased in square brackets, and dashed horizontal separators indicating the boundary between operands.}
+
 \section{Legal, Social, Ethical, and Professional Issues}
 
 This recommended reading for this sub-topic is:
