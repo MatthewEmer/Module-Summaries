@@ -725,7 +725,106 @@ All sockets have a host-local port number and are assigned automatically, or via
 
 Similarly, when a host recieves a UDP segment, \underline{connectionless multiplexing} occurs where the host checks the destination port number in the datagram and directs the UDP datagram to the socket with that port number.}
 
+\subsubsection{Reliable Data Transfer}
+
+\definition{rdt1.0}{\underline{rdt1.0} provides reliable transfer over a reliable channel (meaning there are no bit errors, and that no packets are lost).
+The sender sends data into an underlying channel and then then waits for a call from above.
+Conversely, the receiver reads the data from the underlying channel and then waits for a call from below.}
+
+\separate{7}\definition{rdt2.0}{\underline{rdt2.0} provides the same service as rdt1.0, but can now deal with bit errors.
+To do this, it utilises a checksum.
+When the reciever reads the message, they send an acknowledgement \(ACK\) to the sender, letting them know that the segments were recieved ok, or a negative acknowledgement \(NAK\) if not.
+The sender would then retransmit the segments on receipt of a \(NAK\).
+
+However, errors can still occur if the \(ACK\)/\(NAK\) is corrupted.}
+
+\separate{7}\definition{ARQ}{Using \(ACK\)s and \(NAK\)s is known as \underline{automatic repeat request (ARQ) protocols}.
+This process implements error detection using checksum bits and provides the reciever with feedback.}
+
+\separate{7}\definition{rdt3.0}{\underline{rdt3.0} can also deal with packet loss.
+To accomplish this, the sender starts a timer after they transmit, and if they do not recieve an \(ACK\) within a \say{reasonable} amount of time, then they retransmit the data.}
+
+\subsubsection{Pipelined Protocols}
+
+When using pipelined protocols:
+\begin{itemize}
+    \item The range of sequence numbers must be increased. 
+        \begin{itemize}
+            \item There may be multiple, in-transit, unacknowledged packets.
+            \item Each packet will have a unique sequence number.
+        \end{itemize}
+    \item Multiple packets may end up buffering at the sender and/or the reciever.
+        \begin{itemize}
+            \item The sender buffers packets that have been transmitted but not yet acknowledged.
+            \item The reciever buffers correctly recieved packets before it can process them to the upper layer.
+        \end{itemize}
+    \item The buffering requirements will depend on the manner in which a data transfer protocol responds to lost, corrupted, and overly delayed packets.
+\end{itemize}
+
+\separate{7}\definition{Go-back-N}{\underline{Go-back-\(N\)} is one type of pipelined protocol where the sender can send multiple packets without waiting for the \(ACK\).
+The sender can have up to \(N\) unacknowledged packets in the pipeline.
+The reciever only sends cumulative \(ACK\)s and doesn't \(ACK\) a packet if there is a gap.
+The sender has a timer for the oldest unacknowledged packet and when the timer expires, they retransmit all the unacknowledged packets.}
+
+\separate{7}\definition{Selective Repeat}{Another pipelined protocol is \underline{selective repeat} where the sender can have up to \(N\) unacknowledged packets in the pipeline.
+The reciever sends individual \(ACK\)s for each packet.
+The sender maintains a timer for each unacknowledged packet and when the timer expires, they retransmit only that unacknowledged packet.}
+
 \subsection{Network Layer}
+
+\subsubsection{Routing Algorithms}
+
+\definition{Routing2}{\underline{Routing} is the process of discovering network paths.
+To do this, you must decide what to optimise, model the network as a graph of nodes and links, and update the routes for changes in topology.}
+
+\separate{7}\definition{Optimality Principle}{The \underline{optimality principle} states that: if router \(J\) is on the optimal path from \(I\) to \(K\), then the optimal path from \(J\) to \(K\) is on the same route.
+This identifies the optimal path from source to destination where the distance metric is either the number of hops, or the time delay.
+
+The \underline{sink tree} contains the optimal routes from all sources to a given destination.}
+
+\separate{7}\definition{Dijstra's Algorithm}{\underline{Dijstra's algorithm} computes a sink tree on a graph given the following assumptions:
+\begin{itemize}
+    \item Each node is labelled with its distance from the source node to the best known path.
+    \item Initially no paths are known.
+    \item Each link is assigned a non-negative weight/distance.
+    \item The shortest path is the one with the lowest total weight.
+\end{itemize}
+It then computes the shortest path by:
+\begin{enumerate}
+    \item Start with the sink, set distance at other nodes to infinity.
+    \item Label each node as either tentative (\(\circ\)) or permanent (\(\bullet\)), with all nodes starting as tentative.
+    \item Pick the lowest distance to a non-permanent node, and make it permanent.
+    \item Repeat from this node until all nodes are permanent.
+\end{enumerate}}
+
+\subsubsection{Routing Types}
+
+\definition{Distance Vector Routing}{In \underline{distance vector routing}, each node maintains a table (vector of best distance to the destination).
+These tables are updated by exchanging information between nodes periodically.
+Tables have two entries, an outgoing line and an estimated distance.
+
+When establishing these tables: each node knows the distance of its links to its immediate neighbours.
+Each node advertises a vector of the lowest known distance to all nodes.
+Each node uses recieved vectors to update its own, which is repeats periodically.}
+
+\separate{7}\definition{Link State Routing}{\underline{Link state routing} follows these steps:
+\begin{enumerate}
+    \item A router learns the network address of the neighbouring routers by sending a \say{HELLO} packet and records their names.
+    \item It then sets the distance to each neighbour.
+    \item The router then constructs a packet telling all other routers what it has just learned.
+    \item It then sends the packet to, and recieves packets from, all other routers.
+    \item This can then be used to compute the shortest path using Dijkstra's algorithm.
+\end{enumerate}}
+
+\separate{7}\definition{Flooding}{\underline{Flooding} is a simple method to send a packet to all network nodes. 
+Each node floods a new packet recieved on an incoming link by sending it out on all of its other links.
+Nodes need to keep track of flooded packets so that the flood can be stopped.
+This does not rely on routing tables being built first.}
+
+\separate{7}\definition{Hierarchical Routing}{\underline{Hierarchical routing} reduces the work of route computation but may result in slightly longer paths than flat routing.}
+
+\separate{7}\definition{Broadcast Routing}{\underline{Broadcast routing} sends a packet to all nodes.
+It uses \textit{reverse path forwarding (RPF)} where arrived packets are checked to see if they arrived from a preferred link (the link that is normally used for sending packets towards the source of the broadcast).}
 
 \subsection{Medium Access Control (MAC) Sublayer}
 
