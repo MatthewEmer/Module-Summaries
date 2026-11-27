@@ -607,7 +607,7 @@ If \(AUC = 1.0\) then there is a perfect ranking, and \(AUC=0.5\) matches random
 
 \subsection{Logistic Regression from Scratch}
 
-\subsubitem{Probabilities, Log-Odds, and Linear Decision Boundaries}
+\subsubsection{Probabilities, Log-Odds, and Linear Decision Boundaries}
 
 The conditional probability is calculated using
 \begin{equation}
@@ -687,6 +687,81 @@ when \(y=1\) only \(p\) remains; when \(y=0\) only \(1-p\) remains.
 Cross-entropy matches the probabilistic model rather than treating labels as ordinary numbers.
 
 Each curve (predicted probability against cross-entropy loss) approaches zero when the model is confidently correct and rises without bound when confidently wrong.}
+
+\subsubsection{Optimisation, Regularisation, and Multi-Class Extensions}
+
+\definition{Unregularised Objective}{\underline{Unregularised Objective}: Training searches for the parameter vector with minimum cross-entropy.
+Every \(p_i\) depends on the same parameter vector through \(p = \sigma(Xb\theta)\) with one scalar objective where all observations contribute to form a convex for linear regression.
+\begin{equation}
+    J(\theta) = - \frac{1}{m} \sum_i \left[ y_i \log p_i + (1 - y_i) \log (1 - p_i) \right]
+\end{equation}}
+
+\separate{7}The graident expression has the same matrix shape as the linear-regression gradient.
+The residual-like term is predicted probability minus the observed label where \(Xb\theta\) creates scores, \(\sigma\) creates probabilities, and \(Xb^T\) aggregates feature evidence.
+\begin{equation}
+    \nabla J (\theta) = \frac{1}{m} Xb^T (\sigma(Xb\theta) - y)
+\end{equation}
+
+\separate{7}\definition{Batch Update}{\underline{Batch Update}: Compute the full gradient at the current \(\theta\), then update all components simultaneously where \(\alpha\) is the learning rate, and one update uses all \(m\) rows, which is repeated for \(n\_iters\).
+\begin{equation}
+    \theta \leftarrow \theta - \alpha\nabla J(\theta)
+\end{equation}}
+
+\separate{7}\definition{Centred Finite Difference}{\underline{Centered Finite Difference}: The check tests the implementation logic rather than the optimiser. 
+To achive this, it perturbs one parameter in both directions whilst keeping every other parameter fixed.
+For this to be successful, \(\epsilon\) should be small, and the test should be repeated for every component, and then compared with the analytic gradient.
+\begin{equation}
+    \frac{\delta J}{\delta \theta_j} \approx \frac{J(\theta + \epsilon e_j) - J(\theta - \epsilon e_j)}{2 \epsilon}
+\end{equation}}
+
+\separate{7}We can draw the boundary using plotting code which should match the feature space used for training.
+It uses standardised axes where \(\theta_2\) must be non-zero to solve \(\theta_0 + \theta_1x_1 + \theta_2x_2 = 0\) for the vertical coordinate.
+\begin{equation}
+    x_2 = \frac{\theta_0 + \theta_1x_1}{\theta_2}
+\end{equation}
+
+\separate{7}\definition{Regularised Objective}{\underline{Regularised Objective}: Regularisation trades data fit for parameter restraint.
+The penalty excludes \(\theta_0\) and grows with coefficient magnitude and \(\theta = 0\) means no penalty and larger \(\theta\) means stronger shrinkage and bias is not penalised.
+\begin{equation}
+    J \lambda (\theta) = J(\theta) + \frac{\lambda}{2m} \sum_{j=1}^n (\theta_j)^2 
+\end{equation}}
+
+\separate{7}\definition{Regularised Gradient}{\underline{Regularised Gradient}: The cost and gradient must implement the same regularisation convention where the penalty adds a pull toward zero for every non-bias coefficient.
+There is the same data gradient with simple elementwise addition where the bias component stays at zero.
+\begin{equation}
+    \nabla J \lambda = \frac{1}{m} Xb^T (p-y) + \frac{\lambda}{m}\left(0,\theta_1,...,\theta_n\right)^T
+\end{equation}}
+
+\separate{7}\definition{Score Matrix}{\underline{Score Matrix}: Matrix orientation should be fixed before writing the loop where row \(i\) contains \(K\) class scores for observation \(i\).
+\(Xb\)'s shape is \(m \times (n+1)\), \(\Theta\)'s shape is \((n+1) \times K\), and \(Z\)'s shape is \(m \times K\).
+\begin{equation}
+    Z = Xb\Theta, \qquad \Theta \in \R^{(n+1) \times K}
+\end{equation}}
+
+\separate{7}\definition{Softmax}{\underline{Softmax} converts relative scores into a categorical distribution.
+Exponentiation creates positive weights and division normalises them into probabilities.
+Every probability is positive and each row sums to one where the largest score gets the largest probability.
+\begin{equation}
+    P(y = k | x) = \frac{e^{z_k}}{\sum_j e^{z_j}}
+\end{equation}}
+
+\separate{7}\definition{Multi-Class Cross-Entropy}{\underline{Multi-Class Cross-Entropy}: one-hot \(Y\) selects the log-probability assigned to the observed class where \(Y\)'s shape is \(m \times K\) where there is only one 1 per row and averages are calculated over observations.
+\begin{equation}
+    J(\theta) = -\frac{1}{m} \sum_i \sum_k Y_{ik} \log P_{ik}
+\end{equation}}
+
+\separate{7}\definition{Softmax Gradient}{\underline{Softmax Gradient}: The structure is unchanged: predicted probabilities minus observed indicators, aggregated by features.
+It has the same shape as \(\Theta\) and all classes update together through vectorised matrix operations.
+\begin{equation}
+    \nabla J(\theta) = \frac{1}{m} Xb^T (P-Y)
+\end{equation}}
+
+\separate{7}\definition{Polynomial Feature Map}{\underline{Polynomial Feature Map}: Logistic regression applies a linear score in \(\varphi(x)\).
+In the original plane, \(\theta^T\varphi(x) = 0\) can be curved.
+This has the same sigmoid and cross-entropy, but with more parameters where non-linearity enters through features, not through a new training objective.
+\begin{equation}
+    \varpi(x_1, x_2) = [x_1,x_2, x_1^2, x_1x_2, x_2^2,...]
+\end{equation}}
 
 \subsection{Decision Trees and Ensemble Methods}
 
