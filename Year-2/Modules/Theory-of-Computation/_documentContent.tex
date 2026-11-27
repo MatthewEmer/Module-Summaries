@@ -852,4 +852,147 @@ In the bottom-up approach:
     \label{alg:print-lcs}
 \end{algorithm}
 
-\subsection{Machinings in Graphs}
+\subsection{Matchings in Graphs}
+
+\subsubsection{The Matching Problem}
+
+\definition{Matching Problem}{The \underline{matching problem} is defined as: let \(G=(V,E)\) be an undirected graph.
+When modelling a real-world application, usually:
+\begin{itemize}
+    \item vertices \(v \in V\) represent some interesting objects, e.g., cities on a map, antennas that need a freqency (\say{colour}), jobs to be executed, machines executing jobs, ...
+    \item edges \(e \in E\) represent relations between pairs of vertices, e.g., roads between cities, frequency conflicts between transmitters, compatibilities of machines and jobs, ...
+\end{itemize}
+However often the edges become the interesting objects to study an edge unites or matches two vertices.
+
+A matching \(M \subseteq E\) in \(G\) is an independent set of edges, i.e., a set \(M\) of edges, where no two edges of \(M\) share a common vertex.}
+
+\separate{7}Many assignment problems can be formulated as finding a special matching in a bipartite graph \(G = (X \cup Y, E)\):
+For example, vertices in \(X\) are agents and vertices in \(Y\) are projects to be assigned, where each agent can do specific projects.
+
+\separate{7}\definition{Roommates Problem}{A similar situation in a general (non-bipartite) graph is the \underline{roommates problem} where every vertex \(v \in V\) is a student, every edge \(e \in E\) means that two students \(v_1, v_2\) are \say{compatible}.
+The matching problem then deals with assigning only compatible pairs of students into rooms.}
+
+\separate{7}\definition{Maximal Matching}{A matching is called \underline{maximal} if \(M\) is not a proper subset of any other matching \(M'\) in \(G\).}
+
+\separate{7}\definition{Maximum Matching}{It is a \underline{maximum} matching if no other matching \(M'\) in \(G\) contains a strictly greater number of edges.}
+
+\separate{7}\definition{Perfect Matching}{A matching is \underline{perfect} if every vertex of \(G\) is an endpoint of an edge in \(M\).}
+
+\separate{7}\definition{Matching Number}{The \underline{matching number} \(\nu_G\) of \(G\) is the size of a maximum matching in \(G\).}
+
+\subsubsection{Alternating Paths and Cycles}
+
+Let \(G=(V,E)\) be a graph and \(M\) be a matching in \(G\).
+Let \(P=(v_0,v_1,...,v_k)\) be a simple path with edges \(e_1=v_0v_1, e_2=v_1v_2,...,e_k=v_{k-1}v_k\).
+
+\separate{7}\definition{Alternating Path}{Then \(P\) is an \underline{\(M\)-alternating path} if the edges \(e_1,e_2,...,e_k\) are alternately in \(M\) and in \(E\backslash M\).}
+
+\separate{7}\definition{Augmenting Path}{\(P\) is an \underline{\(M\)-augmenting path} if both \(P\) is \(M\)-alternating, and neither of \(v_0\) nor \(v_k\) is covered by \(M\).
+\(M = \{e_2, e_4, ..., e_{k-1}\}\), \(k\) is odd in an augmenting path.}
+
+\separate{7}\definition{Alternating Cycle}{A cycle \(C\) in \(G\) is an \underline{\(M\)-alternating cycle} if its edges alternately belong to \(M\) and \(E\backslash M\).}
+
+\separate{7}\definition{Unmatched}{A vertex \(u\) is \underline{matched} by \(M\) if it is the end-vertex of an edge in \(M\); otherwise \(u\) is \underline{unmatched} by \(M\).}
+
+\separate{7}\definition{Symmetric Difference}{For two sets \(A\) and \(B\), the \underline{symmetric difference} is the set
+\begin{equation}
+    A \otimes B = (A \backslash B) \cup (B \backslash A)
+\end{equation}}
+
+\separate{7}\lemma{Alternating Paths}{Let \(G\) be a graph with a matching \(M\) and an \(M\)-alternating path \(P = (v_0,v_1,...,v_k)\).
+If each of the endpoints \(v_0,v_k\) of \(P\) are either unmatched by \(M\), or matched by \(M \cap P\) then \(M \otimes P\) is another matching in \(G\).}
+{Proof omitted.}
+
+\separate{7}\lemma{Augmenting Paths}{If \(P\) is an \(M\)-augmenting path, then in this new matching \(M \otimes P\): 
+\(|M \otimes P| = |M| + 1\); 
+all the matched nodes in \(M\) remain matched; and
+two additional vertices \(v_0,v_k\) become matched in \(M \otimes P\).}
+{Proof omitted.}
+
+\subsubsection{Augmenting Paths}
+
+Let \(G\) be a graph with a matching \(M\) and an \(M\)-augmenting path \(P\).
+Then \(|M \otimes P| = |M| + 1\), i.e., the matching \(M \otimes P\) has more edges than \(M\), meaning that \(M\) is not a maximum matching.
+We can also prove that if there exists no \(M\)-augmenting path \(P\), then \(M\) is a maximum matching.
+
+\separate{7}\lemma{Disjoint Union}{Let \(G=(V,E)\) be an undirected graph, and let \(M\) and \(M^*\) be two matchings in \(G\).
+Then the subgraph \(H = (V, M \otimes M^*)\) of \(G\) is the disjoint union of: isolated vertices; alternating cycles with respect to both \(M\) and \(M^*\); and alternating paths with respect to both \(M\) and \(M^*\).}
+{Proof omitted.}
+
+\separate{7}\lemma{Matching and Augmenting}{Let \(G=(V,E)\) be a graph.
+The following are equivalent:
+\begin{enumerate}
+    \item \(M\) is a maximum matching.
+    \item \(G\) has no \(M\)-augmenting path.
+\end{enumerate}}
+{We have already proved \((1) \implies (2)\). 
+\\ \((2) \implies (1)\): Suppose \(M\) is not a maximum matching.
+Let \(M'\) be a maximum matching.
+From \postenvref{lem:Disjoint Union}{Lemma}{lemmanumber}, the subgraph \(H = (V,M \otimes M')\) contains only alternating paths and cycles (with respect to \(M\) and \(M'\)).
+Each alternating cycle \(C\) has an even number of edges 
+\\\(\implies\) \(C\) has the same number of edges in \(M\) and \(M'\).
+
+Since \(|M'| > |M|\), there must be an odd path \(P\) in \(H\) in which the first and last edges belong to \(M'\) 
+\\\(\implies P\) is an \(M\)-augmenting path, which is a contradiction.
+\\\(\implies M\) is a maximum matching.}
+
+\separate{7}\lemma{Pairwise Vertex-Disjoint}{Let \(G = (V,E)\) be a graph, and \(M\) and \(M^*\) be two matchings in \(G\) such that \(|M^*| = |M|+k\) for some \(k \geq 1\).
+Then \(G\) has at least \(k\) pairwise vertex-disjoint \(M\)-augmenting paths.}
+{The subgraph \(H=(V,M \otimes M^*)\) consists of alternating paths and cycles with respect to \(M\) and \(M^*\) (and isolated vertices).
+\(M \otimes M^*\) has exactly \(k\) more edges from \(M^*\) than from \(M\).
+\\\(\implies\) \(H\) contains \(k\) pairwise vertex-disjoint odd paths that start and end with edges of \(M^*\).
+\\\(\implies\) These paths are \(M\)-augmenting paths.}
+
+\separate{7}All the above sugges the following algorithmic method for solving the matching problem:
+\begin{enumerate}
+    \item Let \(M = \emptyset\).
+    \item Check if there is an \(M\)-augmenting path \(P\).
+    \item If \(P\) exists, then \(M := M \otimes P\) and go to step 2; otherwise output \(M\).
+\end{enumerate}
+
+\subsubsection{Finding Augmenting Paths}
+
+\separate{7}\definition{Reachable}{A vertex \(u\) is \(M\)-reachable from \(v\) if there is an \(M\)-alternating path from \(v\) to \(u\).}
+
+\separate{7}A reasonable approach is:
+\begin{itemize}
+    \item For every vertex \(v \in V\), search for an \(M\)-augmenting path starting at \(v\) (only makes sense if \(v\) is not matched in \(M\)).
+    \item Use a search algorithm to find all \(M\)-reachable vertices from \(v\).
+    \item If we find an unmatched \(M\)-reachable vertex \(u\) then there must be an \(M\)-augmenting path from \(v\) to \(u\).
+\end{itemize}
+
+\separate{7}The main idea for the an algorithm for finding \(M\)-reachable vertices is:
+\begin{itemize}
+    \item Grow a search tree rooted at \(v\).
+    \item Each path from \(v\) to any vertex \(u\) in the tree is alternating (the alternating tree \(T\)).
+    \item The vertices that we visit should be labelled as odd or even.
+    \item If a vertex \(u\) is odd or even then the path from \(v\) in \(T\) is odd or even.
+    \item If an unmatched vertex is labelled odd then it is an augmenting path.
+    \item The algorithm maintains a list of labelled nodes where the root node \(v\) is labelled as even.
+    \item It then iteratively removes vertices from the list and continues searching.
+    \item If the algorithm is examining an even vertex \(u\):
+        \begin{itemize}
+            \item Scan its neighbours \(N(u)\).
+            \item If \(w \in N(u)\) is unlabelled, then label\((w) = \)\say{odd} and add \(w\) to the list.
+            \item If \(w\) is unmatched \(\implies\) the augmenting path has been found, so stop.
+        \end{itemize}
+    \item If the vertex \(u\) is odd:
+        \begin{itemize}
+            \item Explore the unique edge \(ux \in M\).
+            \item If \(x\) is unlabelled, then label\((x) = \)\say{even} and add \(x\) to the list.
+        \end{itemize}
+    \item The algorithm terminates if:
+        \begin{itemize}
+            \item Either the list is empty \(\implies\) there is no augmenting path from \(v\).
+            \item We assign an \say{odd} label to an unmatched vertex \(\implies\) there is an augmenting path.
+        \end{itemize}
+\end{itemize}
+
+\separate{7}\definition{Unique Label Property}{A graph \(G\) has the \underline{unique label property} with respect to a matching \(M\) and a root vertex \(v\), if the search algorithm assigns a unique label to every labelled vertex, regardless of the order in which it visits the vertices.}
+
+Consider an augmenting path \(P = (v, x_1, y_1, ..., x_k, y_k, u)\).
+If the algorithm visits vertices in this order then \(u\) becomes odd, and the same thing happens by following any other order.
+
+\subsubsection{Maximum Matchings in Bipartite Graphs}
+
+\comment{Continue from slide 19/29.}
